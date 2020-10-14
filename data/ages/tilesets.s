@@ -234,11 +234,11 @@ tilesetData: ; 4:4f9c
 	.db $0b $02 $05
 
 ; Tileset 0x21
-	.db $0f $81
+	.db $0f $01
 	.db UNIQGFXH_11
 	.db GFXH_41
-	.db PALH_27
-	.db $0e $02 $01
+	.db PALH_24
+	.db $0e $00 $00
 
 ; Tileset 0x22
 	.db $0f $02

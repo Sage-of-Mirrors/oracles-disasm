@@ -362,9 +362,9 @@ _initialFileVariables:
 	.db <wLinkMaxHealth			$10
 .ifdef ROM_AGES
 	.db <wDeathRespawnBuffer.group		$00
-	.db <wDeathRespawnBuffer.room		$8a
-	.db <wDeathRespawnBuffer.y		$38
-	.db <wDeathRespawnBuffer.x		$48
+	.db <wDeathRespawnBuffer.room		$a7
+	.db <wDeathRespawnBuffer.y		$58
+	.db <wDeathRespawnBuffer.x		$58
 	.db <wDeathRespawnBuffer.facingDir	$00
 	.db <wJabuWaterLevel			$21
 	.db <wPortalGroup			$ff

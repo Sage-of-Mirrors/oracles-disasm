@@ -21744,14 +21744,15 @@ groups:
   - name: TX_5900
     index: 0x00
     text: |-
-      Are you also
-      searching for
-      that which \col(3)Ambi\col(0)
-      desires? You
-      should not go
-      further! There
-      are hordes of
-      terrible beasts!
+      A long time
+      ago, these
+      \col(1)machines\col(0)
+      protected the castle.\stop
+      They're just
+      decoration now,
+      but imagine what
+      they'd look like
+      in action!
 
   - name: TX_5901
     index: 0x01
