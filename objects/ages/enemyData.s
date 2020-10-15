@@ -343,35 +343,21 @@ group5Map04EnemyObjectData:
 	obj_EndPointer
 
 group5Mapc9EnemyObjectData:
-	obj_Part $28 $00 $45
-	obj_Part $28 $00 $49
 	obj_EndPointer
 
 group5MapcbEnemyObjectData:
-	obj_SpecificEnemyA $03 $54 $84 $78 $28
-	obj_SpecificEnemyA     $54 $85 $38 $c8
 	obj_EndPointer
 
 group5Mapd1EnemyObjectData:
-	obj_SpecificEnemyA $03 $54 $82 $28 $98
-	obj_SpecificEnemyA     $54 $83 $78 $98
 	obj_EndPointer
 
 group5Mapd3EnemyObjectData:
-	obj_SpecificEnemyA $03 $54 $86 $38 $68
-	obj_SpecificEnemyA     $54 $87 $58 $98
-	obj_SpecificEnemyA     $54 $88 $78 $98
 	obj_EndPointer
 
 group5Mapd4EnemyObjectData:
-	obj_SpecificEnemyA $03 $54 $89 $58 $98
-	obj_SpecificEnemyA     $54 $8a $48 $a8
 	obj_EndPointer
 
 group5Mapd5EnemyObjectData:
-	obj_SpecificEnemyA $03 $54 $8b $48 $48
-	obj_SpecificEnemyA     $54 $8c $58 $78
-	obj_SpecificEnemyA     $54 $8a $48 $a8
 	obj_EndPointer
 
 group5Mapd6EnemyObjectData:
