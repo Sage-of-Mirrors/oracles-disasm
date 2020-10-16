@@ -455,8 +455,6 @@ group0Map6dEnemyObjectData:
 	obj_EndPointer
 
 group0Map7cEnemyObjectData:
-	obj_ItemDrop $03 $05 $12
-	obj_ItemDrop     $05 $22
 	obj_EndPointer
 
 group0Map63EnemyObjectData:

@@ -14060,13 +14060,12 @@ groups:
   - name: TX_2e10
     index: 0x10
     text: |-
-      \up Symmetry City
-      \right Lynna City
+      \up Sealed Forest
 
   - name: TX_2e11
     index: 0x11
     text: |-
-      \up Symmetry City
+      \up Castle Varum
 
   - name: TX_2e12
     index: 0x12

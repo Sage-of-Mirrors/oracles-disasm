@@ -1156,15 +1156,9 @@ group0Map7aObjectData:
 	obj_End
 
 group0Map7bObjectData:
-	obj_Interaction $3c $03 $48 $48
-	obj_Interaction $3c $04 $48 $68
-	obj_Interaction $3f $02 $38 $58
-	obj_Interaction $b6 $03 $28 $68
 	obj_End
 
 group0Map7cObjectData:
-	obj_Interaction $59 $00 $38 $68
-	obj_Interaction $59 $00 $38 $68 $02
 	obj_Pointer group0Map7cEnemyObjectData
 	obj_End
 
@@ -1215,11 +1209,9 @@ group0Map83ObjectData:
 	obj_End
 
 group0Map8bObjectData:
-	obj_Interaction $dc $07 $38 $28
 	obj_End
 
 group0Map8dObjectData:
-	obj_Interaction $8a $00
 	obj_End
 
 group0Map90ObjectData:
