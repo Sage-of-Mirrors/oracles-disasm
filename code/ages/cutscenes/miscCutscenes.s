@@ -1761,8 +1761,11 @@ _pregameIntroCutsceneHandler:
 	ld (hl),a
 	ld a,SNDCTRL_STOPMUSIC
 	call playSound
+  ; Changed this so that the intro flag is automatically set, so music plays and you can access the pause menu. Revert this when a proper intro is implemented!
 	ld a,GLOBALFLAG_3d
-	jp setGlobalFlag
+	call setGlobalFlag
+  ld a,GLOBALFLAG_INTRO_DONE
+  jp setGlobalFlag
 	
 _func_6e9a:
 	ldh (<hFF8B),a

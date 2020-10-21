@@ -730,7 +730,6 @@ group0MapacObjectData:
 	obj_End
 
 group0Mapc1ObjectData:
-	obj_SpecificEnemyA $00 $5a $38 $00 $00
 	obj_End
 
 group0Map00ObjectData:
@@ -1051,7 +1050,6 @@ group0Map5aObjectData:
 	obj_End
 
 group0Map5bObjectData:
-	obj_Interaction $d0 $04 $68 $60
 	obj_End
 
 group0Map5cObjectData:
@@ -1215,11 +1213,9 @@ group0Map8dObjectData:
 	obj_End
 
 group0Map90ObjectData:
-	obj_Interaction $b6 $04 $68 $18
 	obj_End
 
 group0Map91ObjectData:
-	obj_Interaction $6c $01 $38 $28
 	obj_End
 
 group0Map92ObjectData:
@@ -1240,7 +1236,6 @@ group0Map99ObjectData:
 	obj_End
 
 group0Mapa0ObjectData:
-	obj_Interaction $cd $00 $38 $28
 	obj_End
 
 group0Mapa7ObjectData:
@@ -1940,28 +1935,25 @@ group1MapddObjectData:
 	obj_End
 
 group2Map0eObjectData:
-	obj_Interaction $3c $0d $48 $38
-	obj_Interaction $3d $00 $48 $4a
 	obj_End
 
 group2Map0fObjectData:
-	obj_Interaction $6a $00 $40 $50
 	obj_End
 
 group2Map1eObjectData:
-	obj_Interaction $69 $00 $48 $68
 	obj_End
 
 group2Map1fObjectData:
-	obj_Interaction $69 $01 $48 $28
 	obj_End
 
 group2Map2eObjectData:
-	obj_Interaction $59 $00 $20 $50 $01
 	obj_End
 
 group2Map2fObjectData:
-	obj_Interaction $55 $00 $18 $18
+	obj_Interaction $47 $03 $28 $28
+	obj_Interaction $47 $01 $28 $50
+	obj_Interaction $47 $04 $28 $78
+	obj_Interaction $46 $00 $58 $88
 	obj_End
 
 group2Map3eObjectData:
