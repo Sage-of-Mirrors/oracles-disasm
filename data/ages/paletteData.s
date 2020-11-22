@@ -4245,3 +4245,98 @@ paletteData5960:
 	m_RGB16 $0a $0a $0a
 	m_RGB16 $00 $00 $00
 
+paletteDataSummer:
+;paletteData49e0:
+	m_RGB16 $1e $1f $07
+	m_RGB16 $01 $19 $0a
+	m_RGB16 $01 $0c $03
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $18 $11 $04
+	m_RGB16 $01 $19 $0a
+	m_RGB16 $01 $0c $03
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $1e $1f $07
+	m_RGB16 $18 $11 $04
+	m_RGB16 $0e $09 $04
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $1e $1f $07
+	m_RGB16 $04 $18 $00
+	m_RGB16 $00 $0f $00
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $1f $1f $16
+	m_RGB16 $03 $0c $1f
+	m_RGB16 $00 $03 $11
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $01 $0c $03
+	m_RGB16 $1e $1f $07
+	m_RGB16 $0e $09 $04
+	m_RGB16 $00 $00 $00
+
+paletteDataAutumn:
+;paletteData4a10:
+	m_RGB16 $1f $1d $0f
+	m_RGB16 $1e $0c $04
+	m_RGB16 $15 $00 $00
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $17 $0c $07
+	m_RGB16 $1e $0c $04
+	m_RGB16 $15 $00 $00
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $1f $1d $0f
+	m_RGB16 $17 $0c $07
+	m_RGB16 $0f $07 $05
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $1f $1d $0f
+	m_RGB16 $1c $12 $00
+	m_RGB16 $14 $0c $00
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $18 $1c $1d
+	m_RGB16 $03 $10 $15
+	m_RGB16 $02 $06 $0d
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $1f $1d $0f
+	m_RGB16 $1f $00 $00
+	m_RGB16 $0b $1b $04
+	m_RGB16 $00 $00 $00
+
+paletteDataWinter:
+;paletteData4a40:
+	m_RGB16 $1f $1e $1f
+	m_RGB16 $04 $16 $17
+	m_RGB16 $01 $0a $0e
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $16 $0f $10
+	m_RGB16 $04 $16 $17
+	m_RGB16 $01 $0a $0e
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $1f $1e $1f
+	m_RGB16 $16 $0f $10
+	m_RGB16 $0c $09 $0a
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $1f $1e $1f
+	m_RGB16 $14 $14 $1e
+	m_RGB16 $0c $0c $1d
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $1f $1e $1f
+	m_RGB16 $04 $0e $1f
+	m_RGB16 $00 $02 $12
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $1f $1e $1f
+	m_RGB16 $12 $10 $1f
+	m_RGB16 $0a $07 $1c
+	m_RGB16 $02 $01 $0f

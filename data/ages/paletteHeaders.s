@@ -391,8 +391,11 @@ paletteHeader58: ; $65d6
 paletteHeader59: ; $65d9
 	m_PaletteHeaderBg  2 6 paletteData5330 $00
 paletteHeader5a: ; $65dc
+	m_PaletteHeaderBg  2 6 paletteDataSummer $00
 paletteHeader5b:
+	m_PaletteHeaderBg  2 6 paletteDataAutumn $00
 paletteHeader5c:
+	m_PaletteHeaderBg  2 6 paletteDataWinter $00
 paletteHeader5d:
 paletteHeader5e:
 paletteHeader5f:

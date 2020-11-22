@@ -97,21 +97,21 @@ tilesetData: ; 4:4f9c
 	.db $0f $01
 	.db UNIQGFXH_10
 	.db GFXH_40
-	.db PALH_26
+	.db PALH_5a
 	.db $0d $00 $06
 
 ; Tileset 0x0e
 	.db $0f $01
 	.db UNIQGFXH_10
 	.db GFXH_40
-	.db PALH_26
+	.db PALH_5b
 	.db $0d $01 $06
 
 ; Tileset 0x0f
 	.db $0f $01
 	.db UNIQGFXH_10
 	.db GFXH_40
-	.db PALH_26
+	.db PALH_5c
 	.db $0d $03 $06
 
 ; Tileset 0x10
