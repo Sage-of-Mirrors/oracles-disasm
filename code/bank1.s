@@ -4138,9 +4138,9 @@ setCutsceneIndexIfCutsceneTriggerSet:
 
 ;;
 checkPlayRoomMusic:
-	ld a, GLOBALFLAG_INTRO_DONE
-	call checkGlobalFlag
-	ret z
+	;ld a, GLOBALFLAG_INTRO_DONE
+	;call checkGlobalFlag
+	;ret z
 
 .ifdef ROM_SEASONS
 	; Override subrosia music if on a date with Rosa

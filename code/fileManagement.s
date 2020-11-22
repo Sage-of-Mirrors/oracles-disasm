@@ -363,7 +363,7 @@ _initialFileVariables:
 .ifdef ROM_AGES
 	.db <wDeathRespawnBuffer.group		$00
 	.db <wDeathRespawnBuffer.room		$03
-	.db <wDeathRespawnBuffer.y		$28
+	.db <wDeathRespawnBuffer.y		$38
 	.db <wDeathRespawnBuffer.x		$60
 	.db <wDeathRespawnBuffer.facingDir	$00
 	.db <wJabuWaterLevel			$21

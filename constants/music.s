@@ -26,7 +26,8 @@
 	MUS_GAMEOVER              db ; $09
 
 .ifdef ROM_AGES
-	MUS_LYNNA_CITY            db ; $0a
+	;MUS_LYNNA_CITY            db ; $0a
+	MUS_HORON_VILLAGE         db ; $0a
 	MUS_LYNNA_VILLAGE         db ; $0b
 	MUS_ZORA_VILLAGE          db ; $0c
 .else

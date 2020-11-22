@@ -162,7 +162,7 @@ sound99Channel2:
 	cmdff
 	cmdff
 	cmdff
-sounda4Start:
+c4Start:
 ; @addr{e5b7d}
 sounda4Channel2:
 	cmdf0 $3c
