@@ -15,12 +15,12 @@
 
 ; Overworld size
 .ifdef ROM_AGES
-	.define OVERWORLD_WIDTH		14
-	.define OVERWORLD_HEIGHT	14
+	.define OVERWORLD_WIDTH		8
+	.define OVERWORLD_HEIGHT	8
 
 	; The starting X/Y positions of the tile grid on the map screen
-	.define OVERWORLD_MAP_START_X	3
-	.define OVERWORLD_MAP_START_Y	2
+	.define OVERWORLD_MAP_START_X	6
+	.define OVERWORLD_MAP_START_Y	5
 
 	; The first index at which to move popups on the map screen to the opposite side
 	; of the screen. Ie. when cursor X is from 0-7 it's on the right; from 8-15 it's
