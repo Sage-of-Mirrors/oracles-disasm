@@ -11,7 +11,7 @@ groups:
     - 0x01
     text: |-
       You got \col(1)1 Rupee\col(0)!
-      ...
+      That sucks!
 
   - name: TX_0002
     index: 0x02
