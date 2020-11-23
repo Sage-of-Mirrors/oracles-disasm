@@ -20,6 +20,7 @@
 
 ; Overworlds only
 .define ROOMFLAG_LAYOUTSWAP		$01
+.define ROOMFLAG_LAYOUTSWAP2    $02
 .define ROOMFLAG_PORTALSPOT_DISCOVERED	$08
 
 ; Dungeons and indoors only (collision modes 1 and 2)
@@ -47,6 +48,7 @@
 .define ROOMFLAG_BIT_80		7
 
 .define ROOMFLAG_BIT_LAYOUTSWAP			0
+.define ROOMFLAG_BIT_LAYOUTSWAP2        1
 .define ROOMFLAG_BIT_PORTALSPOT_DISCOVERED	3
 
 .define ROOMFLAG_BIT_KEYDOOR_UP			0

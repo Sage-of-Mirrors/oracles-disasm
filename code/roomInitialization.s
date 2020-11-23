@@ -765,6 +765,7 @@ calculateRoomStateModifier:
 
 	; Group 0: check for animal companion regions
 	ld a,(wRoomPack)
+	res 7,a
 	cp $7f
 	jr z,@companionRegion
 
@@ -776,11 +777,12 @@ calculateRoomStateModifier:
 	inc b
 +
 	call getThisRoomFlags
+	;and $03		;ROOMFLAG_LAYOUTSWAP 1 & 2
+	;add b
 	and ROOMFLAG_LAYOUTSWAP
 	jr z,+
 	inc b
 +
-	ld a,b
 	ld (wRoomStateModifier),a
 	ret
 

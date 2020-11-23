@@ -12693,7 +12693,8 @@ loadTilesetAndRoomLayout:
 	ld a,(wTilesetLayout)
 	cp b
 	ld (wLoadedTilesetLayout),a
-	call nz,loadTilesetLayout
+	jr z,+
+	call nz, loadTilesetLayout
 
 .ifdef ROM_SEASONS
 	call seasonsFunc_3870

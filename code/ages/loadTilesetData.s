@@ -93,6 +93,7 @@ func_6de7:
 	jr nz,@xor
 
 	ld a,(wLoadingRoomPack)
+	res 7,a				;animal companion stuff
 	cp $7f
 	jr nz,@xor
 
