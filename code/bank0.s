@@ -12473,6 +12473,7 @@ func_36f6:
 	ld (wActiveGroup),a
 	ld a,c
 	ld (wActiveRoom),a
+reloadRoom:
 	call loadScreenMusicAndSetRoomPack
 	call loadTilesetData
 	call loadTilesetGraphics
@@ -12693,7 +12694,6 @@ loadTilesetAndRoomLayout:
 	ld a,(wTilesetLayout)
 	cp b
 	ld (wLoadedTilesetLayout),a
-	jr z,+
 	call nz, loadTilesetLayout
 
 .ifdef ROM_SEASONS
@@ -13192,17 +13192,24 @@ setInterleavedTile:
 	pop de
 	ret
 
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 
 setSeason:
 	ld b,a
 	ld a,(wActiveGroup)
+
+.ifdef ROM_AGES
+	sub $03
+	ret nc
+
+.else	;ROM_SEASONS
 	or a
 	ret nz
 
 	ld a,(wRoomPack)
 	cp $f1
 	ret nc
+.endif
 
 	; Not Natzu
 	ld a,b
@@ -13211,6 +13218,7 @@ setSeason:
 	ld (wcc4c),a
 	ret
 
+.ifdef ROM_SEASONS		;added
 checkRoomPackAfterWarp:
 	ldh a,(<hRomBank)
 	push af
@@ -13926,7 +13934,7 @@ func_3ee4:
 	ret
 
 .endif
-
+	
 
 .include "code/debug.s"
 

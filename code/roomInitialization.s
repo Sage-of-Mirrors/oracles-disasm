@@ -777,8 +777,6 @@ calculateRoomStateModifier:
 	inc b
 +
 	call getThisRoomFlags
-	;and $03		;ROOMFLAG_LAYOUTSWAP 1 & 2
-	;add b
 	and ROOMFLAG_LAYOUTSWAP
 	jr z,+
 	inc b
@@ -794,6 +792,7 @@ calculateRoomStateModifier:
 	sub SPECIALOBJECTID_RICKY
 	ld (wRoomStateModifier),a
 	ret
+
 
 ;;
 ; If there are whirlpools or pollution tiles on the screen, this creates a part of type

@@ -352,7 +352,7 @@ _initialFileVariablesTable:
 
 ; Initial values for variables in the c6xx block.
 _initialFileVariables:
-	.db <wTextSpeed				$02
+	.db <wTextSpeed				$04
 	.db <wc608				$01
 	.db <wLinkName+5			$00 ; Ensure names have null terminator
 	.db <wKidName+5				$00
@@ -360,6 +360,7 @@ _initialFileVariables:
 	.db <wMaxBombs				$10
 	.db <wLinkHealth			$10 ; 4 hearts (gets overwritten in standard game)
 	.db <wLinkMaxHealth			$10
+	.db <wAnimalCompanion			$0b
 .ifdef ROM_AGES
 	.db <wDeathRespawnBuffer.group		$00
 	.db <wDeathRespawnBuffer.room		$03

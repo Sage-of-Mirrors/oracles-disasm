@@ -1815,4 +1815,35 @@ interactionCodee6:
 	ld c,(hl) ; [w1Link.xh]
 	jp interactionCheckContainsPoint
 
+; ==============================================================================
+; INTERACID_USED_ROD_OF_SEASONS
+; ==============================================================================
+interactionCodee7:
+	ld a,(wMenuDisabled)
+	ld b,a
+	ld a,(wLinkDeathTrigger)
+	or b
+	jr nz,+
+	ld a,SND_ENERGYTHING
+	call playSound
+	ld a,$02
+	ld (wPaletteThread_updateRate),a
+	call interactionDelete
+	call fadeoutToWhite
+
+	;ld a,(wActiveRoom)
+	;ld c,a
+	ld hl,wActiveGroup
+	ld a,(hl)
+	inc a
+	cp $04
+	jr c,++
+	xor a
+++
+	ld hl,wWarpDestGroup
+	ld (hl),a
+	jp fadeinFromWhite
++
+	jp interactionDelete
+
 .ends

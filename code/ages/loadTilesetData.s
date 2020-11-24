@@ -95,9 +95,10 @@ func_6de7:
 	ld a,(wLoadingRoomPack)
 	res 7,a				;animal companion stuff
 	cp $7f
-	jr nz,@xor
+	jr z,@xor
 
 	ld a,(wAnimalCompanion)
+	or a
 	sub SPECIALOBJECTID_RICKY
 	jr z,@xor
 
@@ -121,7 +122,7 @@ func_6de7:
 	cp $38
 	jr nz,+
 
-	ld a,($c848)
+	ld a,($c848)			;AGES_ROOM_148 room flags (swap)
 	and $01
 	ret z
 

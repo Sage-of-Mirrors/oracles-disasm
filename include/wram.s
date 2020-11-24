@@ -863,7 +863,6 @@ wPirateShipX: ; $c6ee
 	db
 wPirateShipAngle: ; $c6ef
 	db
-
 wc6f0: ; $c6f0
 	dsb $b
 

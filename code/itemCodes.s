@@ -4573,6 +4573,7 @@ itemCode18:
 	dec (hl)
 	ret
 .else
+.endif			;added
 ; ITEMID_ROD_OF_SEASONS
 itemCode07:
 	call _itemTransferKnockbackToLink
@@ -4600,9 +4601,9 @@ itemCode07:
 	ld l,$06
 	dec (hl)
 	ret nz
-	ld a,(wActiveTileType)
-	cp $08
-	ret nz
+	;ld a,(wActiveTileType)
+	;cp TILETYPE_STUMP
+	;ret nz
 	call getFreeInteractionSlot
 	ret nz
 	ld (hl),INTERACID_USED_ROD_OF_SEASONS
@@ -4611,7 +4612,7 @@ itemCode07:
 	ld a,(de)
 	ldi (hl),a
 	jp objectCopyPosition
-.endif
+;.endif
 
 ;;
 ; ITEMID_MINECART_COLLISION
