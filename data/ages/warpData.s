@@ -96,6 +96,7 @@ group0WarpDestTable:
 	m_WarpDest $e2 $54 $0 $1
 	m_WarpDest $f1 $43 $0 $1
 	m_WarpDest $36 $43 $0 $a
+	m_WarpDest $34 $55 $0 $1
 
 group1WarpDestTable:
 	m_WarpDest $48 $21 $0 $1

@@ -1824,25 +1824,24 @@ interactionCodee7:
 	ld a,(wLinkDeathTrigger)
 	or b
 	jr nz,+
-	ld a,SND_ENERGYTHING
-	call playSound
-	ld a,$02
-	ld (wPaletteThread_updateRate),a
-	call interactionDelete
-	call fadeoutToWhite
+	ld a,(wActiveGroup)
+	cp $04
+	jr nc,+
 
-	;ld a,(wActiveRoom)
-	;ld c,a
-	ld hl,wActiveGroup
+	ld hl,wAnimalCompanion
 	ld a,(hl)
 	inc a
 	cp $04
 	jr c,++
-	xor a
+	sub $04
 ++
-	ld hl,wWarpDestGroup
 	ld (hl),a
-	jp fadeinFromWhite
+
+	ld a,SND_ENERGYTHING
+	call playSound
+	ld a,$02
+	ld (wPaletteThread_updateRate),a
+	call fadeoutToWhite
 +
 	jp interactionDelete
 

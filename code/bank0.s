@@ -4028,7 +4028,25 @@ func_1383:
 	ret
 
 .else ; ROM_AGES
-	ret
+	ld (wActiveRoom),a
+	ld a,($ff00+R_SVBK)
+	ld c,a
+	ldh a,(<hRomBank)
+	ld b,a
+	push bc
+	setrombank
+	call bank1.func_49c9
+	call bank1.setObjectsEnabledTo2
+	call loadScreenMusic
+	call loadTilesetData
+	ld a,(wActiveRoom)
+	ld (wLoadingRoom),a
+	call loadTilesetAndRoomLayout
+	call loadRoomCollisions
+	call generateVramTilesWithRoomChanges
+	pop bc
+	ld a,b
+	setrombank
 .endif
 
 ;;
@@ -12473,7 +12491,7 @@ func_36f6:
 	ld (wActiveGroup),a
 	ld a,c
 	ld (wActiveRoom),a
-reloadRoom:
+;reloadRoom:
 	call loadScreenMusicAndSetRoomPack
 	call loadTilesetData
 	call loadTilesetGraphics

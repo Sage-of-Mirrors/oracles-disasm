@@ -10,7 +10,7 @@ loadTilesetData_body:
 	ld l,a
 	ld a,(wActiveRoom)
 	rst_addAToHl
-	ld a,(hl)
+	ld a,(hl)				;diverges
 	ldh (<hFF8D),a
 	call @func_6d94
 	call func_6de7
@@ -93,13 +93,13 @@ func_6de7:
 	jr nz,@xor
 
 	ld a,(wLoadingRoomPack)
-	res 7,a				;animal companion stuff
-	cp $7f
+	bit 7,a				;animal companion stuff
+	;cp $7f
 	jr z,@xor
 
 	ld a,(wAnimalCompanion)
 	or a
-	sub SPECIALOBJECTID_RICKY
+	;sub SPECIALOBJECTID_RICKY
 	jr z,@xor
 
 	ld b,a

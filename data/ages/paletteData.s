@@ -4340,3 +4340,35 @@ paletteDataWinter:
 	m_RGB16 $12 $10 $1f
 	m_RGB16 $0a $07 $1c
 	m_RGB16 $02 $01 $0f
+
+paletteDataSpring:
+;paletteData49b0:
+	m_RGB16 $1f $1f $0e
+	m_RGB16 $0e $1c $02
+	m_RGB16 $06 $11 $00
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $18 $10 $03
+	m_RGB16 $0e $1c $02
+	m_RGB16 $06 $11 $00
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $1f $1f $0e
+	m_RGB16 $18 $10 $03
+	m_RGB16 $0c $07 $00
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $1f $1f $0e
+	m_RGB16 $14 $1f $04
+	m_RGB16 $05 $15 $00
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $1f $1f $18
+	m_RGB16 $04 $16 $1f
+	m_RGB16 $00 $0b $17
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $1f $1f $0e
+	m_RGB16 $0e $1a $04
+	m_RGB16 $1e $05 $14
+	m_RGB16 $00 $00 $00

@@ -4601,6 +4601,10 @@ itemCode07:
 	ld l,$06
 	dec (hl)
 	ret nz
+
+	ld a,(wRoomPack)
+	cp $02
+	ret c
 	;ld a,(wActiveTileType)
 	;cp TILETYPE_STUMP
 	;ret nz
@@ -4611,7 +4615,14 @@ itemCode07:
 	ld l,$49
 	ld a,(de)
 	ldi (hl),a
-	jp objectCopyPosition
+	call objectCopyPosition
+	ld a,$02
+	ld (wc64a),a
+	ld hl,wCutsceneTrigger
+	ld (hl),CUTSCENE_05
+
+	ret
+
 ;.endif
 
 ;;

@@ -115,11 +115,16 @@ tilesetData: ; 4:4f9c
 	.db $0d $03 $06
 
 ; Tileset 0x10
-	.db $0f $81
-	.db UNIQGFXH_02
-	.db GFXH_41
-	.db PALH_11
-	.db $0f $02 $00
+	.db $0f $01
+	.db UNIQGFXH_10
+	.db GFXH_40
+	.db PALH_5d
+	.db $0d $02 $06
+	;.db $0f $01
+	;.db UNIQGFXH_02
+	;.db GFXH_41
+	;.db PALH_10
+	;.db $0f $02 $00
 
 ; Tileset 0x11
 	.db $0f $81

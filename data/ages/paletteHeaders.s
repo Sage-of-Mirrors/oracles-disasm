@@ -397,6 +397,7 @@ paletteHeader5b:
 paletteHeader5c:
 	m_PaletteHeaderBg  2 6 paletteDataWinter $00
 paletteHeader5d:
+	m_PaletteHeaderBg  2 6 paletteDataSpring $00
 paletteHeader5e:
 paletteHeader5f:
 paletteHeader60:

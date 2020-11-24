@@ -360,7 +360,6 @@ _initialFileVariables:
 	.db <wMaxBombs				$10
 	.db <wLinkHealth			$10 ; 4 hearts (gets overwritten in standard game)
 	.db <wLinkMaxHealth			$10
-	.db <wAnimalCompanion			$0b
 .ifdef ROM_AGES
 	.db <wDeathRespawnBuffer.group		$00
 	.db <wDeathRespawnBuffer.room		$03

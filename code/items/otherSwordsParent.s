@@ -33,8 +33,11 @@ _parentItemCode_foolsOre:
 
 ;.ifdef ROM_SEASONS
 @rod_state0:
+	ld a,(wRoomPack)
+	cp $02
+	jr c,++
 	;ld a,(wActiveTileType)
-	;cp TILETYPE_STAIRS;TILETYPE_STUMP
+	;cp TILETYPE_STUMP
 	;jr nz,++
 ;.endif
 

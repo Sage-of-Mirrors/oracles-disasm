@@ -3499,6 +3499,7 @@ _func_5a60:
 .ifdef ROM_AGES
 	ld a,(wLoadingRoomPack)
 	ld (wRoomPack),a
+
 .endif
 	call loadDungeonLayout
 
@@ -3936,7 +3937,12 @@ _func_5cfe:
 .endif
 
 +++
-	call func_4493
+	ld a,(wc64a)
+	or a
+	call z, func_4493
+	xor a
+	ld (wc64a),a
+
 	ld a,(wLinkGrabState2)
 	and $f0
 	cp $40
@@ -4092,9 +4098,15 @@ checkDisplayEraOrSeasonInfo:
 ;;
 ; Called when a fadeout transition must occur between two screens.
 triggerFadeoutTransition:
+	ld a,(wLoadingRoomPack)
+	sub $80
+	jr c,+
+	ld (wAnimalCompanion),a
++
 	ld a,CUTSCENE_05
 	ld (wCutsceneIndex),a
-	jp fadeoutToWhite
+	call fadeoutToWhite
+	ret
 
 ;;
 applyWarpTransition2:
