@@ -4608,6 +4608,9 @@ itemCode07:
 	;ld a,(wActiveTileType)
 	;cp TILETYPE_STUMP
 	;ret nz
+	ld a,(wActiveTileIndex)
+	cp $1c				;shovel hole
+	ret nz
 	call getFreeInteractionSlot
 	ret nz
 	ld (hl),INTERACID_USED_ROD_OF_SEASONS
