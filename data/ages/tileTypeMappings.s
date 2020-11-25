@@ -10,6 +10,7 @@ tileTypesTable:
 tileTypes_collisions0:
 tileTypes_collisions4:
 	.db $a7 TILETYPE_STUMP
+	.db $80 TILETYPE_CRACKEDFLOOR
 	.db $f3 TILETYPE_HOLE
 	.db $d4 TILETYPE_VINES
 	.db $d5 TILETYPE_VINES

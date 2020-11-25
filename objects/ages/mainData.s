@@ -472,7 +472,6 @@ group3Map14ObjectData:
 group3Map15ObjectData:
 group3Map16ObjectData:
 group3Map17ObjectData:
-group3Map18ObjectData:
 group3Map19ObjectData:
 group3Map1aObjectData:
 group3Map1bObjectData:
@@ -487,7 +486,6 @@ group3Map24ObjectData:
 group3Map25ObjectData:
 group3Map26ObjectData:
 group3Map27ObjectData:
-group3Map28ObjectData:
 group3Map29ObjectData:
 group3Map2aObjectData:
 group3Map2bObjectData:
@@ -502,7 +500,6 @@ group3Map34ObjectData:
 group3Map35ObjectData:
 group3Map36ObjectData:
 group3Map37ObjectData:
-group3Map38ObjectData:
 group3Map39ObjectData:
 group3Map3aObjectData:
 group3Map3bObjectData:
@@ -4818,3 +4815,15 @@ group5MapfbObjectData:
 	obj_Pointer group5MapfbEnemyObjectData
 	obj_End
 
+
+group3Map18ObjectData:
+	obj_Interaction $6b $0a $18 $18
+	obj_End
+
+group3Map38ObjectData:
+	obj_Pointer group3Map38EnemyObjectData
+	obj_End
+
+group3Map28ObjectData:
+	obj_Pointer group3Map28EnemyObjectData
+	obj_End

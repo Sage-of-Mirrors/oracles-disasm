@@ -24,6 +24,15 @@ _itemPassableCliffTilesTable:
 	.db $06 $ff
 	.db $07 $ff
 	.db $8e $ff
+	.db $8f $ff
+
+	.db $84 $ff
+	.db $85 $ff
+	.db $86 $ff
+	.db $96 $ff
+	.db $87 $01
+	.db $88 $01
+	.db $89 $01
 	.db $00
 @@down:
 	.db $64 $01
@@ -31,14 +40,33 @@ _itemPassableCliffTilesTable:
 	.db $06 $01
 	.db $07 $01
 	.db $8e $01
+	.db $8f $01
+
+	.db $84 $01
+	.db $85 $01
+	.db $86 $01
+	.db $96 $01
+	.db $87 $ff
+	.db $88 $ff
+	.db $89 $ff
 	.db $00
 @@right:
 	.db $0b $01
 	.db $0a $ff
+
+	.db $87 $ff
+	.db $97 $ff
+	.db $89 $01
+	.db $99 $01
 	.db $00
 @@left:
 	.db $0b $ff
 	.db $0a $01
+
+	.db $87 $01
+	.db $97 $01
+	.db $89 $ff
+	.db $99 $ff
 	.db $00
 
 @collisions1:

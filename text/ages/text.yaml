@@ -944,8 +944,9 @@ groups:
   - name: TX_0076
     index: 0x76
     text: |-
-      You got your
-      \col(1)Bombs\col(0) back!
+      You found the
+      old man's \col(1)Bombs\col(0)!
+      There are 10.
 
   - name: TX_0077
     index: 0x77

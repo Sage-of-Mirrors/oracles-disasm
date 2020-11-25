@@ -2530,3 +2530,12 @@ group0Map33EnemyObjectData:
 group0Map66EnemyObjectData:
 	obj_Condition $00
 	obj_EndPointer
+
+group3Map38EnemyObjectData:
+	obj_RandomEnemy $40 $32 $00
+	obj_EndPointer
+
+group3Map28EnemyObjectData:
+	obj_RandomEnemy $20 $34 $00
+	obj_RandomEnemy $40 $43 $00
+	obj_EndPointer

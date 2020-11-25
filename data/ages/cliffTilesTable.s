@@ -21,6 +21,20 @@ cliffTiles_collisions4:
 	.db $0b $08
 	.db $64 $10
 	.db $ff $10
+	.db $8e $10	
+	.db $8f $10
+
+	.db $84 $10
+	.db $85 $10
+	.db $86 $10
+	.db $96 $10
+	.db $87 $00
+	.db $87 $18
+	.db $88 $00
+	.db $89 $00
+	.db $89 $08
+	.db $97 $18
+	.db $99 $08
 	.db $00
 
 cliffTiles_collisions1:
