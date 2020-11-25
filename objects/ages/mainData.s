@@ -23,7 +23,6 @@ group0Map61ObjectData:
 group0Map69ObjectData:
 group0Map6eObjectData:
 group0Map6fObjectData:
-group0Map75ObjectData:
 group0Map76ObjectData:
 group0Map7dObjectData:
 group0Map7eObjectData:
@@ -693,7 +692,6 @@ group5Mape6ObjectData:
 group5MapeaObjectData:
 group5MapebObjectData:
 group5Mapf0ObjectData:
-group5MapfcObjectData:
 group5MapfdObjectData:
 group5MapfeObjectData:
 group5MapffObjectData:
@@ -887,6 +885,7 @@ group0Map34ObjectData:
 	obj_End
 
 group0Map35ObjectData:
+	obj_Pointer group0Map35EnemyObjectData
 	obj_End
 
 group0Map36ObjectData:
@@ -952,13 +951,10 @@ group0Map44ObjectData:
 	obj_End
 
 group0Map45ObjectData:
-	obj_Interaction $3f $01 $58 $48
 	obj_End
 
 group0Map46ObjectData:
-	obj_Interaction $41 $02 $38 $28
-	obj_Interaction $41 $05 $38 $28
-	obj_Interaction $3d $02 $38 $68
+	obj_Pointer group0Map46EnemyObjectData
 	obj_End
 
 group0Map48ObjectData:
@@ -990,20 +986,16 @@ group0Map51ObjectData:
 	obj_End
 
 group0Map54ObjectData:
-	obj_Interaction $6b $0f $68 $88
 	obj_End
 
 group0Map55ObjectData:
-	obj_Interaction $54 $01 $38 $48 $01
 	obj_End
 
 group0Map56ObjectData:
-	obj_Interaction $3a $04 $48 $68
-	obj_Interaction $65 $00 $48 $78
 	obj_End
 
 group0Map57ObjectData:
-	obj_Interaction $41 $01 $38 $48
+	obj_Pointer group0Map57EnemyObjectData
 	obj_End
 
 group0Map58ObjectData:
@@ -1048,23 +1040,18 @@ group0Map63ObjectData:
 	obj_End
 
 group0Map64ObjectData:
-	obj_Interaction $dc $08 $67 $02
 	obj_Pointer group0Map64EnemyObjectData
 	obj_End
 
 group0Map65ObjectData:
-	obj_Interaction $31 $07 $68 $48
-	obj_Interaction $4c $04 $68 $58
 	obj_End
 
 group0Map66ObjectData:
-	obj_Interaction $3b $01 $44 $7a
 	obj_Pointer group0Map66EnemyObjectData
 	obj_End
 
 group0Map67ObjectData:
-	obj_Interaction $6b $15 $3c $50
-	obj_Interaction $41 $03 $48 $28
+	obj_Pointer group0Map67EnemyObjectData
 	obj_End
 
 group0Map68ObjectData:
@@ -4826,4 +4813,12 @@ group3Map38ObjectData:
 
 group3Map28ObjectData:
 	obj_Pointer group3Map28EnemyObjectData
+	obj_End
+
+group0Map75ObjectData:
+	obj_Pointer group0Map75EnemyObjectData
+	obj_End
+
+group5MapfcObjectData:
+	obj_Pointer group5MapfcEnemyObjectData
 	obj_End
