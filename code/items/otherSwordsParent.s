@@ -36,12 +36,12 @@ _parentItemCode_foolsOre:
 	ld a,(wRoomPack)
 	cp $02
 	jr c,++
-	;ld a,(wActiveTileType)
-	;cp TILETYPE_STUMP
-	;jr nz,++
-	ld a,(wActiveTileIndex)
-	cp $1c				;shovel hole
+	ld a,(wActiveTileType)
+	cp TILETYPE_STUMP
 	jr nz,++
+	;ld a,(wActiveTileIndex)
+	;cp $1c				;shovel hole
+	;jr nz,++
 ;.endif
 
 @state0:

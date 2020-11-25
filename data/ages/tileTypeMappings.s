@@ -9,6 +9,7 @@ tileTypesTable:
 
 tileTypes_collisions0:
 tileTypes_collisions4:
+	.db $a7 TILETYPE_STUMP
 	.db $f3 TILETYPE_HOLE
 	.db $d4 TILETYPE_VINES
 	.db $d5 TILETYPE_VINES
@@ -19,6 +20,7 @@ tileTypes_collisions4:
 	.db $ea TILETYPE_ICE
 	.db $f9 TILETYPE_PUDDLE
 	.db $fa TILETYPE_WATER
+	.db $fb TILETYPE_CRACKED_ICE
 	.db $fc TILETYPE_SEAWATER
 	.db $fe TILETYPE_WATER
 	.db $ff TILETYPE_WATER

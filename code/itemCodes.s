@@ -4605,12 +4605,12 @@ itemCode07:
 	ld a,(wRoomPack)
 	cp $02
 	ret c
-	;ld a,(wActiveTileType)
-	;cp TILETYPE_STUMP
-	;ret nz
-	ld a,(wActiveTileIndex)
-	cp $1c				;shovel hole
+	ld a,(wActiveTileType)
+	cp TILETYPE_STUMP
 	ret nz
+	;ld a,(wActiveTileIndex)
+	;cp $1c				;shovel hole
+	;ret nz
 	call getFreeInteractionSlot
 	ret nz
 	ld (hl),INTERACID_USED_ROD_OF_SEASONS

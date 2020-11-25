@@ -699,17 +699,17 @@ _linkApplyTileTypes:
 	jr @notSwimming
 
 @tileType_cracked_ice:
-.ifdef ROM_AGES
-	ret
-.else
+;.ifdef ROM_AGES
+	;ret
+;.else
 	ld a,(wStandingOnTileCounter)
 	cp $20
 	jr c,@tileType_ice
 	ld a,(wActiveTilePos)
 	ld c,a
-	ld a,$fd
+	ld a,$fa;$fd
 	call setTile
-.endif
+;.endif
 
 @swimming:
 	ld a,(wLinkRidingObject)
@@ -4295,7 +4295,7 @@ _linkState05:
 
 	; Set destination position (var37 / var38)
 .ifdef ROM_AGES
-	ld l,$18
+	ld l,$28
 .else
 	ld l,$13
 .endif
@@ -4989,9 +4989,9 @@ _linkState10:
 	jr nz,++
 
 	call checkLinkPushingAgainstBed
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 	call checkLinkPushingAgainstTreeStump
-.endif
+;.endif
 	call _checkLinkJumpingOffCliff
 ++
 	call _linkUpdateInAir
@@ -6918,14 +6918,14 @@ _specialObjectUpdateAdjacentWallsBitset:
 	rrca
 	ret c
 
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 	ld a,(wActiveTileType)
 	sub TILETYPE_STUMP
 	jr nz,+
 	dec a
 	jr +++
 +
-.endif
+;.endif
 
 	ld h,d
 	ld l,SpecialObject.yh
@@ -6960,12 +6960,12 @@ _specialObjectUpdateAdjacentWallsBitset:
 	.db $db $c3
 	.db $ee $cc
 	.db $00
-.else
+.endif;.else
 +++
 	ld e,SpecialObject.adjacentWallsBitset
 	ld (de),a
 	ret
-.endif
+;.endif
 
 ;;
 ; This function only really works with Link.
@@ -7237,7 +7237,7 @@ checkLinkPushingAgainstBed:
 
 	; Check link is in room $9e, position $17, facing right
 .ifdef ROM_AGES
-	ldbc $9e, $17
+	ldbc $08, $27
 	ld l,DIR_RIGHT
 .else
 	ldbc $82, $14
@@ -7272,7 +7272,7 @@ checkLinkPushingAgainstBed:
 	ld a,LINK_STATE_SLEEPING
 	jp linkSetState
 
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 ;;
 ; Pushing against tree stump
 checkLinkPushingAgainstTreeStump:
@@ -7298,7 +7298,7 @@ checkLinkPushingAgainstTreeStump:
 	ld b,a
 	ld c,(hl)
 	call objectGetRelativeTile
-	cp $20
+	cp $a7;$20
 	ret nz
 	ld a,$01
 	call _specialObjectSetVar37AndVar38
@@ -7415,7 +7415,7 @@ seasonsFunc_05_5ed3:
 	dbw $14 $fe60
 	dbw $1e $fe40
 	dbw $14 $fe60
-.endif
+;.endif
 
 clearVar37AndVar38:
 	xor a
@@ -7500,11 +7500,11 @@ _specialObjectSetPositionToVar38IfSet:
 ;;
 ; Checks if Link touches a cliff tile, and starts the jumping-off-cliff code if so.
 _checkLinkJumpingOffCliff:
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 	ld a,(wActiveTileType)
 	cp TILETYPE_STUMP
 	ret z
-.endif
+;.endif
 
 	; Return if Link is not moving in a cardinal direction?
 	ld a,(wLinkAngle)
@@ -7549,13 +7549,13 @@ _checkLinkJumpingOffCliff:
 	ld l,SpecialObject.knockbackCounter
 	ld (hl),$00
 
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 	ldh a,(<hFF8B)
 	cp $05
 	jr z,@setSpeed140
 	cp $06
 	jr z,@setSpeed140
-.endif
+;.endif
 
 	; Return from caller (don't execute any more "linkState01" code)
 	pop hl
@@ -7710,13 +7710,13 @@ _linkState12:
 
 	call specialObjectTryToBreakTile_source05
 
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 	ld a,(wActiveGroup)
 	or a
 	jr nz,+
 	ld bc,$0500
 	call objectGetRelativeTile
-	cp $20
+	cp $a7;$20
 	jr nz,+
 	call objectCenterOnTile
 	ld l,SpecialObject.yh
@@ -7724,7 +7724,7 @@ _linkState12:
 	sub $06
 	ld (hl),a
 +
-.endif
+;.endif
 
 	xor a
 	ld (wLinkInAir),a
@@ -7878,6 +7878,7 @@ _landableTileFromCliffExceptions:
 @collisions5:
 	.db TILEINDEX_RAISABLE_FLOOR_1 TILEINDEX_RAISABLE_FLOOR_2
 @collisions0:
+	.db $a7 $d5
 @collisions3:
 @collisions4:
 	.db $00
