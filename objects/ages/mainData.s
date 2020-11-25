@@ -1062,6 +1062,7 @@ group0Map65ObjectData:
 
 group0Map66ObjectData:
 	obj_Interaction $3b $01 $44 $7a
+	obj_Pointer group0Map66EnemyObjectData
 	obj_End
 
 group0Map67ObjectData:
@@ -1122,7 +1123,7 @@ group0Map74ObjectData:
 	obj_End
 
 group0Map77ObjectData:
-	obj_Interaction $44 $03 $48 $68
+	obj_Interaction $dc $07 $68 $88
 	obj_End
 
 group0Map78ObjectData:

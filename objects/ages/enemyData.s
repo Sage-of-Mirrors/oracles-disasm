@@ -2526,3 +2526,7 @@ group0Map42EnemyObjectData:
 
 group0Map33EnemyObjectData:
 	obj_EndPointer
+
+group0Map66EnemyObjectData:
+	obj_Condition $00
+	obj_EndPointer
