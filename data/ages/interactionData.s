@@ -288,7 +288,7 @@ interaction63SubidData:
 	m_InteractionData $7d $16 $40
 	m_InteractionData $7d $18 $50
 	m_InteractionData $00 $00 $00
-	m_InteractionData $00 $00 $00
+	m_InteractionData $7d $14 $20;$00 $00 $00	;rod
 	m_InteractionData $7d $1e $40
 	m_InteractionData $7c $00 $50
 	m_InteractionData $7c $02 $50

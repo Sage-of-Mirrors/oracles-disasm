@@ -4592,7 +4592,7 @@ itemCode07:
 	ld (hl),$10
 	ld a,$74
 	call playSound
-	ld a,$1c
+	ld a,$40
 	call loadWeaponGfx
 	call _itemLoadAttributesAndGraphics
 	jp objectSetVisible82
@@ -4619,11 +4619,14 @@ itemCode07:
 	ld a,(de)
 	ldi (hl),a
 	call objectCopyPosition
+	ld a,(wActiveGroup)
+	cp $04
+	ret nc
+	
 	ld a,$02
 	ld (wc64a),a
 	ld hl,wCutsceneTrigger
 	ld (hl),CUTSCENE_05
-
 	ret
 
 ;.endif

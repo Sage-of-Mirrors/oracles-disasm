@@ -109,47 +109,49 @@ applyRoomSpecificTileChangesAfterGfxLoad:
 ; $0a: Maku tree past screen
 
 @group0:
-	.db $05 $08
-	.db $2c $08
-	.db $30 $08
-	.db $7b $08
-	.db $90 $08
-	.db $ad $08
-	.db $cb $08
-	.db $d7 $08
-	.db $13 $01
-	.db $ac $03
-	.db $c1 $01
-	.db $83 $00
-	.db $38 $06
-	.db $0a $07
-	.db $67 $09
+	.db $76 $01
+
+	;.db $05 $08
+	;.db $2c $08
+	;.db $30 $08
+	;.db $7b $08
+	;.db $90 $08
+	;.db $ad $08
+	;.db $cb $08
+	;.db $d7 $08
+	;.db $13 $01
+	;.db $ac $03
+	;.db $c1 $01
+	;.db $83 $00
+	;.db $38 $06
+	;.db $0a $07
+	;.db $67 $09
 	.db $00
 @group1:
-	.db $01 $08
-	.db $0a $08
-	.db $28 $08
-	.db $34 $08
-	.db $55 $08
-	.db $95 $08
-	.db $d0 $08
-	.db $ca $08
-	.db $08 $01
-	.db $25 $01
-	.db $2d $01
-	.db $80 $01
-	.db $c1 $01
-	.db $67 $09
-	.db $38 $0a
+	;.db $01 $08
+	;.db $0a $08
+	;.db $28 $08
+	;.db $34 $08
+	;.db $55 $08
+	;.db $95 $08
+	;.db $d0 $08
+	;.db $ca $08
+	;.db $08 $01
+	;.db $25 $01
+	;.db $2d $01
+	;.db $80 $01
+	;.db $c1 $01
+	;.db $67 $09
+	;.db $38 $0a
 	.db $00
 @group2:
-	.db $5e $04
-	.db $7e $04
-	.db $af $05
+	.db $5e $04		;regular shop
+	.db $7e $04		;secret shop
+	;.db $af $05
 	.db $00
 @group3:
-	.db $ed $04
-	.db $fe $04
+	.db $ed $04		;Witch's shop
+	.db $fe $04		;advanced shop
 @group4:
 @group5:
 @group6:
@@ -365,12 +367,26 @@ _roomTileChangesAfterLoad01:
 	jr --
 +
 	; Tree found
-	ldi a,(hl)
-	ld b,a
-	ldi a,(hl)
-	ld d,(hl)
-	ld e,a
-	ld a,b
+	ldi a,(hl)		;tree type->a
+	ld b,a			;tree type->b
+	ldi a,(hl)		;w3VramTiles->a
+	ld d,(hl)		;w3VramTiles->d
+	ld e,a			;w3VramTiles->e
+
+	;inserted
+	ld a,(wLoadingRoomPack)
+	sub $80
+	jr c,+
+	ld a,(wAnimalCompanion)
+	ld hl,seasonsTable
+	rst_addAToHl
+	ld a,(hl)
+	cp $04
+	ret nc
+	jr ++
++	
+	ld a,b			;tree type->a
+++
 	ldh (<hFF93),a
 
 	; Draw the tile mapping
@@ -397,19 +413,26 @@ treeGfxLocationsTable:
 ; w2: Start of tree gfx in w3VramTiles to overwrite
 
 @present:
-	dbbw $08 $01 w3VramTiles+$086
-	dbbw $13 $02 w3VramTiles+$0c8
-	dbbw $ac $00 w3VramTiles+$0c6
-	dbbw $c1 $02 w3VramTiles+$08a
+	dbbw $76 $00 w3VramTiles+$0c4
+
+	;dbbw $13 $02 w3VramTiles+$0c8
+	;dbbw $ac $00 w3VramTiles+$0c6
+	;dbbw $c1 $02 w3VramTiles+$08a
 	.db $00
 @past:
-	dbbw $08 $01 w3VramTiles+$086
-	dbbw $25 $00 w3VramTiles+$0ca
-	dbbw $2d $03 w3VramTiles+$10c
-	dbbw $80 $03 w3VramTiles+$088
-	dbbw $c1 $02 w3VramTiles+$08a
+	;dbbw $08 $01 w3VramTiles+$086
+	;dbbw $25 $00 w3VramTiles+$0ca
+	;dbbw $2d $03 w3VramTiles+$10c
+	;dbbw $80 $03 w3VramTiles+$088
+	;dbbw $c1 $02 w3VramTiles+$08a
 	.db $00
 
+seasonsTable:
+	; <hFF93 - use $04 for no change
+	.db $02	;SEASON_SUMMER, gale
+	.db $01	;SEASON_FALL, pegasus
+	.db $04	;SEASON_WINTER, ember
+	.db $03	;SEASON_SPRING, mystery
 
 treeTilesTable:
 	.dw @tree0

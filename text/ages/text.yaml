@@ -1019,6 +1019,17 @@ groups:
       carry more
       \col(1)seeds\col(0)!
 
+  - name: TX_0081
+    index: 0x81
+    text: |-
+      \slow()You got the
+      \col(1)Rod of Seasons\col(0)!
+      With the powers
+      of the \col(3)Season
+      Spirits\col(0), it can
+      change the
+      seasons!
+
 - group: 0x01
   data:
   - name: TX_0100
@@ -4540,6 +4551,14 @@ groups:
     text: |-
       The current age
       is the past.
+
+  - name: TX_0967
+    index: 0x67
+    text: |-
+      Rod of Seasons
+      Best used from
+      atop a stump.
+
 
 - group: 0x0a
   data:

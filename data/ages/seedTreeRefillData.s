@@ -12,8 +12,9 @@
 .endm
 
 seedTreeRefillLocations:
-	m_TreeRefillData $10b (<wxSeedTreeRefillData+$00)
-	m_TreeRefillData $047 (<wxSeedTreeRefillData+$08)
+	m_TreeRefillData $004 (<wxSeedTreeRefillData+$00)
+	m_TreeRefillData $076 (<wxSeedTreeRefillData+$08)
+	;above has been changed
 	m_TreeRefillData $000 (<wxSeedTreeRefillData+$10)
 	m_TreeRefillData $000 (<wxSeedTreeRefillData+$18)
 	m_TreeRefillData $008 (<wxSeedTreeRefillData+$20)

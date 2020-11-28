@@ -275,7 +275,7 @@ interaction60SubidData:
 	m_InteractionData $60 $16 $40
 	m_InteractionData $60 $18 $50
 	m_InteractionData $60 $1a $40
-	m_InteractionData $60 $10 $20
+	m_InteractionData $60 $10 $20		;rod
 	m_InteractionData $60 $1e $40
 	m_InteractionData $5f $00 $50
 	m_InteractionData $5f $02 $40

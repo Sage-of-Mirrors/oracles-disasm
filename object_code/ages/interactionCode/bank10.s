@@ -1826,7 +1826,7 @@ interactionCodee7:
 	jr nz,+
 	ld a,(wActiveGroup)
 	cp $04
-	jr nc,+
+	jr nc,+++
 
 	ld hl,wAnimalCompanion
 	ld a,(hl)
@@ -1836,13 +1836,50 @@ interactionCodee7:
 	sub $04
 ++
 	ld (hl),a
+	jr +
++++
+;moving between floors	
+	ld a,(wDungeonFloor)
+	ld hl,wDungeonVisitedFloors+$06
+-
+	inc a
+	ld b,a
+	cp $04
+	jr nz,++++
+	xor a
+++++
+	ld b,a
+	call checkFlag
+	ld a,b
+	jr nz,++
+	jr -
+++
+	ld (wDungeonFloor),a
 
+	call getActiveRoomFromDungeonMapPosition
+	ld c,$00
+	ld (wWarpDestRoom),a
+
+	ld a,(wActiveGroup)
+	add c
+	or $80
+	ld (wWarpDestGroup),a
+
+	ld a,(wActiveTilePos)
+	ld (wWarpDestPos),a
+
+	ld a,$00
+	ld (wWarpTransition),a
+
+	ld a,$03
+	ld (wWarpTransition2),a
+
++
 	ld a,SND_ENERGYTHING
 	call playSound
 	ld a,$02
 	ld (wPaletteThread_updateRate),a
 	call fadeoutToWhite
-+
 	jp interactionDelete
 
 .ends

@@ -7843,7 +7843,13 @@ breakCrackedFloor:
 	call setTile
 	pop bc
 
-	ld a,SND_RUMBLE
+	ld a,(wLoadingRoomPack)
+	cp $80
+	ld b,SND_RUMBLE
+	jr c,+
+	ld b,SND_CUTGRASS
++
+	ld a,b
 	call playSound
 
 	call getFreeInteractionSlot

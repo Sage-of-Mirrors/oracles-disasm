@@ -906,7 +906,7 @@ _label_01_037:
 	.db $00                         SMALL_ROOM_WIDTH*16  ; DIR_LEFT
 
 ;;
-func_4493:
+func_4493:		;for cutscene 05 screen transitions
 	ld a,(wScreenTransitionDirection)
 	ld de,@positionOffsets
 	call addDoubleIndexToDe
@@ -3783,6 +3783,14 @@ _func_5c18:
 	ld (wDontUpdateStatusBar),a
 .endif
 	call func_593a
+	
+	;ld a,(wActiveTileType)
+	;cp TILETYPE_STUMP
+	;jr nz,+
+	ld a,(wTilesetFlags)
+	and TILESETFLAG_DUNGEON
+	call nz, offsetForDungeonStump
++
 	jp resetCamera
 
 ;;
@@ -3820,14 +3828,31 @@ cutscene04:
 	ld a,(wLinkObjectIndex)
 	ld h,a
 	ld l,<w1Link.yh
+	ld a,(hl)
+	ld b,a
 	ld a,(wWarpDestPos)
 	call setShortPosition
+
 .ifdef ROM_AGES
 	call disableLcd
 	call clearOam
 .endif
 	jr ++
 
+offsetForDungeonStump:
+	ld a,(wLinkObjectIndex)
+	ld h,a
+
+	ld l,<w1Link.yh
+	ld a,$fa
+	add (hl)
+	ld (hl),a
+	ld (wLinkLocalRespawnY),a
+	ld a,(wLoadingRoomPack)
+	sub $80
+	ret c
+	ld (wAnimalCompanion),a
+	ret
 ;;
 cutscene05:
 	ld a,(wPaletteThread_mode)

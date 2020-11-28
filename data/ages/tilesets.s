@@ -729,10 +729,38 @@ tilesetData: ; 4:4f9c
 	.db $16 $02 $10
 
 	; HACK-BASE: Stub tilesets for expanded tilesets patch
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x67
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x68
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x69
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x6a
+	;.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x67
+; Tileset 0x67
+	.db $26 $08
+	.db UNIQGFXH_00
+	.db GFXH_68
+	.db PALH_68
+	.db $28 $05 $10
+
+	;.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x68
+; Tileset 0x68	
+	.db $26 $08
+	.db UNIQGFXH_00
+	.db GFXH_68
+	.db PALH_69
+	.db $28 $05 $10
+
+	;.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x69
+; Tileset 0x69	
+	.db $26 $08
+	.db UNIQGFXH_00
+	.db GFXH_68
+	.db PALH_6a
+	.db $28 $05 $10
+
+	;.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x6a
+; Tileset 0x6a	
+	.db $26 $08
+	.db UNIQGFXH_00
+	.db GFXH_68
+	.db PALH_6b
+	.db $28 $05 $10
+
 	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x6b
 	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x6c
 	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x6d

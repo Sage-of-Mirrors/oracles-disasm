@@ -4372,3 +4372,131 @@ paletteDataSpring:
 	m_RGB16 $0e $1a $04
 	m_RGB16 $1e $05 $14
 	m_RGB16 $00 $00 $00
+
+paletteDataWoodsSummer:
+;paletteData4dd0:
+	m_RGB16 $15 $17 $0e
+	m_RGB16 $0a $12 $09
+	m_RGB16 $05 $0b $04
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $0e $0e $05
+	m_RGB16 $0a $12 $09
+	m_RGB16 $05 $0b $04
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $15 $17 $0e
+	m_RGB16 $0e $0e $05
+	m_RGB16 $07 $08 $06
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $15 $17 $0e
+	m_RGB16 $0a $12 $07
+	m_RGB16 $04 $0b $02
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $09 $16 $1c
+	m_RGB16 $03 $0f $12
+	m_RGB16 $00 $08 $0b
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $05 $0b $04
+	m_RGB16 $15 $17 $0e
+	m_RGB16 $07 $08 $06
+	m_RGB16 $00 $00 $00
+
+paletteDataWoodsAutumn:
+;paletteData4e00:
+	m_RGB16 $18 $13 $11
+	m_RGB16 $14 $0d $0b
+	m_RGB16 $0c $05 $07
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $12 $0d $06
+	m_RGB16 $14 $0d $0b
+	m_RGB16 $0d $05 $08
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $18 $13 $11
+	m_RGB16 $12 $0d $06
+	m_RGB16 $0a $08 $06
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $18 $13 $11
+	m_RGB16 $14 $0f $08
+	m_RGB16 $0e $09 $02
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $0d $13 $08
+	m_RGB16 $06 $0c $04
+	m_RGB16 $04 $09 $04
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $18 $13 $11
+	m_RGB16 $1b $02 $00
+	m_RGB16 $0d $18 $04
+	m_RGB16 $00 $00 $00
+
+paletteDataWoodsWinter:
+;paletteData4e30:
+	m_RGB16 $18 $17 $1a
+	m_RGB16 $0d $10 $13
+	m_RGB16 $06 $09 $0b
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $10 $0e $10
+	m_RGB16 $0d $10 $13
+	m_RGB16 $06 $09 $0b
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $18 $17 $1a
+	m_RGB16 $10 $0e $10
+	m_RGB16 $09 $08 $09
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $18 $17 $1a
+	m_RGB16 $10 $11 $17
+	m_RGB16 $09 $0b $12
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $0d $13 $18
+	m_RGB16 $05 $0d $10
+	m_RGB16 $03 $0a $09
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $18 $17 $1a
+	m_RGB16 $11 $11 $18
+	m_RGB16 $0b $0a $18
+	m_RGB16 $02 $03 $0c
+
+paletteDataWoodsSpring:
+;paletteData4da0:
+	m_RGB16 $16 $18 $0f
+	m_RGB16 $0c $13 $03
+	m_RGB16 $06 $0b $00
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $10 $0f $08
+	m_RGB16 $0c $13 $03
+	m_RGB16 $06 $0b $00
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $16 $18 $0f
+	m_RGB16 $10 $0f $08
+	m_RGB16 $0a $08 $03
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $16 $18 $0f
+	m_RGB16 $10 $13 $09
+	m_RGB16 $09 $0e $04
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $0c $18 $1c
+	m_RGB16 $0a $0f $19
+	m_RGB16 $03 $09 $0e
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $16 $18 $0f
+	m_RGB16 $10 $18 $06
+	m_RGB16 $1d $08 $14
+	m_RGB16 $00 $00 $00

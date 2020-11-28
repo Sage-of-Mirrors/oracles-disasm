@@ -39,6 +39,7 @@ tileTypes_collisions4:
 tileTypes_collisions2:
 	.db $0e TILETYPE_RAISABLE_FLOOR
 	.db $0f TILETYPE_RAISABLE_FLOOR
+	.db $d1 TILETYPE_STUMP
 
 tileTypes_collisions1:
 tileTypes_collisions5:
@@ -72,6 +73,7 @@ tileTypes_collisions5:
 	.db $57 TILETYPE_LEFTCONVEYOR
 	.db $60 TILETYPE_SPIKE
 	.db $8a TILETYPE_ICE
+	.db $d1 TILETYPE_STUMP
 	.db $00
 
 tileTypes_collisions3:

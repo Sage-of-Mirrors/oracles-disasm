@@ -7944,7 +7944,7 @@ enemyCode5a:
 	ld e,Enemy.state
 	ld a,(de)
 	or a
-	jr nz,@state1
+	jp nz,@state1
 
 
 ; Initialization
@@ -7980,10 +7980,24 @@ enemyCode5a:
 	; for interactions, is reserved for items from chests and stuff like that. But
 	; that can be manipulated by digging up enemies from the ground...
 
+	ld a,(wLoadingRoomPack)
+	sub $80
+	jr c,+
+	ld a,(wAnimalCompanion)
+	ld hl,@seasonsTable_0d_68fb
+	rst_addAToHl
+	ld a,(hl)
+	cp $05
+	ret c
+	jr ++
++
 	ld a,(de)
 	swap a
 	and $0f
+++
 	ldh (<hFF8B),a
+
+
 .else
 	ld e,Enemy.subid
 	ld a,(de)
@@ -7996,7 +8010,7 @@ enemyCode5a:
 	ldh (<hFF8B),a
 	ldi a,(hl)
 	ld b,a
-	ld a,(wRoomStateModifier)
+	ld a,(wAnimalCompanion);(wRoomStateModifier)
 	cp b
 	jp nz,enemyDelete
 	ld a,(hl)
@@ -8052,12 +8066,19 @@ enemyCode5a:
 .ifdef ROM_SEASONS
 @seasonsTable_0d_68fb:
 	; <hFF8B - required season - checked against wSeedTreeRefilledBitset
-	.db $00	SEASON_WINTER	$80
-	.db $04	SEASON_SUMMER	$40
-	.db $01	SEASON_SPRING	$20
-	.db $02	SEASON_FALL	$10
-	.db $03	SEASON_SUMMER	$08
-	.db $03	SEASON_SUMMER	$04
+	.db $00	SEASON_WINTER	$80		;ember, winter
+	.db $04	SEASON_SUMMER	$40		;summer
+	.db $01	SEASON_SPRING	$20		;scent, spring
+	.db $02	SEASON_FALL		$10		;pegasus, fall
+	.db $03	SEASON_SUMMER	$08		;summer
+	.db $03	SEASON_SUMMER	$04		;summer
+.else
+	@seasonsTable_0d_68fb:
+	; <hFF8B - use $05 for no seeds
+	.db $03	;SEASON_SUMMER, gale
+	.db $02	;SEASON_FALL, pegasus
+	.db $00	;SEASON_WINTER, ember
+	.db $04	;SEASON_SPRING, mystery
 .endif
 
 

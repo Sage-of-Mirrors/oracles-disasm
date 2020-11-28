@@ -40,6 +40,6 @@
 .include "constants/uncmpGfxHeaders.s"
 .include "constants/uniqueGfxHeaders.s"
 
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 .include "constants/seasons.s"
-.endif
+;.endif
