@@ -700,13 +700,6 @@ group0Map12ObjectData:
 	obj_End
 
 group0Map13ObjectData:
-	obj_Interaction $dc $03 $48 $28
-	obj_Interaction $dc $04 $48 $78
-	obj_Interaction $e1 $00 $48 $28
-	obj_Interaction $e1 $00 $48 $78
-	obj_Interaction $80 $09 $1e $50
-	obj_Interaction $80 $0a $18 $50
-	obj_SpecificEnemyA $00 $5a $35 $00 $00
 	obj_Pointer group0Map13EnemyObjectData
 	obj_End
 
@@ -735,7 +728,6 @@ group0Map02ObjectData:
 	obj_End
 
 group0Map03ObjectData:
-	obj_Interaction $8a $00 $00 $00 $05
 	obj_Pointer group0Map03EnemyObjectData
 	obj_End
 

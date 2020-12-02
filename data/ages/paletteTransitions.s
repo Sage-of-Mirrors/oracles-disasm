@@ -32,10 +32,10 @@ paletteTransitionGroup7:
 	.db $ff
 
 paletteTransitionGroup0:
-	dbbww DIR_LEFT  $6a  paletteData4a90 paletteData4a30
-	dbbww DIR_RIGHT $6b  paletteData4a30 paletteData4a90
-	dbbww DIR_LEFT  $7a  paletteData4a90 paletteData4a30
-	dbbww DIR_RIGHT $7b  paletteData4a30 paletteData4a90
+	dbbww DIR_RIGHT $22  paletteData4a90 paletteData4a30
+	dbbww DIR_LEFT  $21  paletteData4a30 paletteData4a90
+	dbbww DIR_UP  $21  paletteData4a30 paletteData4a90
+	dbbww DIR_DOWN    $31  paletteData4a90 paletteData4a30
 	dbbww DIR_UP    $8b  paletteData4c10 paletteData4a90
 	dbbww DIR_DOWN  $9b  paletteData4a90 paletteData4c10
 	dbbww DIR_UP    $12  paletteData4cd0 paletteData4c70

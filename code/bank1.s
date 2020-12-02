@@ -4478,15 +4478,15 @@ clearEyePuzzleVars:
 		.dw mapTransitionGroup7Data
 
 	mapTransitionGroup0Data:
-		.db $70 $00 ; ForestScrambler
-		.db $71 $00 ; ForestScrambler
-		.db $72 $00 ; ForestScrambler
-		.db $80 $00 ; ForestScrambler
-		.db $81 $00 ; ForestScrambler
-		.db $82 $00 ; ForestScrambler
-		.db $90 $00 ; ForestScrambler
-		.db $91 $00 ; ForestScrambler
-		.db $92 $00 ; ForestScrambler
+		;.db $70 $00 ; ForestScrambler
+		;.db $71 $00 ; ForestScrambler
+		;.db $72 $00 ; ForestScrambler
+		;.db $80 $00 ; ForestScrambler
+		;.db $81 $00 ; ForestScrambler
+		;.db $82 $00 ; ForestScrambler
+		;.db $90 $00 ; ForestScrambler
+		;.db $91 $00 ; ForestScrambler
+		;.db $92 $00 ; ForestScrambler
 		.db $00
 
 	mapTransitionGroup1Data:
