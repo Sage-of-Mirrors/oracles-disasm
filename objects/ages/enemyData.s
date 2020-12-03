@@ -348,8 +348,6 @@ group5Mapc9EnemyObjectData:
 	obj_EndPointer
 
 group5MapcbEnemyObjectData:
-	obj_SpecificEnemyA $03 $54 $84 $78 $28
-	obj_SpecificEnemyA     $54 $85 $38 $c8
 	obj_EndPointer
 
 group5Mapd1EnemyObjectData:
@@ -358,14 +356,9 @@ group5Mapd1EnemyObjectData:
 	obj_EndPointer
 
 group5Mapd3EnemyObjectData:
-	obj_SpecificEnemyA $03 $54 $86 $38 $68
-	obj_SpecificEnemyA     $54 $87 $58 $98
-	obj_SpecificEnemyA     $54 $88 $78 $98
 	obj_EndPointer
 
 group5Mapd4EnemyObjectData:
-	obj_SpecificEnemyA $03 $54 $89 $58 $98
-	obj_SpecificEnemyA     $54 $8a $48 $a8
 	obj_EndPointer
 
 group5Mapd5EnemyObjectData:

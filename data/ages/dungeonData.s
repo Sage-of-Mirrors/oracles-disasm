@@ -29,7 +29,7 @@ dungeonDataTable:
 ; 6-7: Unused?
 
 dungeonData00:
-	m_DungeonData >wGroup4Flags, $04, dungeon00Layout, $01, $03, $00, $01, $00
+	m_DungeonData >wGroup5Flags, $04, dungeon00Layout, $03, $02, $00, $01, $00
 dungeonData01:
 	m_DungeonData >wGroup4Flags, $24, dungeon01Layout, $01, $03, $03, $00, $00
 dungeonData02:

@@ -638,7 +638,7 @@ tilesetData: ; 4:4f9c
 	.db $16 $05 $10
 
 ; Tileset 0x5a
-	.db $2e $18
+	.db $20 $08
 	.db UNIQGFXH_00
 	.db GFXH_7e
 	.db PALH_74
