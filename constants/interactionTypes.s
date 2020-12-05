@@ -1974,6 +1974,8 @@
 
 .define INTERACID_USED_ROD_OF_SEASONS   $e7
 
+.define INTERACID_HEROS_CAVE_SWORD_CHEST    $e8
+
 
 
 ; ==============================================================================

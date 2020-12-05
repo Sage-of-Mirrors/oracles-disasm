@@ -398,7 +398,7 @@ treasureObjectData05:
 	.db $03 $03 $ff $12
 	.db $01 $01 $75 $10
 	.db $33 $01 $75 $10
-	.db $3b $01 $1c $10
+	.db $38 $01 $1c $10
 
 treasureObjectData06:
 	.db $0a $01 $22 $1c

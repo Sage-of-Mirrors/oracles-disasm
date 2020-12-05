@@ -255,6 +255,8 @@ interactionData:
 	/* $e4 */ m_InteractionData $00 $00 $00
 	/* $e5 */ m_InteractionData $6c $08 $10
 	/* $e6 */ m_InteractionData $00 $60 $b0
+	/* $e7 */ m_InteractionData $00 $00 $00
+	/* $e8 */ m_InteractionData $7d $00 $00
 
 interaction60SubidData:
 interaction63SubidData:

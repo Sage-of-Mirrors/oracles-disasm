@@ -179,6 +179,7 @@ group5Mapb6EnemyObjectData:
 	obj_EndPointer
 
 group5Mapb8EnemyObjectData:
+	obj_SpecificEnemyA 0 $38 $00 $50 $78
 	obj_EndPointer
 
 group5MapbeEnemyObjectData:

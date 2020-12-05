@@ -681,7 +681,6 @@ group5Map0dObjectData:
 group5Map0eObjectData:
 group5Map0fObjectData:
 group5MapafObjectData:
-group5Mapb7ObjectData:
 group5MapbaObjectData:
 group5Mapc5ObjectData:
 group5MapcdObjectData:
@@ -4796,4 +4795,8 @@ group3Map48ObjectData:
 
 group0Map76ObjectData:
 	obj_SpecificEnemyA 0 $5a $01 $00 $00
+	obj_End
+
+group5Mapb7ObjectData:
+	obj_Interaction $e8 $00 $20 $78
 	obj_End
