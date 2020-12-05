@@ -533,11 +533,11 @@ tilesetData: ; 4:4f9c
 	.db $20 $04 $11
 
 ; Tileset 0x4b
-	.db $3d $a8
+	.db $30 $28
 	.db UNIQGFXH_00
 	.db GFXH_6d
 	.db PALH_52
-	.db $32 $04 $ff
+	.db $32 $05 $ff
 
 ; Tileset 0x4c
 	.db $31 $28

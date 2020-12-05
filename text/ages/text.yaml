@@ -1535,7 +1535,7 @@ groups:
     - 0x00
     - 0x0d
     text: |2-
-         Maku Road
+      Hyrule Castle
 
   - name: TX_0201
     index: 0x01
@@ -14065,7 +14065,7 @@ groups:
   - name: TX_2e0d
     index: 0x0d
     text: |-
-      Maku Path
+      Hyrule Castle
 
   - name: TX_2e0e
     index: 0x0e

@@ -710,6 +710,7 @@ checkLoadPastSignAndChestGfx:
 	and (TILESETFLAG_LARGE_INDOORS|TILESETFLAG_DUNGEON|TILESETFLAG_INDOORS)
 	ret z
 
+
 	ld a,UNCMP_GFXH_37
 	jp loadUncompressedGfxHeader
 
