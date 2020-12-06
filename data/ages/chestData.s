@@ -104,12 +104,12 @@ chestGroup4Data:
 	.db $ff
 
 chestGroup5Data:
+	.db $27 $b7 $05 $07
 	.db $3b $bc $32 $02
 	.db $5b $d4 $33 $02
 	.db $27 $be $30 $03
 	.db $3d $bd $30 $03
 	.db $57 $b0 $30 $03
-	.db $27 $b7 $05 $00
 	.db $17 $13 $4a $00
 	.db $25 $14 $30 $03
 	.db $53 $1b $30 $03
