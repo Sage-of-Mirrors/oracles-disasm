@@ -1907,6 +1907,7 @@ group1MapddObjectData:
 	obj_End
 
 group2Map0eObjectData:
+	obj_Interaction $59 $00 $40 $78
 	obj_End
 
 group2Map0fObjectData:

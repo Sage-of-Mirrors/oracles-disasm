@@ -266,7 +266,7 @@ treasureObjectData:
 	.db $00
 
 	; 0x42
-	.db $29 $00 $23 $44
+	.db $09 $00 $23 $44
 
 	; 0x43
 	.db $09 $00 $3d $45
@@ -450,6 +450,7 @@ treasureObjectData19:
 	.db $29 $00 $2d $20
 	.db $09 $00 $2d $20
 	.db $01 $00 $80 $20
+	.db $31 $01 $75 $20
 
 treasureObjectData20:
 	.db $30 $04 $4f $06

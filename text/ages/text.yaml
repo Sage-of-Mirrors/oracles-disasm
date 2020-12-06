@@ -321,7 +321,7 @@ groups:
     index: 0x23
     text: |-
       You got the
-      \col(1)Graveyard Key\col(0)!
+      \col(1)Falls Key\col(0)!
 
   - name: TX_0024
     index: 0x24
@@ -4381,9 +4381,9 @@ groups:
   - name: TX_094a
     index: 0x4a
     text: |-
-      Graveyard Key
-      Key to a
-      spirit's grave.
+      Falls Key
+      Key to something
+      at Forever Falls.
 
   - name: TX_094b
     index: 0x4b
@@ -5403,41 +5403,35 @@ groups:
   - name: TX_0b00
     index: 0x00
     text: |-
-      \pos(0)Someone finally
-      came! This head-
-      stone blocks my
-      path to the
-      afterlife. I'm
-      actually below
-      here, right? I'd
-      appreciate it if
-      you could help
-      me out.
+      \pos(0)Boo hoo!
+      This room is as
+      dark as my soul!
+      I'll never be
+      able to pass on
+      like this...
 
   - name: TX_0b01
     index: 0x01
     text: |-
-      \pos(2)You must have
-      moved my head-
-      stone! That
-      means I can move
-      on to the after-
-      world. My heart
-      lifts at the
-      thought of it!
-      Thanks!
+      \pos(2)Ahhh, the
+      warm glow of
+      this torch lifts
+      my spirits.
+      Thank you for
+      lighting it!
+      I don't have
+      much to offer
+      you, but please
+      take this.
 
   - name: TX_0b02
     index: 0x02
     text: |-
-      \pos(0)You came out!
-      Since I'm moving
-      on, I don't need
-      this anymore.
-      Take it! I hope
-      you can reach
-      the afterworld
-      soon, too!
+      \pos(0)Look me up
+      if you're ever
+      in the spirit
+      world!
+      Bye-bye!
 
   - name: TX_0b03
     index: 0x03

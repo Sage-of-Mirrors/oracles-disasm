@@ -3445,17 +3445,37 @@ poe_decCounterAndFlickerVisibility:
 
 ; Ghost who starts the trade sequence.
 poeScript:
-	initcollisions
-	checkabutton
-	disableinput
-	jumptable_objectbyte Interaction.var03
-	.dw @firstMeeting
-	.dw @inTomb
-	.dw @lastMeeting
+  initcollisions
+  asm15 makeTorchesLightable
+  checkmemoryeq wMenuDisabled, $00 ; Wait for player to enter the room fully
 
-@firstMeeting:
+  asm15 darkenRoomLightly
+  checkpalettefadedone
+@npcLoop
+  jumpifmemoryset wNumTorchesLit, $01, @torchLit
+	jumpifobjectbyteeq Interaction.pressedAButton, $01, @torchUnlit
+  scriptjump @npcLoop
+
+@torchUnlit:
+	disableinput
+  writeobjectbyte, Interaction.pressedAButton, $00
 	showtext TX_0b00
-	orroomflag $40
+	enableinput
+  scriptjump @npcLoop
+  
+@torchLit:
+  disableinput
+  wait 30
+  asm15 brightenRoom
+  wait 40
+  asm15 turnToFaceLink
+  asm15 forceLinkDirection, DIR_RIGHT
+  wait 20
+  showtext TX_0b01
+  wait 30
+  giveitem TREASURE_GRAVEYARD_KEY, $00
+  wait 30
+  showtext TX_0b02
 
 @disappear:
 	wait 40
@@ -3468,32 +3488,6 @@ poeScript:
 @end:
 	enableinput
 	scriptend
-
-
-@inTomb:
-	showtext TX_0b01
-	orroomflag $40
-	wait 30
-
-	writeobjectbyte Interaction.var3f, $01 ; Don't face Link
-	setspeed SPEED_100
-	setanimation $02
-	setangle $10
-	applyspeed $49
-
-	setanimation $01
-	setangle $08
-	applyspeed $39
-
-	scriptjump @disappear
-
-
-@lastMeeting:
-	showtext TX_0b02
-	wait 30
-	giveitem TREASURE_TRADEITEM, $00
-	scriptjump @disappear
-
 
 ; ==============================================================================
 ; INTERACID_OLD_ZORA

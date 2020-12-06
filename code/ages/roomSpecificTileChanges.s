@@ -26,7 +26,7 @@ applyRoomSpecificTileChanges:
 	.dw tileReplacement_group5Map95 ; $12
 	.dw tileReplacement_group5Mapc3 ; $13
 	.dw tileReplacement_group0Map5c ; $14
-	.dw tileReplacement_group2Mapf7 ; $15
+	.dw tileReplacement_group2Map0e ; $15
 	.dw tileReplacement_group0Map73 ; $16
 	.dw tileReplacement_group0Map48 ; $17
 	.dw tileReplacement_group0Mapac ; $18
@@ -106,7 +106,7 @@ roomTileChangerCodeGroup1Data:
 	.db $58 $34
 	.db $00
 roomTileChangerCodeGroup2Data:
-	.db $f7 $15
+	.db $0e $15
 	.db $90 $2b
 	.db $9e $2f
 	.db $7e $02
@@ -561,52 +561,14 @@ tileReplacement_group5Mapc3:
 	.db $b4 $b2 $b2 $b2
 
 ;;
-; Past: cave in goron mountain with 2 chests
-tileReplacement_group2Mapf7:
-	call getThisRoomFlags
-	bit ROOMFLAG_BIT_ITEM,(hl)
-	jr z,++
-
-	ld a,TILEINDEX_CHEST_OPENED
-	ld c,$14
-	call setTile
-	ld a,TILEINDEX_CHEST_OPENED
-	ld c,$16
-	jp setTile
-++
-	ld a,(hl)
-	and $c0
-	cp $c0
-	ret z
-
-	bit 6,(hl)
-	jr z,+
-
-	ld a,(wSeedTreeRefilledBitset)
-	bit 0,a
-	ret nz
-+
-	ld hl,@wallInsertion
-	ld bc,wRoomLayout + $03
-	ld a,$04
----
-	ldh (<hFF8D),a
-	ld a,$05
---
-	ldh (<hFF8C),a
-	ldi a,(hl)
-	ld (bc),a
-	inc bc
-	ldh a,(<hFF8C)
-	dec a
-	jr nz,--
-
-	ld a,$0b
-	call addAToBc
-	ldh a,(<hFF8D)
-	dec a
-	jr nz,---
-	ret
+; Poe's house, make the torch lit after lighting it
+tileReplacement_group2Map0e:
+  ld a,TREASURE_GRAVEYARD_KEY
+  call checkTreasureObtained
+  ret nc
+  ld hl,wRoomLayout+$33
+  ld (hl),TILEINDEX_LIT_TORCH
+  ret
 
 @wallInsertion:
 	.db $b9 $a7 $a7 $a7 $b8
