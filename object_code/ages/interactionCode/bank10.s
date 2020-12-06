@@ -1882,5 +1882,88 @@ interactionCodee7:
 	call fadeoutToWhite
 	jp interactionDelete
 
+; ==============================================================================
+; INTERACID_HEROS_CAVE_SWORD_CHEST
+; ==============================================================================
+interactionCodee8:
+	ld e,Interaction.state		;$44
+	ld a,(de)
+	rst_jumpTable
+	.dw @state0
+	.dw @state1
+	.dw @state2
+	.dw @state3
+	.dw @state4
+@state0:
+	ld a,$01
+	ld (de),a
+	ld (wcca1),a		;$ccbb
+	ret
+	jp interactionInitGraphics
+@state1:
+	;check if Link has opened the chest
+	ld a,(wcca2)		;$ccbc
+	or a
+	ret z
+	;disables objects
+	ld a,$81
+	ld (wDisableLinkCollisionsAndMenu),a	;$cbca
+	ld (wDisabledObjects),a					;$cca4
+	call interactionIncState
+	call interactionSetAlwaysUpdateBit	;sets h to d (high byte of interaction location)
+	ld l,Interaction.speedY					;$50
+	ld (hl),$0a
+	ld l,Interaction.counter1				;$46
+	ld (hl),$20
+	jp objectSetVisible80
+@state2:
+	;decreases counter from $20 until 0 (waits $20 frames)
+	call interactionDecCounter1
+	jp nz,objectApplySpeed
+	call interactionIncState
+	;gives Link the sword (level 1) - simulates the chest opening
+	ld a,TREASURE_SWORD
+	ld c,$01				;level of sword
+	call giveTreasure
+	ld a,SND_GETITEM		;$4c
+	call playSound
+	ld bc,TX_001c
+	jp showText
+@state3:
+	ld a,(wTextIsActive)	;$cba0
+	or a
+	ret nz
+	call interactionIncState
+	call objectSetInvisible
+	ld e,Interaction.counter1	;$46
+	ld a,$5a
+	ld (de),a
+	call getFreeInteractionSlot
+	ret nz
+	ld (hl),INTERACID_TREASURE
+	inc l
+	ld (hl),TREASURE_SWORD
+	inc l
+	ld (hl),$03
+	ld a,($d00b)				;treasure interaction - yh
+	ld l,Interaction.yh			;$4b
+	ldi (hl),a
+	inc l
+	ld a,($d00d)				;treasure interaction - xh
+	ld (hl),a
+	ld a,SNDCTRL_MEDIUM_FADEOUT	;$fb
+	jp playSound
+@state4:
+	call interactionDecCounter1
+	ret nz
+	call getThisRoomFlags
+	set 5,(hl)
+	ld hl,@warpDestVariables
+	call setWarpDestVariables
+	ld a,SND_FADEOUT				;$b4
+	call playSound
+	jp interactionDelete
+@warpDestVariables:
+	m_HardcodedWarpA ROOM_AGES_003 $0e $16 $83
 
 .ends

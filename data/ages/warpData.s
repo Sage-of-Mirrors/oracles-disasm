@@ -1215,7 +1215,6 @@ group5WarpSources: ; $13c46
 	m_StandardWarp $04 $40 $56 $0 $3
 	m_StandardWarp $04 $d3 $5b $0 $3
 	m_StandardWarp $00 $d2 $0a $7 $2
-	m_StandardWarp $00 $c3 $27 $5 $2
 	m_WarpSourcesEnd
 group5RoomfcWarpSources:
 	m_PointedWarp $80 $84 $51 $0 $2
