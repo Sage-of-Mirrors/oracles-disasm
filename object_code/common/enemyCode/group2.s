@@ -7956,7 +7956,7 @@ enemyCode5a:
 	; Locate tree
 	ld a,TILEINDEX_MYSTICAL_TREE_TL
 	call findTileInRoom
-	jp nz,interactionDelete ; BUG: Wrong function call! (see below)
+	jp nz,enemyDelete	;interactionDelete ; BUG: Wrong function call! (see below)
 
 	; Move to that position
 	ld c,l
@@ -7971,7 +7971,7 @@ enemyCode5a:
 	and $0f
 	ld hl,wSeedTreeRefilledBitset
 	call checkFlag
-	jp z,interactionDelete
+	jp z,enemyDelete	;interactionDelete
 
 	; BUG: Above function call is wrong! Should be "enemyDelete"!
 	; If a seed tree's seeds are exhausted, instead of deleting this object, it will
@@ -7984,16 +7984,18 @@ enemyCode5a:
 	sub $80
 	jr c,+
 	ld a,(wAnimalCompanion)
+	push hl
 	ld hl,@seasonsTable_0d_68fb
 	rst_addAToHl
 	ld a,(hl)
 	cp $05
-	ret c
+	pop hl
+	ret nc
 	jr ++
 +
-	ld a,(de)
+	ld a,(de)			;Enemy.subid
 	swap a
-	and $0f
+	and $0f				;seed type in a
 ++
 	ldh (<hFF8B),a
 

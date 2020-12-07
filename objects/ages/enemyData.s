@@ -2039,10 +2039,6 @@ group5Map67EnemyObjectData:
 	obj_EndPointer
 
 group5Map50EnemyObjectData:
-	obj_Condition $02
-	obj_RandomEnemy $40 $3c $00
-	obj_Condition $01
-	obj_RandomEnemy $40 $34 $01
 	obj_EndPointer
 
 group5Map51EnemyObjectData:
