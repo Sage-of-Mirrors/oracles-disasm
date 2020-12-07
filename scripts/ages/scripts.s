@@ -4535,6 +4535,9 @@ oldManScript_givesBookOfSeals:
 
 oldManScript_givesFairyPowder:
 	loadscript scriptHelp.oldManScript_givesFairyPowder
+  
+oldManScript_givesSeedSatchel:
+  loadscript scriptHelp.oldManScript_givesSeedSatchel
 
 oldManScript_generic:
 	makeabuttonsensitive

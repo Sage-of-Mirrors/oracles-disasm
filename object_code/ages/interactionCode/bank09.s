@@ -4593,6 +4593,7 @@ interactionCode52:
 	.dw @runSubid04
 	.dw @runSubid05
 	.dw @runSubid06
+  .dw @runSubid07 ; Old man that gives Link seed satchel
 
 ; Old man who takes a secret to give you the shield (same spot as subid $02)
 @runSubid00:
@@ -4738,11 +4739,24 @@ interactionCode52:
 	ld l,a
 	call interactionSetScript
 	jp interactionIncState
+  
+@runSubid07:
+	call checkInteractionState
+	call z,@loadScriptAndInitGraphics
+	call interactionRunScript
+	jp c,interactionDelete
+	jp npcFaceLinkAndAnimate
+  
 
 @scriptTable:
 	.dw mainScripts.oldManScript_givesShieldUpgrade
 	.dw mainScripts.oldManScript_givesBookOfSeals
 	.dw mainScripts.oldManScript_givesFairyPowder
+  .dw 0
+  .dw 0
+  .dw 0
+  .dw 0
+  .dw mainScripts.oldManScript_givesSeedSatchel
 
 
 ; ==============================================================================

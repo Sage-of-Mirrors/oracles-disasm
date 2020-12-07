@@ -17211,35 +17211,45 @@ groups:
     - 0x0e
     - 0x0f
     text: |-
-      I no longer have
-      that which you
-      seek. Return.
+      Tch! I build
+      a humble hovel
+      at the top of
+      \col(1)Forever Falls\col(0),
+      and what do I
+      get? Some random
+      elf boy barging in!
+      You're going to
+      be a good lad
+      and leave me
+      alone now, right?
+        \opt()Yes \opt()No
 
   - name: TX_3310
     index: 0x10
     text: |-
-      You've solved
-      the riddle. Have
-      you some errand?
-        \opt()Yes \opt()No
+      I thought
+      you said you'd
+      leave! Now go!
+        \opt()Ok \opt()Nah
 
   - name: TX_3311
     index: 0x11
     text: |-
-      Then be off!
+      Then go!
+      Leave!
 
   - name: TX_3312
     index: 0x12
     text: |-
-      Why do you know
-      that \col(1)secret\col(0)?\stop
-      That secret is
-      only for this
-      \col(3)library\col(0).\stop
-      Do not tell
-      anyone. I offer
-      this for your
-      silence!
+      Gah! What are
+      they teaching
+      the children in
+      town these days?!
+      Fine. Take this
+      and leave me alone.
+      Go burn down
+      the castle or
+      something.
 
   - name:
     - TX_3313
@@ -17248,16 +17258,9 @@ groups:
     - 0x13
     - 0x14
     text: |-
-      This is the
-      \col(1)secret\col(0) to
-      the shield in
-      \col(3)Holodrum\col(0), too:\stop
-      \secret1\stop
-      Come back if you
-      forget the
-      \col(1)secret\col(0)!  Don't
-      let the secret
-      out!
+      I have nothing
+      more for you!
+      Now leave!
 
   - name: TX_3315
     index: 0x15

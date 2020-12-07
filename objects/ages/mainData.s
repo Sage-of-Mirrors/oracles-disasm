@@ -716,6 +716,7 @@ group0Mapc1ObjectData:
 
 group0Map00ObjectData:
 	obj_Pointer group0Map00EnemyObjectData
+	obj_Interaction $dc $0a $11 $02 $dc
 	obj_End
 
 group0Map01ObjectData:
@@ -1935,7 +1936,7 @@ group2Map3eObjectData:
 	obj_End
 
 group2Map4eObjectData:
-	obj_Interaction $2e $01 $54 $68
+	obj_Interaction $52 $07 $40 $40
 	obj_End
 
 group2Map3fObjectData:

@@ -2819,6 +2819,44 @@ oldManScript_givesFairyPowder:
 	showtext TX_330d
 	checktext
 	scriptend
+  
+  
+oldManScript_givesSeedSatchel:
+  initcollisions
+@npcLoop:
+  enableinput
+  checkabutton
+  disableinput
+  jumpifroomflagset $20, @alreadyGaveSeedSatchel
+  jumpifobjectbyteeq Interaction.var3f, $01, @playerSaidYesThenNo
+  showtext TX_330d
+  
+@playerChoice:
+  wait 30
+	jumpiftextoptioneq $00, @playerSaidYes
+	; Said "no"
+	showtext TX_3312
+  wait 30
+	orroomflag $20
+	giveitem TREASURE_SEED_SATCHEL, $00
+	scriptjump @npcLoop
+  
+@playerSaidYes:
+	showtext TX_3311
+  checktext
+  writeobjectbyte Interaction.var3f, $01
+	scriptjump @npcLoop
+  
+@playerSaidYesThenNo:
+	showtext TX_3310
+	checktext
+	scriptjump @playerChoice
+  
+@alreadyGaveSeedSatchel:
+	showtext TX_3313
+	checktext
+	scriptjump @npcLoop
+  
 
 
 ; ==============================================================================
