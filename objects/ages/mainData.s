@@ -3975,6 +3975,9 @@ group5Map4fObjectData:
 
 group5Map50ObjectData:
 	obj_Pointer group5Map50EnemyObjectData
+	obj_Interaction $12 $00 $88 $78
+	obj_Interaction $7e $00
+	obj_Interaction $e2 $01
 	obj_End
 
 group5Map51ObjectData:
