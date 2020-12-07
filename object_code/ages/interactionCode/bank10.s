@@ -1898,7 +1898,6 @@ interactionCodee8:
 	ld a,$01
 	ld (de),a
 	ld (wcca1),a		;$ccbb
-	ret
 	jp interactionInitGraphics
 @state1:
 	;check if Link has opened the chest
