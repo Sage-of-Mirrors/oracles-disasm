@@ -377,7 +377,7 @@ _roomTileChangesAfterLoad01:
 	ld a,(wLoadingRoomPack)
 	sub $80
 	jr c,+
-	ld a,(wAnimalCompanion)
+	ld a,(wCurrentSeason)
 	ld hl,seasonsTable
 	rst_addAToHl
 	ld a,(hl)

@@ -11060,413 +11060,6 @@ _octogon_getClosestTargetPositionIndex:
 	inc e
 	ret
 
-; ==============================================================================
-; ENEMYID_PLASMARINE
-;
-; Variables:
-;   counter2: Number of times to do shock attack before firing projectiles
-;   var30/var31: Target position?
-;   var32: Color (0 for blue, 1 for red)
-;   var33: ?
-;   var34: Number of projectiles to fire in one attack
-; ==============================================================================
-enemyCode7e:
-	jr z,@normalStatus
-
-	sub ENEMYSTATUS_NO_HEALTH
-	ret c
-	jp z,_enemyBoss_dead
-
-	; Hit by something
-	ld e,Enemy.enemyCollisionMode
-	ld a,(de)
-	cp ENEMYCOLLISION_PLASMARINE_SHOCK
-	jr z,@normalStatus
-
-	ld e,Enemy.var2a
-	ld a,(de)
-	res 7,a
-	cp ITEMCOLLISION_L1_SWORD
-	call nc,_plasmarine_state_switchHook@swapColor
-
-@normalStatus:
-	ld e,Enemy.state
-	ld a,(de)
-	rst_jumpTable
-	.dw _plasmarine_state_uninitialized
-	.dw _plasmarine_state_stub
-	.dw _plasmarine_state_stub
-	.dw _plasmarine_state_switchHook
-	.dw _plasmarine_state_stub
-	.dw _plasmarine_state_stub
-	.dw _plasmarine_state_stub
-	.dw _plasmarine_state_stub
-	.dw _plasmarine_state8
-	.dw _plasmarine_state9
-	.dw _plasmarine_stateA
-	.dw _plasmarine_stateB
-	.dw _plasmarine_stateC
-	.dw _plasmarine_stateD
-	.dw _plasmarine_stateE
-	.dw _plasmarine_stateF
-
-
-_plasmarine_state_uninitialized:
-	ld a,SPEED_280
-	call _ecom_setSpeedAndState8
-	ld l,Enemy.angle
-	ld (hl),$08
-
-	ld l,Enemy.counter1
-	ld (hl),$04
-
-	ld l,Enemy.var30
-	ld (hl),$58
-	inc l
-	ld (hl),$78
-
-	ld a,$01
-	ld (wMenuDisabled),a
-	ld (wDisabledObjects),a
-
-	ld a,ENEMYID_PLASMARINE
-	ld b,$00
-	call _enemyBoss_initializeRoom
-	jp objectSetVisible83
-
-
-_plasmarine_state_switchHook:
-	inc e
-	ld a,(de)
-	rst_jumpTable
-	.dw @justLatched
-	.dw @beforeSwitch
-	.dw @afterSwitch
-	.dw @released
-
-@justLatched:
-	xor a
-	ld e,Enemy.var33
-	ld (de),a
-	call enemySetAnimation
-	jp _ecom_incSubstate
-
-@afterSwitch:
-	ld e,Enemy.var33
-	ld a,(de)
-	or a
-	ret nz
-	inc a
-	ld (de),a
-	ld a,SND_MYSTERY_SEED
-	call playSound
-
-
-; This is called from outside "plasmarine_state_switchHook" (ie. when sword slash occurs).
-@swapColor:
-	ld h,d
-	ld l,Enemy.var32
-	ld a,(hl)
-	xor $01
-	ld (hl),a
-	inc a
-	ld l,Enemy.oamFlagsBackup
-	ldi (hl),a
-	ld (hl),a
-
-
-@beforeSwitch:
-	ret
-
-
-@released:
-	ld b,$0a
-	call _ecom_fallToGroundAndSetState
-	ret nz
-	ld l,Enemy.counter1
-	ld (hl),60
-	jp _plasmarine_decideNumberOfShockAttacks
-
-
-_plasmarine_state_stub:
-	ret
-
-
-; Moving toward centre of room before starting fight
-_plasmarine_state8:
-	call _plasmarine_checkCloseToTargetPosition
-	jr c,@reachedTarget
-
-	call _ecom_decCounter1
-	jr nz,++
-	ld (hl),$04
-	call objectGetRelativeAngleWithTempVars
-	call objectNudgeAngleTowards
-++
-	call objectApplySpeed
-	jr _plasmarine_animate
-
-@reachedTarget:
-	ld l,e
-	inc (hl) ; [state] = 9
-
-	ld l,Enemy.counter1
-	ld (hl),60
-	ld l,Enemy.yh
-	ld (hl),b
-	ld l,Enemy.xh
-	ld (hl),c
-	jr _plasmarine_animate
-
-
-; 60 frame delay before starting fight
-_plasmarine_state9:
-	call _ecom_decCounter1
-	jr nz,_plasmarine_animate
-
-	ld (hl),60 ; [counter1]
-	ld l,e
-	inc (hl) ; [state] = $0a
-
-	ld l,Enemy.collisionType
-	set 7,(hl)
-
-	call _plasmarine_decideNumberOfShockAttacks
-	call _enemyBoss_beginBoss
-	xor a
-	jp enemySetAnimation
-
-
-; Standing in place before charging
-_plasmarine_stateA:
-	call _ecom_decCounter1
-	jr nz,_plasmarine_animate
-
-	inc (hl) ; [counter1] = 1
-
-	ld l,Enemy.animParameter
-	bit 0,(hl)
-	jr z,_plasmarine_animate
-
-	; Initialize stuff for state $0b (charge at Link)
-	ld l,Enemy.counter1
-	ld (hl),$0c
-	ld l,e
-	inc (hl) ; [state] = $0b
-	ld l,Enemy.speed
-	ld (hl),SPEED_300
-
-	ld l,Enemy.var30
-	ldh a,(<hEnemyTargetY)
-	ldi (hl),a
-	ldh a,(<hEnemyTargetX)
-	ld (hl),a
-
-_plasmarine_animate:
-	jp enemyAnimate
-
-
-; Charging toward Link
-_plasmarine_stateB:
-	call _ecom_decCounter1
-	jr nz,++
-	ld l,e
-	inc (hl) ; [state] = $0c
-++
-	ld l,Enemy.speed
-	ld a,(hl)
-	sub SPEED_20
-	ld (hl),a
-	; Fall through
-
-_plasmarine_stateC:
-	call _plasmarine_checkCloseToTargetPosition
-	jp nc,_ecom_moveTowardPosition
-
-	; Reached target position.
-	ld l,Enemy.counter2
-	dec (hl)
-	ld l,e
-	jr z,@fireProjectiles
-
-	; Do shock attack (state $0d)
-	ld (hl),$0d ; [state]
-	ld l,Enemy.counter1
-	ld (hl),65
-
-	ld l,Enemy.damage
-	ld (hl),-8
-
-	ld l,Enemy.var32
-	ld a,(hl)
-	add $04
-	ld l,Enemy.oamFlagsBackup
-	ldi (hl),a
-	ld (hl),a
-
-	ld l,Enemy.enemyCollisionMode
-	ld (hl),ENEMYCOLLISION_PLASMARINE_SHOCK
-	ld a,$02
-	jp enemySetAnimation
-
-@fireProjectiles:
-	ld (hl),$0e ; [state]
-	ld l,Enemy.health
-	ld a,(hl)
-	dec a
-	ld hl,@numProjectilesToFire
-	rst_addAToHl
-	ld e,Enemy.var34
-	ld a,(hl)
-	ld (de),a
-
-	ld a,$01
-	jp enemySetAnimation
-
-; Takes health value as index, returns number of projectiles to fire in one attack
-@numProjectilesToFire:
-	.db $03 $03 $02 $02 $02 $01 $01
-
-
-; Shock attack
-_plasmarine_stateD:
-	call _ecom_decCounter1
-	jr z,@doneAttack
-
-	ld a,(hl)
-	and $0f
-	ld a,SND_SHOCK
-	call z,playSound
-
-	; Update oamFlags based on animParameter
-	ld e,Enemy.animParameter
-	ld a,(de)
-	or a
-	ld b,$04
-	jr z,+
-	ld b,$01
-+
-	ld e,Enemy.var32
-	ld a,(de)
-	add b
-	ld h,d
-	ld l,Enemy.oamFlagsBackup
-	ldi (hl),a
-	ld (hl),a
-	jr _plasmarine_animate
-
-@doneAttack:
-	ld (hl),60 ; [counter1]
-	ld l,e
-	ld (hl),$0a ; [state]
-
-	ld l,Enemy.collisionType
-	set 7,(hl)
-
-	ld l,Enemy.damage
-	ld (hl),-4
-
-	ld l,Enemy.var32
-	ld a,(hl)
-	inc a
-	ld l,Enemy.oamFlagsBackup
-	ldi (hl),a
-	ld (hl),a
-
-	ld l,Enemy.enemyCollisionMode
-	ld (hl),ENEMYCOLLISION_PLASMARINE
-	xor a
-	jp enemySetAnimation
-
-
-; Firing projectiles
-_plasmarine_stateE:
-	call enemyAnimate
-	ld e,Enemy.animParameter
-	ld a,(de)
-	dec a
-	jr z,@fire
-
-	inc a
-	ret z
-
-	call _ecom_incState
-	ld l,Enemy.counter1
-	ld (hl),60
-	xor a
-	jp enemySetAnimation
-
-@fire:
-	ld (de),a ; [animParameter] = 0
-
-	call getFreePartSlot
-	ret nz
-	ld (hl),PARTID_PLASMARINE_PROJECTILE
-	inc l
-	ld e,Enemy.oamFlags
-	ld a,(de)
-	dec a
-	ld (hl),a ; [projectile.var03]
-
-	ld l,Part.relatedObj1+1
-	ld (hl),d
-	dec l
-	ld (hl),Enemy.start
-
-	ld bc,$ec00
-	call objectCopyPositionWithOffset
-	ld a,SND_VERAN_FAIRY_ATTACK
-	jp playSound
-
-
-; Decides whether to return to state $0e (fire another projectile) or charge at Link again
-_plasmarine_stateF:
-	call _ecom_decCounter1
-	jp nz,enemyAnimate
-
-	ld l,Enemy.var34
-	dec (hl)
-	ld l,e
-	jr z,@chargeAtLink
-
-	dec (hl) ; [state] = $0e
-	ld a,$01
-	jp enemySetAnimation
-
-@chargeAtLink:
-	ld (hl),$0a
-	ld l,Enemy.counter1
-	ld (hl),30
-
-;;
-_plasmarine_decideNumberOfShockAttacks:
-	call getRandomNumber_noPreserveVars
-	and $01
-	inc a
-	ld e,Enemy.counter2
-	ld (de),a
-	ret
-
-;;
-; @param[out]	cflag	c if close enough to target position
-_plasmarine_checkCloseToTargetPosition:
-	ld h,d
-	ld l,Enemy.var30
-	call _ecom_readPositionVars
-	sub c
-	add $04
-	cp $09
-	ret nc
-	ldh a,(<hFF8F)
-	sub b
-	add $04
-	cp $09
-	ret
-
-; TODO: what is this? Unused data?
-.db $ec $ec $ec $14 $14 $14 $14 $ec
-.db $00 $e8 $e8 $00 $00 $18 $18 $00
-
 
 ; ==============================================================================
 ; ENEMYID_KING_MOBLIN
@@ -12100,3 +11693,173 @@ _kingMoblin_setStateAndAnimation:
 	call enemySetAnimation
 	or d
 	ret
+
+; ==============================================================================
+; ENEMYID_HARDHAT_BEETLES_BOSS
+;
+; Variables:
+;   counter1: number of beetles left 
+;   var30/var31: 
+;   var32: 
+;   var39: nonzero if all beetles defeated
+; ==============================================================================
+
+enemyCode7e:
+	call getThisRoomFlags
+	bit ROOMFLAG_BIT_80,(hl)
+	ret nz
+	ld e,Enemy.var39
+	ld a,(de)
+	or a
+	jr z,@normalStatus
+	jp @bossDead
+
+@normalStatus
+	ld e,Enemy.state
+	ld a,(de)
+	rst_jumpTable
+	.dw @state_uninitialized
+	.dw @state0
+	.dw @state1
+	.dw @state2
+
+@state_uninitialized:
+	call _enemyBoss_initializeRoomWithoutExtraGfx
+	jp _ecom_incState
+
+@state0:
+	callab commonInteractions1.clearFallDownHoleEventBuffer
+	call _ecom_incState
+	ld l,Enemy.counter1
+	ld (hl),60
+	ret
+
+@state1:
+	call _ecom_decCounter1
+	ret nz
+	
+	; Determine total number of beetles (4 or 8) and write that to counter1
+	ld (hl),$08
+	call _ecom_incState
+
+	ld c,$44
+	call @spawnBeetle
+	ld c,$4a
+	call @spawnBeetle
+	ld c,$75
+	call @spawnBeetle
+	ld c,$78
+	call @spawnBeetle
+	jp _enemyBoss_beginBoss
+@spawnBeetle:
+	call getFreeInteractionSlot
+	ret nz
+	ld (hl),INTERACID_PUFF
+	ld l,Interaction.yh
+	call setShortPosition_paramC
+	call getFreeEnemySlot
+	ret nz
+	ld (hl),ENEMYID_HARMLESS_HARDHAT_BEETLE
+	ld l,Enemy.yh
+	call setShortPosition_paramC
+	xor a
+	ret
+
+@state2:
+
+	; Check which objects have fallen into holes
+	ld hl,wTmpcfc0.fallDownHoleEvent.cfd8+1
+	ld b,$04
+---
+	ldi a,(hl)
+	cp ENEMYID_HARMLESS_HARDHAT_BEETLE
+	jr nz,@nextFallenObject
+
+	call _ecom_decCounter1
+	jr z,@allBeetlesKilled
+	ld a,(hl)
+	cp $04
+	jr c,++
+	ld l,Enemy.var3a
+	inc (hl)
+++
+
+@nextFallenObject:
+	inc l
+	dec b
+	jr nz,---
+
+	ld e,Enemy.var3a
+	ld a,(de)
+	or a
+	jr z,++
+
+	; Killed one of the first 4 beetles; spawn another.
+	ld e,Enemy.var3b
+	ld a,(de)
+	ld hl,@extraBeetlePositions
+	rst_addAToHl
+	ld c,(hl)
+	call @spawnBeetle
+	jr nz,++
+	ld h,d
+	ld l,Enemy.var3a
+	dec (hl)
+	inc l
+	inc (hl)
+++
+	jpab commonInteractions1.clearFallDownHoleEventBuffer
+
+@allBeetlesKilled:
+	; Set parent object's "var39" to indicate that the game's over
+	ld l,Enemy.var39
+	inc (hl)
+	ret
+
+@extraBeetlePositions:
+	.db $4a $57 $75 $78
+
+@bossDead:
+	ld e,Enemy.substate
+	ld a,(de)
+	rst_jumpTable
+	.dw substate0
+	.dw substate1
+
+substate0:
+	ld h,d
+	ld l,Enemy.counter1
+	ld (hl),120
+	ld a,$01
+	ld (wDisableLinkCollisionsAndMenu),a
+	ld a,SND_BOSS_DEAD
+	call playSound
+	jp _ecom_incSubstate
+
+substate1:
+	call _ecom_decCounter1
+	ret nz
+
+	call getFreePartSlot
+	ret nz
+	ld (hl),PARTID_BOSS_DEATH_EXPLOSION
+	inc l
+	ld e,Enemy.id
+	ld a,(de)
+	ld (hl),a ; [Part.subid] = [Enemy.id]
+
+	call objectCopyPosition
+	call markEnemyAsKilledInRoom
+
+	ld e,Enemy.id
+	ld a,(de)
+	sub $08
+	cp $68
+	jr c,++
+	ld a,(wActiveMusic2)
+	ld (wActiveMusic),a
+	call playSound
+++
+	jp enemyDelete
+
+

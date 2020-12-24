@@ -274,6 +274,7 @@ interactionCode0f:
 @specialHoleRooms:
 	.dw ROOM_AGES_5e8 ; Patch's room
 	.dw ROOM_AGES_23e ; Toilet room
+	.dw ROOM_AGES_5b6
 	.db $00
 
 ;;
@@ -417,7 +418,7 @@ interactionCode12:
 ; Initial values for wSpinnerState. A set bit means the corresponding spinner starts red.
 ; One byte per dungeon.
 @initialSpinnerValues:
-	.db $00 $00 $00 $00 $00 $00 $02 $00
+	.db $00 $00 $00 $01 $00 $00 $02 $00
 	.db $01 $00 $00 $00 $01 $00 $00 $00
 .endif
 
@@ -425,6 +426,9 @@ interactionCode12:
 ; A small key falls when [wNumEnemies]==0.
 @subid01:
 	call returnIfScrollMode01Unset
+	ld e,Interaction.var03			;drop boss key instead when var03 is nonzero
+	ld a,(de)
+	ld b,a
 	ld e,Interaction.state
 	ld a,(de)
 	rst_jumpTable
@@ -434,12 +438,23 @@ interactionCode12:
 @@substate0:
 	ld a,$01
 	ld (de),a
+	ld a,b
+	or a
 	ld hl,mainScripts.dropSmallKeyWhenNoEnemiesScript
+	jr z,+
+	ld hl,mainScripts.dropBossKeyWhenNoEnemiesScript
++
 	call interactionSetScript
 
 @runScript:
 	call interactionRunScript
-	jp c,interactionDelete
+	ret nc
+	call interactionDelete
+	ld a,b
+	or a
+	ret z
+	call getThisRoomFlags
+	set ROOMFLAG_BIT_40,(hl)
 	ret
 
 

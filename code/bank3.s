@@ -784,7 +784,7 @@ _secretDataToEncodeTable:
 	.db <wKidName+2		$08 ; 68
 	.db <wObtainedRingBox	$01 ; 76
 	.db <wLinkName+3	$08 ; 77
-	.db <wAnimalCompanion	$04 ; 85
+	.db <wCurrentSeason	$04 ; 85
 	.db <wLinkName+4	$08 ; 89
 	.db <wKidName+3		$08 ; 97
 	.db <wFileIsLinkedGame	$01 ; 105

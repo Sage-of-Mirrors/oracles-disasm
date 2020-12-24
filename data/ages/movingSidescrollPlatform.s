@@ -19,13 +19,21 @@ movingSidescrollPlatformScriptTable:
 	.dw _movingSidescrollPlatformScript_subid0d
 	.dw _movingSidescrollPlatformScript_subid0e
 
+;;size taken from Interaction.direction variable
+;@collisionRadii:
+	;$09 $0f
+	;$09 $17
+	;$19 $07
+	;$19 $0f
+	;$09 $07
 
+;d4
 _movingSidescrollPlatformScript_subid00:
 	.db SPEED_80
-	.db $04
+	.db $00
 @@loop:
-	ms_right $78
-	ms_left  $58
+	ms_down $88
+	ms_up  $48
 	ms_loop  @@loop
 
 
@@ -33,8 +41,8 @@ _movingSidescrollPlatformScript_subid01:
 	.db SPEED_80
 	.db $04
 @@loop:
-	ms_up    $28
-	ms_down  $68
+	ms_right $78
+	ms_left  $48
 	ms_loop  @@loop
 
 
@@ -86,10 +94,10 @@ movingSidescrollConveyorScriptTable: ; INTERACID_MOVING_SIDESCROLL_CONVEYOR
 	.db SPEED_80
 	.db $01
 @@loop:
-	ms_right $50
-	ms_down  $88
-	ms_left  $38
-	ms_up    $38
+	ms_left  $68
+	ms_up    $78
+	ms_right $a8
+	ms_down  $98
 	ms_loop  @@loop
 
 

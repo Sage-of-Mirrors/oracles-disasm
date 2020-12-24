@@ -2281,9 +2281,9 @@ itemCode06:
 
 ; State 1: boomerang moving outward
 @state1:
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 	call magicBoomerangTryToBreakTile
-.endif
+;.endif
 
 	ld e,Item.var2a
 	ld a,(de)
@@ -2406,9 +2406,9 @@ itemCode06:
 	jp objectTakePosition
 
 @breakTileAndUpdateSpeedAndAnimation:
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 	call magicBoomerangTryToBreakTile
-.endif
+;.endif
 
 @updateSpeedAndAnimation:
 	call objectApplySpeed
@@ -2424,17 +2424,17 @@ itemCode06:
 
 	jp itemAnimate
 
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 magicBoomerangTryToBreakTile:
-	ld e,Item.subid
-	ld a,(de)
-	or a
-	ret z
+	;ld e,Item.subid
+	;ld a,(de)
+	;or a
+	;ret z
 
 	; level-2
 	ld a,BREAKABLETILESOURCE_07
 	jp itemTryToBreakTile
-.endif
+;.endif
 
 ;;
 ; Assumes that both objects are of the same size (checks top-left positions)
@@ -4603,14 +4603,16 @@ itemCode07:
 	ret nz
 
 	ld a,(wRoomPack)
-	cp $02
-	ret c
+	bit 7,a
+	jr nz,+
+	ld a,(wDungeonIndex)
+	cp $04
+	ret nz
++
 	ld a,(wActiveTileType)
 	cp TILETYPE_STUMP
 	ret nz
-	;ld a,(wActiveTileIndex)
-	;cp $1c				;shovel hole
-	;ret nz
+
 	call getFreeInteractionSlot
 	ret nz
 	ld (hl),INTERACID_USED_ROD_OF_SEASONS
@@ -5451,15 +5453,26 @@ _tryBreakTileWithSword:
 
 .ifdef ROM_AGES
 @collisions0:
-@collisions4:
 	.db $c1 $c2 $c4 $d1 $cf
 	.db $00
 
 	.db $fd $fe $ff
 	.db $00
 	.db $00
+@collisions4:
+	.db $c1 $c2 $c4 $d1 $cf
+	.db $00
+
+	.db $fd $fe $ff TILEINDEX_STUMP TILEINDEX_MUSHROOM
+	.db $00
+	.db $00
 
 @collisions1:
+	.db $1f $30 $31 $32 $33 $38 $39 $3a $3b $68 $69
+	.db $00
+
+	.db $0a $0b TILEINDEX_DUNGEON_STUMP TILEINDEX_DUNGEON_MUSHROOM
+	.db $00
 @collisions2:
 @collisions5:
 	.db $1f $30 $31 $32 $33 $38 $39 $3a $3b $68 $69
@@ -5789,28 +5802,32 @@ itemCode16:
 	jp objectCopyPosition
 
 @@release:
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 	ld e,$02
 	ld a,(de)
-	cp $d7
+	cp TILEINDEX_MUSHROOM
 	jr z,@@createPuff
-.endif
+	cp TILEINDEX_DUNGEON_MUSHROOM
+	jr z,@@createPuff
+;.endif
 
 	ld a,Object.substate
 	call objectGetRelatedObject2Var
 	ld (hl),$03
 	jp itemDelete
 
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 @@preDestroyWithAnimation:
 	ld e,Item.subid
 	ld a,(de)
-	cp $d7
+	cp TILEINDEX_MUSHROOM
+	jr z,@@createPuff
+	cp TILEINDEX_DUNGEON_MUSHROOM
 	jr nz,@@destroyWithAnimation
 @@createPuff:
 	call objectCreatePuff
 	jp itemDelete
-.endif
+;.endif
 
 @@destroyWithAnimation:
 	call objectReplaceWithAnimationIfOnHazard
@@ -5826,9 +5843,12 @@ _braceletCheckBreakable:
 	ld a,(de)
 	or a
 	ret z
-.ifdef ROM_SEASONS
-	cp $d7
-.endif
+;.ifdef ROM_SEASONS
+	cp TILEINDEX_MUSHROOM
+	jr z,+
+	cp TILEINDEX_DUNGEON_MUSHROOM
++
+;.endif
 	scf
 	ret
 

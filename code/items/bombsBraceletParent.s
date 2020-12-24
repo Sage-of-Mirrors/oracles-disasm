@@ -165,11 +165,11 @@ _parentItemCode_bracelet:
 	call _checkLinkOnGround
 	jp nz,_clearParentItem
 
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 	ld a,(wActiveTileType)
 	cp TILETYPE_STUMP
 	jp z,_clearParentItem
-.endif
+;.endif
 
 	ld a,(w1ReservedItemC.enabled)
 	or a

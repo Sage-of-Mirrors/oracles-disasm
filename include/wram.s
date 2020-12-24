@@ -407,6 +407,8 @@ wKidName: ; $c609
 wChildStatus: ; $c60f
 	db
 
+wCurrentSeason:
+	.db
 wAnimalCompanion: ; $c610
 ; $0b for ricky, $0c for dimitri, $0d for moosh (same as the SpecialObject id's for their
 ; corresponding objects)

@@ -165,11 +165,20 @@ interactionCode78:
 	cp b
 	ret z
 
+	ld hl,@tileReplacement
+	ld a,(wActiveGroup)
+	sub $03
+	jr c,+
+	ld hl,@group4TileReplacement
+	sub $01
+	jr z,+
+	ld hl,@group5TileReplacement
++
 	ld a,b
 	ld (de),a
 	ld e,Interaction.xh
 	ld a,(de)
-	ld hl,@tileReplacement
+
 	rst_addDoubleIndex
 	ld e,Interaction.subid
 	ld a,(de)
@@ -189,30 +198,16 @@ interactionCode78:
 ;   b1: tile index when switch pressed
 @tileReplacement:
 	.db $5d $59 ; $00
-	.db $5d $5a ; $01
-	.db $5d $5b ; $02
-	.db $5d $5c ; $03
-	.db $5e $59 ; $04
-	.db $5e $5a ; $05
-	.db $5e $5b ; $06
-	.db $5e $5c ; $07
-	.db $59 $5d ; $08
-	.db $5a $5d ; $09
-	.db $5b $5d ; $0a
-	.db $5c $5d ; $0b (patch's minecart game)
-	.db $59 $5e ; $0c
-	.db $5a $5e ; $0d
-	.db $5b $5e ; $0e
-	.db $5c $5e ; $0f
-	.db $59 $5b ; $10
-	.db $5a $5c ; $11
-	.db $5b $59 ; $12
-	.db $5c $5a ; $13
-	.db $59 $5c ; $14
-	.db $5a $5b ; $15
-	.db $5b $5a ; $16
-	.db $5c $59 ; $17
+	
+@group4TileReplacement:
+	.db $5d $59
 
+@group5TileReplacement:
+	.db $b0 $52
+	.db $50 $b2
+
+	.db $60 $d0 ;$97
+	.db $d0 $60
 
 ; ==============================================================================
 ; INTERACID_MOVING_PLATFORM
@@ -1049,6 +1044,12 @@ interactionCode7e:
 
 @minibossState0:
 	ld a,(wDungeonIndex)
+	cp $04
+	jr nz,+
+	ld b,a
+	ld a,(wDungeonFloor)
+	add b
++
 	ld hl,@dungeonRoomTable
 	rst_addDoubleIndex
 	ld c,(hl)
@@ -1135,6 +1136,12 @@ interactionCode7e:
 
 	; Get starting room in 'b', miniboss room in 'c'
 	ld a,(wDungeonIndex)
+	cp $04
+	jr nz,+
+	ld b,a
+	ld a,(wDungeonFloor)
+	add b
++
 	ld hl,@dungeonRoomTable
 	rst_addDoubleIndex
 	ldi a,(hl)
@@ -1167,12 +1174,12 @@ interactionCode7e:
 	.db $01 $04
 	.db $18 $24
 	.db $34 $46
-	.db $4d $66
-	.db $80 $91
-	.db $b4 $bb
-	.db $12 $26
-	.db $4d $56
-	.db $82 $aa
+	.db $59 $50
+	
+	.db $4c $40
+	.db $2f $35
+	.db $1e $2a
+	.db $13 $19
 .else
 	.db $01 $01
 	.db $0b $15
@@ -1249,8 +1256,8 @@ interactionCode7e:
 	ld a,(de)
 	and $0f
 	call @initHerosCaveWarp
-	ld a,$84
-	ld (wWarpDestGroup),a
+	;ld a,$84
+	;ld (wWarpDestGroup),a
 	ret
 .else
 	ld a,(wc64a)
@@ -1280,11 +1287,12 @@ interactionCode7e:
 @initHerosCaveWarp:
 	ld hl,@herosCaveWarps
 	rst_addDoubleIndex
+	rst_addAToHl
 	ldi a,(hl)
 	ld (wWarpDestRoom),a
 	ldi a,(hl)
 	ld (wWarpDestPos),a
-	ld a,$85
+	ld a,(hl)
 	ld (wWarpDestGroup),a
 	lda TRANSITION_DEST_BASIC
 	ld (wWarpTransition),a
@@ -1297,7 +1305,8 @@ interactionCode7e:
 ; First byte is "wWarpDestRoom" (room index), second is "wWarpDestPos".
 @herosCaveWarps:
 .ifdef ROM_AGES
-	.db $c2 $11
+	.db $35 $57 $85
+
 	.db $c3 $2c
 	.db $c4 $11
 	.db $c5 $2c

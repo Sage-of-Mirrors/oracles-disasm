@@ -31,14 +31,32 @@ makeTorchesLightable:
 	ld (hl),$10
 	ret
 
+seasonsShrine_minibossDeath:
+	call getThisRoomFlags
+	set ROOMFLAG_BIT_80,(hl)
+	ld l,$4c
+	set ROOMFLAG_BIT_80,(hl)
+	ld l,$2f
+	set ROOMFLAG_BIT_80,(hl)
+	ld l,$13
+	set ROOMFLAG_BIT_80,(hl)
+	ret
+
 ;;
 ; Unused?
-func_4f5d:
+playSoundAndRoomFlag80;func_4f5d:
 	call getThisRoomFlags
 	set 7,(hl)
 	ld a,SND_SOLVEPUZZLE
 	jp playSound
 
+boomerangRoom:
+	ld a, (wSwitchState)
+	bit 1,a
+	ret z
+	ld hl,wActiveTriggers
+	set 1,(hl)
+	ret
 ;;
 ; @param	b	Length of bridge (in 8x8 tiles)
 ; @param	c	Direction the bridge should extend (0-3)

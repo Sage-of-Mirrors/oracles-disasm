@@ -753,6 +753,7 @@ interactionCode20:
 	.dw @dungeond
 
 @dungeon0:
+	.dw mainScripts.dungeonScript_bossDeath
 @dungeond:
 	.dw mainScripts.makuPathScript_spawnChestWhenActiveTriggersEq01
 	.dw mainScripts.makuPathScript_spawnDownStairsWhenEnemiesKilled
@@ -776,7 +777,7 @@ interactionCode20:
 	.dw mainScripts.dungeonScript_bossDeath
 	.dw mainScripts.moonlitGrottoScript_spawnChestWhen2TorchesLit
 @dungeon4:
-	.dw mainScripts.dungeonScript_minibossDeath
+	.dw mainScripts.seasonsShrineDungeonScript_minibossDeath
 	.dw mainScripts.dungeonScript_bossDeath
 	.dw mainScripts.skullDungeonScript_spawnChestWhenOrb0Hit
 	.dw mainScripts.skullDungeonScript_spawnChestWhenOrb1Hit
@@ -842,6 +843,7 @@ interactionCode21:
 	.dw _interaction21_subid17
 	.dw _interaction21_subid18
 	.dw _interaction21_subid19
+	.dw _interaction21_subid1a
 
 
 ; D2: Verify a 2x2 floor pattern
@@ -1223,8 +1225,8 @@ _interaction21_subid10:
 	jp _verifyTilesAndDropSmallKey
 
 @tileData:
-	.db TILEINDEX_RED_TOGGLE_FLOOR  $54 $58 $ff
-	.db TILEINDEX_BLUE_TOGGLE_FLOOR $55 $57 $00
+	.db TILEINDEX_RED_TOGGLE_FLOOR  $55 $59 $ff
+	.db TILEINDEX_BLUE_TOGGLE_FLOOR $56 $58 $00
 
 
 ; Tile-filling puzzle: when all the blue turns red, a chest will spawn here.
@@ -1445,22 +1447,22 @@ _interaction21_subid18:
 	call getThisRoomFlags
 	ld b,$00
 
-	ld l,$5d
+	ld l,$38		;$5d
 	bit 6,(hl)
 	jr z,+
 	set 4,b
 +
-	ld l,$5f
+	ld l,$39		;$5f
 	bit 6,(hl)
 	jr z,+
 	set 5,b
 +
-	ld l,$61
+	ld l,$3e		;$61
 	bit 6,(hl)
 	jr z,+
 	set 6,b
 +
-	ld l,$63
+	ld l,$3f		;$63
 	bit 6,(hl)
 	jr z,+
 	set 7,b
@@ -1470,6 +1472,47 @@ _interaction21_subid18:
 	ld (wSwitchState),a
 	jp interactionDelete
 
+;spawns a bridge if correct wActiveTrigger bit is set
+_interaction21_subid1a:
+	call getThisRoomFlags
+	and ROOMFLAG_40
+	jp nz,interactionDelete
+
+	ld e,Interaction.xh
+	ld a,(de)
+	and $f0
+	swap a
+	ld hl,wActiveTriggers
+	call checkFlag
+	ret z
+	
+@spawnBridge
+	ld a,(de)					;Interaction.xh
+	and $03
+	ld c,a						;angle
+	ld e,Interaction.yh
+	ld a,(de)
+	ld b,a						;short position
+	ld e,Interaction.var03
+	ld a,(de)
+	ld e,a						;counter2 (length)
+
+	call getFreePartSlot
+	ret nz
+	ld (hl),PARTID_BRIDGE_SPAWNER
+	ld l,Part.yh
+	ld (hl),b
+	ld l,Part.angle
+	ld (hl),c
+	ld l,Part.counter2
+	ld (hl),e
+
+	call getThisRoomFlags
+	set ROOMFLAG_BIT_40,(hl)
+
+	ld a,SND_SOLVEPUZZLE
+	call playSound
+	jp interactionDelete
 
 ;;
 _interactionDeleteAndRetIfItemFlagSet:

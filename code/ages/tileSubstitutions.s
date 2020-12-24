@@ -283,18 +283,20 @@ applyStandardTileSubstitutions:
 @bit3Collisions3:
 	.db $00
 
+@bit7Collisions4:
+	.db $dc $c1
 @bit7Collisions0:
 	.db $dd $c1 ; Cave door under rock? (Is this a bug?)
 	.db $d2 $c2 ; Soil under rock
-	.db $d7 $c4 ; Portal under rock
 	.db $dc $c6 ; Grave pushed onto land
 	.db $d2 $c7 ; Soil under bush
 	.db $d7 $c9 ; Soil under bush
 	.db $d2 $cb ; Soil under earth
 	.db $dc $cf ; Stairs under burnable tree
 	.db $dd $d1 ; Bombable cave door
-@bit7Collisions1:
 	.db $00
+	
+@bit7Collisions1:
 @bit7Collisions2:
 	.db $a0 $1e ; Keyblock
 	.db $44 $42 ; Appearing upward stairs
@@ -302,7 +304,6 @@ applyStandardTileSubstitutions:
 	.db $46 $40 ; Appearing upward stairs in wall
 	.db $47 $41 ; Appearing downward stairs in wall
 @bit7Collisions3:
-@bit7Collisions4:
 @bit7Collisions5:
 	.db $00
 
@@ -569,6 +570,36 @@ replaceSwitchTiles:
 	.db $00
 
 @group5SwitchData:
+	.db $68 $01 $0b $91
+	.db $68 $01 $50 $8c
+	.db $51 $01 $0b $7c
+	.db $51 $01 $52 $42
+
+	.db $6e $02 $0b $11
+	.db $6e $02 $d0 $33
+	.db $6e $04 $0b $1d
+	.db $6e $04 $d0 $3b
+	.db $6e $08 $0b $9d
+	.db $6e $08 $d0 $7b
+	.db $6e $10 $0b $91
+	.db $6e $10 $d0 $54
+
+	.db $6c $20 $0b $58
+	.db $6c $20 $60 $99
+	.db $6c $20 $60 $17
+	.db $6c $20 $d0 $64
+	.db $6c $20 $d0 $4c
+
+	.db $50 $40 $0b $7d
+	.db $5a $40 $d0 $27
+
+	.db $28 $01 $0b $7d
+	.db $28 $01 $52 $58
+	.db $2b $01 $0b $2b
+	.db $2b $01 $b2 $75
+
+	;.db $6a $01 $57 $23
+	;.db $6a $01 $57 $24
 	.db $00
 
 ;;

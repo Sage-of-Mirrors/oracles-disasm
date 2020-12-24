@@ -126,7 +126,7 @@ objectData77d4:
 	obj_End
 
 moonlitGrotto_onArmosSwitchPressed:
-	obj_Interaction $12 $01 $58 $58
+	obj_Interaction $12 $01 $28 $a8
 	obj_SpecificEnemyA $00 $1d $00 $26 $a0
 	obj_End
 

@@ -7297,11 +7297,11 @@ checkLinkPushingAgainstTreeStump:
 	ldi a,(hl)
 	ld b,a
 	ld c,(hl)
-	ld e,$a7
+	ld e,TILEINDEX_STUMP
 	ld a,(wActiveGroup)
 	or a
 	jr z,+
-	ld e,$d1
+	ld e,TILEINDEX_DUNGEON_STUMP
 +
 	call objectGetRelativeTile
 	cp e;$20
@@ -7717,11 +7717,11 @@ _linkState12:
 	call specialObjectTryToBreakTile_source05
 
 ;.ifdef ROM_SEASONS
-	ld e,$a7
+	ld e,TILEINDEX_STUMP
 	ld a,(wActiveGroup)
 	or a
 	jr nz,+
-	ld e,$d1
+	ld e,TILEINDEX_DUNGEON_STUMP
 +
 	ld bc,$0500
 	call objectGetRelativeTile
@@ -7733,7 +7733,7 @@ _linkState12:
 	sub $06
 	ld (hl),a
 +
-	cp $d1
+	cp TILEINDEX_DUNGEON_STUMP
 ;.endif
 
 	xor a
@@ -7887,9 +7887,9 @@ _landableTileFromCliffExceptions:
 @collisions2:
 @collisions5:
 	.db TILEINDEX_RAISABLE_FLOOR_1 TILEINDEX_RAISABLE_FLOOR_2
-	.db $d1
+	.db TILEINDEX_DUNGEON_STUMP
 @collisions0:
-	.db $a7 $d5
+	.db TILEINDEX_STUMP $d5
 @collisions3:
 @collisions4:
 	.db $00

@@ -12,18 +12,7 @@ cliffTilesTable:
 ; b0: Tile index
 ; b1: Angle value from which the tile can be jumped off of.
 
-cliffTiles_collisions0:
 cliffTiles_collisions4:
-	.db $05 $10
-	.db $06 $10
-	.db $07 $10
-	.db $0a $18
-	.db $0b $08
-	.db $64 $10
-	.db $ff $10
-	.db $8e $10	
-	.db $8f $10
-
 	.db $84 $10
 	.db $85 $10
 	.db $86 $10
@@ -35,9 +24,23 @@ cliffTiles_collisions4:
 	.db $89 $08
 	.db $97 $18
 	.db $99 $08
+cliffTiles_collisions0:
+	.db $05 $10
+	.db $06 $10
+	.db $07 $10
+	.db $0a $18
+	.db $0b $08
+	.db $64 $10
+	.db $ff $10
+	.db $8e $10	
+	.db $8f $10
 	.db $00
 
 cliffTiles_collisions1:
+	.db $c7 $10
+	.db $c8 $10
+	.db $c9 $10
+	.db $ca $10
 cliffTiles_collisions2:
 cliffTiles_collisions5:
 	.db $b0 $10

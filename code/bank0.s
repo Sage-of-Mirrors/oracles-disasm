@@ -10375,7 +10375,7 @@ checkPegasusSeedCounter:
 	or (hl)
 	ldd a,(hl)
 	ret
-
+	
 ;;
 ; Try to break a tile at the given item's position.
 ;

@@ -45,7 +45,9 @@ treasureObjectData:
 	.db $00
 
 	; 0x07
-	.db $61 $00 $81 $1e
+	.db $80
+	.dw treasureObjectData07
+	.db $00
 
 	; 0x08
 	.db $00 $00 $ff $00
@@ -404,6 +406,7 @@ treasureObjectData06:
 	.db $0a $01 $22 $1c
 	.db $10 $01 $22 $1c
 	.db $02 $01 $22 $1c
+	.db $32 $01 $22 $1c
 
 treasureObjectData0a:
 	.db $38 $01 $30 $1f
@@ -443,6 +446,7 @@ treasureObjectData17:
 	.db $0a $01 $27 $16
 	.db $0a $01 $79 $16
 	.db $0a $01 $27 $16
+	.db $3a $01 $27 $16
 
 treasureObjectData19:
 	.db $0a $01 $2d $20
@@ -490,6 +494,7 @@ treasureObjectData28:
 	.db $00 $04 $ff $2a
 	.db $00 $01 $ff $28
 	.db $0a $0d $09 $2e
+	.db $30 $03 $02 $29
 
 treasureObjectData2b:
 	.db $0a $01 $17 $3a
@@ -611,3 +616,6 @@ treasureObjectData5e:
 	.db $0a $00 $3e $4e
 	.db $10 $00 $3e $4e
 
+treasureObjectData07:
+	.db $09 $00 $81 $1e
+	.db $01 $00 $ff $1e

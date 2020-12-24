@@ -23,6 +23,7 @@
 	.define TILEINDEX_OVERWORLD_SWITCH_ON	$b0 ; Overworld only
 .endif
 .define TILEINDEX_MOVING_POT		$10
+;.define TILEINDEX_MUSHROOM			$13
 .define TILEINDEX_OVERWORLD_DUG_DIRT	$1c ; Overworld only
 .define TILEINDEX_HORIZONTAL_BRIDGE_TOP		$1d ; Overworld only
 .define TILEINDEX_HORIZONTAL_BRIDGE_BOTTOM	$1e ; Overworld only
@@ -100,6 +101,7 @@
 .define TILEINDEX_RAISABLE_FLOOR_1	$0e ; collision modes 1,2,5
 .define TILEINDEX_RAISABLE_FLOOR_2	$0f ; collision modes 1,2,5
 .define TILEINDEX_DUNGEON_POT		$10 ; dungeons, indoors
+
 .define TILEINDEX_PUSHABLE_BLOCK	$1d ; dungeons, indoors only
 .define TILEINDEX_DUNGEON_BUSH		$20 ; dungeons, indoors only
 .define TILEINDEX_PUSHABLE_STATUE	$2a ; dungeons only
@@ -182,6 +184,8 @@
 	.define TILEINDEX_WATER		$fd
 .endif
 
+
+
 .define TILEINDEX_DEEP_WATER		$fc
 .define TILERANGE_WATER             $fd-TILEINDEX_PUDDLE+1 ; number of puddle/water tiles
 
@@ -191,3 +195,11 @@
 .define TILEINDEX_SS_LADDER		$18
 .define TILEINDEX_SS_52			$52
 
+
+.define TILEINDEX_MUSHROOM			$c4 ; overworld
+.define TILEINDEX_DUNGEON_MUSHROOM	$13 ; dungeon
+.define TILEINDEX_LEAVES			$a3 ; overworld
+.define TILEINDEX_DUNGEON_LEAVES	$dc ; dungeon
+.define TILEINDEX_STUMP 			$a7
+.define TILEINDEX_DUNGEON_STUMP		$d1
+.define TILEINDEX_LEAVES_NO_HOLE	$a2

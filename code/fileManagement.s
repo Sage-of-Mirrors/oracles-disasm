@@ -392,7 +392,7 @@ _initialFileVariables_heroGame:
 	.db <wChildStatus			$00
 	.db <wShieldLevel			$01
 .ifdef ROM_AGES
-	.db <wAnimalCompanion			$00
+	.db <wCurrentSeason		$00
 .else
 	.db <wAnimalCompanion			$0b
 .endif

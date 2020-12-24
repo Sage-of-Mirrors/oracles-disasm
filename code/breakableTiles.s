@@ -17,6 +17,7 @@
 ;  ff91: X
 ;
 tryToBreakTile_body:
+;sets hFF90 to Yh of tile, hFF91 to Xh of tile
 	ld a,b
 	and $f0
 	or $08
@@ -25,25 +26,25 @@ tryToBreakTile_body:
 	and $f0
 	or $08
 	ldh (<hFF91),a
-
+;calls tile index and loads it into FF92 and e, tile short position at FF93
 	call getTileAtPosition
 	ldh (<hFF92),a
 	ld e,a
 	ld a,l
 	ldh (<hFF93),a
-
+;inputs tile index and uses breakableTileCollisionTable to find collision, ret if cannot
 	ld hl,_breakableTileCollisionTable
 	call lookupCollisionTable_paramE
 	ret nc
-
-	; hl = _breakableTileModes + a*5
+;finds entry for correct tile
+	; hl = _breakableTileModes + a*5	(a is index for tile collision)
 	ld e,a
 	add a
 	ld hl,_breakableTileModes
 	rst_addDoubleIndex
 	ld a,e
 	rst_addAToHl
-
+;
 	ldh a,(<hFF8F)
 	ld e,a
 	and $1f

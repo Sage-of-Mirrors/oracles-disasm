@@ -30,6 +30,7 @@
 .define TILETYPE_RAISABLE_FLOOR	$16
 .define TILETYPE_SEAWATER	$17
 .define TILETYPE_WHIRLPOOL	$18
+;.define TILETYPE_MUSHROOM   $19
 
 ; Sidescrolling tilesets follow a different set of rules; each bit represents a certain
 ; behaviour.

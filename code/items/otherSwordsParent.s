@@ -34,14 +34,15 @@ _parentItemCode_foolsOre:
 ;.ifdef ROM_SEASONS
 @rod_state0:
 	ld a,(wRoomPack)
-	cp $02
-	jr c,++
+	bit 7,a
+	jr nz,+
+	ld a,(wDungeonIndex)
+	cp $04
+	jr nz,++
++
 	ld a,(wActiveTileType)
 	cp TILETYPE_STUMP
 	jr nz,++
-	;ld a,(wActiveTileIndex)
-	;cp $1c				;shovel hole
-	;jr nz,++
 ;.endif
 
 @state0:
