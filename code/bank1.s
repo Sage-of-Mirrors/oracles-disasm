@@ -3684,6 +3684,7 @@ cutscene01:
 	call checkRoomPack
 	jp nz,triggerFadeoutTransition
 
+
 .ifdef ROM_SEASONS
 	call checkPlayRoomMusic
 .endif
@@ -3854,10 +3855,11 @@ offsetForDungeonStump:
 	ld a,(wLoadingRoomPack)
 	sub $80
 	ret c
-	ld (wAnimalCompanion),a
+	ld (wCurrentSeason),a
 	ret
 ;;
 cutscene05:
+	call updateGrassAnimationModifier
 	ld a,(wPaletteThread_mode)
 	or a
 	ret nz
@@ -4129,7 +4131,7 @@ triggerFadeoutTransition:
 	ld a,(wLoadingRoomPack)
 	sub $80
 	jr c,+
-	ld (wAnimalCompanion),a
+	ld (wCurrentSeason),a
 +
 	ld a,CUTSCENE_05
 	ld (wCutsceneIndex),a
@@ -4267,8 +4269,22 @@ checkDisplayEraOrSeasonInfo:
 ;
 updateGrassAnimationModifier:
 
-.ifdef ROM_AGES
-	ld a,$00
+.ifdef ROM_AGES;
+	xor a
+	ld (wGrassAnimationModifier),a
+	ld a,(wRoomPack)
+	bit 7,a
+	jr nz,+
+	ld a,(wDungeonIndex)
+	cp $04
+	ret nz
++
+	ld a,(wCurrentSeason)
+	inc a
+	and $03
+	ld hl,@grassAnimationValues
+	rst_addAToHl
+	ld a,(hl)
 	ld (wGrassAnimationModifier),a
 	ret
 
@@ -4292,6 +4308,7 @@ updateGrassAnimationModifier:
 	ld a,(hl)
 	ld (wGrassAnimationModifier),a
 	ret
+.endif
 
 @grassAnimationValues:
 
@@ -4300,7 +4317,7 @@ updateGrassAnimationModifier:
 .db terrainEffects.orangeGrassAnimationFrame0 - terrainEffects.greenGrassAnimationFrame0
 .db terrainEffects.blueGrassAnimationFrame0   - terrainEffects.greenGrassAnimationFrame0
 
-.endif
+;.endif
 
 
 ;;

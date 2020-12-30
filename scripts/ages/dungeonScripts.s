@@ -76,6 +76,12 @@ dungeonScript_minibossDeath:
 	wait 20
 	spawninteraction INTERACID_MINIBOSS_PORTAL, $00, $00, $00
 
+seasonsShrineDungeonScript_minibossDeath:
+	stopifroomflag80set
+	checknoenemies
+	asm15 scriptHelp.seasonsShrine_minibossDeath
+	wait 20
+	spawninteraction INTERACID_MINIBOSS_PORTAL, $00, $00, $00
 
 _enableLinkAndMenu:
 	writememory wDisableLinkCollisionsAndMenu, $00
@@ -123,7 +129,6 @@ spiritsGraveScript_stairsToBraceletRoom:
 	asm15 objectCreatePuff
 	settilehere $45
 	scriptend
-
 
 wingDungeonScript_spawnFeather:
 	stopifitemflagset

@@ -76,43 +76,40 @@ _movingPlatform_scriptTable:
 
 @@platform0:
 	plat_wait  $08
-	plat_up    $60
+	plat_up    $30
 --
 	plat_wait  $08
-	plat_down  $a0
+	plat_down  $60
 	plat_wait  $08
-	plat_up    $a0
+	plat_up    $60
 	plat_jump --
 
 @@platform1:
 	plat_wait  $08
-	plat_up    $20
+	plat_right $40
 --
 	plat_wait  $08
-	plat_down  $c0
+	plat_left  $e0
 	plat_wait  $08
-	plat_up    $c0
+	plat_right $e0
 	plat_jump --
 
 @@platform2:
 	plat_wait  $08
-	plat_up    $40
+	plat_right $60
 --
 	plat_wait  $08
-	plat_down  $a0
+	plat_left  $80
 	plat_wait  $08
-	plat_up    $a0
+	plat_right $80
 	plat_jump --
 
 @@platform3:
 	plat_wait  $08
-	plat_right $20
---
+	plat_left  $60
 	plat_wait  $08
-	plat_left  $c0
-	plat_wait  $08
-	plat_right $c0
-	plat_jump --
+	plat_right $60
+	plat_jump @@platform3
 
 @@platform4:
 	plat_wait  $08

@@ -138,11 +138,45 @@ doorController_decideActionBasedOnTriggers:
 	ld e,Interaction.var3d
 	ld a,(de)
 	ld b,a
+	ld e, Interaction.var03
+	ld a,(de)
+	rst_jumpTable
+	.dw @activeTriggers
+	.dw @switchState
+	.dw @invertedSwitchState
+	.dw @toggleBlocksState
+	.dw @invertedToggleBlocksState
+
+@activeTriggers:
 	ld a,(wActiveTriggers)
+	jr @normal
+
+@switchState:
+	ld a,(wSwitchState)
+	jr @normal
+
+@invertedSwitchState:
+	ld a,(wSwitchState)
+	jr @inverted
+
+@invertedToggleBlocksState:
+	ld a,(wToggleBlocksState)
+	jr @inverted
+
+@toggleBlocksState
+	ld a,(wToggleBlocksState)
+
+@normal:
 	and b
 	jr z,@triggerInactive
+	jr @triggerActive
+@inverted:
+	and b
+	jr z,@triggerActive
+	jr @triggerInactive
 
 ; If trigger is active, open the door.
+@triggerActive
 	call @checkTileIsShutterDoor
 	ld a,$01
 	jr z,@end

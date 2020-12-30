@@ -1552,14 +1552,13 @@ groups:
   - name: TX_0203
     index: 0x03
     text: |2-
-       Level 3
-        Moonlit Grotto
+       Four Corners'
+        Cave
 
   - name: TX_0204
     index: 0x04
     text: |2-
-       Level 4
-        Skull Dungeon
+       Seasons Shrine
 
   - name: TX_0205
     index: 0x05
@@ -7281,16 +7280,16 @@ groups:
     text: |-
       There was a loud
       sound far off,
-      like something
-      being knocked
-      loose!
+      like a magic
+      barrier being 
+      weakened!
 
   - name: TX_1201
     index: 0x01
     text: |-
       It sounds like
-      something heavy
-      fell down below!
+      the magic barrier
+      was detroyed!
 
   - name: TX_1202
     index: 0x02
@@ -13988,18 +13987,19 @@ groups:
   - name: TX_2e01
     index: 0x01
     text: |-
-      \left Rolling Ridge
-      \down Lynna City
+      \Link's House
 
   - name: TX_2e02
     index: 0x02
     text: |-
-      Danger!!!
+      \up Hyrule Castle
+      \right Tepid Forest
 
   - name: TX_2e03
     index: 0x03
     text: |-
-      \down Lynna Village
+      Bring the \col(03)four\col(00) seasons together
+      and gather the \col(01)seeds\col(00) to continue your quest.
 
   - name: TX_2e04
     index: 0x04

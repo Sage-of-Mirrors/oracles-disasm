@@ -61,6 +61,7 @@ applyRoomSpecificTileChanges:
 	.dw tileReplacement_group0Map98 ; $35
 	.dw tileReplacement_group0Map76 ; $36
 	.dw tileReplacement_group0Mapa5 ; $37
+	.dw tileReplacement_group5Map26 ; $38
 
 roomTileChangerCodeGroupTable:
 	.dw roomTileChangerCodeGroup0Data
@@ -73,73 +74,74 @@ roomTileChangerCodeGroupTable:
 	.dw roomTileChangerCodeGroup7Data
 
 roomTileChangerCodeGroup0Data:
-	.db $38 $08
-	.db $48 $17
-	.db $5c $14
-	.db $73 $16
+	;.db $38 $08
+	;.db $48 $17
+	;.db $5c $14
+	;.db $73 $16
 	.db $ac $18
-	.db $2c $19
-	.db $1c $1a
+	;.db $2c $19
+	;.db $1c $1a
 	.db $ba $1b
 	.db $aa $1c
 	.db $cc $1d
 	.db $bc $1e
 	.db $da $1f
 	.db $ca $20
-	.db $61 $21
-	.db $51 $22
-	.db $54 $23
-	.db $25 $24
-	.db $3a $25
-	.db $0b $26
+	;.db $61 $21
+	;.db $51 $22
+	;.db $54 $23
+	;.db $25 $24
+	;.db $3a $25
+	;.db $0b $26
 	.db $e0 $30
 	.db $e1 $31
 	.db $e2 $32
 	.db $98 $35
 	.db $a5 $37
-	.db $76 $36
+	;.db $76 $36
 	.db $00
 roomTileChangerCodeGroup1Data:
-	.db $38 $09
-	.db $27 $28
+	;.db $38 $09
+	;.db $27 $28
 	.db $8c $2c
-	.db $58 $34
+	;.db $58 $34
 	.db $00
 roomTileChangerCodeGroup2Data:
-	.db $0e $15
+	;.db $0e $15
 	.db $90 $2b
 	.db $9e $2f
-	.db $7e $02
+	;.db $7e $02
 	.db $00
 roomTileChangerCodeGroup3Data:
 	.db $00
 roomTileChangerCodeGroup4Data:
-	.db $1b $01
-	.db $4c $03
-	.db $4e $04
-	.db $59 $05
-	.db $60 $06
-	.db $52 $07
+	;.db $1b $01
+	;.db $4c $03
+	;.db $4e $04
+	;.db $59 $05
+	;.db $60 $06
+	;.db $52 $07
 	.db $c7 $2d
 	.db $c9 $2e
 	.db $ea $33
 	.db $00
 roomTileChangerCodeGroup5Data:
 	.db $f5 $00
-	.db $38 $0a
-	.db $25 $0b
-	.db $43 $0c
-	.db $4c $0d
-	.db $5c $0e
-	.db $71 $0e
-	.db $4d $0f
-	.db $5d $10
-	.db $72 $10
-	.db $95 $12
-	.db $c3 $13
-	.db $b9 $27
-	.db $c2 $29
-	.db $e3 $2a
+	;.db $38 $0a
+	;.db $25 $0b
+	;.db $43 $0c
+	;.db $4c $0d
+	;.db $5c $0e
+	;.db $71 $0e
+	;.db $4d $0f
+	;.db $5d $10
+	;.db $72 $10
+	;.db $95 $12
+	;.db $c3 $13
+	;.db $b9 $27
+	;.db $c2 $29
+	;.db $e3 $2a
+	.db $26 $38
 	.db $00
 roomTileChangerCodeGroup6Data:
 	.db $00
@@ -579,6 +581,9 @@ tileReplacement_group2Map0e:
 ;;
 ; D7: 1st platform on floor 1
 tileReplacement_group5Map4c:
+	;added
+	ret
+
 	ld a,(wJabuWaterLevel)
 	and $07
 	ret z
@@ -597,6 +602,9 @@ tileReplacement_group5Map4c:
 ;;
 ; D7: 2nd platform on floor 1
 tileReplacement_group5Map4d:
+	;added
+	ret
+
 	ld a,(wJabuWaterLevel)
 	and $07
 	ret z
@@ -611,6 +619,9 @@ tileReplacement_group5Map4d:
 ; D7: Used in room $55c and $571. Makes the 1st platform appear if the water
 ; level is correct.
 tileReplacement_group5Map5c:
+	;added
+	ret
+
 	ld a,(wDungeonFloor)
 	ld b,a
 	ld a,(wJabuWaterLevel)
@@ -633,6 +644,9 @@ tileReplacement_group5Map5c:
 ; D7: used is room $55d and $572. Makes the 2nd platform appear if the water
 ; level is correct.
 tileReplacement_group5Map5d:
+	;added
+	ret
+
 	ld a,(wDungeonFloor)
 	ld b,a
 	ld a,(wJabuWaterLevel)
@@ -655,6 +669,9 @@ tileReplacement_group5Map5d:
 ; D7 miniboss room (except it's group 7 instead of 5?)
 ; Creates a ladder if the miniboss has been murdered.
 tileReplacement_group7Map4a:
+	;added
+	ret
+	
 	call getThisRoomFlags
 	and $80
 	ret z
@@ -1407,3 +1424,15 @@ drawRectInRoomLayout:
 	dec c
 	jr nz,---
 	ret
+
+;;bridge in d4, (S12)
+tileReplacement_group5Map26:
+	call getThisRoomFlags
+	and ROOMFLAG_40
+	ret z
+
+	ld hl,@bridgeData
+	jp fillRectInRoomLayout
+
+@bridgeData
+	.db $83 $01 $06 $6d

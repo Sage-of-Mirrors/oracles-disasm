@@ -97,7 +97,7 @@ func_6de7:
 	;cp $7f
 	jr z,@xor
 
-	ld a,(wAnimalCompanion)
+	ld a,(wCurrentSeason)
 	or a
 	;sub SPECIALOBJECTID_RICKY
 	jr z,@xor

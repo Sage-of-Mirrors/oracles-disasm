@@ -785,7 +785,7 @@ calculateRoomStateModifier:
 	ret
 
 @companionRegion:
-	ld a,(wAnimalCompanion)
+	ld a,(wCurrentSeason)
 	or a
 	jr z,@standard
 

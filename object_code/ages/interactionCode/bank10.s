@@ -31,6 +31,7 @@ interactionCodedc:
 	.dw _interactiondc_subid15
 	.dw _interactiondc_subid16
 	.dw _interactiondc_subid17
+	.dw _interactiondc_subid18
 
 
 ; Heart piece spawner
@@ -906,6 +907,66 @@ _interactiondc_subid17:
 	ld (hl),a ; [wcc50]
 	ret
 
+;causes warp in D3 from obtaining Rod of Seasons and D4 from obtaining Din's gift
+_interactiondc_subid18:
+	ld e,Interaction.state
+	ld a,(de)
+	rst_jumpTable
+	.dw @state0
+	.dw @state1
+	.dw @state2
+@state0:
+	call getThisRoomFlags
+	ld b,a
+	and ROOMFLAG_40
+	jp nz, interactionDelete
+	ld a,b
+	and ROOMFLAG_ITEM
+	jp nz,interactionIncState
+
+	ld e,Interaction.var03
+	ld a,(de)
+	ld b,a
+	;ld b, TREASURE_ROD_OF_SEASONS
+	ld c,$00
+	call createTreasure
+	jp objectCopyPosition
+
+@state1:
+	ld a,(wTextIsActive)	;$cba0
+	or a
+	ret nz
+	ld a,$81
+	ld (wDisableLinkCollisionsAndMenu),a	;$cbca
+	ld (wDisabledObjects),a					;$cca4
+	call interactionIncState
+	ld e,Interaction.counter1	;$46
+	ld a,$96						;wait 150 frames (3 seconds) $5a
+	ld (de),a
+	ld a,SNDCTRL_MEDIUM_FADEOUT	;$fb
+	jp playSound
+
+@state2:
+	call interactionDecCounter1
+	ret nz
+	call getThisRoomFlags
+	set ROOMFLAG_BIT_40,(hl)
+	ld hl,@D3warpDestVariables
+	ld e,Interaction.var03
+	ld a,(de)
+	cp $07
+	jr z,+
+	ld hl,@D4warpDestVariables
++
+	call setWarpDestVariables
+	ld a,SND_FADEOUT				;$b4
+	call playSound
+	jp interactionDelete
+@D3warpDestVariables:
+	m_HardcodedWarpA ROOM_AGES_027 $00 $15 $83
+@D4warpDestVariables:
+	m_HardcodedWarpA ROOM_AGES_077 $00 $46 $83
+
 
 ; ==============================================================================
 ; INTERACID_TIMEWARP
@@ -1719,17 +1780,17 @@ interactionCodee6:
 	.dw @subid2
 
 @subid0:
-	ld a,(wDimitriState)
-	bit 6,a
-	jp z,interactionDelete
+	ld a,(wCurrentSeason)
+	cp SEASON_FALL
+	jp nz,interactionDelete
 
 ; Subid 1: A raft that's put there through the room's object list; it must check that
 ; there is no already-existing raft on the screen (either from a remembered position, or
 ; from Link riding it)
 @subid1:
-	ld a,GLOBALFLAG_RAFTON_CHANGED_ROOMS
-	call checkGlobalFlag
-	jp z,interactionDelete
+	;ld a,GLOBALFLAG_RAFTON_CHANGED_ROOMS
+	;call checkGlobalFlag
+	;jp z,interactionDelete
 
 	; Check if Link's riding a raft
 	ld a,(w1Companion.id)
@@ -1745,6 +1806,14 @@ interactionCodee6:
 
 ; Subid 2: when the raft's position was remembered
 @subid2:
+	ld e,Interaction.subid
+	ld a,(de)
+	or a
+	jr nz,+
+	ld a,(wCurrentSeason)
+	cp SEASON_FALL
+	jp nz,interactionDelete
++
 	push de
 	ld a,UNCMP_GFXH_3b
 	call loadUncompressedGfxHeader
@@ -1823,37 +1892,36 @@ interactionCodee7:
 	ld b,a
 	ld a,(wLinkDeathTrigger)
 	or b
-	jr nz,+
+	jr nz,@seasonsTransition
 	ld a,(wActiveGroup)
 	cp $04
-	jr nc,+++
+	jr nc,@inDungeon
 
-	ld hl,wAnimalCompanion
+	ld hl,wCurrentSeason
 	ld a,(hl)
 	inc a
-	cp $04
-	jr c,++
-	sub $04
-++
+	and $03
 	ld (hl),a
-	jr +
-+++
+	jr @seasonsTransition
+@inDungeon:
 ;moving between floors	
 	ld a,(wDungeonFloor)
-	ld hl,wDungeonVisitedFloors+$06
--
-	inc a
-	ld b,a
-	cp $04
-	jr nz,++++
-	xor a
-++++
-	ld b,a
-	call checkFlag
-	ld a,b
-	jr nz,++
-	jr -
-++
+	ld hl,wDungeonVisitedFloors+$04		;Seasons Shrine
+	call @findingVisitedFloor
+	
+@foundNextFloor:
+	ld c,a
+	ld a,GLOBALFLAG_D3_CRYSTALS
+	call checkGlobalFlag
+	ld a,c
+	jr nz,@setDungeonWarp
+	;if not all crystals are broken, skip room $41 (winter)
+	ld a,(wActiveRoom)
+	cp $2d
+	ld a,c
+	ld hl,wDungeonVisitedFloors+$04		;Seasons Shrine
+	call z,@findingVisitedFloor
+@setDungeonWarp:
 	ld (wDungeonFloor),a
 
 	call getActiveRoomFromDungeonMapPosition
@@ -1874,13 +1942,22 @@ interactionCodee7:
 	ld a,$03
 	ld (wWarpTransition2),a
 
-+
+@seasonsTransition:
 	ld a,SND_ENERGYTHING
 	call playSound
 	ld a,$02
 	ld (wPaletteThread_updateRate),a
 	call fadeoutToWhite
 	jp interactionDelete
+
+@findingVisitedFloor:
+	dec a
+	and $03
+	ld b,a
+	call checkFlag
+	ld a,b
+	ret nz
+	jr @findingVisitedFloor
 
 ; ==============================================================================
 ; INTERACID_HEROS_CAVE_SWORD_CHEST
@@ -1935,7 +2012,7 @@ interactionCodee8:
 	call interactionIncState
 	call objectSetInvisible
 	ld e,Interaction.counter1	;$46
-	ld a,$5a
+	ld a,$5a					;wait 90 frames
 	ld (de),a
 	call getFreeInteractionSlot
 	ret nz
@@ -1956,7 +2033,7 @@ interactionCodee8:
 	call interactionDecCounter1
 	ret nz
 	call getThisRoomFlags
-	set 5,(hl)
+	set ROOMFLAG_BIT_ITEM,(hl)
 	ld hl,@warpDestVariables
 	call setWarpDestVariables
 	ld a,SND_FADEOUT				;$b4

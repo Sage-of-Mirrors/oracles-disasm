@@ -7434,18 +7434,20 @@ _flyingTile_layoutData:
 ; First byte is value for var03 (subid for spawned children).
 ; All remaining bytes are positions at which to spawn flying tiles.
 ; Ends when it reads $00.
+
+;first subid taken for D3
 @subid0:
 	.db $80
-	.db $57 $56 $46 $47 $48 $58 $68 $67
-	.db $66 $65 $55 $45 $36 $37 $38 $49
-	.db $59 $69 $78 $77 $76 $54 $5a
+	.db $68 $37 $59 $48 $56 $65 $46 
+	.db $77 $78 $38 $45 $47 $49 $67
+	.db $58 $76 $66 $55 $69 $57 $36
 	.db $00
 
 @subid1:
 	.db $80
-	.db $57 $46 $48 $39 $35 $26 $37 $59
-	.db $49 $38 $29 $28 $36 $45 $56 $58
-	.db $27 $47 $55 $25
+	.db $68 $37 $59 $48 $56 $65 $46 
+	.db $77 $78 $38 $45 $47 $49 $67
+	.db $58 $76 $66 $55 $69 $57 $36
 	.db $00
 
 @subid2:

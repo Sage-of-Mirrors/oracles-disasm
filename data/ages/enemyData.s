@@ -133,7 +133,7 @@ enemyData:
 	/* 0x74 */ m_EnemyData $b7 $c5 $20 $30
 	/* 0x75 */ m_EnemyData $3c $46 $21 $20
 	/* 0x76 */ m_EnemyData $b8 $e4 $22 $10
-	/* 0x77 */ m_EnemyData $b9 $c8 $23 $10
+	/* 0x77 */ m_EnemyData $b9 $c8 $45 $10		;$23 $10
 	/* 0x78 */ m_EnemyData $bc $c9 $24 $30
 	/* 0x79 */ m_EnemyData $bf $ca $25 $00
 	/* 0x7a */ m_EnemyData $c2 $4b $26 $30
@@ -301,3 +301,5 @@ extraEnemyData:
 	.db $04 $06 $f8 $06 ; 0x42
 	.db $04 $02 $fc $01 ; 0x43
 	.db $02 $02 $00 $02 ; 0x44
+	
+	.db $08 $08 $fa $09 ; 0x45

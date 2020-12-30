@@ -7,10 +7,13 @@ tileTypesTable:
 	.dw tileTypes_collisions4
 	.dw tileTypes_collisions5
 
-tileTypes_collisions0:
+;ZerotoK's tilesets (overworld)
 tileTypes_collisions4:
-	.db $a7 TILETYPE_STUMP
-	.db $80 TILETYPE_CRACKEDFLOOR
+	.db TILEINDEX_STUMP	 TILETYPE_STUMP
+	.db $fb TILETYPE_CRACKED_ICE
+	.db TILEINDEX_LEAVES TILETYPE_CRACKEDFLOOR
+;Gamma's tilesets (overworld)
+tileTypes_collisions0:
 	.db $f3 TILETYPE_HOLE
 	.db $d4 TILETYPE_VINES
 	.db $d5 TILETYPE_VINES
@@ -36,12 +39,16 @@ tileTypes_collisions4:
 	.db $e8 TILETYPE_LAVA
 	.db $00
 
+;ZerotoK's tilesets (dungeon)
+tileTypes_collisions1:
+	.db TILEINDEX_DUNGEON_LEAVES TILETYPE_CRACKEDFLOOR
+	.db TILEINDEX_DUNGEON_STUMP TILETYPE_STUMP
+
+;Gamma's tilesets (dungeon)
 tileTypes_collisions2:
 	.db $0e TILETYPE_RAISABLE_FLOOR
 	.db $0f TILETYPE_RAISABLE_FLOOR
-	.db $d1 TILETYPE_STUMP
 
-tileTypes_collisions1:
 tileTypes_collisions5:
 	.db $f3 TILETYPE_HOLE
 	.db $f4 TILETYPE_HOLE
@@ -73,8 +80,11 @@ tileTypes_collisions5:
 	.db $57 TILETYPE_LEFTCONVEYOR
 	.db $60 TILETYPE_SPIKE
 	.db $8a TILETYPE_ICE
-	.db $d1 TILETYPE_STUMP
 	.db $00
+
+
+
+
 
 tileTypes_collisions3:
 	.db $16 TILETYPE_SS_LADDER

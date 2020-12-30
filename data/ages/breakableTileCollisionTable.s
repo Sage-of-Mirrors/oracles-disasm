@@ -7,9 +7,13 @@ _breakableTileCollisionTable:
 	.dw _breakableTileCollision5Data
 
 ; 1st byte is the tile index, 2nd is an index for "_breakableTileModes".
-
-_breakableTileCollision0Data:
+;ZerotoK's overworld tilesets
 _breakableTileCollision4Data:
+	.db TILEINDEX_LEAVES $05		;leaves into hole
+	.db TILEINDEX_MUSHROOM $33		;mushroom
+	.db TILEINDEX_LEAVES_NO_HOLE $00
+;Gamma's overworld tilesets
+_breakableTileCollision0Data:
 	.db $da $32
 	.db $f8 $00
 	.db $f2 $0d
@@ -72,7 +76,12 @@ _breakableTileCollision4Data:
 	.db $af $11
 	.db $bf $11
 	.db $00
+
+;ZerotoK's dungeon tilesets
 _breakableTileCollision1Data:
+	.db TILEINDEX_DUNGEON_MUSHROOM $34		;mushroom
+	.db TILEINDEX_DUNGEON_LEAVES $05		;leaves into hole
+;Gamma's dungeon tilesets
 _breakableTileCollision2Data:
 _breakableTileCollision5Data:
 	.db $da $32
@@ -85,8 +94,8 @@ _breakableTileCollision5Data:
 	.db $ef $2b
 	.db $11 $1b
 	.db $12 $1c
-	.db $10 $1d
 	.db $13 $1e
+	.db $10 $1d
 	.db $1f $1f
 	.db $30 $20
 	.db $31 $21
@@ -149,14 +158,14 @@ _breakableTileModes:
 	m_BreakableTileData %00100001 %00000000 %0000 $0 $06 $3a ; $0b
 	m_BreakableTileData %00110000 %10000000 %0000 $0 $c6 $dd ; $0c
 	m_BreakableTileData %10101101 %00010001 %0000 $7 $0c $3a ; $0d
-	m_BreakableTileData %01110000 %10000000 %0111 $4 $0a $3a ; $0e
+	m_BreakableTileData %01110000 %10000000 %0111 $4 $0a $3a ; $0e	dirt
 	m_BreakableTileData %00000000 %00010000 %0000 $7 $1f $3a ; $0f
 	m_BreakableTileData %00000000 %00010000 %0000 $0 $df $dc ; $10
 	m_BreakableTileData %01000000 %00000000 %0000 $9 $0a $1c ; $11
 	m_BreakableTileData %01000000 %00000000 %0000 $0 $ca $d2 ; $12
 	m_BreakableTileData %01000000 %00000000 %0000 $0 $0a $d7 ; $13
 	m_BreakableTileData %00100000 %00000001 %0000 $0 $06 $3a ; $14
-	m_BreakableTileData %00010110 %10010000 %1111 $0 $00 $3a;$3b ; $15
+	m_BreakableTileData %00010110 %10010000 %1111 $0 $00 $3a;$3b ; $15	solid flowers
 	m_BreakableTileData %10101101 %00010001 %0000 $7 $0c $a0 ; $16
 	m_BreakableTileData %10110111 %00110001 %0100 $1 $00 $a0 ; $17
 	m_BreakableTileData %10110111 %00110001 %0100 $0 $00 $a0 ; $18
@@ -167,7 +176,7 @@ _breakableTileModes:
 	m_BreakableTileData %00100101 %00000001 %0000 $2 $06 $a0 ; $1d
 	m_BreakableTileData %00100101 %00000001 %0000 $0 $46 $0d ; $1e
 	m_BreakableTileData %00110000 %00000000 %0000 $0 $06 $a0 ; $1f
-	m_BreakableTileData %00110000 %00000000 %0000 $0 $c6 $34 ; $20
+	m_BreakableTileData %00110000 %00000000 %0000 $0 $c6 $34 ; $20	bombable wall
 	m_BreakableTileData %00110000 %00000000 %0000 $0 $c6 $35 ; $21
 	m_BreakableTileData %00110000 %00000000 %0000 $0 $c6 $36 ; $22
 	m_BreakableTileData %00110000 %00000000 %0000 $0 $c6 $37 ; $23
@@ -185,4 +194,8 @@ _breakableTileModes:
 	m_BreakableTileData %00000000 %00010000 %0000 $0 $df $37 ; $2f
 	m_BreakableTileData %00110000 %00000000 %0000 $0 $06 $01 ; $30
 	m_BreakableTileData %00100101 %00000001 %0000 $0 $06 $01 ; $31
-	m_BreakableTileData %00111110 %10000000 %1011 $0 $1f $00 ; $32
+	m_BreakableTileData %00111110 %10000000 %1011 $0 $15 $00 ; $32
+
+	m_BreakableTileData %10000001 %00000000 %0100 $8 $15 $3a ; $33	overworld mushroom
+	m_BreakableTileData %10000001 %00000000 %0100 $8 $15 $a0 ; $34	dungeon mushroom
+

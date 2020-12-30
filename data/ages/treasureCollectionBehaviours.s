@@ -71,7 +71,7 @@ treasureCollectionBehaviourTable:
 	; TREASURE_ROD_OF_SEASONS (0x07)
 	.db $00
 	.db $00
-	.db SND_GETITEM
+	.db MUS_ESSENCE
 
 	; TREASURE_MAGNET_GLOVES (0x08)
 	.db $00

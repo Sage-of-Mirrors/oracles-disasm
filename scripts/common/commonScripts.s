@@ -137,6 +137,12 @@ dropSmallKeyWhenNoEnemiesScript:
 	spawnitem TREASURE_SMALL_KEY, $01
 	scriptend
 
+dropBossKeyWhenNoEnemiesScript:
+	stopifitemflagset ; Stop if already got the key
+	checknoenemies
+	spawnitem TREASURE_BOSS_KEY, $01
+	scriptend
+
 createChestWhenNoEnemiesScript:
 	stopifitemflagset ; Stop if already opened the chest
 	setcollisionradii $04, $06

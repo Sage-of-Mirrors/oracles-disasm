@@ -94,28 +94,28 @@ tilesetData: ; 4:4f9c
 	.db $0a $00 $03
 
 ; Tileset 0x0d
-	.db $0f $01
+	.db $4f $01
 	.db UNIQGFXH_10
 	.db GFXH_40
 	.db PALH_5a
 	.db $0d $00 $06
 
 ; Tileset 0x0e
-	.db $0f $01
+	.db $4f $01
 	.db UNIQGFXH_10
 	.db GFXH_40
 	.db PALH_5b
 	.db $0d $01 $06
 
 ; Tileset 0x0f
-	.db $0f $01
+	.db $4f $01
 	.db UNIQGFXH_10
 	.db GFXH_40
 	.db PALH_5c
 	.db $0d $03 $06
 
 ; Tileset 0x10
-	.db $0f $01
+	.db $4f $01
 	.db UNIQGFXH_10
 	.db GFXH_40
 	.db PALH_5d
@@ -372,7 +372,7 @@ tilesetData: ; 4:4f9c
 	.db $18 $03 $10
 
 ; Tileset 0x34
-	.db $23 $08
+	.db $23 $88
 	.db UNIQGFXH_00
 	.db GFXH_60
 	.db PALH_40
@@ -557,21 +557,21 @@ tilesetData: ; 4:4f9c
 	.db $34 $28
 	.db UNIQGFXH_00
 	.db GFXH_6d
-	.db PALH_53
-	.db $32 $04 $12
+	.db PALH_51
+	.db $32 $05 $12
 
 ; Tileset 0x4f
-	.db $35 $28
+	.db $34 $28
 	.db UNIQGFXH_00
 	.db GFXH_6d
-	.db PALH_53
-	.db $32 $04 $12
+	.db PALH_55
+	.db $32 $05 $12
 
 ; Tileset 0x50
-	.db $36 $28
+	.db $34 $28
 	.db UNIQGFXH_00
 	.db GFXH_6d
-	.db PALH_50
+	.db PALH_52
 	.db $32 $05 $12
 
 ; Tileset 0x51
@@ -582,7 +582,7 @@ tilesetData: ; 4:4f9c
 	.db $32 $05 $12
 
 ; Tileset 0x52
-	.db $37 $a8
+	.db $33 $a8
 	.db UNIQGFXH_00
 	.db GFXH_6d
 	.db PALH_54
@@ -731,7 +731,7 @@ tilesetData: ; 4:4f9c
 	; HACK-BASE: Stub tilesets for expanded tilesets patch
 	;.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x67
 ; Tileset 0x67
-	.db $24 $08
+	.db $14 $08
 	.db UNIQGFXH_00
 	.db GFXH_68
 	.db PALH_68
@@ -739,7 +739,7 @@ tilesetData: ; 4:4f9c
 
 	;.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x68
 ; Tileset 0x68	
-	.db $24 $08
+	.db $14 $08
 	.db UNIQGFXH_00
 	.db GFXH_68
 	.db PALH_69
@@ -747,7 +747,7 @@ tilesetData: ; 4:4f9c
 
 	;.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x69
 ; Tileset 0x69	
-	.db $24 $08
+	.db $14 $08
 	.db UNIQGFXH_00
 	.db GFXH_68
 	.db PALH_6a
@@ -755,13 +755,13 @@ tilesetData: ; 4:4f9c
 
 	;.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x6a
 ; Tileset 0x6a	
-	.db $24 $08
+	.db $14 $08
 	.db UNIQGFXH_00
 	.db GFXH_68
 	.db PALH_6b
 	.db $28 $05 $10
 
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x6b
+	.db $0f $01 $00 $00 PALH_00 $00 $00 $00 ; Area 0x6b
 	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x6c
 	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x6d
 	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x6e

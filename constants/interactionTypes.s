@@ -229,6 +229,8 @@
 ;        also disappears when the trigger is released.}
 ; @subid_18{d3: Calculate the value for [wSwitchState] based on which crystals are broken.}
 ; @subid_19{d1: Set trigger 0 when the colored flames are lit blue.}
+; @subid_1a{spawns a bridge at position Y when [wActiveTriggers] == high byte of X with angle
+;       low byte of X and length [counter2] of Var03.}
 .define INTERACID_DUNGEON_EVENTS	$21
 
 ;;
