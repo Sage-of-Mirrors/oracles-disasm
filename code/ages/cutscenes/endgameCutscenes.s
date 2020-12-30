@@ -896,7 +896,7 @@ _endgameCutsceneHandler_20:
 +
 	ld a,$02
 	ld (wOpenedMenuType),a
-	call _func_6e9a
+	call _createBlackBackground
 	ld a,$02
 	call _func_6ed6
 	ld hl,wTmpcbb3

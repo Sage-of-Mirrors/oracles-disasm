@@ -1580,9 +1580,9 @@ _pregameIntroCutsceneHandler:
 	ld de,wCutsceneState
 	ld a,(de)
 	rst_jumpTable
-	.dw @state0
-	.dw @state1
-	.dw @state2
+	.dw @initState
+	.dw @wait150State
+	.dw @wait60State
 	.dw @state3
 	.dw @state4
 	.dw @state5
@@ -1590,57 +1590,70 @@ _pregameIntroCutsceneHandler:
 	.dw @state7
 	.dw @state8
 	.dw @state9
-	.dw @stateA
-	.dw @stateB
-	.dw @stateC
-@state0:
+	.dw @initSummonState
+	.dw @waitForLinkToFallState
+	.dw @finishSummonState
+@initState:
 	ld a,(wPaletteThread_mode)
 	or a
 	ret nz
 	call checkIsLinkedGame
-	jr nz,@func_6d40
+	jr nz,@initLinkedGameIntro
 	ld a,$0a
 	ld (de),a
-	jp @stateA
-@func_6d40:
-	ld a,$01
+	jp @initSummonState
+@initLinkedGameIntro:
+	ld a,$01  ; Load into Twinrova flame room
 	ld (de),a
 	ld bc,ROOM_ZELDA_IN_FINAL_DUNGEON
 	call disableLcdAndLoadRoom
 	call resetCamera
-	ld a,PALH_ac
+  
+	ld a,PALH_ac  ; Load a palette header
 	call loadPaletteHeader
-	ld hl,objectData.objectData77b6
+  
+	ld hl,objectData.objectData77b6  ; Load interactions specific to this cutscene
 	call parseGivenObjectData
-	ld a,MUS_FINAL_DUNGEON
+  
+	ld a,MUS_FINAL_DUNGEON  ; Play ominous music :o
 	call playSound
-	ld hl,wTmpcbb3
+  
+	ld hl,wTmpcbb3  ; Store $3c to wTmpcbb3
 	ld (hl),$3c
-	ld a,$13
+  
+	ld a,$13  ; Load gfxregister state $13 into wGfxRegs1
 	call loadGfxRegisterStateIndex
-	ld a,(wGfxRegs2.SCX)
+  
+	ld a,(wGfxRegs2.SCX)  ; Set the camera X value to whatever the X scroll value is in wGfxRegs2
 	ldh (<hCameraX),a
-	xor a
+	
+  xor a  ; Set the camera Y value to 0
 	ldh (<hCameraY),a
-	ld a,$00
+  
+	ld a,$00  ; Set scroll mode to 0
 	ld (wScrollMode),a
+  
 	jp _clearFadingPalettes
-@state1:
-	ld e,$96
+@wait150State:
+	ld e,$96  ; Load 150 into register E; will be put into cbb3 later
 --
-	call decCbb3
+	call decCbb3  ; Decrement wTmpcbb3 until it is 0
 	ret nz
-	call _cutscene_incCutsceneState
-	ld hl,wTmpcbb3
+  
+	call _cutscene_incCutsceneState  ; Increment state 1 -> 2 or 2 -> 3
+	
+  ld hl,wTmpcbb3  ; Set cbb3 to whatever is in register E
 	ld (hl),e
+  
 	ret
-@state2:
-	ld e,$3c
+@wait60State:
+	ld e,$3c  ; Load 60 into register E; will be put into cbb3 later
 	jr --
 @state3:
-	call decCbb3
+	call decCbb3  ; Wait for cbb3 to be 0
 	ret nz
-	call _cutscene_incCutsceneState
+  
+	call _cutscene_incCutsceneState  ; Increment state 3 -> 4
 	call fastFadeinFromBlack
 	ld a,$40
 	ld (wDirtyFadeSprPalettes),a
@@ -1709,62 +1722,82 @@ _pregameIntroCutsceneHandler:
 	call decCbb3
 	ret nz
 	jp _cutscene_incCutsceneState
-@stateA:
-	call disableLcd
-	ld a,($ff00+R_SVBK)
+@initSummonState:
+	call disableLcd  ; Turn off LCD
+  
+	ld a,($ff00+R_SVBK)  ; Store current WRAM bank select to the stack
 	push af
-	ld a,$02
+  
+	ld a,$02  ; Select WRAM bank 2
 	ld ($ff00+R_SVBK),a
-	ld hl,$de80
+  
+	ld hl,w2TilesetBgPalettes  ; Zero out the BG palettes so they are all black
 	ld b,$40
 	call clearMemory
-	pop af
+  
+	pop af  ; Restore WRAM bank select from the stack
 	ld ($ff00+R_SVBK),a
+  
 	call clearScreenVariablesAndWramBank1
 	call clearOam
-	ld a,PALH_0f
+  
+	ld a,PALH_0f  ; Load palette header $0f
 	call loadPaletteHeader
+  
 	ld a,$02
-	call _func_6e9a
+	call _createBlackBackground
 	call _func_6eb7
-	ld a,MUS_ESSENCE_ROOM
+  
+	ld a,MUS_ESSENCE_ROOM  ; Play mystical music :o
 	call playSound
-	ld a,$08
+  
+	ld a,$08  ; Set Link to id $08
 	call setLinkID
-	ld l,$00
+  
+	ld l,$00  ; Enable Links object and set his subid to $0b
 	ld (hl),$01
 	ld l,$02
 	ld (hl),$0b
-	ld a,$00
+  
+	ld a,$00  ; Set scroll mode to 0
 	ld (wScrollMode),a
-	call _cutscene_incCutsceneState
+  
+	call _cutscene_incCutsceneState  ; Increment state initSummonState -> stateB
 	call clearPaletteFadeVariablesAndRefreshPalettes
-	xor a
+  
+	xor a  ; Set camera variables to 0
 	ldh (<hCameraY),a
 	ldh (<hCameraX),a
-	ld a,$15
+  
+	ld a,$15  ; Load gfxregister state $15 into wGfxRegs1
 	jp loadGfxRegisterStateIndex
-@stateB:
-	ld a,(wTmpcbb9)
+@waitForLinkToFallState:
+	ld a,(wTmpcbb9)  ; Wait for cbb9 to be 7
 	cp $07
 	ret nz
-	call clearLinkObject
-	ld hl,wTmpcbb3
+  
+	call clearLinkObject  ; Reset Links state
+	
+  ld hl,wTmpcbb3  ; Set a timer for 60 frames
 	ld (hl),$3c
-	jp _cutscene_incCutsceneState
-@stateC:
-	call decCbb3
+  
+	jp _cutscene_incCutsceneState  ; Increment state stateB -> StateC
+@finishSummonState:
+	call decCbb3  ; Wait for cbb3 to be 0 (we set it to 60 above)
 	ret nz
-	ld hl,wGameState
+  
+	ld hl,wGameState  ; Set gamestate to 0 (loading room?)
 	xor a
-	ldi (hl),a
+	ldi (hl),a  ; The increment here means that we also set wCutsceneIndex to 0, since its adjacent to wGameState
 	ld (hl),a
-	ld a,SNDCTRL_STOPMUSIC
+  
+	ld a,SNDCTRL_STOPMUSIC  ; Disable sound
 	call playSound
-	ld a,GLOBALFLAG_3d
+  
+	ld a,GLOBALFLAG_3d  ; Set flag for having seen the summoning cutscene
 	jp setGlobalFlag
 	
-_func_6e9a:
+_createBlackBackground:
 	ldh (<hFF8B),a
 	ld a,$01
 	ld ($ff00+R_VBK),a

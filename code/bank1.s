@@ -3452,19 +3452,22 @@ _initializeGame:
 	ld (wActiveMusic),a
 .endif
 
-	ld a,GLOBALFLAG_PREGAME_INTRO_DONE
-	call checkGlobalFlag
-	jr nz,_func_5a60
+  ld b,b
+  jp _func_5a60  ; We want a custom intro for this hack, but the vanilla pregame intro cutscene is weird, so we will skip it instead.
+  
+	;ld a,GLOBALFLAG_PREGAME_INTRO_DONE
+	;call checkGlobalFlag
+	;jr nz,_func_5a60
 
-	ld a,GLOBALFLAG_3d
-	call checkGlobalFlag
-	jr nz,@summonLinkCutscene
+	;ld a,GLOBALFLAG_3d
+	;call checkGlobalFlag
+	;jr nz,@summonLinkCutscene
 
-	ld a,$02
-	ld (wGameState),a
-	ld a,CUTSCENE_PREGAME_INTRO
-	ld (wCutsceneIndex),a
-	jp cutscene0d
+	;ld a,$02
+	;ld (wGameState),a
+	;ld a,CUTSCENE_PREGAME_INTRO
+	;ld (wCutsceneIndex),a
+	;jp cutscene0d
 
 ; The first time the game is opened, this cutscene plays
 @summonLinkCutscene:
