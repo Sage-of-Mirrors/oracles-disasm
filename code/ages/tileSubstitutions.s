@@ -373,12 +373,15 @@ replaceJabuTilesIfUnderwater:
 ;;
 ; Replaces a shutter link is about to walk on to with empty floor.
 replaceShutterForLinkEntering:
+	ld a,(wDungeonIndex)
+	inc a
+	ret z
 	ldbc >wRoomLayout, (LARGE_ROOM_HEIGHT-1)<<4 + (LARGE_ROOM_WIDTH-1)
 --
-	ld a,(bc)
+	ld a,(bc)		;a is tile index
 	push bc
-	sub $78
-	cp $08
+	sub TILEINDEX_SHUTTER_DOOR_UP	;$78
+	cp TILEINDEX_RED_SHUTTER_DOOR_LEFT + 1 - TILEINDEX_SHUTTER_DOOR_UP 	;$0c
 	call c,@temporarilyOpenDoor
 	pop bc
 	dec c
@@ -388,6 +391,8 @@ replaceShutterForLinkEntering:
 ; Replaces a door at position bc with empty floor, and adds an interaction to
 ; re-close it when link moves away (for minecart doors only)
 @temporarilyOpenDoor:
+		;a is tile index minus $78
+
 	ld de,@shutterData
 	call addDoubleIndexToDe
 	ld a,(de)
@@ -447,8 +452,9 @@ replaceShutterForLinkEntering:
 	push bc
 	ld c,a
 	ld a,(bc)
-	sub $78
-	cp $08
+	ld (wDoorTileIndex),a
+	sub TILEINDEX_SHUTTER_DOOR_UP	;$78
+	cp TILEINDEX_RED_SHUTTER_DOOR_LEFT + 1 - TILEINDEX_SHUTTER_DOOR_UP 	;$0c
 	jr nc,+
 
 	ldh a,(<hFF8B)
@@ -473,7 +479,7 @@ replaceShutterForLinkEntering:
 	call getFreeInteractionSlot
 	ret nz
 
-	ld (hl),$1e
+	ld (hl),INTERACID_DOOR_CONTROLLER
 	inc l
 	ld (hl),e
 	ld l,Interaction.yh
@@ -492,6 +498,10 @@ replaceShutterForLinkEntering:
 	.db $5d $0d
 	.db $5e $0e
 	.db $5d $0f
+	.db $a0 $80 ; Red shutters
+	.db $a0 $81
+	.db $a0 $82
+	.db $a0 $83
 
 ;;
 replaceOpenedChest:

@@ -5818,6 +5818,8 @@ interactionCode90:
 	.dw _miscPuzzles_subid1f
 	.dw _miscPuzzles_subid20
 	.dw _miscPuzzles_subid21
+	.dw _miscPuzzles_subid22
+	.dw _miscPuzzles_subid23
 
 
 ; Boss key puzzle in D6
@@ -7145,6 +7147,68 @@ _miscPuzzles_deleteSelfOrIncStateIfRoomFlag6Set:
 	jp nz,interactionDelete
 	jp interactionIncState
 
+_miscPuzzles_subid22:
+	call interactionDeleteAndRetIfEnabled02
+	call _miscPuzzles_deleteSelfAndRetIfItemFlagSet
+
+	ld hl,@diamondPositions
+	call _miscPuzzles_verifyTilesAtPositions
+	ret nz
+	jpab agesInteractionsBank08.spawnChestAndDeleteSelf
+
+@diamondPositions:
+	.db TILEINDEX_RED_PUSHABLE_BLOCK $5a $ff
+	.db TILEINDEX_YELLOW_PUSHABLE_BLOCK $54 $ff
+	.db TILEINDEX_BLUE_PUSHABLE_BLOCK $87
+	.db $00
+
+;mushroom room
+_miscPuzzles_subid23:
+	ld hl,wToggleBlocksState
+	ld a,$02
+	call checkFlag
+	jp nz,interactionDelete
+
+	ld e,Interaction.state
+	ld a,(de)
+	rst_jumpTable
+	.dw @state0
+	.dw @state1
+	.dw @state2
+@state0:
+	ld hl,wRoomLayout + $6a
+	ld a,(hl)
+	cp TILEINDEX_DUNGEON_MUSHROOM
+	ret z
+
+	ld e,Interaction.counter2
+	ld a,5
+	ld (de),a
+	call interactionIncState
+	jr @setCounter1
+
+@state1:
+	call interactionDecCounter1
+	ret nz
+	call interactionDecCounter2
+	jp z,interactionIncState
+	
+@setCounter1:
+	ld e,Interaction.counter1
+	ld a,150
+	ld (de),a
+	ret
+
+@state2:
+	ld a,SND_ERROR
+	;ld a,SND_POOF
+	call playSound
+	call objectCreatePuff
+	call objectGetShortPosition
+	ld c,a
+	ld a,TILEINDEX_PUSHABLE_BLOCK
+	call setTile
+	jp interactionDelete
 
 
 ; ==============================================================================

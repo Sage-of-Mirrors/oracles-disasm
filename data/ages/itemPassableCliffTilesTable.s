@@ -75,23 +75,29 @@ _itemPassableCliffTilesTable:
 	.db @@down-CADDR
 	.db @@left-CADDR
 	.db @@up-CADDR
+
 @@up:
-	.db $b2 $01
 	.db $b0 $ff
+	.db $b2 $01
+	.db $c7 $ff
+	.db $c8 $ff
+	.db $c9 $ff
 	.db $00
 @@down:
 	.db $b0 $01
 	.db $b2 $ff
+	.db $c7 $01
+	.db $c8 $01
+	.db $c9 $01
 	.db $00
 @@right:
 	.db $b3 $01
 	.db $b1 $ff
 	.db $00
 @@left:
-	.db $b1 $01
 	.db $b3 $ff
+	.db $b1 $01
 	.db $00
-
 @collisions2:
 @collisions5:
 	.db @@up-CADDR

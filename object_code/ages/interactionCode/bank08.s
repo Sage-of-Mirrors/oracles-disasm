@@ -777,10 +777,11 @@ interactionCode20:
 	.dw mainScripts.dungeonScript_bossDeath
 	.dw mainScripts.moonlitGrottoScript_spawnChestWhen2TorchesLit
 @dungeon4:
-	.dw mainScripts.seasonsShrineDungeonScript_minibossDeath
+	.dw mainScripts.seasonsShrineScript_minibossDeath
 	.dw mainScripts.dungeonScript_bossDeath
-	.dw mainScripts.skullDungeonScript_spawnChestWhenOrb0Hit
-	.dw mainScripts.skullDungeonScript_spawnChestWhenOrb1Hit
+	.dw mainScripts.seasonsShrineScript_stairsToWinter
+	.dw mainScripts.seasonsShrineScript_bossKeyRoom
+	;.dw mainScripts.skullDungeonScript_spawnChestWhenOrb1Hit
 @dungeon5:
 	.dw mainScripts.dungeonScript_minibossDeath
 	.dw mainScripts.dungeonScript_bossDeath
@@ -1529,6 +1530,8 @@ _spawnSmallKeyFromCeiling:
 	ret nz
 	call objectCopyPosition
 	jp interactionDelete
+
+
 
 ;;
 ; Verifies that certain tiles in the room layout equal specified values.

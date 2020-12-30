@@ -2193,6 +2193,11 @@ updateLinkBeingShocked:
 initiateFallDownHoleWarp:
 	ld a,(wDungeonFloor)
 	dec a
+	cp $ff
+	jr nz,+
+	ld a,(wDungeonNumFloors)
+	dec a
++
 	ld (wDungeonFloor),a
 
 	call getActiveRoomFromDungeonMapPosition
@@ -4272,16 +4277,22 @@ updateGrassAnimationModifier:
 .ifdef ROM_AGES;
 	xor a
 	ld (wGrassAnimationModifier),a
+
+	ld a,(wDungeonFloor)
+	xor $03
+	ld b,a
+	ld a,(wDungeonIndex)
+	sub $04
+	ld a,b
+	jr z,+
+
 	ld a,(wRoomPack)
 	bit 7,a
-	jr nz,+
-	ld a,(wDungeonIndex)
-	cp $04
-	ret nz
-+
+	ret z
 	ld a,(wCurrentSeason)
 	inc a
 	and $03
++
 	ld hl,@grassAnimationValues
 	rst_addAToHl
 	ld a,(hl)
@@ -4808,6 +4819,7 @@ screenTransitionEyePuzzle:
 updateSeedTreeRefillData:
 
 .ifdef ROM_AGES
+;returns if not outdoors
 	ld a,(wTilesetFlags)
 	and TILESETFLAG_OUTDOORS
 	ret z
@@ -4853,6 +4865,7 @@ _checkSeedTreeRefillIndex:
 	ldh (<hFF8D),a
 
 .ifdef ROM_AGES
+;sets z flag if in group is even,
 	ld a,e
 	res 0,e
 	and $01
@@ -4860,11 +4873,14 @@ _checkSeedTreeRefillIndex:
 	ld a,(wActiveGroup)
 	cp b
 	ld d,>wxSeedTreeRefillData
-	jr nz,+
+	jr nz,+			;skip if group # is odd
+
+;go to @tree screen if right room
 	ld a,(wActiveRoom)
 	cp c
 	jr z,@treeScreen
 +
+;sets z flag if proper seed tree index is not set
 	ldh a,(<hFF8D)
 	ld b,a
 	ld a,$10
@@ -4932,22 +4948,29 @@ _checkSeedTreeRefillIndex:
 	or d
 +
 	jr z,+
-
+;success and sets flag
 	ldh a,(<hFF8D)
 	ld b,a
 	ld a,$10
 	sub b
 	ld hl,wSeedTreeRefilledBitset
 	call setFlag
-+
-	; Clear the buffer... even if we didn't set the bit?
-	; So visiting a tree which hasn't regrown yet will reset the counter...
-
 	pop de
 	ld l,e
 	ld h,d
 	ld b,$08
 	call clearMemory
+	pop hl
+	ret
++
+	; Clear the buffer... even if we didn't set the bit?
+	; So visiting a tree which hasn't regrown yet will reset the counter...
+
+	pop de
+	;ld l,e
+	;ld h,d
+	;ld b,$08
+	;call clearMemory
 	pop hl
 	ret
 
@@ -5371,13 +5394,13 @@ _warpTileTable:
 		.db $ef $00
 		.db $00
 	@collisions1:
-		.db $34 $00
-		.db $36 $00
+		;.db $34 $00
+		;.db $36 $00
 		.db $44 $00
 		.db $45 $00
 		.db $46 $00
 		.db $47 $00
-		.db $af $00
+		.db $4f $00
 		.db $00
 	@collisions2:
 	@collisions5:

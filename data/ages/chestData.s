@@ -11,6 +11,7 @@ chestDataGroupTable:
 	.dw chestGroup7Data
 
 chestGroup0Data:
+	.db $11 $54 $28 $03
 	.db $49 $51 $28 $04
 	.db $51 $49 $28 $04
 	.db $36 $84 $28 $05
@@ -102,6 +103,9 @@ chestGroup4Data:
 	.db $ff
 
 chestGroup5Data:
+	.db $12 $fd $28 $05
+	.db $17 $37 $31 $03
+	.db $17 $13 $30 $03
 	.db $37 $2f $33 $02
 	.db $12 $2b $30 $03
 	.db $82 $33 $32 $02

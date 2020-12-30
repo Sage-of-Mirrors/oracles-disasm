@@ -13,8 +13,6 @@ itemPassibleTiles_collisions4:
 	.db $fd $eb
 	.db $00
 itemPassibleTiles_collisions1:
-	.db $94 $95 $0a
-	.db $00
 itemPassibleTiles_collisions2:
 itemPassibleTiles_collisions5:
 	.db $90 $91 $92 $93 $94 $95 $96 $97

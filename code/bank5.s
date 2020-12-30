@@ -2561,8 +2561,9 @@ _warpTransition5_01:
 	; BUG(?): the "objectGetTileAtPosition" function should not have been removed in Ages?
 	; Regardless this transition type appears to be unused in Ages anyway.
 
-.ifdef ROM_SEASONS
 	call objectGetTileAtPosition
+
+.ifdef ROM_SEASONS
 	cp TILEINDEX_TRAMPOLINE
 	jr z,@trampoline
 .endif

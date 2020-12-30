@@ -974,12 +974,13 @@ _pushableTilePropertiesTable:
 ;               	from the "interactableTilesTable".
 .ifdef ROM_AGES
 @collisions0:
+@collisions4:
 	.db $d3 $3a $02 $01
 	.db $d8 $3a $02 $05
 	.db $d9 $dc $02 $85
 	.db $02 $3a $02 $05
 
-@collisions4:
+
 @collisions5:
 	.db $00
 
@@ -1226,12 +1227,12 @@ interactionCode17:
 
 .ifdef ROM_AGES
 @collisions0:
-@collisions1:
 @collisions3:
 @collisions4:
 	.db $00 $00
 
 @collisions2:
+@collisions1:
 @collisions5:
 	.db $1e $00 ; Keyblock
 	.db $70 $00 ; Small key doors
@@ -1468,7 +1469,7 @@ interactionCode1e:
 	add c
 	ld c,a
 	ld a,(bc)
-	ld l,Interaction.var3d
+	ld l,Interaction.var3d		;bitmask of var3f
 	ld (hl),a
 
 	; Convert short-form position in yh to full y/x position
@@ -1478,10 +1479,77 @@ interactionCode1e:
 	ld (de),a
 	ld l,Interaction.yh
 	call setShortPosition
+;New Code
+	; Determine Shutter Angle
+	call objectGetTileAtPosition
+	sub $70	;key door up
+	jr c,+
+	cp $14
+	jr c,++
++
+	ld a,(wDoorTileIndex)
+	sub $70
+++
+	ld e,a
+	sra a
+	sra a
+	;ld e,Interaction.var3c		;door type
+	;ld (de),a
+	call multiplyABy8
+	ld a,e
+	and $03
+	ld e,Interaction.direction
+	ld (de),a
+	add a
+	add c
+	inc de		;Interaction.angle
+	ld (de),a
 
+	; Determine shutter collisions
+	dec de		;Interaction.direction
+	ld a,(de)
+	ld e,Interaction.collisionRadiusY
+	and $01
+	ld a,$08
+	jr nz,+
+	inc de
++
+	ld (de),a
+
+	; second radius
+	ld e,Interaction.direction
+	ld a,(de)
+	cp $03
+	jr nz,+
+	dec a
++
+	ld c,$03
+	call multiplyAByC
+	ld bc,@doorCollisions
+	add hl,bc
+
+	ld e,Interaction.subid
+	ld a,(de)
+
+	dec a
+	rst_addAToHl
+	ld e,Interaction.direction
+	ld a,(de)
+	ld e,Interaction.collisionRadiusX
+	and $01
+	ld a,(hl)
+	jr nz,+
+	dec de
++
+	ld (de),a
+
+
+	
+@findScript:
 	; Decide what script to run based on subid. The script will decide when to proceed
 	; to state 2 (open door) or 3 (close door).
-	ld e,Interaction.subid
+
+	ld e,Interaction.subid	
 	ld a,(de)
 	ld hl,@scriptSubidTable
 	rst_addDoubleIndex
@@ -1516,17 +1584,17 @@ interactionCode1e:
 @state2Substate0:
 	; The tile at this position must be solid
 	call objectCheckTileCollision_allowHoles
-	jr nc,@gotoState1
+	jp nc,@gotoState1
 
 @interleaveDoorTile:
 	ld a,SND_DOORCLOSE
 	call @playSoundIfInScreenBoundary
 
+	ld hl,@shutterTiles
 	ld e,Interaction.angle
 	ld a,(de)
-	ld hl,@shutterTiles
 	rst_addAToHl
-	ld e,Interaction.var3e
+	ld e,Interaction.var3e	;short position of door
 	ld a,(de)
 	ldh (<hFF8C),a
 	ldi a,(hl)
@@ -1561,9 +1629,9 @@ interactionCode1e:
 ; Door will now open fully
 
 	call @func_47ee
+	ld hl,@shutterTiles
 	ld e,Interaction.angle
 	ld a,(de)
-	ld hl,@shutterTiles
 	rst_addAToHl
 	jr @setTileAndPlaySound
 
@@ -1584,7 +1652,7 @@ interactionCode1e:
 	jr z,@interleaveDoorTile
 .endif
 	call objectCheckTileCollision_allowHoles
-	jr c,@gotoState1
+	jp c,@gotoState1
 	jr @interleaveDoorTile
 
 @state3Substate1:
@@ -1596,9 +1664,9 @@ interactionCode1e:
 	call @checkRespawnLink
 	call @func_47f9
 
+	ld hl,@shutterTiles
 	ld e,Interaction.angle
 	ld a,(de)
-	ld hl,@shutterTiles
 	rst_addAToHl
 	inc hl
 
@@ -1696,14 +1764,18 @@ interactionCode1e:
 	.db $a0 $75
 	.db $a0 $76
 	.db $a0 $77
-	.db $a0 $78 ; Shutters
-	.db $a0 $79
-	.db $a0 $7a
-	.db $a0 $7b
-	.db $5e $7c ; Minecart shutters
-	.db $5d $7d
-	.db $5e $7e
-	.db $5d $7f
+	.db $a0 TILEINDEX_SHUTTER_DOOR_UP
+	.db $a0 TILEINDEX_SHUTTER_DOOR_RIGHT
+	.db $a0 TILEINDEX_SHUTTER_DOOR_DOWN
+	.db $a0 TILEINDEX_SHUTTER_DOOR_LEFT
+	.db $5e TILEINDEX_MINECART_DOOR_UP ; Minecart shutters
+	.db $5d TILEINDEX_MINECART_DOOR_RIGHT
+	.db $5e TILEINDEX_MINECART_DOOR_DOWN
+	.db $5d TILEINDEX_MINECART_DOOR_LEFT
+	.db $a0 TILEINDEX_RED_SHUTTER_DOOR_UP
+	.db $a0 TILEINDEX_RED_SHUTTER_DOOR_RIGHT
+	.db $a0 TILEINDEX_RED_SHUTTER_DOOR_DOWN
+	.db $a0 TILEINDEX_RED_SHUTTER_DOOR_LEFT
 
 
 @scriptSubidTable:
@@ -1711,27 +1783,33 @@ interactionCode1e:
 	/* $01 */ .dw mainScripts.stubScript
 	/* $02 */ .dw mainScripts.stubScript
 	/* $03 */ .dw mainScripts.stubScript
-	/* $04 */ .dw mainScripts.doorController_controlledByTriggers_up
-	/* $05 */ .dw mainScripts.doorController_controlledByTriggers_right
-	/* $06 */ .dw mainScripts.doorController_controlledByTriggers_down
-	/* $07 */ .dw mainScripts.doorController_controlledByTriggers_left
-	/* $08 */ .dw mainScripts.doorController_shutUntilEnemiesDead_up
-	/* $09 */ .dw mainScripts.doorController_shutUntilEnemiesDead_right
-	/* $0a */ .dw mainScripts.doorController_shutUntilEnemiesDead_down
-	/* $0b */ .dw mainScripts.doorController_shutUntilEnemiesDead_left
-	/* $0c */ .dw mainScripts.doorController_minecartDoor_up
-	/* $0d */ .dw mainScripts.doorController_minecartDoor_right
-	/* $0e */ .dw mainScripts.doorController_minecartDoor_down
-	/* $0f */ .dw mainScripts.doorController_minecartDoor_left
-	/* $10 */ .dw mainScripts.doorController_closeAfterLinkEnters_up
-	/* $11 */ .dw mainScripts.doorController_closeAfterLinkEnters_right
-	/* $12 */ .dw mainScripts.doorController_closeAfterLinkEnters_down
-	/* $13 */ .dw mainScripts.doorController_closeAfterLinkEnters_left
-	/* $14 */ .dw mainScripts.doorController_openWhenTorchesLit_up_2Torches
-	/* $15 */ .dw mainScripts.doorController_openWhenTorchesLit_left_2Torches
+	/* $04 */ .dw mainScripts.doorController_controlledByTriggers
+	;/* $05 */ .dw mainScripts.doorController_controlledByTriggers_right
+	;/* $06 */ .dw mainScripts.doorController_controlledByTriggers_down
+	;/* $07 */ .dw mainScripts.doorController_controlledByTriggers_left
+	/* $05 */ .dw mainScripts.doorController_shutUntilEnemiesDead
+	;/* $09 */ .dw mainScripts.doorController_shutUntilEnemiesDead_right
+	;/* $0a */ .dw mainScripts.doorController_shutUntilEnemiesDead_down
+	;/* $0b */ .dw mainScripts.doorController_shutUntilEnemiesDead_left
+	/* $06 */ .dw mainScripts.doorController_minecart
+	;/* $0d */ .dw mainScripts.doorController_minecartDoor_right
+	;/* $0e */ .dw mainScripts.doorController_minecartDoor_down
+	;/* $0f */ .dw mainScripts.doorController_minecartDoor_left
+	/* $07 */ .dw mainScripts.doorController_closeDoorWhenLinkNotTouchingAndFlipcfc0
+	;/* $11 */ .dw mainScripts.doorController_closeAfterLinkEnters_right
+	;/* $12 */ .dw mainScripts.doorController_closeAfterLinkEnters_down
+	;/* $13 */ .dw mainScripts.doorController_closeAfterLinkEnters_left
+	/* $08 */ .dw mainScripts.doorController_openWhenTorchesLit_up_2Torches
+	/* $09 */ .dw mainScripts.doorController_openWhenTorchesLit_left_2Torches
 .ifdef ROM_AGES
-	/* $16 */ .dw mainScripts.doorController_openWhenTorchesLit_down_1Torch
-	/* $17 */ .dw mainScripts.doorController_openWhenTorchesLit_left_1Torch
+	/* $0a */ .dw mainScripts.doorController_openWhenTorchesLit_down_1Torch
+	/* $0b */ .dw mainScripts.doorController_openWhenTorchesLit_left_1Torch
 .endif
 
+@doorCollisions:	;%00
+	.db $0a $10 $0c
+;@doorCollisionsRight:	;%01
+	.db $0a $0e $0c
+;@doorCollisionsDownAndLeft:	;%10 and %11
+	.db $0a $0f $0c
 .ends

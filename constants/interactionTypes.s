@@ -171,17 +171,18 @@
 ;        $18,$1a,$1c,$1e for minecart shutters.
 ;
 ; @Y{Used for Y/X position}
-; @X{Value from 0-7 corresponding to a bit in wActiveTriggers (for subids $04-$07)}
-;
+; @X{Value from 0-7 corresponding to a bit in wActiveTriggers (for subid $04)}
+; @var03{Value from 0-4 corresponding to wActiveTriggers, wSwitchState, inverted wSwitchState
+;   wToggleBlocks, etc. (for subid $04)}
 ; @subid_00{open based on angle (see above)}
-; @subid_04-07{door controlled by wActiveTriggers (switches, buttons)}
-; @subid_08-0b{door shuts until [wNumEnemies] == 0}
-; @subid_0c-0f{minecart doors}
-; @subid_10-13{door closes and stays shut once Link moves away from it}
-; @subid_14{door opens when 2 torches are lit (up)}
-; @subid_15{door opens when 2 torches are lit (left)}
-; @subid_16{door opens when 1 torch is lit (down)}
-; @subid_17{door opens when 1 torch is lit (left)}
+; @subid_04{door controlled by wActiveTriggers (switches, buttons)}
+; @subid_05{door shuts until [wNumEnemies] == 0}
+; @subid_06{minecart doors}
+; @subid_07{door closes and stays shut once Link moves away from it}
+; @subid_08{door opens when 2 torches are lit (up)}
+; @subid_09{door opens when 2 torches are lit (left)}
+; @subid_0a{door opens when 1 torch is lit (down)}
+; @subid_0b{door opens when 1 torch is lit (left)}
 ; @postype{short}
 .define INTERACID_DOOR_CONTROLLER	$1e
 

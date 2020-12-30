@@ -105,6 +105,21 @@ _label_15_031:
 	ld (wDisableScreenTransitions),a
 	ld (wcc90),a
 	ret
+seasonsShrineScriptHelper_stairsToWinter:
+
+	;ld a,(wActiveTilePos)
+	;ld (wWarpDestPos),a
+
+	ld hl,wTmpcec0
+	ld b,$20
+	call clearMemory
+
+	callab roomInitialization.generateRandomBuffer
+
+	; Spawn the snakes?
+	ld hl,objectData.objectData78db
+	jp parseGivenObjectData
+
 
 ; ==============================================================================
 ; INTERACID_BIPIN

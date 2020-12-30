@@ -3595,11 +3595,6 @@ _tileUpdateRoomFlagsOnBreakTable:
 	.db $cf $07
 	.db $00
 @collisions1:
-	.db $30 $00
-	.db $31 $44
-	.db $32 $02
-	.db $33 $4c
-	.db $00
 @collisions2:
 @collisions5:
 	.db $30 $80
@@ -3684,7 +3679,6 @@ _unknownTileCollisionTable:
 	.db $31 100
 	.db $32 100
 	.db $33 100
-	.db $00
 @collisions2:
 @collisions5:
 	.db $30 50
@@ -8298,8 +8292,8 @@ hazardCollisionTable:
 
 .ifdef ROM_AGES
 
-@collisions0:
 @collisions4:
+@collisions0:
 	.db $fa $01
 	.db $fc $01
 	.db $fe $01

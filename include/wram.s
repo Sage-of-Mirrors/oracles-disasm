@@ -358,6 +358,8 @@ wSavefileString: ; $c5b2
 ; Ages:    "Z21216-0"
 	dsb 8
 
+wDoorTileIndex: ; $c4bb
+	db
 ; $c5ba-$c5bf unused?
 
 .ENDS
@@ -865,8 +867,10 @@ wPirateShipX: ; $c6ee
 	db
 wPirateShipAngle: ; $c6ef
 	db
+wSwordBreakCounter: ; $c6f0
+	db
 wc6f0: ; $c6f0
-	dsb $b
+	dsb $a
 
 .endif ; ROM_AGES
 

@@ -12,6 +12,8 @@ _breakableTileCollision4Data:
 	.db TILEINDEX_LEAVES $05		;leaves into hole
 	.db TILEINDEX_MUSHROOM $33		;mushroom
 	.db TILEINDEX_LEAVES_NO_HOLE $00
+	.db $cd $35
+	;.db TILEINDEX_FLOWER
 ;Gamma's overworld tilesets
 _breakableTileCollision0Data:
 	.db $da $32
@@ -81,6 +83,10 @@ _breakableTileCollision0Data:
 _breakableTileCollision1Data:
 	.db TILEINDEX_DUNGEON_MUSHROOM $34		;mushroom
 	.db TILEINDEX_DUNGEON_LEAVES $05		;leaves into hole
+	.db TILEINDEX_DUNGEON_FLOWER $17
+	.db $f8 $17
+	.db TILEINDEX_DUNGEON_DIRT $36
+	.db $da $37
 ;Gamma's dungeon tilesets
 _breakableTileCollision2Data:
 _breakableTileCollision5Data:
@@ -158,7 +164,7 @@ _breakableTileModes:
 	m_BreakableTileData %00100001 %00000000 %0000 $0 $06 $3a ; $0b
 	m_BreakableTileData %00110000 %10000000 %0000 $0 $c6 $dd ; $0c
 	m_BreakableTileData %10101101 %00010001 %0000 $7 $0c $3a ; $0d
-	m_BreakableTileData %01110000 %10000000 %0111 $4 $0a $3a ; $0e	dirt
+	m_BreakableTileData %01000000 %10000000 %0111 $4 $0a $3a ; $0e	dirt
 	m_BreakableTileData %00000000 %00010000 %0000 $7 $1f $3a ; $0f
 	m_BreakableTileData %00000000 %00010000 %0000 $0 $df $dc ; $10
 	m_BreakableTileData %01000000 %00000000 %0000 $9 $0a $1c ; $11
@@ -198,4 +204,8 @@ _breakableTileModes:
 
 	m_BreakableTileData %10000001 %00000000 %0100 $8 $15 $3a ; $33	overworld mushroom
 	m_BreakableTileData %10000001 %00000000 %0100 $8 $15 $a0 ; $34	dungeon mushroom
+	m_BreakableTileData %01110000 %10010000 %0111 $4 $0a $3a ; $35	snow
+	m_BreakableTileData %01110000 %10010000 %0111 $4 $0a $a0 ; $36	dungeon snow
+	m_BreakableTileData %01110000 %10010000 %0111 $4 $0a $de ; $37	dungeon snow
+
 

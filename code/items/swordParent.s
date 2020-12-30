@@ -126,6 +126,7 @@ _parentItemCode_sword:
 	bit 0,a
 	jp z,@deleteSelf
 
+	call breakSword
 	; Check for double-edged ring
 	ld e,Item.var3a
 	ld a,(de)
@@ -363,3 +364,22 @@ _parentItemCode_sword:
 	pop de
 	scf
 	ret
+
+breakSword:
+	ld a,(wSwordLevel)
+	sub $01
+	ret z
+
+	ld hl,wSwordBreakCounter
+	dec (hl)
+	ret nz
+
+	ld a,(hl)
+	inc a
+	ld (wSwordLevel),a
+	ld hl,wStatusBarNeedsRefresh
+	set 0,(hl)
+	call wStatusBarNeedsRefresh
+	ld a,SND_CLINK
+	jp playSound
+
