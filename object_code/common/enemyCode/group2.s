@@ -7943,6 +7943,20 @@ enemyCode59:
 ;   var03: Child "PARTID_SEED_ON_TREE" objects write here when Link touches them?
 ; ==============================================================================
 enemyCode5a:
+	ld e,Enemy.subid
+	ld a,(de)
+	or a
+	jr nz,+
+	ld a,(wCurrentSeason)
+	ld hl,@seasonsSeedsTable
+	rst_addAToHl
+	ld a,(hl)
+	swap a
+	ld b,a
+	ld a,(wCurrentSeason)
+	or b
+	ld (de),a
++
 	ld e,Enemy.state
 	ld a,(de)
 	or a
@@ -7973,7 +7987,7 @@ enemyCode5a:
 	and $0f
 	ld hl,wSeedTreeRefilledBitset
 	call checkFlag
-	jp z,enemyDelete	;interactionDelete
+	jp z,enemyDelete	;interactionDelete	
 
 	; BUG: Above function call is wrong! Should be "enemyDelete"!
 	; If a seed tree's seeds are exhausted, instead of deleting this object, it will
@@ -7982,23 +7996,10 @@ enemyCode5a:
 	; for interactions, is reserved for items from chests and stuff like that. But
 	; that can be manipulated by digging up enemies from the ground...
 
-	ld a,(wLoadingRoomPack)
-	sub $80
-	jr c,+
-	ld a,(wAnimalCompanion)
-	push hl
-	ld hl,@seasonsTable_0d_68fb
-	rst_addAToHl
-	ld a,(hl)
-	cp $05
-	pop hl
-	ret nc
-	jr ++
-+
 	ld a,(de)			;Enemy.subid
 	swap a
 	and $0f				;seed type in a
-++
+
 	ldh (<hFF8B),a
 
 
@@ -8069,7 +8070,7 @@ enemyCode5a:
 
 .ifdef ROM_SEASONS
 @seasonsTable_0d_68fb:
-	; <hFF8B - required season - checked against wSeedTreeRefilledBitset
+	; <hFF8B (seed type) - required season - checked against wSeedTreeRefilledBitset
 	.db $00	SEASON_WINTER	$80		;ember, winter
 	.db $04	SEASON_SUMMER	$40		;summer
 	.db $01	SEASON_SPRING	$20		;scent, spring
@@ -8077,7 +8078,7 @@ enemyCode5a:
 	.db $03	SEASON_SUMMER	$08		;summer
 	.db $03	SEASON_SUMMER	$04		;summer
 .else
-	@seasonsTable_0d_68fb:
+	@seasonsSeedsTable:
 	; <hFF8B - use $05 for no seeds
 	.db $03	;SEASON_SUMMER, gale
 	.db $02	;SEASON_FALL, pegasus

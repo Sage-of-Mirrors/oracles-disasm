@@ -40,7 +40,11 @@ cliffTiles_collisions1:
 	.db $c7 $10
 	.db $c8 $10
 	.db $c9 $10
-	.db $ca $10
+	.db $b0 $10
+	.db $b1 $18
+	.db $b2 $00
+	.db $b3 $08
+	.db $00
 cliffTiles_collisions2:
 cliffTiles_collisions5:
 	.db $b0 $10

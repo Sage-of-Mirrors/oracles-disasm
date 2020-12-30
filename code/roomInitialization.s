@@ -105,17 +105,11 @@ checkAndSpawnMaple:
 	or a
 	ret nz
 .endif
-
-	ld a,(w1Companion.enabled)
-	or a
-	ret nz
-
-	ld a,(wAnimalCompanion)
-.ifdef ROM_AGES
-	or a
+	ld a,(wRoomPack)
+	bit 7,a
+	xor a
 	jr z,+
-.endif
-	sub SPECIALOBJECTID_RICKY
+	ld a,(wCurrentSeason)
 +
 	ld hl,maplePresentLocationsTable
 	rst_addDoubleIndex

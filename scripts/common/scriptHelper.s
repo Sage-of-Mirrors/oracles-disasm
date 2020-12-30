@@ -135,10 +135,10 @@ doorController_updateLinkRespawn:
 ;   $01: Door should be opened.
 ;   $02: Door should be closed.
 doorController_decideActionBasedOnTriggers:
-	ld e,Interaction.var3d
+	ld e,Interaction.var3d			;bitmask
 	ld a,(de)
 	ld b,a
-	ld e, Interaction.var03
+	ld e, Interaction.var03			;decides which variable to AND
 	ld a,(de)
 	rst_jumpTable
 	.dw @activeTriggers
@@ -178,17 +178,17 @@ doorController_decideActionBasedOnTriggers:
 ; If trigger is active, open the door.
 @triggerActive
 	call @checkTileIsShutterDoor
-	ld a,$01
+	ld a,$01	;open
 	jr z,@end
-	xor a
+	xor a		;loop
 	jr @end
 
 ; If trigger is inactive, close the door.
 @triggerInactive:
 	call @checkTileCollision
-	ld a,$02
+	ld a,$02	;close
 	jr z,@end
-	xor a
+	xor a		;loop
 @end:
 	ld (wTmpcfc0.normal.doorControllerState),a
 	ret
@@ -198,11 +198,16 @@ doorController_decideActionBasedOnTriggers:
 ; @param[out]	zflag	Set if the tile at this object's position is the expected shutter
 ;			door (the one facing the correct direction)
 @checkTileIsShutterDoor:
+	ld hl,@tileIndices
 	ld e,Interaction.angle
 	ld a,(de)
-	sub $10
-	srl a
-	ld hl,@tileIndices
+	sub $10	;half - $08
+	cp $0e	;(half - $14)
+	jr c,+
+	sub $08 ;half - $0c
+	ret c
++
+	srl a	;half
 	rst_addAToHl
 	ld e,Interaction.var3e
 	ld a,(de)
@@ -213,8 +218,14 @@ doorController_decideActionBasedOnTriggers:
 	ret
 
 @tileIndices: ; Tile indices for shutter doors
-	.db $78 $79 $7a $7b
-
+	.db TILEINDEX_SHUTTER_DOOR_UP
+	.db TILEINDEX_SHUTTER_DOOR_RIGHT
+	.db TILEINDEX_SHUTTER_DOOR_DOWN
+	.db TILEINDEX_SHUTTER_DOOR_LEFT
+	.db TILEINDEX_RED_SHUTTER_DOOR_UP
+	.db TILEINDEX_RED_SHUTTER_DOOR_RIGHT
+	.db TILEINDEX_RED_SHUTTER_DOOR_DOWN
+	.db TILEINDEX_RED_SHUTTER_DOOR_LEFT
 
 ;;
 ; @param[out]	zflag	Set if collisions at this object's position are 0

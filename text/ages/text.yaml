@@ -14004,7 +14004,7 @@ groups:
   - name: TX_2e04
     index: 0x04
     text: |-
-      Restoration Wall
+      \left Hyrule Castle Town
 
   - name: TX_2e05
     index: 0x05
@@ -18425,52 +18425,51 @@ groups:
   - name: TX_3900
     index: 0x00
     text: |-
-      Bring all to me.
+      Collect the seeds
+      to find the way.
 
   - name: TX_3901
     index: 0x01
     text: |-
-      Good defense is
-      the best offense
-      against spikes.
+      A cold day stays
+      away while the 
+      crystals remain.
 
   - name: TX_3902
     index: 0x02
     text: |-
-      Paths open when
-      ancient words
-      are mastered.
+      Day by day,
+      season by season,
+      these rooms remain
+      to reveal the path.
 
   - name: TX_3903
     index: 0x03
     text: |-
-      With the blue
-      wing, soar over
-      the colored
-      heights.
+      Flora envy me.
 
   - name:
     - TX_3904
-    - TX_3905
     index:
     - 0x04
-    - 0x05
     text: |-
-      Time's flow can
-      change the land.
+      I am never wrong.
+
+  - name: TX_3905
+    index: 0x05
+    text: |-
+      Neither Heaven nor Earth,\stop
+      neither land nor sea.
 
   - name: TX_3906
     index: 0x06
     text: |-
-      Do not forget
-      to feed me
-      Mystery Seeds.
+      The power of the orb trascends time.
 
   - name: TX_3907
     index: 0x07
     text: |-
-      The red face
-      fears smoke.
+      Cold areas point to smokey paths.
 
   - name: TX_3908
     index: 0x08
@@ -20500,6 +20499,12 @@ groups:
       You were sent
       back by a
       strange force!
+
+  - name: TX_5113
+    index: 0x13
+    text: |-
+      Large mushroom
+      ripe for picking!  
 
 - group: 0x54
   data:

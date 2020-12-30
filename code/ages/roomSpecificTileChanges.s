@@ -62,6 +62,7 @@ applyRoomSpecificTileChanges:
 	.dw tileReplacement_group0Map76 ; $36
 	.dw tileReplacement_group0Mapa5 ; $37
 	.dw tileReplacement_group5Map26 ; $38
+	;.dw tileReplacement_group5Map16 ; $39
 
 roomTileChangerCodeGroupTable:
 	.dw roomTileChangerCodeGroup0Data
@@ -142,6 +143,7 @@ roomTileChangerCodeGroup5Data:
 	;.db $c2 $29
 	;.db $e3 $2a
 	.db $26 $38
+	.db $16 $38
 	.db $00
 roomTileChangerCodeGroup6Data:
 	.db $00
@@ -1425,14 +1427,24 @@ drawRectInRoomLayout:
 	jr nz,---
 	ret
 
-;;bridge in d4, (S12)
+;;bridges in d4, (S12),
 tileReplacement_group5Map26:
+
 	call getThisRoomFlags
 	and ROOMFLAG_40
 	ret z
 
+	ld a,(wDungeonFloor)
+	xor $03
+	add a
+	add a
 	ld hl,@bridgeData
+	rst_addAToHl
 	jp fillRectInRoomLayout
 
+;YX,height,width,tile index
 @bridgeData
-	.db $83 $01 $06 $6d
+	.db $3a $04 $01 $6a		;SEASONS_SPRING
+	.db $83 $01 $06 $6d		;SEASON_SUMMER
+	.db $83 $01 $06 $6d		;SEASONS_FALL
+	.db $83 $01 $06 $6d		;SEASON_WINTER

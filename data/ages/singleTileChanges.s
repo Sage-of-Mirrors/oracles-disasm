@@ -24,12 +24,12 @@ singleTileChangeGroup0Data:
 	.db $13 $02 $42 $d7
 	.db $13 $04 $47 $d7
 	.db $0a $80 $17 $ee
-	.db $48 $f0 $28 $64
-	.db $47 $f2 $36 $f2
-	.db $88 $02 $66 $3a
-	.db $6a $02 $48 $3a
-	.db $48 $02 $68 $3a
-	.db $64 $02 $67 $3a
+	;.db $48 $f0 $28 $64
+	;.db $47 $f2 $36 $f2
+	;.db $88 $02 $66 $3a
+	;.db $6a $02 $48 $3a
+	;.db $48 $02 $68 $3a
+	;.db $64 $02 $67 $3a
 	.db $00 $00
 
 singleTileChangeGroup1Data:
@@ -68,8 +68,8 @@ singleTileChangeGroup4Data:
 	.db $00 $00
 
 singleTileChangeGroup5Data:
-	.db $19 $01 $08 $34
-	.db $26 $02 $5e $35
+	;.db $19 $01 $08 $34
+	;.db $26 $02 $5e $35
 	.db $87 $40 $7c $50
 	.db $9c $40 $42 $52
 	.db $a9 $40 $77 $52

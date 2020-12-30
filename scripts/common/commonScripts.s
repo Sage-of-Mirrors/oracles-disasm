@@ -218,29 +218,7 @@ doorOpenerScript:
 ;   Door is controlled by a bit in "wActiveTriggers" (uses the bitmask in var3d).
 
 ; Subid $04
-doorController_controlledByTriggers_up:
-	setcollisionradii $0a, $08
-	setangle $10
-	scriptjump _doorController_controlledByTriggers
-
-; Subid $05
-doorController_controlledByTriggers_right:
-	setcollisionradii $08, $0a
-	setangle $12
-	scriptjump _doorController_controlledByTriggers
-
-; Subid $06
-doorController_controlledByTriggers_down:
-	setcollisionradii $0a, $08
-	setangle $14
-	scriptjump _doorController_controlledByTriggers
-
-; Subid $07
-doorController_controlledByTriggers_left:
-	setcollisionradii $08, $0a
-	setangle $16
-
-_doorController_controlledByTriggers:
+doorController_controlledByTriggers:
 	callscript _doorController_updateRespawnWhenLinkNotTouching
 @loop:
 	asm15 scriptHelp.doorController_decideActionBasedOnTriggers
@@ -257,10 +235,11 @@ _doorController_controlledByTriggers:
 	scriptjump @loop
 
 
-; Subids $08-$0b:
+; Subids $05:
 ;   Door shuts itself until [wNumEnemies] == 0.
 
-_doorController_shutUntilEnemiesDead:
+doorController_shutUntilEnemiesDead:
+	jumpifnoenemies _doorController_open
 	callscript _doorController_updateRespawnWhenLinkNotTouching
 	jumpifnoenemies @end
 	setstate $03
@@ -274,34 +253,6 @@ _doorController_shutUntilEnemiesDead:
 _doorController_open:
 	setstate $02
 	scriptend
-
-; Subid $08
-doorController_shutUntilEnemiesDead_up:
-	setcollisionradii $0a, $08
-	setangle $10
-	jumpifnoenemies _doorController_open
-	scriptjump _doorController_shutUntilEnemiesDead
-
-; Subid $09
-doorController_shutUntilEnemiesDead_right:
-	setcollisionradii $08, $0a
-	setangle $12
-	jumpifnoenemies _doorController_open
-	scriptjump _doorController_shutUntilEnemiesDead
-
-; Subid $0a
-doorController_shutUntilEnemiesDead_down:
-	setcollisionradii $0a, $08
-	setangle $14
-	jumpifnoenemies _doorController_open
-	scriptjump _doorController_shutUntilEnemiesDead
-
-; Subid $0b
-doorController_shutUntilEnemiesDead_left:
-	setcollisionradii $08, $0a
-	setangle $16
-	jumpifnoenemies _doorController_open
-	scriptjump _doorController_shutUntilEnemiesDead
 
 _doorController_openOnMinecartCollision:
 	asm15 scriptHelp.doorController_checkMinecartCollidedWithDoor
@@ -317,76 +268,27 @@ _doorController_closeDoorWhenLinkNotTouching:
 	setstate $03
 	scriptend
 
-_doorController_minecart:
+; Subids $06:
+;   Minecart door; opens when a minecart collides with it
+doorController_minecart:
 	asm15 scriptHelp.doorController_checkTileIsMinecartTrack
 	jumptable_memoryaddress wTmpcfc0.normal.doorControllerState
 	.dw _doorController_openOnMinecartCollision ; Not minecart track (door is closed)
 	.dw _doorController_closeDoorWhenLinkNotTouching ; Minecart track (door is open)
 
 
-; Subids $0c-$0f:
-;   Minecart door; opens when a minecart collides with it
-
-; Subid $0c
-doorController_minecartDoor_up:
-	setcollisionradii $10, $08
-	setangle $18
-	scriptjump _doorController_minecart
-
-; Subid $0d
-doorController_minecartDoor_right:
-	setcollisionradii $08, $0e
-	setangle $1a
-	scriptjump _doorController_minecart
-
-; Subid $0e
-doorController_minecartDoor_down:
-	setcollisionradii $0f, $08
-	setangle $1c
-	scriptjump _doorController_minecart
-
-; Subid $0f
-doorController_minecartDoor_left:
-	setcollisionradii $08, $0f
-	setangle $1e
-	scriptjump _doorController_minecart
 
 
-; Subids $10-$13:
+; Subids $07:
 ;   Door which automatically closes when Link walks out of that tile.
 ;   When Link transitions onto a shutter door tile, the game automatically removes that
 ;   tile and replaces it with an interaction of this type.
 
-_doorController_closeDoorWhenLinkNotTouchingAndFlipcfc0:
+doorController_closeDoorWhenLinkNotTouchingAndFlipcfc0:
 	callscript _doorController_updateRespawnWhenLinkNotTouching
 	setstate $03
 	xorcfc0bit 0
 	scriptend
-
-; Subid $10
-doorController_closeAfterLinkEnters_up:
-	setcollisionradii $0c, $08
-	setangle $10
-	scriptjump _doorController_closeDoorWhenLinkNotTouchingAndFlipcfc0
-
-; Subid $11
-doorController_closeAfterLinkEnters_right:
-	setcollisionradii $08, $0c
-	setangle $12
-	scriptjump _doorController_closeDoorWhenLinkNotTouchingAndFlipcfc0
-
-; Subid $12
-doorController_closeAfterLinkEnters_down:
-	setcollisionradii $0c, $08
-	setangle $14
-	scriptjump _doorController_closeDoorWhenLinkNotTouchingAndFlipcfc0
-
-; Subid $13
-doorController_closeAfterLinkEnters_left:
-	setcollisionradii $08, $0c
-	setangle $16
-	scriptjump _doorController_closeDoorWhenLinkNotTouchingAndFlipcfc0
-
 
 ; Subids $14-$17:
 ;   Door opens when a number of torches are lit.

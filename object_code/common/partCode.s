@@ -232,6 +232,16 @@ partCode01:
 	call giveTreasure
 	ld e,Part.subid
 	ld a,(de)
+	cp ITEM_DROP_L2_SWORD
+	jr nz,+
+	ld a,(wSwordLevel)
+	cp $02
+	jr nc,+
+	ld hl,wSwordBreakCounter
+	ld (hl),20
+	ld a,SND_SWORDBEAM
+	call playSound
++
 	cp ITEM_DROP_50_ORE_CHUNKS
 	jr nz,@deleteSelf
 	call getThisRoomFlags
@@ -256,7 +266,7 @@ partCode01:
 	.db TREASURE_PEGASUS_SEEDS, $00,            $05, $0a ; ITEM_DROP_PEGASUS_SEEDS
 	.db TREASURE_GALE_SEEDS,    $00,            $05, $0a ; ITEM_DROP_GALE_SEEDS
 	.db TREASURE_MYSTERY_SEEDS, $00,            $05, $0a ; ITEM_DROP_MYSTERY_SEEDS
-	.db $00,                    $00,            $00, $00 ; ITEM_DROP_0a
+	.db TREASURE_SWORD,         $00,            $02, $02 ; ITEM_DROP_L2_SWORD
 	.db $00,                    $00,            $00, $00 ; ITEM_DROP_0b
 	.db TREASURE_ORE_CHUNKS,    GREEN_JOY_RING, RUPEEVAL_1,   RUPEEVAL_2   ; ITEM_DROP_1_ORE_CHUNK
 	.db TREASURE_ORE_CHUNKS,    GREEN_JOY_RING, RUPEEVAL_10,  RUPEEVAL_20  ; ITEM_DROP_10_ORE_CHUNKS
@@ -297,8 +307,8 @@ _itemDrop_initGfx:
 	.db $16 $01 ; ITEM_DROP_PEGASUS_SEEDS
 	.db $18 $01 ; ITEM_DROP_GALE_SEEDS
 	.db $1a $00 ; ITEM_DROP_MYSTERY_SEEDS
-	.db $1c $00 ; ITEM_DROP_0a
-	.db $1e $00 ; ITEM_DROP_0b
+	.db $1c $05 ; ITEM_DROP_L2_SWORD
+	.db $1e $05 ; ITEM_DROP_0b
 	.db $0c $01 ; ITEM_DROP_1_ORE_CHUNK
 	.db $0c $02 ; ITEM_DROP_10_ORE_CHUNKS
 	.db $0c $03 ; ITEM_DROP_50_ORE_CHUNKS
@@ -2824,6 +2834,7 @@ partCode15:
 	.db TREASURE_HEART_REFILL,  BLUE_JOY_RING, $04 $08
 	.db TREASURE_RUPEES,        RED_JOY_RING,  RUPEEVAL_005 RUPEEVAL_010
 	.db TREASURE_RUPEES,        RED_JOY_RING,  RUPEEVAL_001 RUPEEVAL_002
+	.db TREASURE_SWORD,	    	$ff,           $02, $02 ; ITEM_DROP_L2_SWORD
 
 @setOamData:
 	ld e,Part.subid
@@ -2863,6 +2874,7 @@ partCode15:
 	.db $02 $05 $01
 	.db $06 $05 $03
 	.db $04 $00 $02
+	.db $1c $05 $05; ITEM_DROP_L2_SWORD
 
 @setDroppedItemPosition:
 	ld h,d

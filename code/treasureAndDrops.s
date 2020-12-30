@@ -906,7 +906,7 @@ _itemDropAvailabilityTable:
 	.db (<wObtainedTreasureFlags+TREASURE_PEGASUS_SEEDS/8), 1<<(TREASURE_PEGASUS_SEEDS&7)
 	.db (<wObtainedTreasureFlags+TREASURE_GALE_SEEDS/8)   , 1<<(TREASURE_GALE_SEEDS&7)
 	.db (<wObtainedTreasureFlags+TREASURE_MYSTERY_SEEDS/8), 1<<(TREASURE_MYSTERY_SEEDS&7)
-	.db <wLinkNameNullTerminator, $00	; ITEM_DROP_0a
+	.db (<wObtainedTreasureFlags+TREASURE_SWORD/8)		  , 1<<(TREASURE_SWORD&7)	; ITEM_DROP_L2_SWORD  
 	.db <wLinkNameNullTerminator, $00	; ITEM_DROP_0b
 .ifdef ROM_AGES
 	.db <wLinkNameNullTerminator, $00	; ITEM_DROP_1_ORE_CHUNK

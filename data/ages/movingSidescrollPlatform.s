@@ -36,7 +36,7 @@ _movingSidescrollPlatformScript_subid00:
 	ms_up  $48
 	ms_loop  @@loop
 
-
+;d4
 _movingSidescrollPlatformScript_subid01:
 	.db SPEED_80
 	.db $04
@@ -45,7 +45,7 @@ _movingSidescrollPlatformScript_subid01:
 	ms_left  $48
 	ms_loop  @@loop
 
-
+;d4
 _movingSidescrollPlatformScript_subid02:
 	.db SPEED_80
 	.db $00
@@ -55,25 +55,25 @@ _movingSidescrollPlatformScript_subid02:
 	ms_down  $68
 	ms_left  $30
 	ms_loop  @@loop
-
+;d4 $4a
 _movingSidescrollPlatformScript_subid03:
 
 	.db SPEED_80
-	.db $00
+	.db $04
 @@loop:
-	ms_left  $70
-	ms_up    $28
-	ms_right $90
-	ms_down  $88
+	ms_left  $b8
+	ms_right $d8
 	ms_loop  @@loop
 
-
+;d4 $4b
 _movingSidescrollPlatformScript_subid04:
 	.db SPEED_80
-	.db $02
+	.db $00
 @@loop:
-	ms_up    $48
-	ms_down  $88
+	ms_left   $30
+	ms_wait    10
+	ms_right  $a0
+	ms_wait    10
 	ms_loop  @@loop
 
 
@@ -89,7 +89,7 @@ _movingSidescrollPlatformScript_subid05:
 
 movingSidescrollConveyorScriptTable: ; INTERACID_MOVING_SIDESCROLL_CONVEYOR
 	.dw @subid00
-
+;d4
 @subid00:
 	.db SPEED_80
 	.db $01

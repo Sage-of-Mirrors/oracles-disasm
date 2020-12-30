@@ -76,7 +76,7 @@ dungeonScript_minibossDeath:
 	wait 20
 	spawninteraction INTERACID_MINIBOSS_PORTAL, $00, $00, $00
 
-seasonsShrineDungeonScript_minibossDeath:
+seasonsShrineScript_minibossDeath:
 	stopifroomflag80set
 	checknoenemies
 	asm15 scriptHelp.seasonsShrine_minibossDeath
@@ -145,6 +145,26 @@ moonlitGrottoScript_spawnChestWhen2TorchesLit:
 	checkmemoryeq wNumTorchesLit, $02
 	scriptjump _spawnChestAfterPuff
 
+;the room with the torches, after entrance
+seasonsShrineScript_stairsToWinter:
+	jumpifroomflagset $80 @spawnDungeonStuffInteraction
+	asm15 scriptHelp.makeTorchesLightable
+	checkmemoryeq wNumTorchesLit, $02
+	asm15 scriptHelp.seasonsShrineScriptHelper_stairsToWinter
+@spawnDungeonStuffInteraction:
+	settileat $55 $09
+	settileat $59 $09
+	spawninteraction $12 $04 $00 $00
+	scriptend
+
+seasonsShrineScript_bossKeyRoom:
+	stopifitemflagset
+	checkmemoryeq wActiveTriggers, $f0
+	playsound SND_SOLVEPUZZLE
+	createpuff
+	settilehere $f1
+	scriptend
+
 
 ; The room with the moving platform and an orb to hit
 skullDungeonScript_spawnChestWhenOrb0Hit:
@@ -152,11 +172,6 @@ skullDungeonScript_spawnChestWhenOrb0Hit:
 	checkflagset $00, wToggleBlocksState
 	scriptjump _spawnChestAfterPuff
 
-; The room with an orb that's being blocked by a moldorm
-skullDungeonScript_spawnChestWhenOrb1Hit:
-	stopifitemflagset
-	checkflagset $01, wToggleBlocksState
-	scriptjump _spawnChestAfterPuff
 
 
 ; The room with 3 eyeball-statue things that need to be hit with a seed shooter

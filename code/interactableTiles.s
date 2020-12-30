@@ -727,12 +727,13 @@ showInfoTextForTile:
 	.db $02 <TX_5101 ; Boss key door
 	.db $04 <TX_5102 ; Keyblock
 	.db $08 <TX_5103 ; Pot
-	.db $20 <TX_5104 ; Rock?
+	.db $20 <TX_5104 ; Stone Mushroom
 	.db $10 <TX_5105 ; Cracked block
 	.db $20 <TX_5106 ; Cracked wall
 	.db $20 <TX_5108 ; Unlit torch
 	.db $20 <TX_5109 ; Keyhole for a dungeon entrance
 	.db $40 <TX_510a ; Roller from Seasons
+	.db $20 <TX_5113 ; Mushroom
 
 ;;
 ; @param d Special object (Link)
@@ -920,8 +921,9 @@ interactableTilesTable:
 	.dw @collisions5
 
 
-@collisions0:
 @collisions4:
+	.db TILEINDEX_STONE_MUSHROOM $43
+@collisions0:
 	.db $d3 $80
 	.db $f1 $04
 	.db $f2 $05
@@ -932,8 +934,8 @@ interactableTilesTable:
 	.db $00
 
 @collisions1:
-	.db $ae $06
-
+	;.db $ae $06
+	.db TILEINDEX_DUNGEON_STONE_MUSHROOM $43
 @collisions2:
 @collisions5:
 	.db $18 $00

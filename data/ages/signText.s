@@ -12,6 +12,7 @@ signTextGroupTable:
 signTextGroup0Data:
 	.db $53 $24 $01
 	.db $37 $14 $02
+	.db $44 $15 $04
 	.db $00
 signTextGroup1Data:
 
