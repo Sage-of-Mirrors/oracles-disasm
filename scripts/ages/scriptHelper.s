@@ -290,6 +290,7 @@ oldMan_giveRupees:
 	jp giveTreasure
 
 _oldMan_rupeeValues:
+	.db RUPEEVAL_050
 	.db RUPEEVAL_200
 	.db RUPEEVAL_100
 

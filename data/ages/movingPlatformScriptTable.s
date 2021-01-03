@@ -39,7 +39,13 @@ _movingPlatform_scriptTable:
 	.dw @dungeon06
 	.dw @dungeon07
 	.dw @dungeon08
-
+	.dw @dungeon09
+	.dw @dungeon0a
+	.dw @dungeon0b
+	.dw @dungeon0c
+	.dw @dungeon0d
+	.dw @dungeon0e
+	.dw @dungeon0f
 
 @dungeon00:
 @dungeon01:
@@ -132,3 +138,26 @@ _movingPlatform_scriptTable:
 @dungeon06:
 @dungeon07:
 @dungeon08:
+@dungeon09:
+@dungeon0a:
+@dungeon0b:
+@dungeon0c:
+@dungeon0d:
+@dungeon0e:
+@dungeon0f:
+	.dw @@platform0
+	.dw @@platform1
+
+@@platform0:
+	plat_wait  $08
+	plat_right $68
+	plat_wait  $08
+	plat_left  $50
+	plat_jump @@platform0
+
+@@platform1:
+	plat_wait  $08
+	plat_left  $88
+	plat_wait  $08
+	plat_right $a0
+	plat_jump @@platform1
