@@ -2590,11 +2590,6 @@ interactionCode2e:
 
 @scriptTable:
 	.dw mainScripts.oldManScript_givesRupees
-	.dw mainScripts.oldManScript_givesRupees
-	.dw mainScripts.oldManScript_givesRupees
-	.dw mainScripts.oldManScript_givesRupees
-	.dw mainScripts.oldManScript_takesRupees
-	.dw mainScripts.oldManScript_takesRupees
 	.dw mainScripts.oldManScript_takesRupees
 
 

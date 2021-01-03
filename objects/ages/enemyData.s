@@ -687,11 +687,9 @@ group1Map64EnemyObjectData:
 	obj_EndPointer
 
 group5Map09EnemyObjectData:
-	obj_SpecificEnemyB $2c $00 $88 $98 $30
 	obj_EndPointer
 
 group5Map0aEnemyObjectData:
-	obj_SpecificEnemyB $2c $01 $78 $b8 $20
 	obj_EndPointer
 
 group1Map19EnemyObjectData:

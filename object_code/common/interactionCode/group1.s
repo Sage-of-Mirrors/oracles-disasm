@@ -1543,9 +1543,7 @@ interactionCode1e:
 +
 	ld (de),a
 
-
-	
-@findScript:
+;@findScript:
 	; Decide what script to run based on subid. The script will decide when to proceed
 	; to state 2 (open door) or 3 (close door).
 
