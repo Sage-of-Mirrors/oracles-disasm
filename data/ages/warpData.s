@@ -66,13 +66,10 @@ group0WarpDestTable:
 	m_WarpDest $45 $52 $0 $1
 	m_WarpDest $47 $25 $0 $1
 	m_WarpDest $47 $27 $0 $1
-<<<<<<< HEAD
 	m_WarpDest $00 $11 $0 $1
 	m_WarpDest $53 $52 $0 $e
-=======
 	m_WarpDest $4d $38 $0 $1
 	m_WarpDest $57 $28 $0 $e
->>>>>>> ZtK_Birthday-hack
 	m_WarpDest $55 $42 $0 $1
 	m_WarpDest $02 $27 $0 $1
 	m_WarpDest $57 $25 $0 $1
