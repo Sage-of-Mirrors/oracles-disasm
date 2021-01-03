@@ -60,4 +60,4 @@ dungeonData0d:
 dungeonData0e:
 	m_DungeonData >wGroup5Flags, $ce, dungeon0eLayout, $01, $03, $00, $00, $00
 dungeonData0f:
-	m_DungeonData >wGroup4Flags, $ce, dungeon0fLayout, $01, $03, $00, $00, $00
+	m_DungeonData >wGroup5Flags, $ce, dungeon0fLayout, $01, $03, $00, $00, $00

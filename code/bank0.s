@@ -7873,8 +7873,14 @@ objectCheckTileAtPositionIsWater:
 ; @param[out]	cflag	Set if the tile at that position is water (even shallow water)
 checkTileAtPositionIsWater:
 	call getTileAtPosition
+	ld e,a
 	sub TILEINDEX_PUDDLE
 	cp TILERANGE_WATER
+	ret c
+
+	ld a,e
+	sub TILEINDEX_CURRENT_UP
+	cp TILERANGE_CURRENT
 	ret
 
 ;;

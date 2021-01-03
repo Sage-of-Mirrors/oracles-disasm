@@ -372,14 +372,15 @@ breakSword:
 
 	ld hl,wSwordBreakCounter
 	dec (hl)
-	ret nz
-
+	jr z,+
+	ret nc
++
 	ld a,(hl)
 	inc a
 	ld (wSwordLevel),a
 	ld hl,wStatusBarNeedsRefresh
 	set 0,(hl)
 	call wStatusBarNeedsRefresh
-	ld a,SND_CLINK
+	ld a,SND_CLINK2
 	jp playSound
 

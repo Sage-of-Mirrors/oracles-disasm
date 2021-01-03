@@ -869,8 +869,10 @@ wPirateShipAngle: ; $c6ef
 	db
 wSwordBreakCounter: ; $c6f0
 	db
+wShieldBreakCounter: ; $c6f1
+	db
 wc6f0: ; $c6f0
-	dsb $a
+	.dsb $9	;$b
 
 .endif ; ROM_AGES
 

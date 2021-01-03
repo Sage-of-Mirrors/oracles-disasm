@@ -290,6 +290,7 @@ oldMan_giveRupees:
 	jp giveTreasure
 
 _oldMan_rupeeValues:
+	.db RUPEEVAL_050
 	.db RUPEEVAL_200
 	.db RUPEEVAL_100
 
@@ -3684,58 +3685,77 @@ maskSalesmanScript:
 @npcLoop:
 	checkabutton
 	disableinput
-	jumpifroomflagset ROOMFLAG_ITEM, @alreadyGaveDoggieMask
-
-	setanimation $00
+	jumpifmemoryeq wSwordLevel, $03, @alreadySoldMaster
+	setanimation $00		;calm
 	showtext TX_0b0d
 	wait 15
-	setanimation $01
+	setanimation $01		;angry
 	showtext TX_0b0e
 	wait 15
 	setanimation $00
 	showtext TX_0b0f
 	wait 15
+	jumpifmemoryeq wSwordLevel, $02, @sellMasterAlone
+
+	showtext TX_0b10		;trade prompt
+	jumpiftextoptioneq $00, @Noble
+	jumpiftextoptioneq $01, @Master
+
+@declinedTrade
+	wait 15
 	setanimation $01
-	showtext TX_0b0e
-	wait 30
-	jumpiftradeitemeq TRADEITEM_TASTY_MEAT, @promptForTrade
-	scriptjump @enableInput
-
-@promptForTrade:
-	showtext TX_0b10
-	wait 30
-	jumpiftextoptioneq $00, @acceptedTrade
-
-	; Declined trade
 	showtext TX_0b14
-	scriptjump @enableInput
-
-@acceptedTrade:
-	showtext TX_0b45
-	wait 15
-	setanimation $00
-	showtext TX_0b11
-	wait 15
-	setanimation $01
-	showtext TX_0b12
-	wait 15
-	setanimation $00
-	showtext TX_0b13
-	wait 15
-	setanimation $01
-	showtext TX_0b45
-	wait 30
-
-	giveitem TREASURE_TRADEITEM,$04
-	setanimation $00
-	scriptjump @enableInput
-
-@alreadyGaveDoggieMask:
-	showtext TX_0b15
 
 @enableInput:
 	enableinput
 	scriptjump @npcLoop
+
+@sellMasterAlone:
+	showtext TX_0b11		;trade prompt
+	jumpiftextoptioneq $00, @Master
+	scriptjump @declinedTrade
+
+@Noble:
+	showtext TX_0b12
+	jumpiftextoptioneq $01, @declinedTrade
+
+	asm15 @cpRupeeValue, RUPEEVAL_080
+	jumpifmemoryeq wShopHaveEnoughRupees, $01, @notEnoughRupees
+	giveitem TREASURE_SWORD,$01
+	writememory wSwordBreakCounter, 20
+	asm15 removeRupeeValue, RUPEEVAL_080
+	setanimation $00
+	scriptjump @enableInput
+
+@Master:
+	showtext TX_0b13
+	jumpiftextoptioneq $01, @declinedTrade
+
+	asm15 @cpRupeeValue, RUPEEVAL_400
+	jumpifmemoryeq wShopHaveEnoughRupees, $01, @notEnoughRupees
+	giveitem TREASURE_SWORD,$02
+	writememory wSwordBreakCounter, 100
+	asm15 removeRupeeValue, RUPEEVAL_400
+	setanimation $00
+	scriptjump @enableInput
+
+@alreadySoldMaster:
+	wait 15
+	setanimation $01
+	showtext TX_0b15
+	scriptjump @enableInput
+
+@notEnoughRupees:
+	wait 15
+	setanimation $01
+	showtext TX_0b16
+	scriptjump @enableInput
+
+@cpRupeeValue:
+	call cpRupeeValue
+	ld (wShopHaveEnoughRupees),a
+	ret
+
 
 
 ; ==============================================================================
