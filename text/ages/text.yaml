@@ -5508,80 +5508,68 @@ groups:
   - name: TX_0b0d
     index: 0x0d
     text: |-
-      I'm so hungry my
-      stomach hurts.
+      Hello, sir, I specialize in rare oddities.
 
   - name: TX_0b0e
     index: 0x0e
     text: |-
-      AHH! I'M HUNGRY!
+      PLEASE! BUY SOMETHING!
 
   - name: TX_0b0f
     index: 0x0f
     text: |-
       Pardon me. I
       just thought
-      you could help.
-
+      you were leaving.\stop
+      I have a couple of swords that you might be interested in, adventurer.
+      Both could substantially upgrade your strength.
+      
   - name: TX_0b10
     index: 0x10
     text: |-
-      Give him \col(0x84)\item(0x04) \col(1)Tasty
-      Meat?\col(0)
-        \opt()Yes \opt()No
+      Which \col(1)sword\col(0) would you like to buy?
+        \opt()\col(1)Noble\col(0) \opt()\col(3)Master\col(0)
+        \opt()Neither
 
   - name: TX_0b11
     index: 0x11
     text: |-
       \pos(2)What's this?
-      Hand it over...
-      Food at last...
-      (Chomp, chomp)
-      ................\stop
-      Why are you
-      staring at me?
-      Oh, you WANT
-      something?
+      You already have that sword? Then would you like to take a look at the other one I have?
+      \opt()\col(3)Sure\col(0)
+      \opt()No Thanks
 
   - name: TX_0b12
     index: 0x12
     text: |-
-      \pos(2)How greedy!
-      How mean!
-      You won't leave
-      until you get
-      something?
+      \pos(2)That one looks about twice as powerful as your old sword,
+      but it looks like it can only take about \col(1)20 hits\col(0) before breaking.\stop
+      Would you like to buy it for \col(3)80 rupees\col(0)?
+      \opt()Yes \opt()No
 
   - name: TX_0b13
     index: 0x13
     text: |-
-      \pos(2)Fine. You can
-      have this.
+      \pos(2)This sword is the mighty blade of old, powerful enough to seal the darkness.
+      I snatched it from an worn pedestal, and the blade seems it could take \col(1)100 hits\col(0).
+      Buy it for \col(3)400 rupees\col(0)?
+      \opt()Yes \opt()No
 
   - name: TX_0b14
     index: 0x14
     text: |-
-      \pos(2)It wouldn't
-      taste any good
-      anyway!!!
+      \pos(2)How greedy!
+      How mean! Away with you!
 
   - name: TX_0b15
     index: 0x15
     text: |-
-      \pos(2)Ahhh. I'm full.
-      Thank you.
+      \pos(2)What are you still doing here? You already have my strongest sword!
 
   - name: TX_0b16
     index: 0x16
     text: |-
-      I'm \col(3)Mamamu Yan\col(0),
-      the top breeder
-      in town. My dog
-      is much cuter
-      than that dog!
-      Much cuter!
-      But my dog is
-      very shy.
+      \pos(2)Are you trying to cheat me? You don't have enough rupees!
 
   - name: TX_0b17
     index: 0x17
@@ -8398,24 +8386,22 @@ groups:
   - name: TX_1610
     index: 0x10
     text: |-
-      This is \col(3)Lynna
-      City\col(0).
+      'ey, watch i'!
+      My store 'oom i' full o' e'plosi'es. Tread ligh'ly!\stop
+      Wha'?
+      Ya wan' some?
+      Go fin' yer own! Git!
 
   - name: TX_1611
     index: 0x11
     text: |-
-      They say some
-      animals in the
-      wild really like
-      people.
+      Wha's tha'? Ya foun' a ba'door to my store 'oom?
+      Prepos'rous! 'ose ain't my bombs!
 
   - name: TX_1612
     index: 0x12
     text: |-
-      I've heard there
-      is a sea where
-      people called
-      Zoras live.
+      'm glad 'a be 'ere to enjoy the fes'ivi'ies.
 
   - name: TX_1613
     index: 0x13

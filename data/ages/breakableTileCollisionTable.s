@@ -87,6 +87,7 @@ _breakableTileCollision1Data:
 	.db $f8 $17
 	.db TILEINDEX_DUNGEON_DIRT $36
 	.db $da $37
+	.db $21 $1a
 ;Gamma's dungeon tilesets
 _breakableTileCollision2Data:
 _breakableTileCollision5Data:

@@ -3559,11 +3559,11 @@ npcTurnedToOldManCutsceneScript:
 
 
 ; Bearded NPC in Lynna City
-lynnaMan2Script_befored3:
+lynnaMan2Script_beforeBombs:
 	rungenericnpc TX_1610
-lynnaMan2Script_afterd3:
+lynnaMan2Script_afterBombs:
 	rungenericnpc TX_1611
-lynnaMan2Script_afterNayruSaved:
+lynnaMan2Script_afterDinsGift:
 	rungenericnpc TX_1612
 lynnaMan2Script_afterd7:
 	rungenericnpc TX_1613

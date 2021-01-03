@@ -235,7 +235,7 @@ partCode01:
 	cp ITEM_DROP_L2_SWORD
 	jr nz,+
 	ld a,(wSwordLevel)
-	cp $02
+	cp $03
 	jr nc,+
 	ld hl,wSwordBreakCounter
 	ld (hl),20

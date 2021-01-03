@@ -1272,6 +1272,7 @@ interactionCode44:
 	.dw @subid2
 	.dw @subid3
 	.dw @subid4
+	.dw @subid5
 
 ; NPC giving hint about what ambi wants
 @subid0:
@@ -1302,10 +1303,13 @@ interactionCode44:
 ; Bearded NPC in Lynna City
 @subid2:
 @subid3:
+@subid4:
 	call checkInteractionState
 	jr nz,@@initialized
 
 	call getGameProgress_1
+	ld a,b
+	ld ($c6f2),a
 	ld c,$02
 	ld a,$06
 	call checkNpcShouldExistAtGameStage_body
@@ -1326,7 +1330,7 @@ interactionCode44:
 
 
 ; Bearded hobo in the past, outside shooting gallery
-@subid4:
+@subid5:
 	call checkInteractionState
 	jr nz,@@initialized
 	call getGameProgress_2
@@ -1374,46 +1378,39 @@ interactionCode44:
 	jp interactionIncState
 
 ;;
-; @param[out]	b	$00 before beating d3;
-;			$01 if beat d3
-;			$02 if saved Nayru;
-;			$03 if beat d7;
-;			$04 if got the maku seed (saw twinrova cutscene);
-;			$05 if game finished (unlinked only)
+; @param[out]	b
+;			$00 before starting quest
+;			$01 if got sword
+;			$02 if got bombs
+;			$03 if got boomerang
+;			$04 if got Rod of Seasons
+;			$05 if got feather
+;			$06 if got gift
+;			$07 if game finished (unlinked only)
+;ZerotoK's version
 getGameProgress_1:
-	ld b,$05
+	ld b,$07
 	ld a,GLOBALFLAG_FINISHEDGAME
 	call checkGlobalFlag
 	ret nz
 
+	ld hl,@itemTable
+@checkItemObtained:
 	dec b
-	ld a,GLOBALFLAG_SAW_TWINROVA_BEFORE_ENDGAME
-	call checkGlobalFlag
-	ret nz
-
-	ld a,TREASURE_ESSENCE
+	ret z
+	ldi a,(hl)
 	call checkTreasureObtained
-	jr nc,@noEssences
+	ret c
+	jr @checkItemObtained
 
-	call getHighestSetBit
-	ld c,a
-	ld b,$03
-	cp $06
-	ret nc
 
-	dec b
-	ld a,GLOBALFLAG_SAVED_NAYRU
-	call checkGlobalFlag
-	ret nz
-
-	dec b
-	ld a,c
-	cp $02
-	ret nc
-
-@noEssences:
-	ld b,$00
-	ret
+@itemTable:
+	.db TREASURE_DINS_GIFT
+	.db TREASURE_FEATHER
+	.db TREASURE_ROD_OF_SEASONS
+	.db TREASURE_BOOMERANG
+	.db TREASURE_BOMBS
+	.db TREASURE_SWORD
 
 ;;
 ; @param[out]	b	$00 before beating d2;
@@ -1424,6 +1421,7 @@ getGameProgress_1:
 ;			$05 if got the maku seed (saw twinrova cutscene);
 ;			$06 if beat veran but not twinrova (linked only);
 ;			$07 if game finished (unlinked only)
+;Gamma's version
 getGameProgress_2:
 	ld b,$07
 	ld a,GLOBALFLAG_FINISHEDGAME
@@ -1486,9 +1484,9 @@ _unusedFunc5598:
 ; Contains some preset data for checking whether certain interactions should exist at
 ; certain points in the game?
 ;
-; @param	a	(0-8)
+; @param	a	(0-8)	(which data table)
 ; @param	b	Return value from "getGameProgress_1"?
-; @param	c	Subid "base"
+; @param	c	Subid "base"	(beginning subid)
 ; @param[out]	zflag	Set if the npc should exist
 checkNpcShouldExistAtGameStage_body:
 	ld hl,@table
@@ -1581,11 +1579,13 @@ checkNpcShouldExistAtGameStage_body:
 @data6: ; INTERACID_MISC_MAN_2 subids 2-3
 	.dw @@subid2
 	.dw @@subid3
+	.dw @@subid4
 @@subid2:
-	.db $00 $01 $02 $ff
+	.db $00 $01 $ff
 @@subid3:
-	.db $03 $04 $05 $ff
-
+	.db $02 $03 $04 $05 $ff
+@@subid4:
+	.db $06 $07 $ff
 
 
 miscMan2ScriptTable:
@@ -1596,12 +1596,14 @@ miscMan2ScriptTable:
 	.dw mainScripts.stubScript
 
 lynnaMan2ScriptTable:
-	.dw mainScripts.lynnaMan2Script_befored3
-	.dw mainScripts.lynnaMan2Script_afterd3
-	.dw mainScripts.lynnaMan2Script_afterNayruSaved
-	.dw mainScripts.lynnaMan2Script_afterd7
-	.dw mainScripts.lynnaMan2Script_afterGotMakuSeed
-	.dw mainScripts.lynnaMan2Script_postGame
+	.dw mainScripts.lynnaMan2Script_beforeBombs
+	.dw mainScripts.lynnaMan2Script_beforeBombs
+	.dw mainScripts.lynnaMan2Script_afterBombs
+	.dw mainScripts.lynnaMan2Script_afterBombs
+	.dw mainScripts.lynnaMan2Script_afterBombs
+	.dw mainScripts.lynnaMan2Script_afterBombs	
+	.dw mainScripts.lynnaMan2Script_afterDinsGift
+	.dw mainScripts.lynnaMan2Script_afterDinsGift
 
 pastHoboScriptTable:
 	.dw mainScripts.pastHoboScript_befored2

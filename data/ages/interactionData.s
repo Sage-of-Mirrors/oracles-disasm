@@ -522,8 +522,9 @@ interaction41SubidData:
 interaction44SubidData:
 	m_InteractionData $42 $08 $04
 	m_InteractionData $43 $0c $14
-	m_InteractionData $43 $0c $04
-	m_InteractionData $43 $0c $04
+	m_InteractionData $43 $0c $14
+	m_InteractionData $43 $0c $14
+	m_InteractionData $43 $0c $14
 	m_InteractionData $42 $08 $04
 interaction45SubidData:
 	m_InteractionData $49 $1c $34
