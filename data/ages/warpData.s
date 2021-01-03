@@ -734,7 +734,7 @@ group0WarpSources: ; $135ae
 	m_StandardWarp $00 $a5 $3e $5 $4
 	m_StandardWarp $00 $24 $43 $3 $4
 	m_StandardWarp $00 $16 $34 $3 $4
-	m_StandardWarp $00 $44 $47 $3 $2
+	m_StandardWarp $00 $44 $47 $3 $4
 	m_PointerWarp  $40 $26 group0Room26WarpSources
 	m_PointerWarp  $40 $56 group0Room56WarpSources
 	m_StandardWarp $00 $77 $05 $5 $4
@@ -750,7 +750,7 @@ group0Room26WarpSources:
 	m_PointedWarp $80 $17 $35 $5 $4
 group0Room56WarpSources:
 	m_PointedWarp $00 $57 $03 $5 $4
-	m_PointedWarp $00 $31 $04 $5 $2
+	m_PointedWarp $00 $31 $04 $5 $4
 	m_PointedWarp $80 $48 $7a $5 $4
 
 warpSource769a:
