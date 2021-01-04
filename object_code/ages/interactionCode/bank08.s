@@ -2570,7 +2570,6 @@ interactionCode2e:
 
 	ld e,Interaction.subid
 	ld a,(de)
-	ld a,(wWarpDestPos)
 	ld hl,@scriptTable
 	rst_addDoubleIndex
 	ldi a,(hl)
@@ -2590,11 +2589,6 @@ interactionCode2e:
 
 @scriptTable:
 	.dw mainScripts.oldManScript_givesRupees
-	.dw mainScripts.oldManScript_givesRupees
-	.dw mainScripts.oldManScript_givesRupees
-	.dw mainScripts.oldManScript_givesRupees
-	.dw mainScripts.oldManScript_takesRupees
-	.dw mainScripts.oldManScript_takesRupees
 	.dw mainScripts.oldManScript_takesRupees
 
 
