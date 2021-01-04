@@ -600,7 +600,7 @@ replaceSwitchTiles:
 	.db $6c $20 $d0 $64
 	.db $6c $20 $d0 $4c
 
-	.db $50 $40 $0b $7d
+	.db $50 $80 $0b $7d
 	.db $5a $40 $d0 $27
 
 	.db $28 $01 $0b $7d
