@@ -821,9 +821,11 @@ group0Map24ObjectData:
 	obj_End
 
 group0Map25ObjectData:
+	obj_Pointer group0Map25EnemyObjectData
 	obj_End
 
 group0Map26ObjectData:
+	obj_Interaction $dc $10 $58 $18
 	obj_End
 
 group0Map27ObjectData:
@@ -1716,7 +1718,7 @@ group1Map75ObjectData:
 	obj_End
 
 group1Map76ObjectData:
-	obj_Interaction $dc $10 $42 $50
+	obj_Interaction $dc $10 $4a $50
 	obj_End
 
 group1Map77ObjectData:

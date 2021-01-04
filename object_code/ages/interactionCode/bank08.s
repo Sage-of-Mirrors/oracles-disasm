@@ -2570,7 +2570,6 @@ interactionCode2e:
 
 	ld e,Interaction.subid
 	ld a,(de)
-	ld a,(wWarpDestPos)
 	ld hl,@scriptTable
 	rst_addDoubleIndex
 	ldi a,(hl)

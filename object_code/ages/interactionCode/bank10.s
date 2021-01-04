@@ -726,12 +726,12 @@ _interactiondc_subid10:
 	.dw @state2
 
 @state0:
-	ld hl,wRoomLayout+$44
+	ld hl,wRoomLayout+$51
 	xor a
 	ldi (hl),a
 	ld (hl),a
 
-	ld bc,$0410
+	ld bc,$0408	;$0410
 	call objectSetCollideRadii
 
 	call objectCheckCollidedWithLink_notDeadAndNotGrabbing
@@ -749,8 +749,8 @@ _interactiondc_subid10:
 	call checkLinkVulnerable
 	ret nc
 
-	call getThisRoomFlags
-	and $01
+	ld a,(wCurrentSeason)
+	cp SEASON_WINTER
 	ld hl,@warp1
 	jr z,+
 	ld hl,@warp2
@@ -761,10 +761,10 @@ _interactiondc_subid10:
 	jp interactionDelete
 
 @warp1:
-	m_HardcodedWarpA ROOM_AGES_4e7, $93, $ff, $01
+	m_HardcodedWarpA ROOM_AGES_339, $93, $ff, $01
 
 @warp2:
-	m_HardcodedWarpA ROOM_AGES_4f3, $93, $ff, $01
+	m_HardcodedWarpA ROOM_AGES_338, $93, $ff, $01
 
 
 ; Gives D6 Past boss key when you get D6 Present boss key
