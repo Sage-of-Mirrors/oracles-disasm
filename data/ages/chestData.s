@@ -37,6 +37,7 @@ chestGroup2Data:
 	.db $ff
 
 chestGroup3Data:
+	.db $24 $3b $28 $07
 	.db $24 $0e $2d $26
 	.db $18 $1f $28 $06
 	.db $35 $e8 $00 $00

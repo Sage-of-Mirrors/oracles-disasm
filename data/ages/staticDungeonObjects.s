@@ -58,5 +58,7 @@ dungeonaStaticObjects:
 dungeoncStaticObjects:
 dungeondStaticObjects:
 dungeoneStaticObjects:
+	.db $ff
 dungeonfStaticObjects:
+	.db $03, $2b, INTERACID_MINECART, $00, $58, $48
 	.db $ff

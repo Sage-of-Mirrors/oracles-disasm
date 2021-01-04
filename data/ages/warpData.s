@@ -110,7 +110,7 @@ group0WarpDestTable:
 	m_WarpDest $56 $48 $0 $1
 	m_WarpDest $36 $12 $0 $1
 	m_WarpDest $03 $16 $0 $e
-	m_WarpDest $36 $12 $0 $1
+	m_WarpDest $26 $17 $0 $1
 	m_WarpDest $26 $51 $0 $1
 	m_WarpDest $54 $11 $0 $1
 	m_WarpDest $74 $62 $0 $1

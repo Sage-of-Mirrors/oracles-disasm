@@ -425,6 +425,8 @@ interaction80SubidData:
 	m_InteractionData $7a $16 $04
 	m_InteractionData $6f $00 $66
 	m_InteractionData $6f $90 $67
+	m_InteractionData $7d $02 $50		;swords
+	m_InteractionData $7d $84 $40
 
 interaction81SubidData:
 	m_InteractionData $7d $0c $40

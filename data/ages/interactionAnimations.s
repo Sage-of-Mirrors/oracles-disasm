@@ -1033,6 +1033,9 @@ interaction80Animations:
 	.dw interactionAnimation5a3df
 	.dw interactionAnimation5aaa9
 	.dw interactionAnimation5aab7
+
+	.dw interactionAnimation5a402
+	.dw interactionAnimation5a407
 interactione1Animations:
 	.dw interactionAnimation5aa7c
 interaction72Animations:
@@ -4052,6 +4055,12 @@ interaction80OamDataPointers: ; 0x5b366
 	.dw interactionOamData5106a
 	.dw interactionOamData5009a
 	.dw interactionOamData500a9
+
+	.dw interactionOamData5009a
+	.dw interactionOamData500a9
+	.dw interactionOamData500ae
+	.dw interactionOamData50205
+
 
 interaction83OamDataPointers: ; 0x5b386
 	.dw interactionOamData50205

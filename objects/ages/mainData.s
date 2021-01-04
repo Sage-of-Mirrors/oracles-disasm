@@ -481,9 +481,7 @@ group3Map24ObjectData:
 group3Map25ObjectData:
 group3Map26ObjectData:
 group3Map27ObjectData:
-group3Map29ObjectData:
 group3Map2aObjectData:
-group3Map2bObjectData:
 group3Map2cObjectData:
 group3Map2dObjectData:
 group3Map2fObjectData:
@@ -495,9 +493,6 @@ group3Map34ObjectData:
 group3Map35ObjectData:
 group3Map36ObjectData:
 group3Map37ObjectData:
-group3Map39ObjectData:
-group3Map3aObjectData:
-group3Map3bObjectData:
 group3Map3cObjectData:
 group3Map3dObjectData:
 group3Map40ObjectData:
@@ -4933,6 +4928,8 @@ group5Mapb7ObjectData:
 
 group3Map0aObjectData:
 	obj_Interaction $5c $00 $38 $70
+	obj_Interaction $80 $0c $10 $88
+	obj_Interaction $80 $0b $10 $68
 	obj_End
 
 group3Map09ObjectData:
@@ -4967,4 +4964,27 @@ group5Map08ObjectData:
 
 group5Map0bObjectData:
 	obj_Interaction $2e $01 $38 $80
+	obj_End
+
+group3Map2bObjectData:
+	obj_Interaction $1e $05 $20 $00
+	obj_Interaction $1e $05 $50 $00
+	obj_Pointer group3Map2bEnemyObjectData
+	obj_End
+
+group3Map39ObjectData:
+	obj_Pointer group3Map39EnemyObjectData
+	obj_End
+
+group3Map29ObjectData:
+	obj_Pointer group3Map29EnemyObjectData
+	obj_End
+
+group3Map3bObjectData:
+	obj_Interaction $12 $02 $28 $48
+	obj_Pointer group3Map3bEnemyObjectData
+	obj_End
+
+group3Map3aObjectData:
+	obj_Pointer group3Map3aEnemyObjectData
 	obj_End

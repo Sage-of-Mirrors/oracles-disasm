@@ -3792,6 +3792,8 @@ interactionCode80:
 	.dw interactionAnimate
 	.dw @deleteIfGotRoomItem
 	.dw @deleteIfGotRoomItem
+	.dw @setInvisibleIfGotSword
+	.dw @setInvisibleIfGotSword
 	.dw interactionAnimate
 	.dw interactionAnimate
 
@@ -3813,6 +3815,8 @@ interactionCode80:
 	.dw @deleteIfGotRoomItem
 	.dw @stub
 	.dw @subid0a
+	.dw @setInvisibleIfGotSword
+	.dw @setInvisibleIfGotSword
 
 @stub:
 	ret
@@ -3836,6 +3840,16 @@ interactionCode80:
 	bit ROOMFLAG_BIT_ITEM,a
 	ret z
 	jp interactionDelete
+
+@setInvisibleIfGotSword:
+	ld e,Interaction.subid
+	ld a,(de)
+	sub $09
+	ld b,a
+	ld a,(wSwordLevel)
+	cp b
+	jp nz,objectSetVisiblec0
+	jp objectSetInvisible
 
 ; Fountain "stream": decide which palette to used based on whether this is the "ruined"
 ; symmetry city or not

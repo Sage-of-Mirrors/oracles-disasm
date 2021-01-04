@@ -716,6 +716,7 @@ _interactiondc_subid0F:
 	jp interactionIncState
 
 
+; [edited for Room 026]
 ; Black tower entrance handler: warps Link to different variants of black tower.
 _interactiondc_subid10:
 	ld e,Interaction.state

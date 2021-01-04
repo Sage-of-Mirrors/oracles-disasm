@@ -290,13 +290,11 @@ oldMan_giveRupees:
 	jp giveTreasure
 
 _oldMan_rupeeValues:
-	.db RUPEEVAL_100	;subid 00
+	.db RUPEEVAL_100	;subid 00, 05, 06
 	.db RUPEEVAL_050	;subid 01
 	.db RUPEEVAL_200	;subid 02
 	.db RUPEEVAL_150	;subid 03
 	.db RUPEEVAL_080	;subid 04
-	;.db RUPEEVAL_100	;subid 05
-	;.db RUPEEVAL_100	;subid 06
 
 
 ; ==============================================================================
