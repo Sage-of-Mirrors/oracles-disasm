@@ -160,9 +160,9 @@ _label_04_033:
 	or $08
 	ldi (hl),a
 
-.ifdef ROM_AGES
-	jp loadScreenMusicAndSetRoomPack
-.else; ROM_SEASONS
+;.ifdef ROM_AGES
+;	jp loadScreenMusicAndSetRoomPack
+;.else; ROM_SEASONS
 	ld a,(wWarpDestGroup)
 	bit 6,a
 	jr nz,_label_04_036
@@ -181,7 +181,7 @@ _label_04_035:
 	jp checkRoomPackAfterWarp
 _label_04_036:
 	jp loadScreenMusicAndSetRoomPack
-.endif
+;.endif
 
 ;;
 ; Sets wWarpDestRoom, wWarpDestGroup, wWarpTransition with suitable warp data. If no

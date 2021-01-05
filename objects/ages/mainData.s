@@ -455,7 +455,6 @@ group3Map04ObjectData:
 group3Map05ObjectData:
 group3Map06ObjectData:
 group3Map07ObjectData:
-group3Map08ObjectData:
 group3Map0bObjectData:
 group3Map0cObjectData:
 group3Map0dObjectData:
@@ -481,7 +480,6 @@ group3Map24ObjectData:
 group3Map25ObjectData:
 group3Map26ObjectData:
 group3Map27ObjectData:
-group3Map2aObjectData:
 group3Map2cObjectData:
 group3Map2dObjectData:
 group3Map2fObjectData:
@@ -503,7 +501,6 @@ group3Map44ObjectData:
 group3Map45ObjectData:
 group3Map46ObjectData:
 group3Map47ObjectData:
-group3Map49ObjectData:
 group3Map4aObjectData:
 group3Map4bObjectData:
 group3Map4cObjectData:
@@ -516,7 +513,6 @@ group3Map54ObjectData:
 group3Map55ObjectData:
 group3Map56ObjectData:
 group3Map57ObjectData:
-group3Map58ObjectData:
 group3Map59ObjectData:
 group3Map5aObjectData:
 group3Map5bObjectData:
@@ -530,7 +526,6 @@ group3Map64ObjectData:
 group3Map65ObjectData:
 group3Map66ObjectData:
 group3Map67ObjectData:
-group3Map68ObjectData:
 group3Map69ObjectData:
 group3Map6aObjectData:
 group3Map6bObjectData:
@@ -544,7 +539,6 @@ group3Map74ObjectData:
 group3Map75ObjectData:
 group3Map76ObjectData:
 group3Map77ObjectData:
-group3Map78ObjectData:
 group3Map79ObjectData:
 group3Map7aObjectData:
 group3Map7bObjectData:
@@ -4146,7 +4140,6 @@ group5Map61ObjectData:
 
 group5Map62ObjectData:
 	obj_BeforeEvent group5Map62BeforeEventObjectData
-	obj_Interaction $dc $18 $18 $78 $07
 	obj_End
 
 group5Map63ObjectData:
@@ -4896,6 +4889,7 @@ group3Map18ObjectData:
 	obj_Interaction $6b $0a $18 $18
 	obj_Interaction $44 $02 $48 $58
 	obj_Interaction $44 $03 $28 $78
+	obj_Interaction $80 $00 $18 $78
 	obj_End
 
 group3Map38ObjectData:
@@ -4967,8 +4961,6 @@ group5Map0bObjectData:
 	obj_End
 
 group3Map2bObjectData:
-	obj_Interaction $1e $05 $20 $00
-	obj_Interaction $1e $05 $50 $00
 	obj_Pointer group3Map2bEnemyObjectData
 	obj_End
 
@@ -4987,4 +4979,33 @@ group3Map3bObjectData:
 
 group3Map3aObjectData:
 	obj_Pointer group3Map3aEnemyObjectData
+	obj_End
+
+group3Map08ObjectData:
+	obj_Interaction $dc $08 $31 $40 $1c
+	obj_Interaction $80 $00 $28 $18
+	obj_End
+
+group3Map68ObjectData:
+	obj_Interaction $80 $00 $68 $58
+	obj_End
+
+group3Map78ObjectData:
+	obj_Interaction $80 $00 $18 $48
+	obj_End
+
+group3Map49ObjectData:
+	obj_Interaction $80 $00 $18 $58
+	obj_End
+
+group3Map58ObjectData:
+	obj_Interaction $94 $00
+	obj_Interaction $e4 $00 $77 $19
+	obj_Interaction $e4 $01 $0a $19
+	obj_Interaction $e4 $03 $08 $88
+	obj_Interaction $e4 $02 $77 $88
+	obj_End
+
+group3Map2aObjectData:
+	obj_Pointer group3Map2aEnemyObjectData
 	obj_End

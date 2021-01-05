@@ -1359,17 +1359,13 @@
 .define INTERACID_TWINROVA		$93
 
 ;;
-; The restoration guru.
+; Interaction to start cutscene of getting Rod of Seasons
 ;
-; @subid_00{Patch in the upstairs room}
-; @subid_01{Patch in his minigame room}
-; @subid_02{The minecart in Patch's minigame}
-; @subid_03{Beetle "manager"; spawns them and check when they're killed.}
-; @subid_04{Broken tuni nut sprite}
-; @subid_05{Broken sword sprite}
-; @subid_06{Fixed tuni nut sprite}
-; @subid_07{Fixed sword sprite}
-.define INTERACID_PATCH			$94
+; @subid_00{Spawns other subid's, and runs script}
+; @subid_01{Colored sparkles coming from the seasons}
+; @subid_02{Rod of seasons}
+; @subid_03{Aura around Rod of seasons}
+.define INTERACID_GET_ROD_OF_SEASONS	$94
 
 ;;
 ; Ball used by villagers. Subid is controlled by $cfd3.
@@ -1960,7 +1956,21 @@
 .define INTERACID_KNOW_IT_ALL_BIRD	$e3
 
 ;;
-.define INTERACID_STUB_e4		$e4
+; @subid_00{Windmill blades}
+; @subid_01{Gasha sprouts in mayor's house}
+; @subid_02{Left half of cloud}
+; @subid_03{Right half of cloud}
+; @subid_04{Red ore thrown into furnace}
+; @subid_05{Blue ore thrown into furnace}
+; @subid_06{TODO: level 2 sword in podium?}
+; @subid_07{Water ring around fountain}
+; @subid_08{Water spurting up from fountain}
+; @subid_09{Goron vase in Ingo's house after trading it}
+; @subid_0a{Spring emblem in Temple of Seasons}
+; @subid_0b{Summer emblem in Temple of Seasons}
+; @subid_0c{Winter emblem in Temple of Seasons}
+; @subid_0d{Autumn emblem in Temple of Seasons}
+.define INTERACID_MISC_STATIC_OBJECTS_1		$e4
 
 ;;
 ; @subid_00{Blue snake help book}
@@ -1978,6 +1988,8 @@
 .define INTERACID_USED_ROD_OF_SEASONS   $e7
 
 .define INTERACID_HEROS_CAVE_SWORD_CHEST    $e8
+
+
 
 
 

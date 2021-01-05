@@ -375,13 +375,15 @@ replaceJabuTilesIfUnderwater:
 replaceShutterForLinkEntering:
 	ld a,(wDungeonIndex)
 	inc a
-	ret z
 	ldbc >wRoomLayout, (LARGE_ROOM_HEIGHT-1)<<4 + (LARGE_ROOM_WIDTH-1)
+	jr nz,+
+	ldbc >wRoomLayout, (SMALL_ROOM_HEIGHT-1)<<4 + (SMALL_ROOM_WIDTH-1)
++
 --
 	ld a,(bc)		;a is tile index
 	push bc
 	sub TILEINDEX_SHUTTER_DOOR_UP	;$78
-	cp TILEINDEX_RED_SHUTTER_DOOR_LEFT + 1 - TILEINDEX_SHUTTER_DOOR_UP 	;$0c
+	cp TILERANGE_SHUTTER_DOORS 	;$0c
 	call c,@temporarilyOpenDoor
 	pop bc
 	dec c
@@ -454,7 +456,7 @@ replaceShutterForLinkEntering:
 	ld a,(bc)
 	ld (wDoorTileIndex),a
 	sub TILEINDEX_SHUTTER_DOOR_UP	;$78
-	cp TILEINDEX_RED_SHUTTER_DOOR_LEFT + 1 - TILEINDEX_SHUTTER_DOOR_UP 	;$0c
+	cp TILERANGE_SHUTTER_DOORS 	;$0c
 	jr nc,+
 
 	ldh a,(<hFF8B)
@@ -472,9 +474,9 @@ replaceShutterForLinkEntering:
 	ld e,a
 
 	; If not in a dungeon, don't add an auto-shutter.
-	ld a,(wTilesetFlags)
-	bit TILESETFLAG_BIT_DUNGEON,a
-	ret z
+	;ld a,(wTilesetFlags)
+	;bit TILESETFLAG_BIT_DUNGEON,a
+	;ret z
 
 	call getFreeInteractionSlot
 	ret nz

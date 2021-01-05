@@ -2404,7 +2404,7 @@ cutscene15:
 
 @state0:
 	call reloadTileMap
-	ld a,CUTSCENE_INGAME
+	ld a,$01
 	ld (wCutsceneState),a
 	xor a
 	ld (wGenericCutscene.cbb3),a
@@ -5747,6 +5747,13 @@ checkRoomPackAfterWarp_body:
 
 .else ; ROM_AGES
 
+checkRoomPackAfterWarp_body:
+	ld a,(wRoomPack)
+	bit 7,a
+	ret z
+	and $7f
+	ld (wCurrentSeason),a
+	ret
 ;;
 updateLastToggleBlocksState:
 	ld a,(wToggleBlocksState)

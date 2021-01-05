@@ -3874,6 +3874,12 @@ groups:
     text: |-
       Strike! -50 pts!
 
+  - name: TX_081d
+    index: 0x1d
+    text: |-
+      No need to bring the Rod to the towers, \Link!\stop
+      Call us upon a stump when you get back in Hyrule!
+
 - group: 0x09
   data:
   - name: TX_0900
@@ -13995,13 +14001,12 @@ groups:
   - name: TX_2e05
     index: 0x05
     text: |-
-      \left Dry Falls
+      \left Portal to Temple of Seasons
 
   - name: TX_2e06
     index: 0x06
     text: |-
-      \up Great Moblin's
-        Palace
+      \right Return to Hyrule
 
   - name: TX_2e07
     index: 0x07

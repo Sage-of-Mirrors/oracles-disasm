@@ -15,16 +15,14 @@ signTextGroup0Data:
 	.db $44 $15 $04
 	.db $00
 signTextGroup1Data:
-
 	.db $00
 signTextGroup2Data:
-
 	.db $00
 signTextGroup3Data:
-
+	.db $15 $78 $05
+	.db $14 $49 $06
 	.db $00
 signTextGroup4Data:
-
 	.db $00
 signTextGroup5Data:
 	.db $77 $2c $03

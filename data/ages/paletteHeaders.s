@@ -426,6 +426,7 @@ paletteHeader6a:
 paletteHeader6b:
 	m_PaletteHeaderBg  2 6 paletteDataWoodsSpring $00
 paletteHeader6c:
+	m_PaletteHeaderBg  2 6 paletteDataTemple $00
 paletteHeader6d:
 paletteHeader6e:
 paletteHeader6f:

@@ -4500,3 +4500,35 @@ paletteDataWoodsSpring:
 	m_RGB16 $10 $18 $06
 	m_RGB16 $1d $08 $14
 	m_RGB16 $00 $00 $00
+
+paletteDataTemple:
+;paletteData5940:
+	m_RGB16 $12 $14 $17
+	m_RGB16 $19 $1f $1f
+	m_RGB16 $0c $08 $0f
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $13 $1f $1f
+	m_RGB16 $12 $14 $17
+	m_RGB16 $08 $09 $0e
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $18 $1b $1f
+	m_RGB16 $0b $12 $14
+	m_RGB16 $06 $0b $0f
+	m_RGB16 $00 $00 $00
+
+	m_RGB16 $19 $1f $1f
+	m_RGB16 $0d $14 $1f
+	m_RGB16 $07 $0f $1a
+	m_RGB16 $00 $09 $12
+
+	m_RGB16 $19 $1f $1f
+	m_RGB16 $11 $14 $19
+	m_RGB16 $0c $0f $13
+	m_RGB16 $06 $09 $0d
+
+	m_RGB16 $18 $04 $00
+	m_RGB16 $10 $00 $00
+	m_RGB16 $08 $00 $00
+	m_RGB16 $00 $00 $00

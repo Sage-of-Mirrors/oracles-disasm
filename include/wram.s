@@ -2274,6 +2274,11 @@ wInShop: ; $ccd3/$ccea
 ; Bit 7: Set while playing the chest game.
 	db
 
+.ifdef ROM_SEASONS
+wcceb: ; $cceb
+; used in INTERACID_GET_ROD_OF_SEASONS for rod aura
+	db
+.endif
 
 .union
 	wLinkPushingAgainstBedCounter: ; $ccd4
@@ -2303,7 +2308,6 @@ wShopHaveEnoughRupees: ; $ccd5/$ccec
 wShootingGalleryBallStatus: ; $ccd6
 ; Shooting gallery: bit 7 set when the ball goes out-of-bounds
 	db
-
 
 wInformativeTextsShown: ; $ccd7
 ; Keeps track of whether certain informative texts have been shown.
@@ -2376,8 +2380,12 @@ wFollowingLinkObjectType: ; $cce7/$ccfd
 	db
 wFollowingLinkObject: ; $cce8/$ccfe
 	db
-wccbb:	; $cce9
-	.db
+
+.ifdef ROM_AGES
+wcceb:	; $cce9
+	db
+.endif
+
 wcce9: ; $cce9
 ; This might be a marker for the end of data in the $cc00 block?
 	.db

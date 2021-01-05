@@ -1137,7 +1137,7 @@ shopItemPrices:
 	/* $13 */ .db RUPEEVAL_030
 .ifdef ROM_AGES
 	/* $14 */ .db RUPEEVAL_300
-	/* $15 */ .db RUPEEVAL_500
+	/* $15 */ .db RUPEEVAL_300
 .endif
 
 ;;
@@ -1218,7 +1218,7 @@ shopItemTreasureToGive:
 	/* $13 */ .db  TREASURE_GASHA_SEED    $01
 .ifdef ROM_AGES
 	/* $14 */ .db  TREASURE_RING_BOX      $03
-	/* $15 */ .db  TREASURE_HEART_PIECE   $01
+	/* $15 */ .db  TREASURE_HEART_CONTAINER   $01
 .endif
 
 
@@ -1251,7 +1251,7 @@ _shopItemReplacementTable:
 	/* $13 */ .db <wBoughtShopItems1  $20 $03 $00
 .ifdef ROM_AGES
 	/* $14 */ .db <wBoughtShopItems1  $01 $ff $00
-	/* $15 */ .db <wBoughtShopItems2  $40 $05 $00
+	/* $15 */ .db <wBoughtShopItems2  $40 $15 $00
 .endif
 
 

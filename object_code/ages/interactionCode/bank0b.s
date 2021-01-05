@@ -8415,7 +8415,7 @@ interactionCodedb:
 	ld hl,mainScripts.slateSlotScript_placeSlate
 	call interactionSetScript
 	call interactionIncState
-
+	
 @state2:
 	call interactionRunScript
 	ret nc

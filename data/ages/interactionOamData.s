@@ -5152,3 +5152,53 @@ interactionOamData531d5:
 	.db $fe $00 $02 $21
 	.db $0e $00 $04 $22
 
+interactionOamDataStaticObjects1:
+	.db $06
+	.db $00 $fc $00 $00
+	.db $00 $04 $02 $00
+	.db $00 $0c $04 $00
+	.db $10 $fc $06 $00
+	.db $10 $04 $08 $00
+	.db $10 $0c $0a $00
+interactionOamDataStaticObjects2:
+	.db $04
+	.db $08 $f8 $00 $00
+	.db $08 $00 $02 $00
+	.db $08 $08 $02 $20
+	.db $08 $10 $00 $20
+interactionOamDataStaticObjects3:
+	.db $04
+	.db $08 $f8 $06 $20
+	.db $08 $00 $04 $20
+	.db $08 $08 $02 $20
+	.db $08 $10 $00 $20
+interactionOamDataStaticObjects4:
+	.db $08
+	.db $00 $f8 $10 $00
+	.db $00 $00 $12 $00
+	.db $00 $08 $14 $00
+	.db $00 $10 $16 $00
+	.db $10 $f8 $16 $60
+	.db $10 $00 $14 $60
+	.db $10 $08 $12 $60
+	.db $10 $10 $10 $60
+interactionOamDataStaticObjects5:	
+	.db $08
+	.db $00 $f8 $08 $00
+	.db $00 $00 $0a $00
+	.db $00 $08 $0c $00
+	.db $00 $10 $0e $00
+	.db $10 $f8 $0e $60
+	.db $10 $00 $0c $60
+	.db $10 $08 $0a $60
+	.db $10 $10 $08 $60
+interactionOamDataStaticObjects6:	
+	.db $08
+	.db $00 $f8 $00 $00
+	.db $00 $00 $02 $00
+	.db $00 $08 $04 $00
+	.db $00 $10 $06 $00
+	.db $10 $f8 $06 $60
+	.db $10 $00 $04 $60
+	.db $10 $08 $02 $60
+	.db $10 $10 $00 $60

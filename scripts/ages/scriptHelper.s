@@ -8602,3 +8602,55 @@ _interactiondc_spawnPuff:
 	ld l,Interaction.xh
 	ld (hl),c
 	ret
+
+; ==============================================================================
+; INTERACID_GET_ROD_OF_SEASONS
+; ==============================================================================
+
+spawnRodOfSeasonsSparkles:
+	ld bc,@spawnCoordinates
+	xor a
+-
+	ldh (<hFF8B),a
+	call getFreeInteractionSlot
+	ret nz
+
+	; spawn subid $01 (the sparkles for each season)
+	ld (hl),INTERACID_GET_ROD_OF_SEASONS
+	inc l
+	ld (hl),$01
+	inc l
+
+	; var03 = 0 to 3
+	ldh a,(<hFF8B)
+	ld (hl),a
+
+	; yx from table below
+	ld l,Interaction.yh
+	ld a,(bc)
+	ld (hl),a
+	inc bc
+	ld l,Interaction.xh
+	ld a,(bc)
+	ld (hl),a
+
+	inc bc
+	ldh a,(<hFF8B)
+	inc a
+
+	cp $04
+	jr nz,-
+;added temp check
+	ret
+
+@spawnCoordinates:
+	.db $78 $18
+	.db $08 $18
+	.db $08 $88
+	.db $78 $88
+
+forceLinksDirection:
+	ld hl,w1Link.direction
+	ld (hl),a
+	ld a,$80
+	jp setLinkForceStateToState08_withParam

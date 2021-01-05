@@ -2646,10 +2646,16 @@ group3Map3aEnemyObjectData:
 	obj_SpecificEnemyA 0 $13 $00 $28 $78
 	obj_SpecificEnemyA     $13 $00 $48 $38
 	obj_SpecificEnemyA     $13 $00 $28 $38
-	obj_RandomEnemy $40 $43 $00
+	obj_RandomEnemy $60 $43 $00
 	obj_EndPointer
 
 group3Map3bEnemyObjectData:
 	obj_RandomEnemy $64 $32 $00
-	obj_SpecificEnemyA 0 $4b $00 $28 $38
+	obj_SpecificEnemyA 0 $4b $00 $38 $48
+	obj_EndPointer
+
+group3Map2aEnemyObjectData:
+	obj_RandomEnemy $20 $4d $00
+	obj_RandomEnemy $40 $43 $00
+	obj_RandomEnemy $20 $34 $01
 	obj_EndPointer

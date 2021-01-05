@@ -228,7 +228,7 @@ interactionCodeTable: ; $3b8b
 	.dw agesInteractionsBank10.interactionCodee1 ; 0xe1
 	.dw    commonInteractions8.interactionCodee2 ; 0xe2
 	.dw agesInteractionsBank10.interactionCodee3 ; 0xe3
-	.dw                        interactionDelete ; 0xe4
+	.dw agesInteractionsBank10.interactionCodee4 ; 0xe4
 	.dw    commonInteractions8.interactionCodee5 ; 0xe5
 	.dw agesInteractionsBank10.interactionCodee6 ; 0xe6
 	.dw agesInteractionsBank10.interactionCodee7 ; 0xe7

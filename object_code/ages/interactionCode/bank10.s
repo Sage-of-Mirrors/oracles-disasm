@@ -56,18 +56,18 @@ _interactiondc_subid08:
 	ld c,a
 
 	ld b,>wRoomLayout
-	ld a,(bc)
-	ld l,a
+	ld a,(bc)		;tile index
+	ld l,a			;tile index
 	ld e,Interaction.var03
-	ld a,(de)
+	ld a,(de)		;var03 tile index
 	cp l
-	ret z
+	ret z			;ret if these two indices are the same
 
 	call getThisRoomFlags
 	ld e,Interaction.xh
 	ld a,(de)
 	or (hl)
-	ld (hl),a
+	ld (hl),a		;set xh room flag when two indices are different
 	jp interactionDelete
 
 @state0:
@@ -2042,5 +2042,37 @@ interactionCodee8:
 	jp interactionDelete
 @warpDestVariables:
 	m_HardcodedWarpA ROOM_AGES_003 $0e $16 $83
+
+; ==============================================================================
+; INTERACID_MISC_STATIC_OBJECTS
+; ==============================================================================
+interactionCodee4:
+	ld e,Interaction.subid
+	ld a,(de)
+	rst_jumpTable
+	.dw @subid0
+	.dw @subid1
+	.dw @subid2
+	.dw @subid3
+
+	call @func_72de
+	jp objectSetVisible80
+	call @func_72de
+	jp objectSetVisible81
+@subid0:
+@subid1:
+@subid2:
+@subid3:
+	call @func_72de
+	jp objectSetVisible83
+@func_72de:
+	call checkInteractionState
+	jr nz,+
+	ld a,$01
+	ld (de),a
+	jp interactionInitGraphics
++
+	pop hl
+	jp interactionAnimate
 
 .ends

@@ -6099,10 +6099,6 @@ _galeSeedMenu_state2:
 	ld (wWarpTransition2),a
 	ld a,$03
 	call setMusicVolume
-
-	ld a,SEASON_WINTER		;only season seed tree is in winter area
-	ld (wCurrentSeason),a
-
 	jp fadeoutToWhite
 
 ;;

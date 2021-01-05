@@ -1507,7 +1507,7 @@ _interactionCodee6_state0:
 	bit 5,(hl)
 	jp nz,interactionDelete
 	xor a
-	ld ($cceb),a
+	ld (wcceb),a
 	ld hl,mainScripts.gettingRodOfSeasonsScript
 	jp interactionSetScript
 
@@ -1757,11 +1757,11 @@ _interactionCodee6_state1:
 	call interactionDecCounter2
 	ret nz
 	ld a,$01
-	ld ($cceb),a
+	ld (wcceb),a
 	jp interactionDelete
 
 @rodOfSeasonsAura:
-	ld a,($cceb)
+	ld a,(wcceb)
 	or a
 	jp nz,interactionDelete
 

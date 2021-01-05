@@ -9261,3 +9261,46 @@ knowItAllBirdScript:
 	enableallobjects
 	writeobjectbyte Interaction.var37, $00
 	scriptjump @loop
+
+; ==============================================================================
+; INTERACID_GET_ROD_OF_SEASONS
+; ==============================================================================
+gettingRodOfSeasonsScript:
+	setcoords $40, $50
+	setcollisionradii $02, $04
+	checkcollidedwithlink_onground
+	disableinput
+	asm15 scriptHelp.spawnRodOfSeasonsSparkles
+	setcounter1 $82
+
+	playsound SND_FADEOUT
+	asm15 fadeoutToWhite
+	delay 5
+
+	playsound SND_FADEOUT
+	asm15 fadeoutToWhite
+	delay 5
+
+	playsound SND_FADEOUT
+	asm15 fadeoutToWhite
+	checkpalettefadedone
+	delay 5
+
+	spawninteraction INTERACID_GET_ROD_OF_SEASONS, $02, $38, $50
+	asm15 fadeinFromWhiteWithDelay, $04
+	checkpalettefadedone
+	checkflagset $00, wcceb
+	asm15 scriptHelp.forceLinksDirection, DIR_DOWN
+	delay $07
+
+	showtext TX_081d
+	setmusic SNDCTRL_MEDIUM_FADEOUT
+	delay $09
+
+	resetmusic
+	enableinput
+	scriptend
+
+gettingRodOfSeasonsScript_setCounter1To32:
+	setcounter1 $32
+	scriptend

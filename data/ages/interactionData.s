@@ -252,7 +252,7 @@ interactionData:
 	/* $e1 */ m_InteractionData $6c $10 $40
 	/* $e2 */ m_InteractionData $8c $1e $04
 	/* $e3 */ m_InteractionData $0d $14 $11
-	/* $e4 */ m_InteractionData $00 $00 $00
+	/* $e4 */ m_InteractionData interactione4SubidData
 	/* $e5 */ m_InteractionData $6c $08 $10
 	/* $e6 */ m_InteractionData $00 $60 $b0
 	/* $e7 */ m_InteractionData $00 $00 $00
@@ -559,7 +559,7 @@ interaction47SubidData:
 	m_InteractionData $7d $0a $40
 	m_InteractionData $79 $0a $10
 	m_InteractionData $79 $14 $20
-	m_InteractionData $79 $10 $22
+	m_InteractionData $79 $12 $22		;heart piece
 interaction4aSubidData:
 	m_InteractionData $6b $00 $60
 	m_InteractionData $6b $00 $60
@@ -687,14 +687,10 @@ interaction92SubidData:
 	m_InteractionData $00 $82 $81
 
 interaction94SubidData:
-	m_InteractionData $52 $00 $02
-	m_InteractionData $52 $00 $02
-	m_InteractionData $72 $00 $48
 	m_InteractionData $00 $00 $00
-	m_InteractionData $83 $06 $59
-	m_InteractionData $81 $08 $19
-	m_InteractionData $83 $04 $5a
-	m_InteractionData $7d $82 $5b
+	m_InteractionData $8e $18 $00
+	m_InteractionData $7d $14 $21
+	m_InteractionData $76 $06 $42
 
 interaction96SubidData:
 	m_InteractionData $90 $80 $20
@@ -810,3 +806,19 @@ interactionddSubidData:
 interactiondfSubidData:
 	m_InteractionData $26 $00 $04
 	m_InteractionData $24 $80 $12
+
+interactione4SubidData:
+;	m_InteractionData $4e $00 $00		;spr_windmill_l2sword
+;	m_InteractionData $4e $18 $09		;spr_windmill_l2sword
+;	m_InteractionData $52 $18 $62		;spr_moblincannon_unknown
+;	m_InteractionData $52 $18 $63		;spr_moblincannon_unknown
+;	m_InteractionData $66 $04 $25		;spr_quest_items_4
+;	m_InteractionData $66 $04 $15		;spr_quest_items_4
+;	m_InteractionData $4e $1e $25		;spr_windmill_l2sword
+;	m_InteractionData $53 $0a $66		;spr_moblinflag_fountain_orb_unknown
+;	m_InteractionData $53 $1a $67		;spr_moblinflag_fountain_orb_unknown
+;	m_InteractionData $80 $0e $51		;spr_quest_items_1
+	m_InteractionData $71 $0e $00		;spr_woodentunnel_seasons
+	m_InteractionData $71 $12 $20		;spr_woodentunnel_seasons
+	m_InteractionData $71 $16 $11		;spr_woodentunnel_seasons
+	m_InteractionData $71 $98 $32		;spr_woodentunnel_seasons

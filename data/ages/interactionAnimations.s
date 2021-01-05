@@ -517,9 +517,20 @@ interactiond9Animations:
 interactiondaAnimations:
 interactiondbAnimations:
 interactiondcAnimations:
-interactione4Animations:
 interactione7Animations
 	.dw interactionAnimation5a083
+interactione4Animations:
+	.dw interactionAnimation5a3be		;1 seasons (spring and summer)
+	.dw interactionAnimation5a3d5		;5 seasons (winter)
+	.dw interactionAnimation5a3fd		;9 seasons (autumn)
+;	.dw interactionAnimation5a34d		;0
+;	.dw interactionAnimation5a3c3		;2
+;	.dw interactionAnimation5a3cb		;3
+;	.dw interactionAnimation5a3d0		;4
+;	.dw interactionAnimation5a2e9		;6
+;	.dw interactionAnimationStaticObjects;7
+;	.dw interactionAnimation5a3f8		;8
+
 interaction02Animations:
 	.dw interactionAnimation5a09e
 interaction03Animations:
@@ -1105,6 +1116,10 @@ interaction8eAnimations:
 	.dw interactionAnimation5abbc
 	.dw interactionAnimation5abc5
 interaction94Animations:
+;used to be the same as e6
+	.dw interactionAnimation5a6e1
+	.dw interactionAnimation5a3b9
+	.dw interactionAnimation5a33f
 interactione6Animations:
 	.dw interactionAnimation5a468
 	.dw interactionAnimation5a5a6
@@ -3062,6 +3077,11 @@ interactionAnimation5adb2:
 	.db $01 $1a $01
 	m_AnimationLoop interactionAnimation5adb2
 
+interactionAnimationStaticObjects:
+	.db $06 $18 $00
+	.db $06 $1a $00
+	m_AnimationLoop interactionAnimationStaticObjects
+
 interactionAnimation5adcc:
 	.db $01 $10 $00
 	.db $01 $12 $00
@@ -3132,7 +3152,6 @@ interactiond9OamDataPointers: ; 0x5adfc
 interactiondaOamDataPointers: ; 0x5adfc
 interactiondbOamDataPointers: ; 0x5adfc
 interactiondcOamDataPointers: ; 0x5adfc
-interactione4OamDataPointers: ; 0x5adfc
 interactione7OamDataPointers:
 	.dw interactionOamData51077
 	.dw interactionOamData51088
@@ -3142,6 +3161,24 @@ interactione7OamDataPointers:
 	.dw interactionOamData510cc
 	.dw interactionOamData510dd
 	.dw interactionOamData510ee
+
+interactione4OamDataPointers: ; 0x5adfc
+	.dw interactionOamDataStaticObjects6
+	.dw interactionOamDataStaticObjects5
+	.dw interactionOamDataStaticObjects4
+	.dw interactionOamData5020e
+	.dw interactionOamData51231
+	.dw interactionOamDataStaticObjects3
+	.dw interactionOamDataStaticObjects2
+	.dw interactionOamData5009a
+	.dw interactionOamData51043
+	.dw interactionOamData50ac7
+	.dw interactionOamData5105d
+	.dw interactionOamData50f9a
+	.dw interactionOamData5009a
+	.dw interactionOamData500a9
+	.dw interactionOamDataStaticObjects1
+	.dw interactionOamData50205
 
 interaction01OamDataPointers: ; 0x5ae0c
 	.dw interactionOamData510ff
@@ -4070,16 +4107,16 @@ interaction83OamDataPointers: ; 0x5b386
 interaction11OamDataPointers: ; 0x5b38c
 interaction84OamDataPointers: ; 0x5b38c
 	.dw interactionOamData53015
-	.dw interactionOamData52cf5
-	.dw interactionOamData5009a
-	.dw interactionOamData500a9
-	.dw interactionOamData500ae
+	.dw interactionOamData52cf5		;  4
+	.dw interactionOamData5009a		;  6
+	.dw interactionOamData500a9		;  8
+	.dw interactionOamData500ae		;4 a
 	.dw interactionOamData500b3
-	.dw interactionOamData51e11
+	.dw interactionOamData51e11		;6
 	.dw interactionOamData502e6
-	.dw interactionOamData50337
+	.dw interactionOamData50337		;8
 	.dw interactionOamData50352
-	.dw interactionOamData5305e
+	.dw interactionOamData5305e		;a
 
 interaction86OamDataPointers: ; 0x5b3a2
 	.dw interactionOamData51d44
@@ -4171,24 +4208,11 @@ interaction93OamDataPointers: ; 0x5b424
 	.dw interactionOamData515c7
 
 interaction94OamDataPointers: ; 0x5b434
-	.dw interactionOamData502f8
-	.dw interactionOamData50325
-	.dw interactionOamData50388
-	.dw interactionOamData503d0
-	.dw interactionOamData5020e
-	.dw interactionOamData502a7
-	.dw interactionOamData5037f
-	.dw interactionOamData503b5
-	.dw interactionOamData503f4
-	.dw interactionOamData50433
-	.dw interactionOamData505b6
-	.dw interactionOamData50f0b
-	.dw interactionOamData50f18
-	.dw interactionOamData502e6
-	.dw interactionOamData505bf
 	.dw interactionOamData50205
+	.dw interactionOamData502b9
 	.dw interactionOamData5009a
-	.dw interactionOamData500a9
+	.dw interactionOamData523bd
+	.dw interactionOamData523de
 
 interaction98OamDataPointers: ; 0x5b458
 	.dw interactionOamData50982

@@ -62,7 +62,7 @@ applyRoomSpecificTileChanges:
 	.dw tileReplacement_group0Map76 ; $36
 	.dw tileReplacement_group0Mapa5 ; $37
 	.dw tileReplacement_group5Map26 ; $38
-	;.dw tileReplacement_group5Map16 ; $39
+	.dw tileReplacement_group3Map08 ; $39
 
 roomTileChangerCodeGroupTable:
 	.dw roomTileChangerCodeGroup0Data
@@ -114,6 +114,7 @@ roomTileChangerCodeGroup2Data:
 	;.db $7e $02
 	.db $00
 roomTileChangerCodeGroup3Data:
+	.db $08 $39
 	.db $00
 roomTileChangerCodeGroup4Data:
 	;.db $1b $01
@@ -1448,3 +1449,14 @@ tileReplacement_group5Map26:
 	.db $83 $01 $06 $6d		;SEASON_SUMMER
 	.db $83 $01 $06 $6d		;SEASONS_FALL
 	.db $83 $01 $06 $6d		;SEASON_WINTER
+
+tileReplacement_group3Map08:
+	call getThisRoomFlags
+	and ROOMFLAG_40
+	ret z
+
+	ld hl,wRoomLayout+$41
+	ld (hl),$1d
+	ld l,$31
+	ld (hl),$a0
+	ret

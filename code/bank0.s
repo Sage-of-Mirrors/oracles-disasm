@@ -13242,7 +13242,7 @@ setSeason:
 	ld (wcc4c),a
 	ret
 
-.ifdef ROM_SEASONS		;added
+;.ifdef ROM_SEASONS		;added
 checkRoomPackAfterWarp:
 	ldh a,(<hRomBank)
 	push af
@@ -13251,7 +13251,7 @@ checkRoomPackAfterWarp:
 	setrombank
 	ret
 
-.endif
+;.endif
 
 ;;
 ; @param[out]	hl	Address of a free interaction slot (on the id byte)
