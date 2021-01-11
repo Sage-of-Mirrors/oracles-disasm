@@ -63,6 +63,7 @@ applyRoomSpecificTileChanges:
 	.dw tileReplacement_group0Mapa5 ; $37
 	.dw tileReplacement_group5Map26 ; $38
 	.dw tileReplacement_group3Map08 ; $39
+	.dw tileReplacement_group0Map57 ; $3a
 
 roomTileChangerCodeGroupTable:
 	.dw roomTileChangerCodeGroup0Data
@@ -75,6 +76,7 @@ roomTileChangerCodeGroupTable:
 	.dw roomTileChangerCodeGroup7Data
 
 roomTileChangerCodeGroup0Data:
+	.db $57 $3a
 	;.db $38 $08
 	;.db $48 $17
 	;.db $5c $14
@@ -1459,4 +1461,13 @@ tileReplacement_group3Map08:
 	ld (hl),$1d
 	ld l,$31
 	ld (hl),$a0
+	ret
+
+tileReplacement_group0Map57:
+	call getThisRoomFlags
+	and ROOMFLAG_40
+	ret z
+
+	ld hl,wRoomLayout+$56
+	ld (hl),$3a
 	ret

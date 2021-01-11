@@ -348,9 +348,8 @@
 .define PARTID_PUMPKIN_HEAD_PROJECTILE		$42
 
 ;;
-; @subid_00{Blue}
-; @subid_01{Red}
-.define PARTID_PLASMARINE_PROJECTILE		$43
+; Gleeok
+.define PARTID_43		$43
 
 ;;
 ; relatedObj1 must be set to the tingle object (INTERACID_TINGLE).

@@ -306,6 +306,8 @@ interactionCode6b:
 	.dw _interaction6b_subid14
 	.dw _interaction6b_subid15
 	.dw _interaction6b_subid16
+	.dw _interaction6b_subid17
+	.dw _interaction6b_subid18
 
 
 ; Handles showing Impa's "Help" text when Link's about to screen transition
@@ -1079,6 +1081,19 @@ _interaction6b_loadScript:
 	call interactionSetScript
 	jp interactionIncState
 
+_interaction6b_subid17:
+_interaction6b_subid18:
+
+@setInvisibleIfGotSword:
+	call interactionInitGraphics
+	ld e,Interaction.subid
+	ld a,(de)
+	sub $09
+	ld b,a
+	ld a,(wSwordLevel)
+	cp b
+	jp nz,objectSetVisiblec0
+	jp objectSetInvisible
 ;;
 ; @param[out]	zflag	nz if Link pressed up at screen edge
 _interaction6b_checkLinkPressedUpAtScreenEdge:
@@ -3771,7 +3786,67 @@ interactionCode7c:
 	ld a,$ff
 	jp initWaveScrollValues
 
+; ==============================================================================
+; INTERACID_SWORDS_DECORATION
+; ==============================================================================
+interactionCode85:
+	ld e,Interaction.enabled
+	ld a,(de)
+	or $80
+	ld (de),a
+	ld e,Interaction.state
+	ld a,(de)
 
+	rst_jumpTable
+	.dw @checkObtainedSword
+	.dw @spawnSword
+
+@checkObtainedSword:
+	ld e,Interaction.subid
+	ld a,(de)	;subid
+	ld b,a
+	ld a,(wSwordLevel)
+	dec a
+	cp b
+	jp c,interactionIncState		;nz if don't have sword, inc state
+	;delete sword
+	ld e,Interaction.relatedObj1
+	ld a,(de)
+	ld d,a
+	jp objectSetInvisible
+
+@spawnSword:
+	xor a
+	ld (de),a
+	ld e,Interaction.relatedObj1
+	ld a,(de)
+	or a
+	jr nz,+
+;spawn the sword
+	ld e,Interaction.subid	
+	ld a,(de)	;subid
+	ld c,a
+	ld b,TREASURE_SWORD
+	call createTreasure
+	call objectCopyPosition
+
+	ld e,Interaction.relatedObj1;+1
+	;ld a,l
+	;and $40
+	;ld (de),a
+	;dec e
+	ld a,h
+	ld (de),a
+
+	ld e,Interaction.var03
+	ld a,$ff
+	ld (de),a
+	ret
++
+	;ld e,Interaction.relatedObj1
+	ld a,(de)
+	ld d,a
+	jp objectSetVisiblec0
 ; ==============================================================================
 ; INTERACID_DECORATION
 ; ==============================================================================
@@ -3792,10 +3867,10 @@ interactionCode80:
 	.dw interactionAnimate
 	.dw @deleteIfGotRoomItem
 	.dw @deleteIfGotRoomItem
-	.dw @setInvisibleIfGotSword
-	.dw @setInvisibleIfGotSword
 	.dw interactionAnimate
 	.dw interactionAnimate
+	.dw @setSwordVisibilityAndAnimate
+	.dw @setSwordVisibilityAndAnimate
 
 @state0:
 	call interactionInitGraphics
@@ -3815,8 +3890,8 @@ interactionCode80:
 	.dw @deleteIfGotRoomItem
 	.dw @stub
 	.dw @subid0a
-	.dw @setInvisibleIfGotSword
-	.dw @setInvisibleIfGotSword
+	.dw @setSwordVisibility
+	.dw @setSwordVisibility
 
 @stub:
 	ret
@@ -3841,15 +3916,17 @@ interactionCode80:
 	ret z
 	jp interactionDelete
 
-@setInvisibleIfGotSword:
-	ld e,Interaction.subid
+@setSwordVisibilityAndAnimate:
+	call interactionAnimate
+@setSwordVisibility:
+	ld a,(wSwordLevel)
+	ld b,a
 	ld a,(de)
 	sub $09
-	ld b,a
-	ld a,(wSwordLevel)
 	cp b
-	jp nz,objectSetVisiblec0
-	jp objectSetInvisible
+	jp z,objectSetInvisible
+	jp objectSetVisiblec3
+
 
 ; Fountain "stream": decide which palette to used based on whether this is the "ruined"
 ; symmetry city or not
@@ -7224,6 +7301,20 @@ _miscPuzzles_subid23:
 	ld c,a
 	ld a,TILEINDEX_PUSHABLE_BLOCK
 	call setTile
+	call objectHCheckCollisionWithLink
+	jr nc,+
+	
+	ld hl,wLinkForceState
+	ld a,(hl)
+	or a
+	jr nz,+
+	ld a,LINK_STATE_SQUISHED
+	ldi (hl),a
+	ld a,(wBlockPushAngle)
+	and $08
+	xor $08
+	ld (hl),a ; [wcc50]
++
 	jp interactionDelete
 
 

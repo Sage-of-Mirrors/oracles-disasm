@@ -236,7 +236,7 @@ treasureObjectData:
 	.db $02 $0b $6b $2f
 
 	; 0x38
-	.db $00 $00 $ff $00
+	.db $38 $00 $83 $3d
 
 	; 0x39
 	.db $00 $00 $ff $00
@@ -495,6 +495,8 @@ treasureObjectData28:
 	.db $00 $01 $ff $28
 	.db $0a $0d $09 $2e
 	.db $30 $03 $02 $29
+	.db $38 $13 $82 $2c
+	.db $08 $13 $82 $2c
 
 treasureObjectData2b:
 	.db $0a $01 $17 $3a

@@ -769,19 +769,20 @@ interactionCode20:
 	.dw mainScripts.spiritsGraveScript_spawnMovingPlatform
 @dungeon2:
 	.dw mainScripts.wingDungeonScript_spawnFeather
-	.dw mainScripts.wingDungeonScript_spawn30Rupees
+	;.dw mainScripts.wingDungeonScript_spawn30Rupees
 	.dw mainScripts.dungeonScript_minibossDeath
 	.dw mainScripts.wingDungeonScript_bossDeath
 @dungeon3:
 	.dw mainScripts.dungeonScript_minibossDeath
 	.dw mainScripts.dungeonScript_bossDeath
 	.dw mainScripts.moonlitGrottoScript_spawnChestWhen2TorchesLit
+	.dw mainScripts.spawn80Rupees
 @dungeon4:
 	.dw mainScripts.seasonsShrineScript_minibossDeath
 	.dw mainScripts.dungeonScript_bossDeath
 	.dw mainScripts.seasonsShrineScript_stairsToWinter
 	.dw mainScripts.seasonsShrineScript_bossKeyRoom
-	;.dw mainScripts.skullDungeonScript_spawnChestWhenOrb1Hit
+	.dw mainScripts.spawn80Rupees
 @dungeon5:
 	.dw mainScripts.dungeonScript_minibossDeath
 	.dw mainScripts.dungeonScript_bossDeath

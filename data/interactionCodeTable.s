@@ -133,7 +133,7 @@ interactionCodeTable: ; $3b8b
 	.dw agesInteractionsBank0a.interactionCode82 ; 0x82
 	.dw agesInteractionsBank0a.interactionCode83 ; 0x83
 	.dw agesInteractionsBank0a.interactionCode84 ; 0x84
-	.dw                        interactionDelete ; 0x85
+	.dw agesInteractionsBank0a.interactionCode85 ; 0x85
 	.dw agesInteractionsBank0a.interactionCode86 ; 0x86
 	.dw agesInteractionsBank0a.interactionCode87 ; 0x87
 	.dw agesInteractionsBank0a.interactionCode88 ; 0x88

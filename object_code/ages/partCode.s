@@ -3871,122 +3871,211 @@ partCode42:
 
 
 ; ==============================================================================
-; PARTID_PLASMARINE_PROJECTILE
+; PARTID_43
 ; ==============================================================================
 partCode43:
-	jr nz,@delete
-
-	ld a,Object.id
-	call objectGetRelatedObject1Var
-	ld a,(hl)
-	cp ENEMYID_PLASMARINE
-	jr nz,@delete
-
-	ld e,Part.state
+	ld e,Part.subid ;$c2
 	ld a,(de)
+	ld e,Part.state ;$c4
+	rst_jumpTable
+	.dw @subid0
+	.dw @subid1
+	.dw @subid2
+	.dw @subid3
+	.dw @subid4
+@subid0:
+	ld a,(de)	;Part.state
 	or a
-	jr z,@state0
-
-@state1:
-	; If projectile's color is different from plasmarine's color...
-	ld l,Enemy.var32
-	ld e,Part.subid
-	ld a,(de)
-	cp (hl)
-	jr z,@noCollision
-
-	; Check for collision.
-	call checkObjectsCollided
-	jr c,@collidedWithPlasmarine
-
-@noCollision:
-	ld a,(wFrameCounter)
-	rrca
-	jr c,@updateMovement
-
+	jr z,@func_724b
+	call partAnimate
 	call partCommon_decCounter1IfNonzero
-	jp z,partDelete
-
-	; Flicker visibility for 30 frames or less remaining
-	ld a,(hl)
-	cp 30
-	jr nc,++
-	ld e,Part.visible
-	ld a,(de)
-	xor $80
-	ld (de),a
-++
-	; Slowly home in on Link
-	inc l
-	dec (hl) ; [this.counter2]--
-	jr nz,@updateMovement
-	ld (hl),$10
-	call objectGetAngleTowardEnemyTarget
-	call objectNudgeAngleTowards
-
-@updateMovement:
-	call objectApplySpeed
-	call partCommon_checkOutOfBounds
-	jp nz,partAnimate
-	jr @delete
-
-@collidedWithPlasmarine:
-	ld l,Enemy.invincibilityCounter
-	ld a,(hl)
-	or a
-	jr nz,@noCollision
-
-	ld (hl),24
-	ld l,Enemy.health
-	dec (hl)
-	jr nz,++
-
-	; Plasmarine is dead
-	ld l,Enemy.collisionType
-	res 7,(hl)
-++
-	ld a,SND_BOSS_DAMAGE
-	call playSound
-@delete:
+	jp nz,objectApplyComponentSpeed
+	ld b,$06
+-
+	ld a,b
+	dec a
+	ld hl,@table_7245
+	rst_addAToHl
+	ld c,(hl)
+	call @func_7236
+	dec b
+	jr nz,-
+	call objectCreatePuff
 	jp partDelete
+@func_7236:
+	call getFreePartSlot
+	ret nz
+	ld (hl),PARTID_43
+	inc l	;subid
+	ld (hl),$03
+	ld l,Part.angle ;$c9
+	ld (hl),c
+	jp objectCopyPosition
+@table_7245:
+	.db $03 $08 $0d
+	.db $13 $18 $1d
 
-
-@state0:
-	ld l,Enemy.health
-	ld a,(hl)
-	cp $03
-	ld a,SPEED_80
-	jr nc,+
-	ld a,SPEED_e0
-+
+@func_724b:
 	ld h,d
 	ld l,e
-	inc (hl) ; [state] = 1
-
-	ld l,Part.speed
-	ld (hl),a
-
-	ld l,Part.counter1
-	ld (hl),150 ; [counter1] (lifetime counter)
-	inc l
-	ld (hl),$08 ; [counter2]
-
-	; Set color & animation
-	ld l,Part.subid
-	ld a,(hl)
-	inc a
-	ld l,Part.oamFlags
+	inc (hl)
+	ld l,Part.oamTileIndexBase ;$dd
+	ld (hl),$06
+	dec l		;Part.oamFlags
+	ld a,$0a
 	ldd (hl),a
+	ld (hl),a	;Part.oamFlagsBackup
+	ld l,Part.yh ;$cb
+	ld a,(hl)
+	add $06
 	ld (hl),a
-	dec a
-	call partSetAnimation
+	ld l,Part.collisionRadiusY ;$e6
+	ld a,$05
+	ldi (hl),a
+	ld (hl),a
+	ld l,Part.counter1 ;$c6
+	ld (hl),$0c
+	ld l,Part.angle ;$c9
+	ld (hl),$10
+	ld b,$50
+	jr @subid1@func_729a
+@subid1:
+	ld a,(de)	;Part.state
+	rst_jumpTable
+	.dw @@state0
+	.dw @@state1
+	.dw @@state2
+@@state0:
+	ld h,d
+	ld l,e
+	inc (hl)
+	ld l,Part.counter1 ;$c6
+	ld (hl),$04
+	ld l,Part.collisionType ;$e4
+	res 7,(hl)
+	ld l,Part.oamTileIndexBase ;$dd
+	ld (hl),$06
+	dec l		;Part.oamFlags
+	ld a,$0a
+	ldd (hl),a
+	ld (hl),a	;Part.oamFlagsBackup
+	ret
+@@state1:
+	call partCommon_decCounter1IfNonzero
+	ret nz
+	ld (hl),$b4		;Enemy.var34
+	ld l,e
+	inc (hl)
+	ld l,Part.collisionType ;$e4
+	set 7,(hl)
+	ld b,$3c
+@@func_729a:
+	call _func_733d
+	call objectSetVisible81
+	ld a,SND_LIGHTTORCH ;$72
+	jp playSound
+@@state2:
+	call partCommon_decCounter1IfNonzero
+	jp z,partDelete
+	jp partAnimate
+@subid2:
+	ld a,(de)	;Part.state
+	or a
+	jr z,@func_72be
 
-	; Move toward Link
-	call objectGetAngleTowardEnemyTarget
-	ld e,Part.angle
+@seasonsFunc_10_72b2:
+	call partCommon_checkOutOfBounds
+	jp z,partDelete
+	call objectApplyComponentSpeed
+	jp partAnimate
+@func_72be:
+	ld b,$02
+	call checkBPartSlotsAvailable
+	ret nz
+	ld h,d
+	ld l,Part.state ;$c4
+	inc (hl)
+	ld l,Part.oamTileIndexBase ;$dd
+	ld (hl),$06
+	dec l		;Part.oamFlags
+	ld a,$0a
+	ldd (hl),a
+	ld (hl),a		;Part.oamFlagsBackup
+	ld l,Part.angle ;$c9
+	ld (hl),ANGLE_DOWN ;$10
+	ld l,Part.yh ;$cb
+	ld a,(hl)
+	add $06
+	ld (hl),a
+	ld b,$3c
+	call @subid1@func_729a
+	ld bc,$0213
+	call @func_72e9
+	ld bc,$030d
+@func_72e9:
+	call getFreePartSlot
+	ld (hl),PARTID_43
+	inc l
+	ld (hl),$04
+	inc l
+	ld (hl),b
+	ld l,Part.angle ;$c9
+	ld (hl),c
+	jp objectCopyPosition
+@subid3:
+	ld a,(de)	;Part.state
+	or a
+	jr z,+
+	call objectApplyComponentSpeed
+	ld c,$12
+	call objectUpdateSpeedZ_paramC
+	jp nz,partAnimate
+	jp partDelete
++
+	ld bc,$ff20
+	call objectSetSpeedZ
+	ld l,e
+	inc (hl)
+	ld l,Part.collisionRadiusY ;$e6
+	ld (hl),$05
+	inc l 		;Part.collisionRadiusX
+	ld (hl),$02
+	ld b,$3c
+	call _func_733d
+	call objectSetVisible82
+	ld a,$01
+	jp partSetAnimation
+@subid4:
+	ld a,(de)
+	or a
+	jp nz,@seasonsFunc_10_72b2
+	ld h,d
+	ld l,e
+	inc (hl)
+	ld b,$3c
+	call _func_733d
+	call objectSetVisible82
+	ld e,Part.var03 ;$c3
+	ld a,(de)
+	jp partSetAnimation
+_func_733d:
+	ld e,Part.angle ;$c9
+	ld a,(de)
+	ld c,a		;Part.angle
+	call getPositionOffsetForVelocity
+	ld e,Part.speed ;$d0
+	ldi a,(hl)
 	ld (de),a
-
-	jp objectSetVisible82
+	inc e
+	ldi a,(hl)	
+	ld (de),a
+	inc e
+	ldi a,(hl)
+	ld (de),a
+	inc e
+	ldi a,(hl)
+	ld (de),a
+	ret
 
 
 ; ==============================================================================
@@ -4287,209 +4376,7 @@ partCode47:
 ;   var30: gravity
 ; ==============================================================================
 partCode48:
-	jr z,@normalStatus
-
-	; For subid 1 only, delete self on collision with anything?
-	ld e,Part.subid
-	ld a,(de)
-	or a
-	jp nz,partDelete
-
-@normalStatus:
-	ld e,Part.subid
-	ld a,(de)
-	or a
-	ld e,Part.state
-	jr z,_octogonDepthCharge_subid0
-
-
-; Small (split) projectile
-_octogonDepthCharge_subid1:
-	ld a,(de)
-	or a
-	jr z,@state0
-
-@state1:
-	call objectApplySpeed
-	call partCommon_checkTileCollisionOrOutOfBounds
-	jp nz,partAnimate
-	jp partDelete
-
-@state0:
-	ld h,d
-	ld l,e
-	inc (hl) ; [state] = 1
-
-	ld l,Part.collisionRadiusY
-	ld a,$02
-	ldi (hl),a
-	ld (hl),a
-
-	ld l,Part.speed
-	ld (hl),SPEED_180
-	ld a,$01
-	call partSetAnimation
-	jp objectSetVisible82
-
-
-; Large projectile, before being split into 4 smaller ones (subid 1)
-_octogonDepthCharge_subid0:
-	ld a,(de)
-	rst_jumpTable
-	.dw @state0
-	.dw @state1
-	.dw @state2
-	.dw @state3
-
-@state0:
-	ld a,Object.visible
-	call objectGetRelatedObject1Var
-	ld a,(hl)
-
-	ld h,d
-	ld l,Part.state
-	inc (hl)
-
-	rlca
-	jr c,@aboveWater
-
-@belowWater:
-	inc (hl) ; [state] = 2 (skips the "moving up" part)
-	ld l,Part.counter1
-	inc (hl)
-
-	ld l,Part.zh
-	ld (hl),$b8
-	ld l,Part.var30
-	ld (hl),$10
-
-	; Choose random position to spawn at
-	call getRandomNumber_noPreserveVars
-	and $06
-	ld hl,@positionCandidates
-	rst_addAToHl
-	ld e,Part.yh
-	ldi a,(hl)
-	ld (de),a
-	ld e,Part.xh
-	ld a,(hl)
-	ld (de),a
-
-	ld a,SND_SPLASH
-	call playSound
-	jr @setVisible81
-
-@positionCandidates:
-	.db $38 $48
-	.db $38 $a8
-	.db $78 $48
-	.db $78 $a8
-
-@aboveWater:
-	; Is shot up before coming back down
-	ld l,Part.var30
-	ld (hl),$20
-
-	ld l,Part.yh
-	ld a,(hl)
-	sub $10
-	ld (hl),a
-
-	ld a,SND_SCENT_SEED
-	call playSound
-
-@setVisible81:
-	jp objectSetVisible81
-
-
-; Above water: being shot up
-@state1:
-	ld h,d
-	ld l,Part.zh
-	dec (hl)
-	dec (hl)
-
-	ld a,(hl)
-	cp $d0
-	jr nc,@animate
-
-	cp $b8
-	jr nc,@flickerVisibility
-
-	ld l,e
-	inc (hl) ; [state] = 2
-
-	ld l,Part.counter1
-	ld (hl),30
-
-	ld l,Part.collisionType
-	res 7,(hl)
-
-	ld l,Part.yh
-	ldh a,(<hEnemyTargetY)
-	ldi (hl),a
-	inc l
-	ldh a,(<hEnemyTargetX)
-	ld (hl),a
-
-	jp objectSetInvisible
-
-@flickerVisibility:
-	ld l,Part.visible
-	ld a,(hl)
-	xor $80
-	ld (hl),a
-
-@animate:
-	jp partAnimate
-
-
-; Delay before falling to ground
-@state2:
-	call partCommon_decCounter1IfNonzero
-	ret nz
-
-	ld l,e
-	inc (hl) ; [state] = 3
-
-	ld l,Part.collisionType
-	set 7,(hl)
-	jp objectSetVisiblec1
-
-
-; Falling to ground
-@state3:
-	ld e,Part.var30
-	ld a,(de)
-	call objectUpdateSpeedZ
-	jr nz,@animate
-
-	; Hit ground; split into four, then delete self.
-	call getRandomNumber_noPreserveVars
-	and $04
-	ld b,a
-	ld c,$04
-
-@spawnNext:
-	call getFreePartSlot
-	jr nz,++
-	ld (hl),PARTID_OCTOGON_DEPTH_CHARGE
-	inc l
-	inc (hl) ; [subid] = 1
-	ld l,Part.angle
-	ld (hl),b
-	call objectCopyPosition
-	ld a,b
-	add $08
-	ld b,a
-++
-	dec c
-	jr nz,@spawnNext
-
-	ld a,SND_UNKNOWN3
-	call playSound
-	jp partDelete
-
+	ret
 
 ; ==============================================================================
 ; PARTID_BIGBANG_BOMB_SPAWNER

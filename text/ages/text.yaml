@@ -1030,6 +1030,20 @@ groups:
       change the
       seasons!
 
+  - name: TX_0082
+    index: 0x82
+    text: |-
+      You got
+      \col(1)80 Rupees\col(0)!
+      Way to go!
+
+  - name: TX_0083
+    index: 0x83
+    text: |-
+      You got
+      \col(1)Din's Gift\col(0)!
+      You're sure she'll love this!  
+
 - group: 0x01
   data:
   - name: TX_0100
@@ -6224,13 +6238,11 @@ groups:
     - 0x09
     - 0x0a
     text: |-
-      Sir, I can
-      expand your
-      \col(1)Ring Box\col(0) to
-      make it hold
-      more \col(1)rings\col(0).
-      It's 300 Rupees.
-        \opt()OK \opt()No thanks\cmd8(0x0f)
+      This satchel
+      holds lots of
+      \col(1)seeds\col(0). It's
+      300 Rupees.
+        \opt()OK \opt()No thanks
 
   - name: TX_0e0b
     index: 0x0b
@@ -6372,7 +6384,7 @@ groups:
     - 0x1c
     - 0x1d
     text: |-
-      \col(1)Gasha Seed\col(0)\stop
+      \col(1)Heart Container\col(0)\stop
       \num1 Rupees
       \jump(TX_0e2b)
     null_terminator: False

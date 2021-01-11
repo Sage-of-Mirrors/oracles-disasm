@@ -1204,7 +1204,7 @@
 .define INTERACID_SPARKLE		$84
 
 ;;
-.define INTERACID_STUB_85		$85
+.define INTERACID_SWORDS_DECORATION		$85
 
 ;;
 ; Flower for the maku tree. RelatedObj1 should be an instance of INTERACID_MAKU_TREE.

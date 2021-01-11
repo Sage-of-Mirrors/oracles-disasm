@@ -410,7 +410,7 @@ shopkeeperScript_purchaseItem:
 ; Ring box upgrade (ages) or satchel upgrade (seasons)
 @buyUpgradeableItem:
 .ifdef ROM_AGES
-	jumpifitemobtained TREASURE_RING_BOX, @haveUpgradeableItem
+	jumpifitemobtained TREASURE_SEED_SATCHEL, @haveUpgradeableItem
 
 	; No ring box, can't buy
 	showtextlowindex <TX_0e0b

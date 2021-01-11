@@ -2047,22 +2047,25 @@ interactionCodee8:
 ; INTERACID_MISC_STATIC_OBJECTS
 ; ==============================================================================
 interactionCodee4:
-	ld e,Interaction.subid
-	ld a,(de)
-	rst_jumpTable
-	.dw @subid0
-	.dw @subid1
-	.dw @subid2
-	.dw @subid3
+	;ld e,Interaction.subid
+	;ld a,(de)
+	;rst_jumpTable
+	;.dw @subid0
+	;.dw @subid1
+	;.dw @subid2
+	;.dw @subid3
+	;.dw 
+	jr +
 
 	call @func_72de
 	jp objectSetVisible80
 	call @func_72de
 	jp objectSetVisible81
-@subid0:
-@subid1:
-@subid2:
-@subid3:
++
+;@subid0:
+;@subid1:
+;@subid2:
+;@subid3:
 	call @func_72de
 	jp objectSetVisible83
 @func_72de:

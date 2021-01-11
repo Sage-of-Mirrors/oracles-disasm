@@ -135,9 +135,9 @@ wingDungeonScript_spawnFeather:
 	spawnitem TREASURE_FEATHER, $00
 	scriptend
 
-wingDungeonScript_spawn30Rupees:
+spawn80Rupees:
 	stopifitemflagset
-	spawnitem TREASURE_RUPEES, $0c
+	spawnitem TREASURE_RUPEES, $19
 	scriptend
 
 moonlitGrottoScript_spawnChestWhen2TorchesLit:
@@ -145,7 +145,7 @@ moonlitGrottoScript_spawnChestWhen2TorchesLit:
 	checkmemoryeq wNumTorchesLit, $02
 	scriptjump _spawnChestAfterPuff
 
-;the room with the torches, after entrance
+;the room with the torches, after entrance in spring
 seasonsShrineScript_stairsToWinter:
 	jumpifroomflagset $80 @spawnDungeonStuffInteraction
 	asm15 scriptHelp.makeTorchesLightable

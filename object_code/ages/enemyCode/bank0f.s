@@ -9768,1297 +9768,1103 @@ _smog_setCounterToFireProjectile:
 @subid4_3:
 	.db $14 $1e $28 $32
 
-
 ; ==============================================================================
-; ENEMYID_OCTOGON
-;
-; Variables:
-;   var03: Where it actually is? (0 = above water, 1 = below water)
-;   counter2: Counter until it moves above or below the water?
-;   relatedObj1: Reference to other instance of ENEMYID_OCTOGON?
-;   var30: Index in "target position list"?
-;   var31/var32: Target position to move to
-;   var33/var34: Original Y/X position when this screen was entered
-;   var35: Counter for animation purposes?
-;   var36: Counter which, when 0 is reached, invokes a change of state (ie. fire at link
-;          instead of moving around)
-;   var37: Health value from when octogon appeared here (used to decide when to surface or
-;          not)
+; ENEMYID_GLEEOK
 ; ==============================================================================
 enemyCode7d:
+;enemyCode06:
 	jr z,@normalStatus
-	sub ENEMYSTATUS_NO_HEALTH
+	sub $03
 	ret c
-	jr nz,@justHit
-
-	; Dead
-	ld e,Enemy.subid
-	ld a,(de)
-	cp $02
-	jp z,enemyDelete
-
-	ld e,Enemy.collisionType
-	ld a,(de)
-	or a
-	call nz,_ecom_killRelatedObj1
-	jp _enemyBoss_dead
-
-@justHit:
-	ld a,Object.invincibilityCounter
-	call objectGetRelatedObject1Var
-	ld e,l
-	ld a,(de)
-	ld (hl),a
-
-	ld e,Enemy.subid
-	ld a,(de)
-	cp $02
-	jr z,@normalStatus
-
-	; Check if enough damage has been dealt to rise above or below the water
-	ld h,d
-	ld l,Enemy.health
-	ld e,Enemy.var37
-	ld a,(de)
-	sub (hl)
-	cp $0a
-	jr c,+
-	ld l,Enemy.counter2
-	ld (hl),$01
-+
-	ld e,Enemy.health
-	ld a,(de)
-	or a
 	jr nz,@normalStatus
-
-	; Health just reached 0
-	ld hl,wGroup5Flags+$2d
+	ld e,Enemy.subid
+	ld a,(de)
+	dec a
+	jp z,_enemyBoss_dead
+	ld e,Enemy.collisionType ;$a4
+	ld a,(de)
+	or a
+	jp z,enemyDie_uncounted_withoutItemDrop
+	ld e,Enemy.subid
+	ld a,(de)
+	cp $02
+	ld b,$02
+	jr z,+
+	ld b,$04
++
+	ld a,$38		;var38
+	call objectGetRelatedObject1Var
+	ld a,(hl)
+	or b
+	ld (hl),a
+	ld e,Enemy.state
+	ld a,(de)
+	cp $0b
+	jr nz,+
+	ld e,Enemy.var03 ;$83
+	ld a,(de)
+	cp $03
+	jr nc,+
+;if at state 0b and var03 is less than 03
+	ld e,Enemy.subid ;$82
+	ld a,(de)
+	xor $01
+	add $ae
+	ld l,a
+	ld h,(hl)
+	ld l,Enemy.state ;$84
+	ld a,(hl)
+	cp $0b
+	jr nz,+
+	inc (hl)
++
+	ld h,d
+	ld l,Enemy.state ;$84
+	ld (hl),$0e
+	ld l,Enemy.collisionType; $a4
 	set 7,(hl)
-	ld l,$36
-	set 7,(hl)
-	ld a,MUS_BOSS
-	ld (wActiveMusic),a
-	ret
+	inc l
+	ld (hl),$04
+	ld l,Enemy.health ;$a9
+	ld (hl),$19
+	ld l,Enemy.knockbackAngle ;$ac
+	ld a,(hl)
+	ld l,Enemy.angle ;$89
+	ld (hl),a
+	ld l,Enemy.speedY ;$90
+	ld (hl),SPEED_200 ;$50
+	ld l,Enemy.counter1 ;$86
+	ld (hl),150 ;$96
+	xor a
+	jp enemySetAnimation
 
 @normalStatus:
-	call @doJumpTable
+	call _ecom_getSubidAndCpStateTo08
+	jr nc,+
+	rst_jumpTable
+	.dw @state0
+	.dw @state1
+	.dw @stateStub
+	.dw @stateStub
+	.dw @stateStub
+	.dw @stateStub
+	.dw @stateStub
+	.dw @stateStub
++
+	dec b
+	ld a,b
+	rst_jumpTable
+	.dw @subid1
+	.dw @subid2
+	.dw @subid3
+	.dw @subid4
+	.dw @subid5
+	.dw @subid6
+	.dw @subid7
+	.dw @subid8
+	.dw @subid9
 
-	ld h,d
-	ld l,Enemy.var34
-	ld e,Enemy.xh
-	ld a,(de)
-	ldd (hl),a
-	ld e,Enemy.yh
+@state0:
+	ld a,b
+	or a
+	jp z,+
+	call _ecom_setSpeedAndState8AndVisible
+	jp _func_6c6b
++
+	inc a
+	ld (de),a
+	ld a,ENEMYID_GLEEOK
+	ld b,$87
+	call _enemyBoss_initializeRoom
+
+@state1:
+	ld b,$09
+	call checkBEnemySlotsAvailable
+	ret nz
+	ld b,ENEMYID_GLEEOK
+	call _ecom_spawnUncountedEnemyWithSubid01
+	ld l,$80
+	ld e,l
 	ld a,(de)
 	ld (hl),a
-	ld l,Enemy.direction
+	ld l,Enemy.var30 ;$b0
+	ld c,h
+	ld e,$08
+-
+	push hl
+	call _ecom_spawnUncountedEnemyWithSubid01
+	ld a,$0a
+	sub e
+	ld (hl),a
+	ld l,Enemy.relatedObj1 ;$96
+	ld a,$80
+	ldi (hl),a
+	ld (hl),c
+	ld a,h
+	pop hl
+	ldi (hl),a
+	dec e
+	jr nz,-
+	jp enemyDelete
+
+@stateStub:
+	ret
+
+@subid1:
+	ld a,(de)
+	sub $08
+	rst_jumpTable
+	.dw @@state8
+	.dw @@state9
+	.dw @@stateA
+	.dw @@stateB
+	.dw @@stateC
+	.dw @@stateD
+	.dw @@stateE
+	.dw @@stateF
+	.dw @@stateG
+	
+@@state8:
+	ld a,(wcc93)
+	or a
+	ret nz
+	ld h,d
+	ld l,e
+	inc (hl)
+	ld a,MUS_BOSS ;$2e
+	ld (wActiveMusic),a
+	jp playSound
+	
+@@state9:
+	ld e,Enemy.var38 ;$b8
+	ld a,(de)
+	bit 1,a
+	jr z,@@animate
+	bit 2,a
+	jr z,@@animate
+	ld h,d
+	ld l,Enemy.state ;$84
+	inc (hl)
+	ld l,Enemy.counter2 ;$87
+	ld (hl),60 ;$3c
+	ld e,Enemy.var30 ;$b0
+	ld a,(de)
+	ld h,a
+	ld l,Enemy.health ;$a9
+	xor a
+	ld (hl),a
+	ld l,Enemy.collisionType ;$a4
+	ld (hl),a
+	inc e
+	ld a,(de)
+	ld h,a
+	xor a
+	ld (hl),a
+	ld l,Enemy.health ;$a9
+	ld (hl),a
+	ld hl,$ce16
+	xor a
+	ldi (hl),a
+	ldi (hl),a
+	ld (hl),a
+	ld l,$26
+	ldi (hl),a
+	ldi (hl),a
+	ld (hl),a
+	ld a,SND_BOSS_DEAD ;$67
+	call playSound
+	ld a,SNDCTRL_STOPMUSIC ;$f0
+	jp playSound
+	
+@@stateA:
+	call _ecom_decCounter2
+	jp nz,_ecom_flickerVisibility
+	ld bc,$020c
+	call _enemyBoss_spawnShadow
+	jp nz,_ecom_flickerVisibility
+	ld h,d
+	ld l,Enemy.state ;$84
+	inc (hl)
+	ld l,Enemy.counter1 ;$86
+	ld (hl),30 ;$1e
+	ld a,$04
+	call enemySetAnimation
+	
+@@stateB:
+	call _ecom_decCounter1
+	jp nz,_ecom_flickerVisibility
+	inc (hl)
+	ld l,e
+	inc (hl)
+	ld l,Enemy.collisionType ;$a4
+	set 7,(hl)
+	ld a,MUS_BOSS ;$2e
+	ld (wActiveMusic),a
+	call playSound
+	ld e,Enemy.state ;$84
+	
+@@stateC:
+	call _ecom_decCounter1
+	jr nz,+
+	ld l,e
+	inc (hl)
+	ld bc,$fdc0
+	call objectSetSpeedZ
+	jp objectSetVisible81
++
+	ld a,(hl)
+	cp 10 ;$0a
+	ret c
+
+@@animate:
+	jp enemyAnimate
+	
+@@stateD:
+	ld c,$20
+	call objectUpdateSpeedZ_paramC
+	ret nz
+	ld l,Enemy.state ;$84
+	inc (hl)
+	ld l,Enemy.counter1 ;$86
+	ld (hl),150 ;$96
+	ld a,120 ;$78
+	call setScreenShakeCounter
+	call objectSetVisible82
+	ld a,SND_STRONG_POUND ;$81
+	jp playSound
+	
+@@stateE:
+	call _ecom_decCounter1
+	jr z,+
+	ld a,(hl)
+	cp 135 ;$87
+	jr c,@@animate
+	ld a,($d00f)		;w1Link.zh
+	rlca
+	ret c
+	ld hl,wLinkForceState ;$cc6a
+	ld a,LINK_STATE_COLLAPSED ;$14
+	ldi (hl),a		;wcc50
+	ld (hl),$00
+	ret
++
+	ld l,e
+	inc (hl)
+	ld l,Enemy.speedY ;$90
+	ld (hl),SPEED_200 ;$50
+	call _ecom_updateAngleTowardTarget
+	jr @@animate
+	
+@@stateF:
+	ld a,$01
+	call _ecom_getSideviewAdjacentWallsBitset
+	jr nz,+
+	call objectApplySpeed
+	jr @@animate
++
+	ld a,40 ;$28
+	call setScreenShakeCounter
+	ld h,d
+	ld l,Enemy.state ;$84
+	inc (hl)
+	ld l,Enemy.speedY ;$90
+	ld (hl),SPEED_80 ;$14
+	ld l,Enemy.angle ;$89
+	ld a,(hl)
+	xor $10
+	ld (hl),a
+	ld bc,$fe80
+	call objectSetSpeedZ
+	jr @@animate
+	
+@@stateG:
+	call _ecom_applyVelocityForSideviewEnemyNoHoles
+	ld c,$20
+	call objectUpdateSpeedZ_paramC
+	jr nz,@@animate
+	ld l,Enemy.state ;$84
+	ld (hl),$0c
+	ld l,Enemy.counter1 ;$86
+	ld (hl),60 ;$3c
+	jr @@animate
+
+@subid2:
+	ld a,(de)
+	sub $08
+	rst_jumpTable
+	.dw @@state8
+	.dw @@incStateWhenCounter1Is0
+	.dw @@stateA
+	.dw @@stateB
+	.dw @@stateC
+	.dw @@stateD
+	.dw @@stateE
+	.dw @@stateF
+	.dw @@incStateWhenCounter1Is0
+	.dw @@stateH
+	
+@@state8:
+	ld h,d
+	ld l,Enemy.angle
+	ld (hl),$14		;southwest (down-left)
+@@incStateEnableCollisionsSetCounterAndSpeed:
+	ld l,e
+	inc (hl)
+	ld l,Enemy.collisionType
+	set 7,(hl)
+	ld l,Enemy.counter1
+	ld (hl),60 ;$3c
+	ld l,Enemy.speed
+	ld (hl),SPEED_80
+	ret
+	
+@@incStateWhenCounter1Is0:
+	call _ecom_decCounter1
+	jp nz,objectApplySpeed
+	ld l,e
+	inc (hl)
+	ret
+	
+@@stateA:
+	ld b,$04
+@@func_6905:
+	ld a,$38		;Realated Object1's var38
+	call objectGetRelatedObject1Var
+	ld a,(hl)
+	and b
+	ld c,$03
+	ld l,Enemy.var38 ;$b8
+	jr nz,+
+	bit 0,(hl)
+	jr nz,++
+	ld e,Enemy.subid ;$82
+	ld a,(de)
+	cp $03
+	jr z,+
+	ld b,h
+	ld l,Enemy.var31 ;$b1
+	ld h,(hl)
+	ld l,Enemy.state ;$84
 	ld a,(hl)
 	cp $10
-	jr c,+
-	ld a,$08
+	ld h,b
+	jr nc,+
+	ldh a,(<hEnemyTargetX)
+	cp $78
+	jr nc,++
 +
-	and $0c
-	rrca
-	ld hl,@offsetData
-	rst_addAToHl
-
-	; Add offsets to Y/X position
-	ld a,(de)
-	add (hl)
-	ld (de),a
-	ld e,Enemy.xh
-	inc hl
-	ld a,(de)
-	add (hl)
-	ld (de),a
-
-	; Store some persistent variables?
-
-	ld hl,wTmpcfc0.octogonBoss.var03
-	ld e,Enemy.var03
-	ld a,(de)
-	ldi (hl),a
-
-	ld e,Enemy.direction
-	ld a,(de)
-	ldi (hl),a ; [wTmpcfc0.octogonBoss.direction]
-
-	ld e,Enemy.health
-	ld a,(de)
-	ldi (hl),a ; [wTmpcfc0.octogonBoss.health]
-
-	ld e,Enemy.var33
-	ld a,(de)
-	ldi (hl),a ; [wTmpcfc0.octogonBoss.var33]
-	inc e
-	ld a,(de) ; [var34]
-	ldi (hl),a ; [wTmpcfc0.octogonBoss.var34]
-
-	ld e,Enemy.var30
-	ld a,(de)
-	ld (hl),a ; [wTmpcfc0.octogonBoss.var30]
-	ret
-
-@offsetData:
-	.db $f8 $00
-	.db $00 $08
-	.db $08 $00
-	.db $00 $f8
-
-@doJumpTable:
-	ld e,Enemy.state
-	ld a,(de)
-	cp $08
-	ld e,Enemy.subid
-	jr c,@state8OrLess
-
-	ld a,(de)
-	rst_jumpTable
-	.dw _octogon_subid0
-	.dw _octogon_subid1
-	.dw _octogon_subid2
-
-
-@state8OrLess:
-	rst_jumpTable
-	.dw _octogon_state_uninitialized
-	.dw _octogon_state_stub
-	.dw _octogon_state_stub
-	.dw _octogon_state_stub
-	.dw _octogon_state_stub
-	.dw _octogon_state_stub
-	.dw _octogon_state_stub
-	.dw _octogon_state_stub
-
-
-_octogon_state_uninitialized:
-	ld e,Enemy.subid
-	ld a,(de)
-	cp $02
-	jr nz,@notSubid2
-
-	ld e,Enemy.enemyCollisionMode
-	ld a,ENEMYCOLLISION_OCTOGON_SHELL
-	ld (de),a
-	jp _ecom_setSpeedAndState8
-
-@notSubid2:
-	ld a,ENEMYID_OCTOGON
-	ld (wEnemyIDToLoadExtraGfx),a
-	ld a,PALH_88
-	call loadPaletteHeader
-
-	ld hl,wTmpcfc0.octogonBoss.loadedExtraGfx
-	ld a,(hl)
-	or a
-	jr nz,++
-	inc (hl)
-	call _enemyBoss_initializeRoomWithoutExtraGfx
+	ld l,Enemy.var38 ;$b8
+	set 0,(hl)
+	ld c,$00
 ++
-	; Create "child" with subid 2? They will reference each other with relatedObj2.
-	call getFreeEnemySlot_uncounted
-	ret nz
-	ld (hl),ENEMYID_OCTOGON
-	inc l
-	ld (hl),$02 ; [child.subid]
-	ld l,Enemy.relatedObj1
-	ld e,l
-	ld a,Enemy.start
-	ld (de),a
-	ldi (hl),a
-	inc e
-	ld a,h
-	ld (de),a
-	ld (hl),d
-
-	ld a,SPEED_100
-	call _ecom_setSpeedAndState8
-
-	ld l,Enemy.var35
-	ld (hl),$0c ; [this.var35]
-	inc l
-	ld (hl),120 ; [var36]
-
-	ld l,Enemy.subid
-	ld a,(hl)
-	add a
+	ldh a,(<hEnemyTargetY)
+	cp $58
+	ld b,$00
+	jr c,+
+	ld b,$02
+	sub $70
+	cp $40
+	jr c,+
+	call getRandomNumber
+	and $01
+	inc a
 	ld b,a
-	call objectSetVisible83
-
-	; Load persistent variables
-
-	ld hl,wTmpcfc0.octogonBoss.var30
-	ld e,Enemy.var30
-	ldd a,(hl)
-	ld (de),a
-	ld e,Enemy.xh
-	ldd a,(hl)
-	ld (de),a
-	ld e,Enemy.yh
-	ldd a,(hl)
-	ld (de),a
-	ld e,Enemy.health
-	ldd a,(hl)
-	ld (de),a
-	ld e,Enemy.var37
-	ld (de),a
-	ld e,Enemy.direction
-	ldd a,(hl)
-	ld (de),a
-	ld e,Enemy.var03
-	ld a,(hl)
-	ld (de),a
-
++
+	ld h,d
+	ld l,Enemy.var03 ;$83
+	ld a,c
 	add b
-	rst_jumpTable
-	.dw @subid0_0
-	.dw @subid0_1
-	.dw @subid1_0
-	.dw @subid1_1
-
-@subid0_0:
-	call _octogon_fixPositionAboveWater
-
-	ld h,d
-	ld l,Enemy.counter2
-	ld (hl),120
-
-	ld l,Enemy.var30
-	ld a,(hl)
-	inc a
-	jp z,_octogon_chooseRandomTargetPosition
-
-	call _octogon_loadTargetPosition
-	ret z
-	dec hl
-	dec hl
-	dec hl
-	ld a,(hl)
-	ld e,Enemy.direction
-	ld (de),a
-	jp enemySetAnimation
-
-@subid0_1:
-	call _octogon_fixPositionAboveWater
-	jp _octogon_loadNormalSubmergedAnimation
-
-@subid1_0:
-	ld h,d
-	ld l,Enemy.collisionType
-	res 7,(hl)
-
-	; Delete child object (subid 2)
-	ld a,Object.start
-	call objectGetRelatedObject1Var
-	ld b,$40
-	call clearMemory
-
-	jp objectSetInvisible
-
-@subid1_1:
-	ld a,$01
-	ld (wTmpcfc0.octogonBoss.posNeedsFixing),a
-
-	ld h,d
-	ld l,Enemy.oamFlagsBackup
-	ld a,$06
-	ldi (hl),a
 	ld (hl),a
-
-	ld l,Enemy.counter1
-	ld (hl),90
-	inc l
-	ld (hl),150 ; [counter2]
-
-	ld l,Enemy.var31
-	ldh a,(<hEnemyTargetY)
-	ldi (hl),a
-	ldh a,(<hEnemyTargetX)
-	ld (hl),a
-
-	call _ecom_updateAngleTowardTarget
-	add $04
-	and $18
-	rrca
-	ld e,Enemy.direction
-	ld (de),a
-	call enemySetAnimation
-
-	call getFreeInteractionSlot
-	ret nz
-	ld (hl),INTERACID_BUBBLE
-	inc l
-	inc (hl) ; [bubble.subid] = 1
-	ld l,Interaction.relatedObj1
-	ld a,Enemy.start
-	ldi (hl),a
-	ld (hl),d
-	ret
-
-
-_octogon_state_stub:
-	ret
-
-
-_octogon_subid0:
-	; Initialize Y/X position
-	ld h,d
-	ld l,Enemy.var33
-	ld e,Enemy.yh
-	ldi a,(hl)
-	ld (de),a
-	ld e,Enemy.xh
-	ld a,(hl)
-	ld (de),a
-
-	; Check if submerged
-	ld e,Enemy.var03
-	ld a,(de)
-	or a
-	ld e,Enemy.state
-	ld a,(de)
-	jp nz,_octogon_subid0BelowWater
-
-	sub $08
-	rst_jumpTable
-	.dw _octogon_subid0AboveWater_state8
-	.dw _octogon_subid0AboveWater_state9
-	.dw _octogon_subid0AboveWater_stateA
-	.dw _octogon_subid0AboveWater_stateB
-	.dw _octogon_subid0AboveWater_stateC
-	.dw _octogon_subid0AboveWater_stateD
-	.dw _octogon_subid0AboveWater_stateE
-	.dw _octogon_subid0AboveWater_stateF
-	.dw _octogon_subid0AboveWater_state10
-	.dw _octogon_subid0AboveWater_state11
-
-
-_octogon_subid0AboveWater_state8:
-	; Wait for shutters to close
-	ld a,($cc93)
-	or a
-	ret nz
-
-	ld h,d
-	ld l,e
-	inc (hl) ; [state] = 9
-
-	; Initialize music if necessary
-	ld hl,wActiveMusic
-	ld a,(hl)
-	or a
-	ret z
-	ld (hl),$00
-	ld a,MUS_BOSS
-	jp playSound
-
-
-; Moving normally around the room
-_octogon_subid0AboveWater_state9:
-	call _octogon_decVar36IfNonzero
-
-	; Submerge into water after set amount of time
-	ld a,(wFrameCounter)
-	and $03
-	jr nz,++
-	ld l,Enemy.counter2
-	dec (hl)
-	jp z,_octogon_subid0_submergeIntoWater
-++
-	; Check if lined up to fire at Link.
-	; BUG: Should set 'b', not 'c'? (b happens to be $0f here, so it works out ok.)
-	ld c,$08
-	call objectCheckCenteredWithLink
-	jp nc,_octogon_updateMovementAndAnimation
-
-	; If enough time has passed, begin firing at Link.
-	ld h,d
-	ld l,Enemy.var36
-	ld a,(hl)
-	or a
-	jp nz,_octogon_updateMovementAndAnimation
-
-	ld (hl),120 ; [var36]
-
-	; Begin turning toward Link to fire.
-	call objectGetAngleTowardEnemyTarget
-	add $14
-	and $18
-	ld b,a
-	ld e,Enemy.direction
-	ld a,(de)
-	and $0c
-	add a
-	cp b
-	jp nz,_octogon_updateMovementAndAnimation
-
-	ld h,d
-	ld l,Enemy.state
-	ld (hl),$0b
-
-	ld l,Enemy.counter1
-	ld (hl),$08
-	ret
-
-
-_octogon_subid0AboveWater_stateA:
-_octogon_subid0_pauseMovement:
-	call _ecom_decCounter1
-	ret nz
-
-	ld l,e
-	dec (hl) ; [state]--
-
-	ld l,Enemy.var30
-	ld a,(hl)
-	inc a
-	ld (hl),a
-
-	and $07
-	jr nz,_octogon_loadTargetPosition
-
-
-;;
-_octogon_chooseRandomTargetPosition:
-	call getRandomNumber
-	and $18
-	ld (hl),a
-
-;;
-; @param	hl	Pointer to index for a table
-; @param[out]	hl	Pointer to some data
-; @param[out]	zflag	z if animation changed
-_octogon_loadTargetPosition:
-	ld a,(hl)
-	add a
-	add (hl)
-	ld hl,@targetPositionList
-	rst_addAToHl
-	ld e,Enemy.var31
-	ldi a,(hl)
-	ld (de),a
-	inc e
-	ldi a,(hl)
-	ld (de),a ; [var32]
-	ld e,Enemy.var03
-	ld a,(de)
-	or a
-	ret nz
-
-	ld a,(hl)
-	bit 7,a
-	ret nz
-
-	ld e,Enemy.direction
-	ld (de),a
-	call enemySetAnimation
-	xor a
-	ret
-
-; data format: target position (2 bytes), animation
-@targetPositionList:
-	.db $28 $38 $00
-	.db $58 $30 $0c
-	.db $88 $38 $ff
-	.db $88 $78 $08
-	.db $88 $b8 $ff
-	.db $58 $c0 $04
-	.db $28 $b8 $ff
-	.db $28 $78 $00
-
-	.db $28 $b8 $00
-	.db $58 $c0 $04
-	.db $88 $b8 $ff
-	.db $88 $78 $08
-	.db $88 $38 $ff
-	.db $58 $30 $0c
-	.db $28 $38 $ff
-	.db $28 $78 $00
-
-	.db $28 $38 $00
-	.db $58 $30 $0c
-	.db $88 $38 $ff
-	.db $88 $78 $08
-	.db $88 $38 $ff
-	.db $58 $30 $0c
-	.db $28 $38 $ff
-	.db $28 $78 $00
-
-	.db $28 $b8 $00
-	.db $58 $c0 $04
-	.db $88 $b8 $ff
-	.db $88 $78 $08
-	.db $88 $b8 $ff
-	.db $58 $c0 $04
-	.db $28 $b8 $ff
-	.db $28 $78 $00
-
-
-; Turning around to fire projectile (or just after doing so)?
-_octogon_subid0AboveWater_stateB:
-_octogon_subid0AboveWater_stateF:
-	ld b,$06
-	jr _octogon_subid0AboveWater_turningAround
-
-
-; Turning around?
-_octogon_subid0AboveWater_stateC:
-	ld b,$18
-
-_octogon_subid0AboveWater_turningAround:
-	call _ecom_decCounter1
-	ret nz
-
-	ld (hl),b
-	ld l,e
-	inc (hl) ; [state]++
-
-	ld l,Enemy.direction
-	ld a,(hl)
-	add $04
-	and $0c
-	ld (hl),a
-	jp enemySetAnimation
-
-
-; About to fire projectile?
-_octogon_subid0AboveWater_stateD:
-	call _ecom_decCounter1
-	ret nz
-
-	ld (hl),$08
-
-	ld l,e
-	inc (hl) ; [state] = $0e
-
-	ld l,Enemy.direction
-	ld a,(hl)
-	add $02
-	ld (hl),a
-	jp enemySetAnimation
-
-
-; Firing projectile
-_octogon_subid0AboveWater_stateE:
-	call _ecom_decCounter1
-	ret nz
-
-	ld (hl),40
-	ld l,e
-	inc (hl) ; [state] = $0f
-	ld l,Enemy.direction
+	ld l,Enemy.state ;$84
 	inc (hl)
-	ld a,(hl)
-	call enemySetAnimation
-	jp _octogon_fireOctorokProjectile
-
-
-; Turning around after firing projectile?
-_octogon_subid0AboveWater_state10:
-	ld b,$0c
-	jr _octogon_subid0AboveWater_turningAround
-
-
-; Delay before resuming normal movement
-_octogon_subid0AboveWater_state11:
-	call _ecom_decCounter1
-	ret nz
-	ld l,e
-	ld (hl),$09 ; [state]
+	inc l
+	ld (hl),$00
 	ret
-
-
-; Octogon code where octogon itself is below water, and link is above water
-_octogon_subid0BelowWater:
-	sub $08
-	rst_jumpTable
-	.dw _octogon_subid0BelowWater_state8
-	.dw _octogon_subid0BelowWater_state9
-	.dw _octogon_subid0BelowWater_stateA
-	.dw _octogon_subid0BelowWater_stateB
-	.dw _octogon_subid0BelowWater_stateC
-	.dw _octogon_subid0BelowWater_stateD
-
-
-; Swimming normally
-_octogon_subid0BelowWater_state8:
-	call enemyAnimate
-
-	; Check whether to play swimming sound
-	ld e,Enemy.animParameter
-	ld a,(de)
-	or a
-	jr nz,++
-	inc a
-	ld (de),a
-	ld a,SND_LINK_SWIM
-	call playSound
-++
-	call _octogon_decVar36IfNonzero
-	jp nz,_octogon_moveTowardTargetPosition
-
-	; Reached target position
-	ld (hl),90 ; [var36]
-	call getRandomNumber
-	cp $50
-	jp nc,_octogon_moveTowardTargetPosition
-
-	; Random chance of going to state $0a (firing projectile)
-	ld l,Enemy.state
-	ld (hl),$0a
-	ld l,Enemy.counter1
-	ld (hl),60
-	jr _octogon_loadNormalSubmergedAnimation
-
-
-; Waiting in place before moving again
-_octogon_subid0BelowWater_state9:
-	call _octogon_subid0_pauseMovement
-_octogon_animate:
-	jp enemyAnimate
-
-
-; Delay before firing projectile
-_octogon_subid0BelowWater_stateA:
-	call _ecom_decCounter1
-	jr z,@beginFiring
-
-	ld a,(hl)
-	and $07
-	ret nz
-	ld l,Enemy.direction
-	ld a,(hl)
-	xor $01
-	ld (hl),a
-	jp enemySetAnimation
-
-@beginFiring:
-	ld (hl),$08
-	ld l,e
-	inc (hl) ; [state] = $0b
-
-_octogon_loadNormalSubmergedAnimation:
-	ld e,Enemy.direction
-	ld a,$12
-	ld (de),a
-	jp enemySetAnimation
-
-
-; Firing projectile
-_octogon_subid0BelowWater_stateB:
-	call _ecom_decCounter1
-	jr z,@fireProjectile
-
-	ld a,(hl)
-	cp $06
-	ret nz
-
-	ld l,Enemy.direction
-	ld a,$14
-	ld (hl),a
-	jp enemySetAnimation
-
-@fireProjectile:
-	ld (hl),60 ; [counter1]
-	ld l,e
-	inc (hl) ; [state] = $0c
-	ld b,PARTID_OCTOGON_DEPTH_CHARGE
-	call _ecom_spawnProjectile
-	jr _octogon_loadNormalSubmergedAnimation
-
-
-; Delay before moving again
-_octogon_subid0BelowWater_stateC:
-	call _ecom_decCounter1
-	jr nz,_octogon_animate
-
-	ld l,Enemy.var36
-	ld (hl),90
-
-	ld l,e
-	ld (hl),$08 ; [state]
-
-	jr _octogon_animate
-
-
-; Just submerged into water
-_octogon_subid0BelowWater_stateD:
-	call _ecom_decCounter1
-	ret nz
-	ld (hl),30
-
-	ld l,e
-	ld (hl),$08 ; [state]
-
-	jr _octogon_loadNormalSubmergedAnimation
-
-
-; Link is below water
-_octogon_subid1:
-	ld h,d
-	ld l,Enemy.var33
-	ld e,Enemy.yh
-	ldi a,(hl)
-	ld (de),a
-	ld e,Enemy.xh
-	ld a,(hl)
-	ld (de),a
-
+	
+@@stateB:
 	ld e,Enemy.var03
 	ld a,(de)
-	or a
-	ld e,Enemy.state
-	ld a,(de)
-	jp z,_octogon_subid1_aboveWater
-
-	sub $08
+	ld e,Enemy.substate
 	rst_jumpTable
-	.dw _octogon_subid1_belowWater_state8
-	.dw _octogon_subid1_belowWater_state9
-	.dw _octogon_subid1_belowWater_stateA
-	.dw _octogon_subid1_belowWater_stateB
-	.dw _octogon_subid1_belowWater_stateC
+	.dw @@@var03_00
+	.dw @@@var03_01
+	.dw @@@var03_02
+	.dw @@@var03_03
+	.dw @@@var03_04
+	.dw @@@var03_05
 
-
-; Normal movement (moving toward some target position decided already)
-_octogon_subid1_belowWater_state8:
-	call _octogon_decVar36IfNonzero
-	jr nz,@normalMovement
-
-	; var36 reached 0
-	ld (hl),90
-
-	; 50% chance to do check below...
-	call getRandomNumber
-	rrca
-	jr nc,@normalMovement
-
-	; If the direction toward Link has not changed...
-	call objectGetAngleTowardEnemyTarget
-	add $04
-	and $18
-	ld b,a
-	ld e,Enemy.angle
+@@@var03_00:
 	ld a,(de)
-	add $04
-	and $18
+	rst_jumpTable
+	.dw @@@@substate0
+	.dw @@@@substate1
+	.dw @@@@substate2
+	
+@@@@substate0:
+	ld bc,$3a60
+	ld h,d
+	ld l,Enemy.subid ;$82
+	ld a,(hl)
+	cp $02
+	jr z,+
+	ld c,$90
++
+	ld l,Enemy.yh ;$8b
+	ldi a,(hl)
+	ldh (<hFF8F),a		;Enemy.yh
+	inc l
+	ld a,(hl)
+	ldh (<hFF8E),a		;Enemy.xh
+	cp c
+	jr nz,+
+	ldh a,(<hFF8F)		;Enemy.yh
 	cp b
-	ld h,d
-	jr nz,@normalMovement
-
-	; Go to state $0b (fire bubble projectile)
-	ld l,Enemy.state
-	ld (hl),$0b
-	ld l,Enemy.counter1
-	ld (hl),$08
-	ld l,Enemy.direction
-	ld a,(hl)
-	and $0c
-	add $02
-	ld (hl),a
-	jp enemySetAnimation
-
-@normalMovement:
-	; Will rise above water when counter2 reaches 0
-	ld a,(wFrameCounter)
-	and $03
-	jr nz,++
-	ld l,Enemy.counter2
-	dec (hl)
-	jp z,_octogon_beginRisingAboveWater
+	jr z,++
++
+	jp _ecom_moveTowardPosition
 ++
-	call _ecom_decCounter1
-	jr nz,_octogon_updateMovementAndAnimation
-
-	ld (hl),60 ; [counter1]
-
-	ld l,Enemy.state
-	inc (hl) ; [state] = 9
+	ld l,e		;Enemy.substate
+	inc (hl)
 	ret
-
-;;
-; Moves toward target position and updates animation + sound effects accordingly
-_octogon_updateMovementAndAnimation:
-	call _octogon_moveTowardTargetPosition
-
+	
+@@@@substate1:
 	ld h,d
-	ld l,Enemy.var35
-	dec (hl)
-	ret nz
-
-	ld (hl),$0c
-
-	ld l,Enemy.direction
+	ld l,e		;Enemy.substate
+	inc (hl)	;substate 2
+	inc l		;Enemy.counter1
+	ld (hl),30 ;$1e
+	ld a,$01
+	jp enemySetAnimation
+	
+@@@@substate2:
+	call _ecom_decCounter1
+	jr z,+
 	ld a,(hl)
-	xor $01
-	ld (hl),a
-	call enemySetAnimation
-
-	ld e,Enemy.subid
-	ld a,(de)
-	or a
-	ld a,SND_LINK_SWIM
-	jp nz,playSound
-
-	; Above-water only (subid 0)
-
-;;
-_octogon_doSplashAnimation:
-	ld a,SND_SWORDSPIN
-	call playSound
-
-	; Splash animation
-	call getFreeInteractionSlot
+	cp $08
 	ret nz
-	ld (hl),INTERACID_OCTOGON_SPLASH
-	ld e,Enemy.direction
-	ld a,(de)
-	and $0c
-	ld l,Interaction.direction
+	ld l,Enemy.yh ;$8b
+	ld a,(hl)
+	sub $04
 	ld (hl),a
-	jp objectCopyPosition
+	ld b,PARTID_43
+	jp _ecom_spawnProjectile
++
+	ld l,Enemy.yh ;$8b
+	ld a,(hl)
+	add $04
+	ld (hl),a
+@@@func_69bc:
+	ld a,$38		;Related Object's var38
+	call objectGetRelatedObject1Var
+	res 0,(hl)
+	ld e,Enemy.subid ;$82
+	ld a,(de)
+	sub $02
+	xor $01
+	add $b0
+	ld l,a
+	ld h,(hl)
+	ld l,Enemy.state ;$84
+	ld a,(hl)
+	cp $0b
+	jr nz,+
+	inc (hl)
++
+	ld h,d
+	ld e,l
+	inc (hl)
+	ld l,Enemy.subid ;$82
+	ld a,(hl)
+	cp $02
+	ret nz
+	jp @@stateC
 
-
-; Waiting in place until counter1 reaches 0, then will charge at Link.
-_octogon_subid1_belowWater_state9:
+@@@var03_01:
+	ld a,(de)
+	rst_jumpTable
+	.dw @@@@substate0
+	.dw @@@@substate1
+	.dw @@@@substate2
+	
+@@@@substate0:
+	ld h,d
+	ld l,e
+	inc (hl)
+	ld l,Enemy.counter1 ;$86
+	ld (hl),40 ;$28
+	ld a,$01
+	jp enemySetAnimation
+	
+@@@@substate1:
 	call _ecom_decCounter1
 	ret nz
-
-	ld (hl),$0c ; [counter1]
-
+	ld (hl),65 ;$41
 	ld l,e
-	inc (hl) ; [state] = $0a
-
-	; Save Link's current position as target position to charge at
-	ld l,Enemy.var31
+	inc (hl)
+	ld l,Enemy.var39 ;$b9
 	ldh a,(<hEnemyTargetY)
 	ldi (hl),a
 	ldh a,(<hEnemyTargetX)
 	ld (hl),a
-
-	; Do some weird math to decide animation
-	call _ecom_updateAngleTowardTarget
-	ld h,d
-	ld l,Enemy.direction
+	ret
+	
+@@@@substate2:
+	call _ecom_decCounter1
+	jr z,@@@func_69bc
+	ld a,(hl)		;Enemy.subid
+	and $0f
+	jr z,+
+	cp $08
+	ret nz
+	ld l,Enemy.yh ;$8b
 	ld a,(hl)
-	and $0c
-	add a
-	ld b,a
-
-	ld e,Enemy.angle
+	add $02
+	ld (hl),a
+	ret
++
+	ld l,Enemy.yh ;$8b
+	ld a,(hl)
+	sub $02
+	ld (hl),a
+	call getFreePartSlot
+	ret nz
+	ld (hl),PARTID_43
+	inc l
+	inc (hl)
+	ld e,Enemy.counter1 ;$86
 	ld a,(de)
-	sub b
-	and $1f
-	ld b,a
-	sub $04
-	cp $18
-	ret nc
+	and $30
+	swap a
+	ld bc,@@@@table_6a54
+	call addDoubleIndexToBc
+	ld e,Enemy.var39 ;$b9
+	ld a,(de)
+	ld e,a
+	ld a,(bc)
+	add e
+	ld l,$cb		;Related object's yh?
+	ldi (hl),a
+	inc l
+	inc bc
+	ld e,Enemy.var3a ;$ba
+	ld a,(de)
+	ld e,a
+	ld a,(bc)
+	add e
+	ldi (hl),a
+	call getFreeInteractionSlot
+	ret nz
+	ld (hl),INTERACID_PUFF
+	ld bc,$0800
+	jp objectCopyPositionWithOffset
 
-	bit 4,b
-	ld a,$04
+@@@@table_6a54:
+	.db $ec $00
+	.db $00 $ec
+	.db $00 $14
+	.db $14 $00
+
+@@@var03_02:
+	ld a,(de)
+	rst_jumpTable
+	.dw @@@@substate0
+	.dw @@@@substate1
+	.dw @@@@substate2
+
+@@@@substate0:
+	ld h,d
+	ld l,e		;substate
+	inc (hl)	;substate 1
+	inc l		;counter1
+	ld (hl),$08
+	inc l		;counter2
+	ld (hl),$02
+	ld a,$01
+	jp enemySetAnimation
+
+@@@@substate1:
+	call _ecom_decCounter1
+	ret nz
+	ld l,e
+	inc (hl)
+	ret
+
+@@@@substate2:
+	ld b,PARTID_43
+	call _ecom_spawnProjectile
+	ret nz
+	ld l,$c2		;Relate object's subid?
+	ld (hl),$02
+	call _ecom_decCounter2
+	jp z,@@@func_69bc
+	dec l
+	ld (hl),$14
+	dec l
+	dec (hl)
+	ret
+
+@@@var03_03:
+	ld a,(de)
+	rst_jumpTable
+	.dw @@@var03_00@substate0
+	.dw @@@@ret
+@@@@ret:
+	ret
+
+@@@var03_04:
+@@@var03_05:
+	call @@@func_6a9f
+	call z,_func_6cf6
+	jp objectApplySpeed
+@@@func_6a9f:
+	ld h,d
+	ld l,Enemy.var31 ;$b1
+	ld a,(hl)
+	or a
+	ret z
+	dec (hl)
+	ret
+	
+@@stateC:
+	ld h,d
+	ld l,e
+	inc (hl)
+	ld l,Enemy.counter2 ;$87
+	ld (hl),120 ;$78
+	ld l,Enemy.var03 ;$83
+	ld a,(hl)
+	or a
+	jr z,+
+	cp $03
+	jr nz,++
++
+	ld l,Enemy.var30 ;$b0
+	xor a
+	ldi (hl),a
+	ld (hl),a		;Enemy.var31
+++
+	xor a
+	jp enemySetAnimation
+	
+@@stateD:
+	call _ecom_decCounter2
+	jr nz,@@stateB@var03_04
+	ld l,e
+	ld (hl),$0a
+	ret
+	
+@@stateE:
+	ld a,(wFrameCounter)
+	rrca
+	jr c,+
+	call _ecom_decCounter1
+	jr nz,+
+	ld l,e
+	inc (hl)
+	ld l,Enemy.speedY ;$90
+	ld (hl),SPEED_100 ;$28
++
+	call objectApplySpeed
+	jp _ecom_bounceOffScreenBoundary
+	
+@@stateF:
+	ld h,d
+	ld l,Enemy.subid ;$82
+	ld a,(hl)
+	cp $02
+	ld bc,$2476
+	jr z,+
+	ld c,$7a
++
+	ld l,Enemy.yh ;$8b
+	ldi a,(hl)
+	ldh (<hFF8F),a		;Enemy.yh
+	inc l
+	ld a,(hl)
+	ldh (<hFF8E),a		;Enemy.xh
+	cp c
+	jr nz,+
+	ldh a,(<hFF8F)
+	cp b
+	jr z,++
++
+	jp _ecom_moveTowardPosition
+++
+	ld l,e
+	inc (hl)
+	ld l,Enemy.enemyCollisionMode ;$a5
+	ld (hl),ENEMYCOLLISION_0d ;$0d
+	ld l,Enemy.speedY ;$90
+	ld (hl),SPEED_80 ;$14
+	ld l,Enemy.counter1 ;$86
+	ld (hl),60 ;$3c
+	ld l,Enemy.var30 ;$b0
+	xor a
+	ldi (hl),a
+	ld (hl),a
+	ld l,Enemy.state ;$82
+	ld a,(hl)
+	cp $02
+	ld a,$14
+	ld b,$02
 	jr z,+
 	ld a,$0c
+	ld b,$04
 +
-	add (hl)
-	and $0c
+	ld l,Enemy.angle ;$89
 	ld (hl),a
-	jp enemySetAnimation
-
-
-; Waiting for a split second before charging
-_octogon_subid1_belowWater_stateA:
-	call _ecom_decCounter1
-	ret nz
-
-	ld (hl),90
-
-	ld l,e
-	ld (hl),$08 ; [state]
-
-	ld l,Enemy.angle
-	ldd a,(hl)
-	add $04
-	and $18
-	rrca
-	ld (hl),a
-	jp enemySetAnimation
-
-
-; Delay before firing bubble
-_octogon_subid1_belowWater_stateB:
-	call _ecom_decCounter1
-	ret nz
-
-	ld (hl),60
-
-	ld l,e
-	inc (hl) ; [state] = $0c
-
-	ld l,Enemy.direction
-	inc (hl)
-	ld a,(hl)
-	call enemySetAnimation
-
-	call getFreePartSlot
-	jr nz,++
-	ld (hl),PARTID_OCTOGON_BUBBLE
-	call _octogon_initializeProjectile
-++
-	jp _octogon_doSplashAnimation
-
-
-; Delay after firing bubble
-_octogon_subid1_belowWater_stateC:
-	call _ecom_decCounter1
-	ret nz
-
-	ld l,e
-	ld (hl),$08 ; [state]
-
-	ld l,Enemy.direction
-	ld a,(hl)
-	and $0c
-	ld (hl),a
-	jp enemySetAnimation
-
-
-; Octogon is above water, but Link is below water
-_octogon_subid1_aboveWater:
-	sub $08
-	rst_jumpTable
-	.dw @state8
-	.dw @state9
-	.dw @stateA
-
-@state8:
-	call _ecom_decCounter1
-	ret nz
-	ld (hl),120
-	ld b,PARTID_OCTOGON_DEPTH_CHARGE
-	jp _ecom_spawnProjectile
-
-
-; States $09-$0a used while moving to surface
-@state9:
-	call _ecom_decCounter1
-	ret nz
-
-	ld l,e
-	inc (hl) ; [state] = $0a
-
-	ld l,Enemy.direction
-	ld a,$11
-	ld (hl),a
-	call enemySetAnimation
-
-	ld a,SND_ENEMY_JUMP
-	call playSound
-
-	ld bc,$0208
-	jp _enemyBoss_spawnShadow
-
-@stateA:
-	ld h,d
-	ld l,Enemy.z
-	ld a,(hl)
-	sub <($00c0)
-	ldi (hl),a
-	ld a,(hl)
-	sbc >($00c0)
-	ld (hl),a
-
-	cp $d0
-	ret nc
-
-	cp $c0
-	jp nz,_ecom_flickerVisibility
-
-	ld (hl),$00
-
-	ld l,e
-	ld (hl),$08 ; [state] = 8
-
-	ld l,Enemy.collisionType
-	res 7,(hl)
-
-	ld l,Enemy.counter1
-	ld (hl),60
-
-	call objectSetInvisible
-	jp _ecom_killRelatedObj1
-
-
-; Invisible collision box for the shell
-_octogon_subid2:
-	ld a,Object.direction
+	ld a,$38
 	call objectGetRelatedObject1Var
 	ld a,(hl)
-	cp $10
-	jr c,+
-	ld a,$08
+	xor b
+	ld (hl),a
+	ret
+	
+@@stateH:
+	ld e,Enemy.subid ;$82
+	ld a,(de)
+	sub $02
+	xor $01
+	add $30
+	call objectGetRelatedObject1Var
+	ld h,(hl)
+	ld l,Enemy.state ;$84
+	ld a,(hl)
+	cp $0e
+	jr nc,+
+	cp $0a
+	jp nz,@@stateB@var03_04
 +
-	and $0c
-	push hl
-	ld hl,@data
-	rst_addAToHl
+	ld h,d
+	ld (hl),$0a
+	ld l,Enemy.subid ;$82
+	ld a,(hl)
+	cp $02
+	ret nz
+	jp @@stateA
 
-	ld e,Enemy.collisionRadiusY
-	ldi a,(hl)
+@subid3:
+	ld a,(de)
+	sub $08
+	rst_jumpTable
+	.dw @@state8
+	.dw @subid2@incStateWhenCounter1Is0
+	.dw @@stateA
+	.dw @subid2@stateB
+	.dw @subid2@stateC
+	.dw @subid2@stateD
+	.dw @subid2@stateE
+	.dw @subid2@stateF
+	.dw @subid2@incStateWhenCounter1Is0
+	.dw @subid2@stateH
+
+@@state8:
+	ld h,d
+	ld l,Enemy.angle ;$89
+	ld (hl),$0c
+	jp @subid2@incStateEnableCollisionsSetCounterAndSpeed
+
+@@stateA:
+	ld b,$02
+	jp @subid2@func_6905
+
+@subid4:
+@subid5:
+	ld a,(de)
+	sub $08
+	rst_jumpTable
+	.dw @@state8
+	.dw @@state9
+	.dw @@stateA
+
+@@state8:
+	ld h,d
+	ld l,e
+	inc (hl)
+	ld l,Enemy.enemyCollisionMode ;$a5
+	ld (hl),ENEMYCOLLISION_PODOBOO ;$04
+	ld e,Enemy.subid ;$82
+	ld a,(de)
+	sub $04
+	add $30
+	call objectGetRelatedObject1Var
+	ld e,Enemy.relatedObj2+1 ;$99
+	ld a,(hl)
 	ld (de),a
-	inc e
-	ldi a,(hl)
+	dec e		;;Enemy.relatedObj2
+	ld a,$80
 	ld (de),a
 
-	ldi a,(hl)
-	ld c,(hl)
-	ld b,a
-	pop hl
-	call objectTakePositionWithOffset
-	pop hl
+@@state9:
+	call _func_6cb2
+	call _func_6cbf
+	ret nz
+	ld e,Enemy.yh ;$8b
+	ld a,b
+	add a
+	add b
+	add $24
+	ld (de),a
+	ld e,Enemy.subid ;$82
+	ld a,(de)
+	cp $04
+	ld b,$76
+	jr z,+
+	ld b,$7a
++
+	ld a,c
+	add a
+	add c
+	add b
+	ld e,Enemy.xh ;$8d
+	ld (de),a
 	ret
 
-; Data format: collisionRadiusY, collisionRadiusX, Y position, X position
-@data:
-	.db $06 $0a $0e $00
-	.db $0a $06 $00 $f2
-	.db $06 $0a $f2 $00
-	.db $0a $06 $00 $0e
-
-
-;;
-_octogon_subid0_submergeIntoWater:
+@@stateA:
+	call _func_6cb2
+	ld e,$82
+	ld a,(de)
+	rrca
+	ld bc,$0276
+	jr nc,+
+	ld bc,$047a
++
+	ld a,$38
+	call objectGetRelatedObject1Var
+	ld a,(hl)
+	and b
+	ret nz
 	ld h,d
-	ld l,Enemy.state
-	ld (hl),$0d
-	ld l,Enemy.collisionType
+	ld l,Enemy.state ;$84
+	dec (hl)
+	ld l,Enemy.collisionType ;$a4
+	set 7,(hl)
+	ld l,Enemy.yh ;$8b
+	ld (hl),$24
+	ld l,Enemy.xh ;$8d
+	ld (hl),c
+	jp objectSetVisible82
+
+@subid6:
+@subid7:
+	ld a,(de)
+	sub $08
+	rst_jumpTable
+	.dw @@state8
+	.dw @@state9
+	.dw @subid5@stateA
+
+@@state8:
+	ld h,d
+	ld l,e
+	inc (hl)
+	ld l,Enemy.enemyCollisionMode ;$a5
+	ld (hl),ENEMYCOLLISION_PODOBOO ;$04
+	ld e,Enemy.subid ;$82
+	ld a,(de)
+	sub $06
+	add $30
+	call objectGetRelatedObject1Var
+	ld e,Enemy.relatedObj2+1 ;$99
+	ld a,(hl)
+	ld (de),a
+	dec e		;Enemy.relatedObj2
+	ld a,$80
+	ld (de),a
+
+@@state9:
+	call _func_6cb2
+	call _func_6cbf
+	ret nz
+	ld e,Enemy.yh ;$8b
+	ld a,b
+	add a
+	add $24
+	ld (de),a
+	ld e,Enemy.subid ;$82
+	ld a,(de)
+	cp $06
+	ld b,$76
+	jr z,+
+	ld b,$7a
++
+	ld a,c
+	add a
+	add b
+	ld e,Enemy.xh ;$8d
+	ld (de),a
+	ret
+
+@subid8:
+@subid9:
+	ld a,(de)
+	sub $08
+	rst_jumpTable
+	.dw @@state8
+	.dw @@state9
+	.dw @subid5@stateA
+	
+@@state8:
+	ld h,d
+	ld l,e
+	inc (hl)
+	ld l,Enemy.enemyCollisionMode ;$a5
+	ld (hl),ENEMYCOLLISION_PODOBOO ;$04
+	ld e,Enemy.subid ;$82
+	ld a,(de)
+	sub $08
+	add $30
+	call objectGetRelatedObject1Var
+	ld e,Enemy.relatedObj2+1 ;$99
+	ld a,(hl)
+	ld (de),a
+	dec e		;Enemy.relatedObj2
+	ld a,$80
+	ld (de),a
+	
+@@state9:
+	call _func_6cb2
+	call _func_6cbf
+	ret nz
+	ld e,Enemy.yh ;$8b
+	ld a,b
+	add $24
+	ld (de),a
+	ld e,Enemy.subid ;$82
+	ld a,(de)
+	cp $08
+	ld a,$76
+	jr z,+
+	ld a,$7a
++
+	add c
+	ld e,Enemy.xh ;$8d
+	ld (de),a
+	ret
+
+_func_6c6b:
+	dec b
+	jr z,_func_6c8a
+	ld c,$76
+	ld l,Enemy.subid ;$82
+	bit 0,(hl)
+	jr z,+
+	ld c,$7a
++
+	ld l,Enemy.yh ;$8b
+	ld (hl),$24
+	ld l,Enemy.xh ;$8d
+	ld (hl),c
+	ld l,Enemy.subid ;$82
+	ld a,(hl)
+	cp $04
+	ret c
+	ld a,$02
+	jp enemySetAnimation
+	
+_func_6c8a:
+	ld l,Enemy.collisionType ;$a4
 	res 7,(hl)
-	ld l,Enemy.var03
-	ld (hl),$01
-	ld l,Enemy.counter1
-	ld (hl),$10
-	ld l,Enemy.var36
-	ld (hl),90
-	ld l,Enemy.direction
-	ld a,$15
-	ld (hl),a
-	jp enemySetAnimation
+	ld l,Enemy.collisionRadiusY ;$a6
+	ld (hl),$0c
+	inc l		;collisionRadiusX
+	ld (hl),$0e
+	ld l,Enemy.yh ;$8b
+	ld (hl),$20
+	ld l,Enemy.xh ;$8d
+	ld (hl),$78
+	ld hl,$ce16		;checked
+	ld a,$0f
+	ldi (hl),a		;$ce16
+	ldi (hl),a		;$ce17
+	ld (hl),a		;$ce18
+	ld l,$26		;$ce26
+	ldi (hl),a		
+	ldi (hl),a		;$ce27
+	ld (hl),a		;$ce28
+	ld a,$03
+	call enemySetAnimation
+	jp objectSetVisible83
 
-
-;;
-_octogon_beginRisingAboveWater:
-	ld h,d
-	ld l,Enemy.state
-	ld (hl),$09
-	ld l,Enemy.var03
-	ld (hl),$00
-
-	ld l,Enemy.counter1
-	ld (hl),30
-
-	ld l,Enemy.var36
-	ld (hl),90
-
-	ld l,Enemy.direction
-	ld a,$10
-	ld (hl),a
-	jp enemySetAnimation
-
-
-;;
-; Takes current position, fixes it to the closest valid spot above water, and decides
-; a value for var30 (target position index).
-_octogon_fixPositionAboveWater:
-	ld a,(wTmpcfc0.octogonBoss.posNeedsFixing)
-	or a
+_func_6cb2:
+	ld a,$01
+	call objectGetRelatedObject2Var
+	ld a,(hl)
+	cp ENEMYID_GLEEOK ;$06
 	ret z
+	pop hl
+	jp enemyDelete
 
-	xor a
-	ld (wTmpcfc0.octogonBoss.posNeedsFixing),a
-
+_func_6cbf:
+	ld l,Enemy.state ;$84
+	ld a,(hl)
+	cp $0e
+	jr nz,_func_6cd8
 	ld h,d
-	ld l,Enemy.yh
+	inc (hl)
+	ld l,Enemy.collisionType ;$a
+	res 7,(hl)
+	ld e,Enemy.visible ;$9a
+	ld a,(de)
+	rlca
+	ld b,INTERACID_KILLENEMYPUFF
+	call c,objectCreateInteractionWithSubid00
+	jp objectSetInvisible
+	
+_func_6cd8:
+	ld l,Enemy.yh ;$8b
 	ldi a,(hl)
+	sub $24
+	sra a
+	sra a
 	ld b,a
 	inc l
-	ld c,(hl)
-	call _octogon_getClosestTargetPositionIndex
-	ld l,e
-
-	ld a,(w1Link.yh)
-	ld b,a
-	ld a,(w1Link.xh)
-	ld c,a
-	call _octogon_getClosestTargetPositionIndex
-
-	; BUG: supposed to compare 'l' against 'e', not 'a'. As a result octogon may not
-	; move out of the way properly if Link surfaces in the same position.
-	; (In effect, it only matters when they're both around centre-bottom, and maybe
-	; one other spot?)
-	cp l
-	ld a,l
-	jr nz,++
-	ld hl,@linkCompensationIndices
-	rst_addAToHl
-	ld a,(hl)
-++
-	add a
-	ld hl,@data
-	rst_addDoubleIndex
-	ld e,Enemy.yh
-	ldi a,(hl)
-	ld (de),a
-	ld e,Enemy.xh
-	ldi a,(hl)
-	ld (de),a
-	ld e,Enemy.var30
-	ld a,(hl)
-	ld (de),a
-
-	ld h,d
-	ld l,e
-	bit 7,a
-	jp nz,_octogon_chooseRandomTargetPosition
-	jp _octogon_loadTargetPosition
-
-; Data format: Y, X, var30 (target position index), unused
-@data:
-	.db $28 $30 $01 $00
-	.db $28 $78 $ff $00
-	.db $28 $c0 $09 $00
-	.db $58 $30 $02 $00
-	.db $00 $00 $ff $00
-	.db $58 $c0 $0a $00
-	.db $88 $30 $0d $00
-	.db $88 $78 $0c $00
-	.db $88 $c0 $05 $00
-
-; Corresponding index from this table is used if Link would have surfaced on top of
-; octogon.
-@linkCompensationIndices:
-	.db $01 $00 $01 $06 $00 $08 $03 $08 $05
-
-;;
-_octogon_fireOctorokProjectile:
-	call getFreePartSlot
-	ret nz
-	ld (hl),PARTID_OCTOROK_PROJECTILE
-
-;;
-; @param	h	Projectile (could be PARTID_OCTOROK_PROJECTILE or
-;			PARTID_OCTOGON_BUBBLE)
-_octogon_initializeProjectile:
-	ld e,Enemy.direction
+	ld e,Enemy.subid ;$82
 	ld a,(de)
-	and $0c
-	ld b,a
-	add a
-	ld l,Part.angle
-	ld (hl),a
-
-	ld a,b
 	rrca
-	push hl
-	ld hl,@positionOffsets
-	rst_addAToHl
-	ldi a,(hl)
-	ld b,a
-	ld c,(hl)
-
-	pop hl
-	call objectCopyPositionWithOffset
-	ld a,SND_STRIKE
-	jp playSound
-
-@positionOffsets:
-	.db $f0 $00
-	.db $00 $10
-	.db $10 $00
-	.db $00 $f0
-
-;;
-_octogon_decVar36IfNonzero:
-	ld h,d
-	ld l,Enemy.var36
-	ld a,(hl)
-	or a
-	ret z
-	dec (hl)
-	ret
-
-;;
-; Moves toward position stored in var31/var32. Increments state and sets counter1 to 30
-; when it reaches that position.
-_octogon_moveTowardTargetPosition:
-	ld h,d
-	ld l,Enemy.var31
-	call _ecom_readPositionVars
-	sub c
-	inc a
-	cp $03
-	jp nc,_ecom_moveTowardPosition
-
-	ldh a,(<hFF8F)
-	sub b
-	inc a
-	cp $03
-	jp nc,_ecom_moveTowardPosition
-
-	ld l,Enemy.yh
-	ld (hl),b
-	ld l,Enemy.xh
-	ld (hl),c
-	ld l,Enemy.state
-	inc (hl)
-	ld l,Enemy.counter1
-	ld (hl),30
-	ret
-
-
-;;
-; Given a position, this determines the "target position index" (value for var30) which
-; that position most closely corresponds to.
-;
-; @param	bc	Position
-; @param[out]	a
-; @param[out]	e
-_octogon_getClosestTargetPositionIndex:
-	ld e,$00
-
-@checkY:
-	ld a,b
-	cp $40
-	jr c,@checkX
-	ld e,$03
-	cp $70
-	jr c,@checkX
-
-	ld e,$06
-@checkX:
-	ld a,c
-	cp $50
-	jr c,++
-	inc e
-	cp $a0
-	jr c,++
-
-	inc e
-++
-	ld a,e
-	cp $04
-	ret nz
-
-	ld e,$00
-	ld a,b
-	cp $58
-	jr c,+
-	ld e,$06
+	ld c,$76
+	jr nc,+
+	ld c,$7a
 +
-	ld a,c
-	cp $78
-	ret c
-	inc e
-	inc e
+	ld a,(hl)
+	sub c
+	sra a
+	sra a
+	ld c,a
+	xor a
 	ret
+	
+_func_6cf6:
+	ld e,Enemy.var30 ;$b0
+	ld a,(de)
+	and $1f
+	jr nz,+
+	call getRandomNumber
+	and $20
+	ld (de),a
++
+	ld a,(de)
+	ld hl,_table_6d14
+	rst_addAToHl
+	ld e,Enemy.angle
+	ld a,(hl)
+	ld (de),a
+	ld h,d
+	ld l,Enemy.var30
+	inc (hl)
+	inc l	;Enemy.var31
+	ld (hl),$06
+	ret
+
+_table_6d14:
+	.db $15 $16 $17 $17 $19 $19 $1a $1b
+	.db $05 $06 $07 $07 $09 $09 $0a $0b
+	.db $0b $0a $09 $09 $07 $07 $06 $05
+	.db $1b $1a $19 $19 $17 $17 $16 $15
+	.db $08 $08 $09 $09 $0a $0a $0b $0c
+	.db $14 $15 $16 $16 $17 $17 $18 $18
+	.db $18 $18 $19 $19 $1a $1a $1b $1c
+	.db $04 $05 $06 $06 $07 $07 $08 $08
 
 
 ; ==============================================================================

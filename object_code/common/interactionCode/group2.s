@@ -704,12 +704,12 @@ _shopItemState0:
 	cp $00
 	jr nz,++
 
-	ld a,TREASURE_RING_BOX
+	ld a,TREASURE_SEED_SATCHEL
 	call checkTreasureObtained
 	jr nc,++
 
-	ld a,(wRingBoxLevel)
-	dec a
+	ld a,(wSeedSatchelLevel)
+	or a
 	jr z,++
 	ld a,$14
 	ld (de),a
@@ -723,6 +723,15 @@ _shopItemState0:
 	jp nc,_shopItemPopStackAndDeleteSelf
 	jr @checkFlutePurchasable
 ++
+	ld a,(de)
+	cp $02
+	jr nz,++
+	ld a,(wLinkMaxHealth)
+	cp $3c
+	jr c,++
+	ld a,(wNumHeartPieces)
+	or a
+	jp nz,interactionDelete
 .else
 	ld a,TREASURE_SWORD
 	call checkTreasureObtained
@@ -1107,11 +1116,11 @@ _shopItemGetTilesForRupeeDisplay:
 	.dw w3VramTiles+$6c
 .ifdef ROM_AGES
 	.dw w3VramTiles+$66
-	.dw w3VramTiles+$6e
+	.dw w3VramTiles+$6f	;$6e
 .endif
 
 shopItemPrices:
-	/* $00 */ .db RUPEEVAL_300
+	/* $00 */ .db RUPEEVAL_200
 	/* $01 */ .db RUPEEVAL_010
 	/* $02 */ .db RUPEEVAL_300
 	/* $03 */ .db RUPEEVAL_030
@@ -1137,7 +1146,7 @@ shopItemPrices:
 	/* $13 */ .db RUPEEVAL_030
 .ifdef ROM_AGES
 	/* $14 */ .db RUPEEVAL_300
-	/* $15 */ .db RUPEEVAL_300
+	/* $15 */ .db RUPEEVAL_080
 .endif
 
 ;;
@@ -1183,12 +1192,12 @@ _shopItemCheckGrabbed:
 ;   b1: Treasure parameter (if it's random ring, this is the tier of the ring)
 shopItemTreasureToGive:
 .ifdef ROM_AGES
-	/* $00 */ .db  TREASURE_RING_BOX      $02
+	/* $00 */ .db  TREASURE_SEED_SATCHEL  $01;TREASURE_RING_BOX      $02
 .else
 	/* $00 */ .db  TREASURE_SEED_SATCHEL  $01
 .endif
 	/* $01 */ .db  TREASURE_HEART_REFILL  $0c
-	/* $02 */ .db  TREASURE_GASHA_SEED    $01
+	/* $02 */ .db  TREASURE_HEART_CONTAINER    $04
 	/* $03 */ .db  TREASURE_SHIELD        $01
 	/* $04 */ .db  TREASURE_BOMBS         $10
 .ifdef ROM_AGES
@@ -1217,8 +1226,8 @@ shopItemTreasureToGive:
 	/* $12 */ .db  TREASURE_SHIELD        $03
 	/* $13 */ .db  TREASURE_GASHA_SEED    $01
 .ifdef ROM_AGES
-	/* $14 */ .db  TREASURE_RING_BOX      $03
-	/* $15 */ .db  TREASURE_HEART_CONTAINER   $01
+	/* $14 */ .db  TREASURE_SEED_SATCHEL  $02
+	/* $15 */ .db  TREASURE_HEART_PIECE   $01
 .endif
 
 
@@ -1231,7 +1240,7 @@ shopItemTreasureToGive:
 _shopItemReplacementTable:
 	/* $00 */ .db <wBoughtShopItems1  $01 $ff $00
 	/* $01 */ .db <wBoughtShopItems2  $08 $0d $04
-	/* $02 */ .db <wBoughtShopItems1  $02 $06 $00
+	/* $02 */ .db <wLinkMaxHealth     $40 $ff $00
 	/* $03 */ .db <wShieldLevel       $02 $11 $00
 	/* $04 */ .db <wBoughtShopItems1  $00 $ff $00
 	/* $05 */ .db <wBoughtShopItems1  $08 $ff $00
@@ -1251,19 +1260,19 @@ _shopItemReplacementTable:
 	/* $13 */ .db <wBoughtShopItems1  $20 $03 $00
 .ifdef ROM_AGES
 	/* $14 */ .db <wBoughtShopItems1  $01 $ff $00
-	/* $15 */ .db <wBoughtShopItems2  $40 $15 $00
+	/* $15 */ .db <wLinkMaxHealth  	  $40 $ff $00
 .endif
 
 
 ; Text to show upon buying a shop item (or $00 for no text)
 _shopItemTextTable:
 .ifdef ROM_AGES
-	/* $00 */ .db <TX_0058
+	/* $00 */ .db <TX_0080	;58
 .else
 	/* $00 */ .db <TX_0046
 .endif
 	/* $01 */ .db <TX_004c
-	/* $02 */ .db <TX_004b
+	/* $02 */ .db <TX_0016	;4b
 	/* $03 */ .db <TX_001f
 	/* $04 */ .db <TX_004d
 .ifdef ROM_AGES

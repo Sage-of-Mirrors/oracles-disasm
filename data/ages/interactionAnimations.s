@@ -523,8 +523,8 @@ interactione4Animations:
 	.dw interactionAnimation5a3be		;1 seasons (spring and summer)
 	.dw interactionAnimation5a3d5		;5 seasons (winter)
 	.dw interactionAnimation5a3fd		;9 seasons (autumn)
-;	.dw interactionAnimation5a34d		;0
 ;	.dw interactionAnimation5a3c3		;2
+;	.dw interactionAnimation5a34d		;0
 ;	.dw interactionAnimation5a3cb		;3
 ;	.dw interactionAnimation5a3d0		;4
 ;	.dw interactionAnimation5a2e9		;6
@@ -1044,7 +1044,6 @@ interaction80Animations:
 	.dw interactionAnimation5a3df
 	.dw interactionAnimation5aaa9
 	.dw interactionAnimation5aab7
-
 	.dw interactionAnimation5a402
 	.dw interactionAnimation5a407
 interactione1Animations:

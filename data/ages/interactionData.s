@@ -157,7 +157,7 @@ interactionData:
 	/* $82 */ m_InteractionData $72 $1c $41
 	/* $83 */ m_InteractionData interaction83SubidData
 	/* $84 */ m_InteractionData interaction84SubidData
-	/* $85 */ m_InteractionData $00 $00 $00
+	/* $85 */ m_InteractionData interaction85SubidData
 	/* $86 */ m_InteractionData interaction86SubidData
 	/* $87 */ m_InteractionData $04 $00 $00
 	/* $88 */ m_InteractionData $67 $00 $00
@@ -425,8 +425,9 @@ interaction80SubidData:
 	m_InteractionData $7a $16 $04
 	m_InteractionData $6f $00 $66
 	m_InteractionData $6f $90 $67
-	m_InteractionData $7d $02 $50		;swords
-	m_InteractionData $7d $84 $40
+
+	m_InteractionData $7d $02 $54		;swords
+	m_InteractionData $7d $84 $44
 
 interaction81SubidData:
 	m_InteractionData $7d $0c $40
@@ -436,6 +437,9 @@ interaction81SubidData:
 	m_InteractionData $7d $06 $00
 	m_InteractionData $7d $08 $50
 	m_InteractionData $7d $8a $40
+
+	m_InteractionData $7d $02 $50		;swords
+	m_InteractionData $7d $84 $40
 
 interaction86SubidData:
 	m_InteractionData $04 $00 $00
@@ -538,9 +542,9 @@ interactione0SubidData:
 	m_InteractionData $70 $00 $10
 	m_InteractionData $70 $08 $30
 interaction47SubidData:
-	m_InteractionData $79 $14 $10
+	m_InteractionData $7c $00 $50		;seed satchel $79 $14 $10
 	m_InteractionData $78 $02 $59
-	m_InteractionData $79 $0a $10
+	m_InteractionData $79 $12 $52		;heart container
 	m_InteractionData $7d $06 $00
 	m_InteractionData $78 $10 $40
 	m_InteractionData $79 $08 $00
@@ -558,8 +562,9 @@ interaction47SubidData:
 	m_InteractionData $7d $08 $50
 	m_InteractionData $7d $0a $40
 	m_InteractionData $79 $0a $10
-	m_InteractionData $79 $14 $20
-	m_InteractionData $79 $12 $22		;heart piece
+	m_InteractionData $7c $00 $50		;seed satchel $79 $14 $20
+	m_InteractionData $79 $10 $22		;heart piece
+
 interaction4aSubidData:
 	m_InteractionData $6b $00 $60
 	m_InteractionData $6b $00 $60
@@ -624,6 +629,9 @@ interaction6bSubidData:
 	m_InteractionData $6d $00 $64
 	m_InteractionData $00 $86 $aa
 
+	m_InteractionData $7d $02 $51		;swords
+	m_InteractionData $7d $84 $41
+
 interaction6dSubidData:
 interaction6eSubidData:
 	m_InteractionData $26 $00 $60
@@ -676,6 +684,11 @@ interaction84SubidData:
 	m_InteractionData $3a $00 $04
 	m_InteractionData $3a $00 $00
 	m_InteractionData $3a $80 $00
+
+interaction85SubidData:
+	m_InteractionData $7d $00 $00		;swords
+	m_InteractionData $7d $02 $50
+	m_InteractionData $7d $84 $40
 
 interaction92SubidData:
 	m_InteractionData $96 $00 $50
@@ -818,7 +831,7 @@ interactione4SubidData:
 ;	m_InteractionData $53 $0a $66		;spr_moblinflag_fountain_orb_unknown
 ;	m_InteractionData $53 $1a $67		;spr_moblinflag_fountain_orb_unknown
 ;	m_InteractionData $80 $0e $51		;spr_quest_items_1
-	m_InteractionData $71 $0e $00		;spr_woodentunnel_seasons
-	m_InteractionData $71 $12 $20		;spr_woodentunnel_seasons
-	m_InteractionData $71 $16 $11		;spr_woodentunnel_seasons
-	m_InteractionData $71 $98 $32		;spr_woodentunnel_seasons
+	m_InteractionData $71 $0e $00		;spr_woodentunnel_seasons	spring
+	m_InteractionData $71 $12 $20		;spr_woodentunnel_seasons	summer
+	m_InteractionData $71 $16 $11		;spr_woodentunnel_seasons	winter
+	m_InteractionData $71 $98 $32		;spr_woodentunnel_seasons	autumn

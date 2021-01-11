@@ -5401,6 +5401,10 @@ _warpTileTable:
 		.db $46 $00
 		.db $47 $00
 		.db $4f $00
+		.db $3c $00
+		.db $3d $00
+		.db $3e $00
+		.db $3f $00
 		.db $00
 	@collisions2:
 	@collisions5:
