@@ -3457,7 +3457,6 @@ _initializeGame:
 	ld (wActiveMusic),a
 .endif
 
-  ld b,b
   jp _func_5a60  ; We want a custom intro for this hack, but the vanilla pregame intro cutscene is weird, so we will skip it instead.
   
 	;ld a,GLOBALFLAG_PREGAME_INTRO_DONE
