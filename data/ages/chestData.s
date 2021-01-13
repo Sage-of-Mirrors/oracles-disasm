@@ -52,6 +52,7 @@ chestGroup3Data:
 	.db $ff
 
 chestGroup4Data:
+	.db $27 $11 $15 $00
 	.db $57 $08 $30 $03
 	.db $5a $15 $34 $01
 	.db $17 $16 $30 $03

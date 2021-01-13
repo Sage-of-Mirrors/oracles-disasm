@@ -431,7 +431,7 @@ treasureObjectData11:
 	.db $0a $01 $78 $68
 
 treasureObjectData15:
-	.db $0a $00 $25 $1b
+	.db $3a $00 $25 $1b
 	.db $0a $00 $74 $1b
 	.db $0a $00 $25 $1b
 	.db $39 $00 $25 $1b

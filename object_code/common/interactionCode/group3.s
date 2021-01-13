@@ -1307,7 +1307,7 @@ interactionCode7e:
 .ifdef ROM_AGES
 	.db $35 $57 $85
 
-	.db $c3 $2c
+	.db $24 $48 $84
 	.db $c4 $11
 	.db $c5 $2c
 	.db $c6 $7a

@@ -340,8 +340,10 @@ groups:
     index: 0x25
     text: |-
       You got the
-      \col(1)Shovel\col(0)! Now
-      start digging!
+      \col(1)Gravekeeper's Shovel\col(0)!
+      Great! Dig it! Dig it!
+      Dig to the center of
+      the earth!!
 
   - name: TX_0026
     index: 0x26

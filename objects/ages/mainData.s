@@ -2547,7 +2547,7 @@ group4Map10ObjectData:
 	obj_End
 
 group4Map11ObjectData:
-	obj_Interaction $7f $00 $28 $78
+	obj_Interaction $7e $01 $67 $81
 	obj_End
 
 group4Map12ObjectData:
