@@ -1,23 +1,25 @@
 ;;
 runRoomSpecificCode:
+	ld a,GLOBALFLAG_MAKE_MENU_ERROR
+	call unsetGlobalFlag
 	ld a,(wActiveRoom)
 	ld hl, _roomSpecificCodeGroupTable
 	call findRoomSpecificData
 	ret nc
 	rst_jumpTable
-	.dw _roomSpecificCode0
-	.dw _roomSpecificCode1
-	.dw _roomSpecificCode2
-	.dw _roomSpecificCode3
-	.dw _roomSpecificCode4
-	.dw _roomSpecificCode5
-	.dw setDeathRespawnPoint
-	.dw _roomSpecificCode7
-	.dw _roomSpecificCode8
-	.dw _roomSpecificCode9
-	.dw _roomSpecificCodeA
-	.dw _roomSpecificCodeB
-	.dw _roomSpecificCodeC
+	.dw _disableMapMenu
+	.dw _setMinimapVars_Group3Map08
+	.dw _setMinimapVars_Group3Map18
+	.dw _setMinimapVars_Group3Map78
+	.dw _setMinimapVars_Group1Map78
+;	.dw _roomSpecificCode5
+;	.dw setDeathRespawnPoint
+;	.dw _roomSpecificCode7
+;	.dw _roomSpecificCode8
+;	.dw _roomSpecificCode9
+;	.dw _roomSpecificCodeA
+;	.dw _roomSpecificCodeB
+;	.dw _roomSpecificCodeC
 
 	; Random stub not called by anything?
 	ret
@@ -35,36 +37,75 @@ _roomSpecificCodeGroupTable:
 ; Format: room index
 
 _roomSpecificCodeGroup0Table:
-	.db $93 $00
-	.db $38 $06
-	.db $39 $08
-	.db $3a $09
+;	.db $93 $00
+;	.db $38 $06
+;	.db $39 $08
+;	.db $3a $09
 	.db $00
 _roomSpecificCodeGroup1Table:
-	.db $81 $03
-	.db $38 $06
-	.db $97 $07
-	.db $0e $0a
+	.db $68 $00
+	.db $78 $04
+
+;	.db $81 $03
+;	.db $38 $06
+;	.db $97 $07
+;	.db $0e $0a
 	.db $00
 _roomSpecificCodeGroup2Table:
-	.db $0e $05
+;	.db $0e $05
 	.db $00
 _roomSpecificCodeGroup3Table:
-	.db $0f $0b
+	.db $49 $00
+	.db $59 $00
+	.db $58 $00
+	.db $68 $00
+	.db $1a $00
+	.db $08 $01
+	.db $18 $02
+	.db $78 $03
+
+;	.db $0f $0b
 	.db $00
 _roomSpecificCodeGroup4Table:
-	.db $60 $01
-	.db $52 $02
-	.db $e6 $0c
+;	.db $60 $01
+;	.db $52 $02
+;	.db $e6 $0c
 	.db $00
 _roomSpecificCodeGroup5Table:
-	.db $d2 $04
+;	.db $d2 $04
 _roomSpecificCodeGroup6Table:
 _roomSpecificCodeGroup7Table:
 	.db $00
 
 ;;
-_roomSpecificCode0:
+_disableMapMenu:
+	ld a,GLOBALFLAG_MAKE_MENU_ERROR
+	call setGlobalFlag
+	ret
+
+;;
+_setMinimapVars_Group3Map08:
+	ld a,$24
+_setMiniMapVarsGroup0:
+	ld hl,wMinimapRoom
+	ldd (hl),a
+	ld (hl),$00
+	ret
+	
+_setMinimapVars_Group3Map18:
+	ld a,$16
+	jr _setMiniMapVarsGroup0
+
+_setMinimapVars_Group3Map78:
+	ld a,$27
+	jr _setMiniMapVarsGroup0
+
+_setMinimapVars_Group1Map78:
+	ld a,$77
+	jr _setMiniMapVarsGroup0
+
+;;
+;_roomSpecificCode0:
 	ld a,GLOBALFLAG_WON_FAIRY_HIDING_GAME
 	call checkGlobalFlag
 	ret nz
@@ -73,7 +114,7 @@ _roomSpecificCode0:
 	jp clearMemory
 
 ;;
-_roomSpecificCode1:
+;_roomSpecificCode1:
 	ld a, GLOBALFLAG_D3_CRYSTALS
 	call checkGlobalFlag
 	ret nz
@@ -89,7 +130,7 @@ _roomSpecificCode1:
 	ret
 
 ;;
-_roomSpecificCode2:
+;_roomSpecificCode2:
 	ld a,GLOBALFLAG_D3_CRYSTALS
 	call checkGlobalFlag
 	ret z
@@ -97,7 +138,7 @@ _roomSpecificCode2:
 	jr ---
 
 ;;
-_roomSpecificCode3:
+;_roomSpecificCode3:
 	call getThisRoomFlags
 	bit 6,a
 	ret nz
@@ -138,7 +179,7 @@ _roomSpecificCode5:
 
 ;;
 ; Something in ambi's palace
-_roomSpecificCode4:
+;_roomSpecificCode4:
 	ld a,$06
 	ld (wMinimapRoom),a
 	ld hl,wPastRoomFlags+$06

@@ -541,6 +541,10 @@ interactiond5SubidData:
 interactione0SubidData:
 	m_InteractionData $70 $00 $10
 	m_InteractionData $70 $08 $30
+	m_InteractionData $67 $08 $20
+	m_InteractionData $67 $10 $30
+	m_InteractionData $67 $18 $10
+	m_InteractionData $67 $80 $00
 interaction47SubidData:
 	m_InteractionData $7c $00 $50		;seed satchel $79 $14 $10
 	m_InteractionData $78 $02 $59

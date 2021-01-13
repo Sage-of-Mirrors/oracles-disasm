@@ -229,7 +229,7 @@ gfxHeader08:
 	m_GfxHeader spr_quest_items_5 $8400 $1f|$80
 	m_GfxHeader spr_map_compass_keys_bookofseals $8600 $1f|$80
 	m_GfxHeader gfx_save $8600 $07|$80
-	m_GfxHeader gfx_blank $8800 $1f|$80
+	m_GfxHeader spr_season_symbols $8800 $1f|$80
 	m_GfxHeader gfx_rings $8a00 $3f|$80
 	m_GfxHeader gfx_inventory_hud_2 $8e00 $1f|$80
 	m_GfxHeader spr_item_icons_1_spr $8001 $1f|$80

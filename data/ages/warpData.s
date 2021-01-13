@@ -357,7 +357,7 @@ group3WarpDestTable:
 	m_WarpDest $38 $ff $0 $3
 	m_WarpDest $1a $ff $0 $3
 	m_WarpDest $59 $f5 $0 $3
-	m_WarpDest $58 $05 $0 $e
+	m_WarpDest $58 $ff $f $3
 	m_WarpDest $78 $65 $0 $1
 	m_WarpDest $68 $65 $0 $1
 	m_WarpDest $78 $14 $0 $1

@@ -117,7 +117,7 @@
 	m_GfxData spr_makuadultsprites_1 ; $0ad30d
 	m_GfxData spr_makuadultsprites_2 ; $0ad468
 	m_GfxData gfx_blank_3 ; $0ad5b5 (unused)
-	m_GfxData spr_maku_child ; $0ad5bb
+	m_GfxData spr_season_symbols;spr_maku_child ; $0ad5bb
 	m_GfxData gfx_blank_4 ; $0ad6f4 (unused)
 	m_GfxData spr_din_1 ; $0ad6fa
 	m_GfxData spr_din_2 ; $0ad875

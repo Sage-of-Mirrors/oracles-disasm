@@ -102,7 +102,7 @@ objectGfxHeaderTable:
 	/* $64 */ m_ObjectGfxHeader spr_swords $00
 	/* $65 */ m_ObjectGfxHeader spr_subrosian $00
 	/* $66 */ m_ObjectGfxHeader spr_jabuchild $00
-	/* $67 */ m_ObjectGfxHeader spr_maku_child $00
+	/* $67 */ m_ObjectGfxHeader spr_season_symbols $00		;spr_maku_child
 	/* $68 */ m_ObjectGfxHeader spr_gorondance_tingle_write $00
 	/* $69 */ m_ObjectGfxHeader spr_moblinflag_bomb_portal $00
 	/* $6a */ m_ObjectGfxHeader spr_timeportal $00

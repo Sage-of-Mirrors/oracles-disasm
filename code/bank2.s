@@ -2641,10 +2641,14 @@ b2_updateMenus:
 	ret nz
 
 	ld a,(wKeysJustPressed)
-	and BTN_START | BTN_SELECT
+	and BTN_SELECT		;BTN_START |
 	jr z,+
 
 	; Return if you haven't seen the opening cutscene yet
+	ld a,(wGlobalFlags+GLOBALFLAG_MAKE_MENU_ERROR/8)
+	bit GLOBALFLAG_MAKE_MENU_ERROR&7,a
+	ld a, SND_ERROR
+	jp nz,playSound
 +
 	ld a,(wMenuDisabled)
 	ld b,a
@@ -5384,29 +5388,26 @@ _inventorySubscreen2_drawTreasures:
 ; The below code decides how to (and whether to) draw the time or season symbol.
 ; Naturally the games differ in how they do this.
 
-.ifdef ROM_AGES
+;.ifdef ROM_AGES
 	ld a,(wTilesetFlags)
 	and TILESETFLAG_PAST
 	rlca
+	ld d,a
 
-.else; ROM_SEASONS
-
-	call _checkWhetherToDisplaySeasonInSubscreen
+	ld a,(wRoomPack)
+	or a
 	ld hl,w4TileMap+$4d
 	ldbc $04,$06
-	jp nz,_fillRectangleInTileMapWithMenuBlock
-
-	ld a,(wMinimapGroup)
-	sub $02
+	jp z,_fillRectangleInTileMapWithMenuBlock
+	bit 7,a
 	jr z,+
-	ld a,(wLoadingRoomPack)
-	inc a
-	jr z,+
-	ld a,(wRoomStateModifier)
+;.else; ROM_SEASONS
+	ld a,(wCurrentSeason)
+	ld d,a
 +
-.endif
-
-	ld c,a
+;.endif
+	ld a,d
+	ld c,d
 
 	; Set text index for time/season blurb
 	ld hl,w4SubscreenTextIndices+8
@@ -5418,7 +5419,14 @@ _inventorySubscreen2_drawTreasures:
 	add a
 	add a
 	add c
-	ld hl,_itemSubmenu2BlurbDisplayData
+	ld hl,_itemSubmenu2BlurbDisplayAgesData
+	ld c,a
+	ld a,(wRoomPack)
+	bit 7,a
+	jr z,+
+	ld hl,_itemSubmenu2BlurbDisplaySeasonsData
++
+	ld a,c
 	rst_addDoubleIndex
 	ld de,w4TileMap+$6e
 	call _drawTreasureDisplayDataToBg
@@ -5435,26 +5443,36 @@ _itemSubmenu2EssencePositions:
 ;  b2/b3: right tile index, attribute.
 ;  b4:    $ff to indicate no extra level/item count/etc drawn (since this uses
 ;         "drawTreasureDisplayData").
-_itemSubmenu2BlurbDisplayData:
+_itemSubmenu2BlurbDisplayAgesData:
 
-	.ifdef ROM_AGES
+;	.ifdef ROM_AGES
 		.db $18 $01 $19 $01 $ff ; Present
 		.db $1a $01 $1b $01 $ff
 		.db $1c $03 $1d $03 $ff ; Past
 		.db $1e $03 $1f $03 $ff
 
-	.else; ROM_SEASONS
+_itemSubmenu2BlurbDisplaySeasonsData
+;	.else; ROM_SEASONS
 
-		.db $10 $00 $11 $00 $ff ; Spring
-		.db $12 $00 $13 $00 $ff
-		.db $14 $02 $15 $02 $ff ; Summer
-		.db $16 $02 $17 $02 $ff
-		.db $18 $03 $19 $03 $ff ; Fall
-		.db $1a $03 $1b $03 $ff
-		.db $1c $01 $1d $01 $ff ; Winter
-		.db $1e $01 $1f $01 $ff
+		.db $44 $02 $45 $02 $ff ; Summer
+		.db $46 $02 $47 $02 $ff
+		.db $48 $03 $49 $03 $ff ; Fall
+		.db $4a $03 $4b $03 $ff
+		.db $4c $01 $4d $01 $ff ; Winter
+		.db $4e $01 $4f $01 $ff
+		.db $40 $00 $41 $00 $ff ; Spring
+		.db $42 $00 $43 $00 $ff
+;original
+;		.db $14 $02 $15 $02 $ff ; Summer
+;		.db $16 $02 $17 $02 $ff
+;		.db $18 $03 $19 $03 $ff ; Fall
+;		.db $1a $03 $1b $03 $ff
+;		.db $1c $01 $1d $01 $ff ; Winter
+;		.db $1e $01 $1f $01 $ff
+;		.db $10 $00 $11 $00 $ff ; Spring
+;		.db $12 $00 $13 $00 $ff
 
-	.endif
+;	.endif
 
 
 
@@ -5850,10 +5868,10 @@ _subscreen1TreasureData:
 
 	.ifdef ROM_AGES
 		; Row 1
-		.db TREASURE_FLIPPERS			$01 $00
-		.db TREASURE_MERMAID_SUIT		$01 $00
-		.db TREASURE_POTION			$04 $01
-		.db TREASURE_TRADEITEM			$07 $02
+		.db TREASURE_DINS_GIFT			$01 $00		;FLIPPERS
+		.db TREASURE_NAYRUS_GIFT		$04 $01		;MERMAID_SUIT		$01 $00
+		.db TREASURE_POTION				$07 $02		;$04 $01
+;		.db TREASURE_TRADEITEM			$07 $02
 		.db TREASURE_EMPTY_BOTTLE		$0a $03
 		.db TREASURE_FAIRY_POWDER		$0a $03
 		.db TREASURE_ZORA_SCALE			$0a $03

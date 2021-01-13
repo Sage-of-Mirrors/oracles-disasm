@@ -93,8 +93,8 @@
 	GLOBALFLAG_GOT_SATCHEL_UPGRADE		db ; $46
 
 	; Unused?
-	GLOBALFLAG_47				db ; $47
-	GLOBALFLAG_48				db ; $48
+	GLOBALFLAG_MAKE_MENU_ERROR				db ; $47
+	GLOBALFLAG_AGES_OR_SEASONS				db ; $48: 0 if Ages, 1 if Seasons
 	GLOBALFLAG_49				db ; $49
 	GLOBALFLAG_4a				db ; $4a
 	GLOBALFLAG_4b				db ; $4b

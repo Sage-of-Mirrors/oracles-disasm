@@ -16,18 +16,21 @@ interactionCodee0:
 	ld a,$01
 	ld (de),a ; [state]
 
-.ifdef ROM_AGES
+;.ifdef ROM_AGES
 	ld a,(wTilesetFlags)
 	and TILESETFLAG_PAST
 	rlca
-.else
+	ld c,a
 	ld a,(wLoadingRoomPack)
-	inc a
+	bit 7,a
 	jr z,+
-	ld a,(wRoomStateModifier)
+;.else
+	ld a,(wCurrentSeason)
+	add $02
+	ld c,a
 +
-.endif
-
+;.endif
+	ld a,c
 	ld e,Interaction.subid
 	ld (de),a
 

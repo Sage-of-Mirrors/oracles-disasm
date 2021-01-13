@@ -60,8 +60,8 @@ loadRememberedCompanion:
 
 .ifdef ROM_AGES
 @raft:
-	ld a,(wTilesetFlags)
-	and TILESETFLAG_PAST
+	ld a,(wCurrentSeason)
+	and SEASON_FALL
 	ret z
 
 	call getFreeInteractionSlot

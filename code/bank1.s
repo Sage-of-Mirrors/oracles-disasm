@@ -2487,20 +2487,21 @@ cutscene15:
 	call func_131f
 	call clearEnemiesKilledList
 	call func_5c6b
-	ld a,(wActiveGroup)
-	cp $03
-	jr nz,++
-
-	xor a
-	ld (wMinimapGroup),a
-	ld a,(wActiveRoom)
-	cp $ab
-	ld a,$f7
-	jr z,+
-	ld a,$04
-+
-	ld (wMinimapRoom),a
-++
+;; Hard-coded Ambi's palace?
+;	ld a,(wActiveGroup)
+;	cp $03
+;	jr nz,++
+;
+;	xor a
+;	ld (wMinimapGroup),a
+;	ld a,(wActiveRoom)
+;	cp $ab
+;	ld a,$f7
+;	jr z,+
+;	ld a,$04
+;+
+;	ld (wMinimapRoom),a
+;++
 	call loadCommonGraphics
 	callab updateInteractions
 	ld a,$02
@@ -3314,6 +3315,17 @@ checkUpdateDungeonMinimap:
 	ld a,(wDungeonMapPosition)
 	ldd (hl),a ; wMinimapDungeonMapPosition
 	ld a,(wActiveRoom)
+	ld b,a
+	and $0f
+	cp OVERWORLD_WIDTH
+	ret nc
+	ld a,b
+	and $f0
+	swap a
+	cp OVERWORLD_HEIGHT
+	ret nc
+	ld a,b
+
 	ldd (hl),a ; wMinimapRoom
 	ld a,(wActiveGroup)
 	ld c,(hl)  ; wMinimapGroup
@@ -4240,6 +4252,9 @@ checkPlayRoomMusic:
 ;;
 ; Seasons has a version of this function a bit higher up.
 checkDisplayEraOrSeasonInfo:
+	ld a,(wLoadingRoomPack)
+	or a
+	ret z
 	ld a,GLOBALFLAG_16
 	call checkGlobalFlag
 	jr z,+
@@ -5381,9 +5396,9 @@ _warpTileTable:
 	.dw @collisions5
 
 .ifdef ROM_AGES
-
-	@collisions0:
 	@collisions4:
+		.db $ec $00
+	@collisions0:
 		.db $dc $00
 		.db $dd $00
 		.db $de $00

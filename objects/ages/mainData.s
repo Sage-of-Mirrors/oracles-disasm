@@ -276,7 +276,6 @@ group2Map24ObjectData:
 group2Map25ObjectData:
 group2Map26ObjectData:
 group2Map27ObjectData:
-group2Map28ObjectData:
 group2Map29ObjectData:
 group2Map2aObjectData:
 group2Map2bObjectData:
@@ -5009,4 +5008,8 @@ group3Map2aObjectData:
 
 group3Map1aObjectData:
 	obj_Interaction $80 $00 $68 $18
+	obj_End
+
+group2Map28ObjectData:
+	obj_Interaction $60 $3d
 	obj_End
