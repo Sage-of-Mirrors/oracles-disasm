@@ -4576,6 +4576,30 @@ groups:
   - name: TX_0967
     index: 0x67
     text: |-
+      The season is
+      summer.
+
+  - name: TX_0968
+    index: 0x68
+    text: |-
+      The season is
+      fall.
+
+  - name: TX_0969
+    index: 0x69
+    text: |-
+      The season is
+      winter. 
+
+  - name: TX_096a
+    index: 0x6a
+    text: |-
+      The season is
+      spring.     
+
+  - name: TX_096b
+    index: 0x6b
+    text: |-
       Rod of Seasons
       Best used from
       atop a stump.

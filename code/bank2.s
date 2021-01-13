@@ -5392,7 +5392,12 @@ _inventorySubscreen2_drawTreasures:
 	ld a,(wTilesetFlags)
 	and TILESETFLAG_PAST
 	rlca
+
 	ld d,a
+	; Set text index for time/season blurb
+	ld hl,w4SubscreenTextIndices+8
+	add (hl)
+	ld (hl),a
 
 	ld a,(wRoomPack)
 	or a
@@ -5400,33 +5405,26 @@ _inventorySubscreen2_drawTreasures:
 	ldbc $04,$06
 	jp z,_fillRectangleInTileMapWithMenuBlock
 	bit 7,a
+	ld hl,_itemSubmenu2BlurbDisplayAgesData
 	jr z,+
-;.else; ROM_SEASONS
+
 	ld a,(wCurrentSeason)
 	ld d,a
+	ld b,<TX_0967
+	add b
+	ld hl,w4SubscreenTextIndices+8
+	ld (hl),a
+	ld hl,_itemSubmenu2BlurbDisplaySeasonsData
 +
-;.endif
+
 	ld a,d
 	ld c,d
-
-	; Set text index for time/season blurb
-	ld hl,w4SubscreenTextIndices+8
-	add (hl)
-	ld (hl),a
 
 	; Load graphic
 	ld a,c
 	add a
 	add a
 	add c
-	ld hl,_itemSubmenu2BlurbDisplayAgesData
-	ld c,a
-	ld a,(wRoomPack)
-	bit 7,a
-	jr z,+
-	ld hl,_itemSubmenu2BlurbDisplaySeasonsData
-+
-	ld a,c
 	rst_addDoubleIndex
 	ld de,w4TileMap+$6e
 	call _drawTreasureDisplayDataToBg
