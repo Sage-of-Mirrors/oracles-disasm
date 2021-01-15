@@ -3899,19 +3899,19 @@ _inventoryMenuState0:
 	ld (hl),$00
 +
 
-.ifdef ROM_SEASONS
+.ifdef ROM_AGES
 	xor a
 	ld (wInventorySubmenu),a
 	ld (wInventory.cbba),a
 	dec a
 	ld (wInventory.activeText),a
-	call _checkWhetherToDisplaySeasonInSubscreen
+	call _checkWhetherToDisplaySymbolInSubscreen
 	jr z,+
 	ld a,$01
 +
 	ld (wInventory.submenu2CursorPos2),a
 
-.else; ROM_AGES
+.else; ROM_SEASONS
 	xor a
 	ld (wInventorySubmenu),a
 	ld (wInventory.cbba),a
@@ -4647,14 +4647,11 @@ _inventorySubmenu1CheckDirectionButtons:
 
 ;;
 _inventorySubmenu2CheckDirectionButtons:
-
-.ifdef ROM_SEASONS
 	ld e,$80
-	call _checkWhetherToDisplaySeasonInSubscreen
+	call _checkWhetherToDisplaySymbolInSubscreen
 	jr z,+
 	ld e,$00
 +
-.endif
 
 	ld hl,@offsets
 	call _getDirectionButtonOffsetFromHl
@@ -4701,17 +4698,27 @@ _inventorySubmenu2CheckDirectionButtons:
 	.db $80 $80 $ff $01
 
 
-.ifdef ROM_SEASONS
-
 ;;
 ; @param[out]	zflag	Set if the season should be displayed. (Unset in dungeons,
 ;			subrosia, etc.)
-_checkWhetherToDisplaySeasonInSubscreen:
+_checkWhetherToDisplaySymbolInSubscreen:
+	ld a,(wRoomPack)
+	or a
+	jr z,@fail
 	ld a,(wTilesetFlags)
-	and $fc
+	bit TILESETFLAG_BIT_DUNGEON,a
+	jr z,@success
+	ld a,(wDungeonIndex)
+	cp $03
+	jr z,@fail
+@success:
+	xor a
+	ret
+@fail:
+	inc a
+	or a
 	ret
 
-.endif
 ;;
 _func_02_5938:
 	ld a,(wInventory.cbb8)
@@ -5399,16 +5406,25 @@ _inventorySubscreen2_drawTreasures:
 	add (hl)
 	ld (hl),a
 
-	ld a,(wRoomPack)
-	or a
+	call _checkWhetherToDisplaySymbolInSubscreen
 	ld hl,w4TileMap+$4d
 	ldbc $04,$06
-	jp z,_fillRectangleInTileMapWithMenuBlock
+	jp nz,_fillRectangleInTileMapWithMenuBlock
+
+	ld a,(wRoomPack)
 	bit 7,a
 	ld hl,_itemSubmenu2BlurbDisplayAgesData
 	jr z,+
 
+	ld a,(wTilesetFlags)
+	bit TILESETFLAG_BIT_DUNGEON,a
 	ld a,(wCurrentSeason)
+	jr z,++
+	ld a,(wDungeonFloor)
+	xor $03
+	dec a
+	and $03
+++	
 	ld d,a
 	ld b,<TX_0967
 	add b
@@ -5443,14 +5459,12 @@ _itemSubmenu2EssencePositions:
 ;         "drawTreasureDisplayData").
 _itemSubmenu2BlurbDisplayAgesData:
 
-;	.ifdef ROM_AGES
 		.db $18 $01 $19 $01 $ff ; Present
 		.db $1a $01 $1b $01 $ff
 		.db $1c $03 $1d $03 $ff ; Past
 		.db $1e $03 $1f $03 $ff
 
 _itemSubmenu2BlurbDisplaySeasonsData
-;	.else; ROM_SEASONS
 
 		.db $44 $02 $45 $02 $ff ; Summer
 		.db $46 $02 $47 $02 $ff
@@ -5460,19 +5474,6 @@ _itemSubmenu2BlurbDisplaySeasonsData
 		.db $4e $01 $4f $01 $ff
 		.db $40 $00 $41 $00 $ff ; Spring
 		.db $42 $00 $43 $00 $ff
-;original
-;		.db $14 $02 $15 $02 $ff ; Summer
-;		.db $16 $02 $17 $02 $ff
-;		.db $18 $03 $19 $03 $ff ; Fall
-;		.db $1a $03 $1b $03 $ff
-;		.db $1c $01 $1d $01 $ff ; Winter
-;		.db $1e $01 $1f $01 $ff
-;		.db $10 $00 $11 $00 $ff ; Spring
-;		.db $12 $00 $13 $00 $ff
-
-;	.endif
-
-
 
 ; Display data for heart piece quarters in subscreen 2.
 ;  b0:    offset from top-left of heart

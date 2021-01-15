@@ -12,6 +12,7 @@ runRoomSpecificCode:
 	.dw _setMinimapVars_Group3Map18
 	.dw _setMinimapVars_Group3Map78
 	.dw _setMinimapVars_Group1Map78
+	.dw _setMinimapVars_Group3Map79
 ;	.dw _roomSpecificCode5
 ;	.dw setDeathRespawnPoint
 ;	.dw _roomSpecificCode7
@@ -43,6 +44,10 @@ _roomSpecificCodeGroup0Table:
 ;	.db $3a $09
 	.db $00
 _roomSpecificCodeGroup1Table:
+	.db $08 $00
+	.db $18 $00
+	.db $28 $00
+	.db $38 $00
 	.db $68 $00
 	.db $78 $04
 
@@ -63,6 +68,7 @@ _roomSpecificCodeGroup3Table:
 	.db $08 $01
 	.db $18 $02
 	.db $78 $03
+	.db $79 $05
 
 ;	.db $0f $0b
 	.db $00
@@ -80,8 +86,7 @@ _roomSpecificCodeGroup7Table:
 ;;
 _disableMapMenu:
 	ld a,GLOBALFLAG_MAKE_MENU_ERROR
-	call setGlobalFlag
-	ret
+	jp setGlobalFlag
 
 ;;
 _setMinimapVars_Group3Map08:
@@ -91,7 +96,7 @@ _setMiniMapVarsGroup0:
 	ldd (hl),a
 	ld (hl),$00
 	ret
-	
+
 _setMinimapVars_Group3Map18:
 	ld a,$16
 	jr _setMiniMapVarsGroup0
@@ -100,7 +105,13 @@ _setMinimapVars_Group3Map78:
 	ld a,$27
 	jr _setMiniMapVarsGroup0
 
+_setMinimapVars_Group3Map79:
+	ld a,$06
+	jr _setMiniMapVarsGroup0
+	
 _setMinimapVars_Group1Map78:
+	ld a,GLOBALFLAG_DONT_UPDATE_MINIMAP
+	call setGlobalFlag
 	ld a,$77
 	jr _setMiniMapVarsGroup0
 

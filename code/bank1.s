@@ -3309,24 +3309,18 @@ checkUpdateDungeonMinimap:
 .endif
 
 @setMinimapRoom:
+	ld a,GLOBALFLAG_DONT_UPDATE_MINIMAP
+	call checkGlobalFlag
+	ret nz
+
 	ld hl,wMinimapDungeonFloor
 	ld a,(wDungeonFloor)
 	ldd (hl),a ; wMinimapDungeonFloor
 	ld a,(wDungeonMapPosition)
 	ldd (hl),a ; wMinimapDungeonMapPosition
 	ld a,(wActiveRoom)
-	ld b,a
-	and $0f
-	cp OVERWORLD_WIDTH
-	ret nc
-	ld a,b
-	and $f0
-	swap a
-	cp OVERWORLD_HEIGHT
-	ret nc
-	ld a,b
-
-	ldd (hl),a ; wMinimapRoom
+	ld (hl),a ; wMinimapRoom
+	dec l
 	ld a,(wActiveGroup)
 	ld c,(hl)  ; wMinimapGroup
 	ld (hl),a
@@ -3639,6 +3633,8 @@ cutscene00:
 	call updateLastToggleBlocksState
 	call checkInitUnderwaterWaves
 .endif
+	ld a,GLOBALFLAG_DONT_UPDATE_MINIMAP
+	call unsetGlobalFlag
 
 	jp updateGrassAnimationModifier
 
@@ -5766,10 +5762,9 @@ checkRoomPackAfterWarp_body:
 .else ; ROM_AGES
 
 checkRoomPackAfterWarp_body:
-	ld a,(wRoomPack)
-	bit 7,a
-	ret z
-	and $7f
+	ld a,(wLoadingRoomPack)
+	sub $80
+	ret c
 	ld (wCurrentSeason),a
 	ret
 ;;

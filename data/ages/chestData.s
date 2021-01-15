@@ -23,6 +23,7 @@ chestGroup0Data:
 	.db $ff
 
 chestGroup1Data:
+	.db $12 $08 $28 $08
 	.db $43 $6d $2d $27
 	.db $ff
 

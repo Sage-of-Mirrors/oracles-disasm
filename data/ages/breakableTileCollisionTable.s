@@ -13,6 +13,7 @@ _breakableTileCollision4Data:
 	.db TILEINDEX_MUSHROOM $33		;mushroom
 	.db TILEINDEX_LEAVES_NO_HOLE $00
 	.db $cd $35
+	.db $c3 $38
 	;.db TILEINDEX_FLOWER
 ;Gamma's overworld tilesets
 _breakableTileCollision0Data:
@@ -208,5 +209,6 @@ _breakableTileModes:
 	m_BreakableTileData %01110000 %10010000 %0111 $4 $0a $3a ; $35	snow
 	m_BreakableTileData %01110000 %10010000 %0111 $4 $0a $a0 ; $36	dungeon snow
 	m_BreakableTileData %01110000 %10010000 %0111 $4 $0a $de ; $37	dungeon snow
+	m_BreakableTileData %00100001 %00000000 %0000 $0 $c6 $ed ; $38
 
 

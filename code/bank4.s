@@ -163,19 +163,19 @@ _label_04_033:
 ;.ifdef ROM_AGES
 ;	jp loadScreenMusicAndSetRoomPack
 ;.else; ROM_SEASONS
-	ld a,(wWarpDestGroup)
+;ld a,(wWarpDestGroup)
 	bit 6,a
 	jr nz,_label_04_036
 	ld a,(wActiveGroup)
 	or a
 	jr nz,_label_04_036
-	ldh a,(<hFF8B)
-	cp $03
-	jr c,_label_04_035
-	jr z,_label_04_036
 	ld a,(wDungeonIndex)
 	cp $ff
 	jr z,_label_04_036
+	ldh a,(<hFF8B)		;previous Active Group?
+	and $01
+;	jr c,_label_04_035
+	jr nz,_label_04_036
 _label_04_035:
 	call loadScreenMusicAndSetRoomPack
 	jp checkRoomPackAfterWarp

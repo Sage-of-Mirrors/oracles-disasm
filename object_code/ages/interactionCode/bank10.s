@@ -826,8 +826,10 @@ _interactiondc_subid13:
 ; Spawns portal to final dungeon from maku tree
 _interactiondc_subid14:
 	call objectGetTileAtPosition
-	cp $dc ; TODO
-	jr nz,@delete
+	cp $ed ; TODO
+	ret nz
+	call getThisRoomFlags
+	set ROOMFLAG_BIT_80,(hl)
 	ld b,INTERACID_DECORATION
 	call objectCreateInteractionWithSubid00
 @delete:

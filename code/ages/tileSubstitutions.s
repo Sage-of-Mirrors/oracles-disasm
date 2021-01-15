@@ -269,8 +269,8 @@ applyStandardTileSubstitutions:
 @bit2Collisions3:
 	.db $00
 
-@bit3Collisions0:
 @bit3Collisions4:
+@bit3Collisions0:
 @bit3Collisions5:
 	.db $00
 @bit3Collisions1:
@@ -285,6 +285,7 @@ applyStandardTileSubstitutions:
 
 @bit7Collisions4:
 	.db $dc $c1
+	.db $ed $c3
 @bit7Collisions0:
 	.db $dd $c1 ; Cave door under rock? (Is this a bug?)
 	.db $d2 $c2 ; Soil under rock

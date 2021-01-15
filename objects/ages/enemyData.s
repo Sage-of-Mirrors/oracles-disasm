@@ -2662,3 +2662,7 @@ group3Map2aEnemyObjectData:
 	obj_RandomEnemy $40 $43 $00
 	obj_RandomEnemy $20 $34 $01
 	obj_EndPointer
+
+group1Map38EnemyObjectData:
+	obj_SpecificEnemyA 0 $45 $00 $68 $68
+	obj_EndPointer

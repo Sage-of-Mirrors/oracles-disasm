@@ -11933,13 +11933,14 @@ loadScreenMusicAndSetRoomPack:
 	ld a,(wActiveRoom)
 	ld (wLoadingRoom),a
 	ld a,(wActiveGroup)
+	res 0,a
 	or a
 	ret nz
 
 	ld a,(wLoadingRoomPack)
-.ifdef ROM_AGES
-	and $7f
-.endif
+;.ifdef ROM_AGES
+;	and $7f
+;.endif
 	ld (wRoomPack),a
 	ret
 
