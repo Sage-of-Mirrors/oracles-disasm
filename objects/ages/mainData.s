@@ -1,11 +1,9 @@
-group0Map08ObjectData:
 group0Map0eObjectData:
 group0Map0fObjectData:
 group0Map1cObjectData:
 group0Map1eObjectData:
 group0Map1fObjectData:
 group0Map23ObjectData:
-group0Map28ObjectData:
 group0Map2dObjectData:
 group0Map2eObjectData:
 group0Map2fObjectData:
@@ -248,7 +246,6 @@ group2Map04ObjectData:
 group2Map05ObjectData:
 group2Map06ObjectData:
 group2Map07ObjectData:
-group2Map08ObjectData:
 group2Map09ObjectData:
 group2Map0aObjectData:
 group2Map0bObjectData:
@@ -867,9 +864,7 @@ group0Map37ObjectData:
 	obj_End
 
 group0Map38ObjectData:
-	obj_Interaction $87 $00 $40 $50
-	obj_Interaction $dc $14 $58 $78
-	obj_Interaction $6b $15 $40 $84
+	obj_Pointer group0Map38EnemyObjectData
 	obj_End
 
 group0Map39ObjectData:
@@ -1031,11 +1026,7 @@ group0Map67ObjectData:
 	obj_End
 
 group0Map68ObjectData:
-	obj_Interaction $44 $02 $68 $78
-	obj_Interaction $3a $05 $38 $88
-	obj_Interaction $3b $02 $68 $78
-	obj_Interaction $3c $02 $68 $38
-	obj_Interaction $e1 $00 $18 $38
+	obj_Interaction $80 $00 $18 $88
 	obj_End
 
 group0Map6aObjectData:
@@ -1080,6 +1071,7 @@ group0Map73ObjectData:
 
 group0Map74ObjectData:
 	obj_Pointer group0Map74EnemyObjectData
+	obj_Interaction $dc $08 $67 $40 $ce
 	obj_End
 
 group0Map77ObjectData:
@@ -1089,7 +1081,7 @@ group0Map77ObjectData:
 
 group0Map78ObjectData:
 	obj_SpecificEnemyA $00 $5a $06 $00 $00
-	obj_Interaction $3d $04 $18 $28
+	obj_Interaction $80 $00 $18 $58
 	obj_End
 
 group0Map79ObjectData:
@@ -1334,6 +1326,7 @@ group1MapbaObjectData:
 group1Map08ObjectData:
 	obj_SpecificEnemyA $00 $09 $03 $38 $48
 	obj_Interaction $dc $14 $28 $78
+	obj_Interaction $12 $02 $18 $28
 	obj_End
 
 group1Map25ObjectData:
@@ -5018,4 +5011,17 @@ group3Map69ObjectData:
 
 group3Map79ObjectData:
 	obj_Interaction $80 $00 $18 $88
+	obj_End
+
+group0Map08ObjectData:
+	obj_Interaction $dc $14 $28 $78
+	obj_Interaction $12 $02 $18 $28
+	obj_Pointer group0Map08EnemyObjectData
+	obj_End
+
+group2Map08ObjectData:
+	obj_End
+
+group0Map28ObjectData:
+	obj_Interaction $80 $00 $38 $58
 	obj_End

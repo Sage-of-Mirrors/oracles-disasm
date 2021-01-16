@@ -11938,12 +11938,24 @@ loadScreenMusicAndSetRoomPack:
 	ret nz
 
 	ld a,(wLoadingRoomPack)
+	
 ;.ifdef ROM_AGES
 ;	and $7f
 ;.endif
 	ld (wRoomPack),a
-	ret
+	ld a,(wActiveGroup)
+	or a
+	ret z
+	cp $04
+	ret nc
 
+	ld hl,seasonsGroupTable
+	rst_addAToHl
+	ld a,(hl)
+	ld (wCurrentSeason),a
+	ret
+seasonsGroupTable:
+	.db SEASON_SUMMER SEASON_SPRING SEASON_WINTER SEASON_FALL
 ;;
 dismountCompanionAndSetRememberedPositionToScreenCenter:
 	ldh a,(<hRomBank)

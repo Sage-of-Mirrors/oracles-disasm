@@ -18457,8 +18457,7 @@ groups:
   - name: TX_3900
     index: 0x00
     text: |-
-      Collect the seeds
-      to find the way.
+      The seed will show you the way.
 
   - name: TX_3901
     index: 0x01

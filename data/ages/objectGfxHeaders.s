@@ -200,9 +200,9 @@ objectGfxHeaderTable:
 	/* $c6 */ m_ObjectGfxHeader spr_smog_3 $00
 	/* $c7 */ m_ObjectGfxHeader spr_smog_projectiles $80
 	/* $c8 */ m_ObjectGfxHeader spr_octogon_1 $00
-	/* $c9 */ m_ObjectGfxHeader spr_octogon_2 $00
-	/* $ca */ m_ObjectGfxHeader spr_octogon_3 $80
-	/* $cb */ m_ObjectGfxHeader spr_plasmarine_1 $00
+	/* $c9 */ m_ObjectGfxHeader  spr_gleeok_1 $00		;spr_octogon_2
+	/* $ca */ m_ObjectGfxHeader  spr_gleeok_2 $80		;spr_octogon_3
+	/* $cb */ m_ObjectGfxHeader spr_0ab0a2  $00			;spr_plasmarine_1
 	/* $cc */ m_ObjectGfxHeader spr_plasmarine_2 $00
 	/* $cd */ m_ObjectGfxHeader spr_plasmarine_3 $80
 	/* $ce */ m_ObjectGfxHeader spr_ramrock_1 $00

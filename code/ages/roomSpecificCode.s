@@ -38,19 +38,18 @@ _roomSpecificCodeGroupTable:
 ; Format: room index
 
 _roomSpecificCodeGroup0Table:
-;	.db $93 $00
-;	.db $38 $06
-;	.db $39 $08
-;	.db $3a $09
-	.db $00
-_roomSpecificCodeGroup1Table:
 	.db $08 $00
 	.db $18 $00
 	.db $28 $00
 	.db $38 $00
 	.db $68 $00
 	.db $78 $04
-
+;	.db $93 $00
+;	.db $38 $06
+;	.db $39 $08
+;	.db $3a $09
+	.db $00
+_roomSpecificCodeGroup1Table:
 ;	.db $81 $03
 ;	.db $38 $06
 ;	.db $97 $07

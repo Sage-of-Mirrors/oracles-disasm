@@ -330,9 +330,14 @@ part47Animations:
 part49Animations:
 	.dw partAnimation5ba94
 	.dw partAnimation5ba9f
-part43Animations:
-	.dw partAnimation5b98c
-	.dw partAnimation5bab4
+part43Animations:	;Gleeok projectile
+	.dw partAnimationGleeokProjectile0 ; 57586
+	.dw partAnimationGleeokProjectile1 ; 57604
+	.dw partAnimation5ba32 ; 5760f
+	.dw partAnimationGleeokProjectile3 ; 5761a
+
+;	.dw partAnimation5b98c
+;	.dw partAnimation5bab4
 part26Animations:
 part44Animations:
 part4bAnimations:
@@ -799,8 +804,23 @@ partAnimation5bbf0:
 	.db $03 $0a $00
 	m_AnimationLoop partAnimation5bbf0
 
+partAnimationGleeokProjectile0:
+	.db $02 $00 $00
+	.db $02 $02 $00
+	.db $02 $04 $00
+	m_AnimationLoop partAnimationGleeokProjectile0
 
-
+partAnimationGleeokProjectile1:
+	.db $04 $12 $00
+	.db $04 $14 $00
+	.db $04 $16 $00
+	m_AnimationLoop partAnimationGleeokProjectile1
+	
+partAnimationGleeokProjectile3:
+	.db $04 $0c $00
+	.db $04 $0e $00
+	.db $04 $10 $00
+	m_AnimationLoop partAnimationGleeokProjectile3
 
 part00OamDataPointers: ; 0x5bc04
 part05OamDataPointers: ; 0x5bc04
@@ -1081,9 +1101,22 @@ part42OamDataPointers: ; 0x5bd52
 	.dw partOamData531f2
 
 part43OamDataPointers: ; 0x5bd58
-	.dw partOamData53233
-	.dw partOamData53245
-	.dw partOamData5324e
+	.dw partOamData532ba ; 4f3f9
+	.dw partOamData532c3 ; 4f402
+	.dw partOamData532cc ; 4f40b
+	.dw partOamData53365 ; 4f465
+	.dw partOamDataGleeokProjectile4 ; 4f46e
+	.dw partOamDataGleeokProjectile5 ; 4f477
+	.dw partOamData53377 ; 4f492
+	.dw partOamDataGleeokProjectile7 ; 4f49b
+	.dw partOamDataGleeokProjectile8 ; 4f4a4
+	.dw partOamData53206 ; 4f368
+	.dw partOamDataGleeokProjectileA ; 4f36d
+	.dw partOamDataGleeokProjectileB ; 4f372
+
+;	.dw partOamData53233
+;	.dw partOamData53245
+;	.dw partOamData5324e
 
 part44OamDataPointers: ; 0x5bd5e
 	.dw partOamData53269

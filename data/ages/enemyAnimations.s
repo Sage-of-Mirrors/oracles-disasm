@@ -594,28 +594,35 @@ enemy63Animations:
 	.dw enemyAnimation3779f
 enemy4fAnimations:
 enemy7dAnimations:
-	.dw enemyAnimation374fb
-	.dw enemyAnimation37500
-	.dw enemyAnimation37515
-	.dw enemyAnimation3751a
-	.dw enemyAnimation3751f
-	.dw enemyAnimation37524
-	.dw enemyAnimation37529
-	.dw enemyAnimation37724
-	.dw enemyAnimation37729
-	.dw enemyAnimation37218
-	.dw enemyAnimation37565
-	.dw enemyAnimation3774c
-	.dw enemyAnimation379bd
-	.dw enemyAnimation379c2
-	.dw enemyAnimation3722d
-	.dw enemyAnimation379c7
-	.dw enemyAnimation37389
-	.dw enemyAnimation3738c
-	.dw enemyAnimation379cc
-	.dw enemyAnimation37398
-	.dw enemyAnimation3739b
-	.dw enemyAnimation3738f
+	.dw enemyAnimation374fb	; 33480
+	.dw enemyAnimation37500 ; 33485
+	.dw enemyAnimation37515 ; 3349a
+	.dw enemyAnimationGleeok3 ; 333b1
+	.dw enemyAnimationGleeok4 ; 333b9
+
+;	.dw enemyAnimation374fb
+;	.dw enemyAnimation37500
+;	.dw enemyAnimation37515
+;	.dw enemyAnimation3751a
+;	.dw enemyAnimation3751f
+;	.dw enemyAnimation37524
+;	.dw enemyAnimation37529
+;	.dw enemyAnimation37724
+;	.dw enemyAnimation37729
+;	.dw enemyAnimation37218
+;	.dw enemyAnimation37565
+;	.dw enemyAnimation3774c
+;	.dw enemyAnimation379bd
+;	.dw enemyAnimation379c2
+;	.dw enemyAnimation3722d
+;	.dw enemyAnimation379c7
+;	.dw enemyAnimation37389
+;	.dw enemyAnimation3738c
+;	.dw enemyAnimation379cc
+;	.dw enemyAnimation37398
+;	.dw enemyAnimation3739b
+;	.dw enemyAnimation3738f
+
 enemy53Animations:
 	.dw enemyAnimation3772e
 	.dw enemyAnimation37736
@@ -1787,6 +1794,15 @@ enemyAnimation379f1:
 	.db $04 $10 $00
 	m_AnimationLoop enemyAnimation379f1
 
+enemyAnimationGleeok3:
+	.db $18 $06 $00
+	.db $18 $08 $00
+	m_AnimationLoop enemyAnimationGleeok3
+
+	enemyAnimationGleeok4:
+	.db $10 $0a $00
+	.db $10 $0c $00
+	m_AnimationLoop enemyAnimationGleeok4
 
 
 
@@ -2532,29 +2548,37 @@ enemy7cOamDataPointers: ; 0x37e2b
 	.dw enemyOamData4e994
 
 enemy7dOamDataPointers: ; 0x37e53
-	.dw enemyOamData4e9b5
-	.dw enemyOamData4e9d6
-	.dw enemyOamData4e9f7
-	.dw enemyOamData4ea18
-	.dw enemyOamData4ea39
-	.dw enemyOamData4ea5a
-	.dw enemyOamData4ea7b
-	.dw enemyOamData4ea9c
-	.dw enemyOamData4eabd
-	.dw enemyOamData4eade
-	.dw enemyOamData4eaff
-	.dw enemyOamData4eb20
-	.dw enemyOamData4eb41
-	.dw enemyOamData4eb62
-	.dw enemyOamData4eb83
-	.dw enemyOamData4eba4
-	.dw enemyOamData4ebc5
-	.dw enemyOamData4f273
-	.dw enemyOamData4ebe6
-	.dw enemyOamData4ec07
-	.dw enemyOamData4ec28
-	.dw enemyOamData4ec49
-	.dw enemyOamData4ec6a
+	.dw enemyOamData4d1da ; 491da
+	.dw enemyOamDataGleeok1 ; 491e9
+	.dw enemyOamData4d1df ; 491df
+	.dw enemyOamDataGleeok3 ; 4abea
+	.dw enemyOamDataGleeok4 ; 4ac0f
+	.dw enemyOamDataGleeok5 ; 4ac34
+	.dw enemyOamDataGleeok6 ; 4ac59
+
+;	.dw enemyOamData4e9b5
+;	.dw enemyOamData4e9d6
+;	.dw enemyOamData4e9f7
+;	.dw enemyOamData4ea18
+;	.dw enemyOamData4ea39
+;	.dw enemyOamData4ea5a
+;	.dw enemyOamData4ea7b
+;	.dw enemyOamData4ea9c
+;	.dw enemyOamData4eabd
+;	.dw enemyOamData4eade
+;	.dw enemyOamData4eaff
+;	.dw enemyOamData4eb20
+;	.dw enemyOamData4eb41
+;	.dw enemyOamData4eb62
+;	.dw enemyOamData4eb83
+;	.dw enemyOamData4eba4
+;	.dw enemyOamData4ebc5
+;	.dw enemyOamData4f273
+;	.dw enemyOamData4ebe6
+;	.dw enemyOamData4ec07
+;	.dw enemyOamData4ec28
+;	.dw enemyOamData4ec49
+;	.dw enemyOamData4ec6a
 
 enemy7eOamDataPointers: ; 0x37e81
 	.dw enemyOamData4e0e1

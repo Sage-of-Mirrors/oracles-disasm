@@ -139,7 +139,7 @@ enemyData:
 	/* 0x7a */ m_EnemyData $c2 $4b $26 $30
 	/* 0x7b */ m_EnemyData $c4 $ed $27 $10
 	/* 0x7c */ m_EnemyData $c5 $cd $28 $30
-	/* 0x7d */ m_EnemyData $c8 $ce $29 $20
+	/* 0x7d */ m_EnemyData $c9 $8d $46 $60		;Gleeok $c8 $ce $29 $20
 	/* 0x7e */ m_EnemyData $cb $4f $2a $10
 	/* 0x7f */ m_EnemyData $a9 $d0 $36 $00
 
@@ -303,3 +303,4 @@ extraEnemyData:
 	.db $02 $02 $00 $02 ; 0x44
 	
 	.db $08 $08 $fa $09 ; 0x45
+	.db $06 $03 $fe $10	; 0x46	;$f8 $19

@@ -187,9 +187,9 @@
 	m_GfxData spr_smog_3 ; $0b2ad5
 	m_GfxData spr_smog_projectiles ; $0b2c32
 	m_GfxData spr_octogon_1 ; $0b2cfe
-	m_GfxData spr_octogon_2 ; $0b2ee4
-	m_GfxData spr_octogon_3 ; $0b30ac
-	m_GfxData spr_plasmarine_1 ; $0b31a3
+	m_GfxData spr_gleeok_1	;m_GfxData spr_octogon_2 ; $0b2ee4
+	m_GfxData spr_gleeok_2	;m_GfxData spr_octogon_3 ; $0b30ac
+	m_GfxData spr_0ab0a2	;spr_plasmarine_1 ; $0b31a3
 	m_GfxData spr_plasmarine_2 ; $0b32dc
 	m_GfxData spr_plasmarine_3 ; $0b33b5
 	m_GfxData spr_ramrock_1 ; $0b3462

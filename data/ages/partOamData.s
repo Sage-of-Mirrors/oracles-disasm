@@ -959,3 +959,30 @@ partOamData53a7c:
 	.db $14 $0c $06 $00
 	.db $14 $14 $06 $20
 
+partOamDataGleeokProjectile4:
+	.db $02
+	.db $08 $00 $00 $01
+	.db $08 $08 $02 $01
+
+partOamDataGleeokProjectile5:
+	.db $02
+	.db $08 $00 $00 $07
+	.db $08 $08 $02 $07
+
+partOamDataGleeokProjectile7:
+	.db $02
+	.db $08 $00 $02 $21
+	.db $08 $08 $00 $21
+
+partOamDataGleeokProjectile8:
+	.db $02
+	.db $08 $00 $02 $27
+	.db $08 $08 $00 $27
+
+partOamDataGleeokProjectileA:
+	.db $01
+	.db $08 $04 $04 $01
+
+partOamDataGleeokProjectileB:
+	.db $01
+	.db $08 $04 $04 $07
