@@ -8531,52 +8531,75 @@ slateSlot_placeSlate:
 ; ==============================================================================
 ;;
 interactiondc_removeGraveyardGateTiles1:
-	ld a,$0a
-	call setScreenShakeCounter
-	ld a,$3a
-	ld c,$34
+	ld a,$a7
+	ld c,$03
 	call setTile
-	ld a,$3a
-	ld c,$44
+	ld a,$a7
+	ld c,$05
 	call setTile
-
-	ld hl,@interleavedTiles
-	call _interactiondc_7bde
-	call _interactiondc_7bde
-	call _interactiondc_7bde
-	call _interactiondc_7bde
-
-	ld bc,$4840
-	call _interactiondc_spawnPuff
-	ld bc,$4850
-	jp _interactiondc_spawnPuff
-
-@interleavedTiles:
-	.db $33 $3a $89 $01
-	.db $35 $3a $89 $03
-	.db $43 $98 $ec $01
-	.db $45 $9a $ec $03
+	ld a,$d0
+	ld c,$04
+	jp setTile
 
 ;;
 interactiondc_removeGraveyardGateTiles2:
-	ld a,$0a
-	call setScreenShakeCounter
-	ld a,$3a
+	ld a,$97
+	ld c,$13
+	call setTile
+	ld a,$97
+	ld c,$15
+	call setTile
+	ld a,$d0
+	ld c,$14
+	jp setTile
+  
+;;
+interactiondc_removeGraveyardGateTiles3:
+	ld a,$1b
+	ld c,$23
+	call setTile
+	ld a,$1b
+	ld c,$24
+	call setTile
+	ld a,$1a
+	ld c,$25
+  call setTile
+  ld a,$1b
+	ld c,$34
+  jp setTile
+  
+;;
+interactiondc_removeGraveyardGateTiles4:
+	ld a,$1b
+	ld c,$22
+	call setTile
+	ld a,$f9
 	ld c,$33
 	call setTile
-	ld a,$3a
+	ld a,$1b
 	ld c,$35
-	call setTile
-	ld a,$3a
+  call setTile
+  ld a,$f9
+	ld c,$26
+  jp setTile
+  
+;;
+interactiondc_removeGraveyardGateTiles5:
+	ld a,$1a
 	ld c,$43
 	call setTile
-	ld a,$3a
-	ld c,$45
+	ld a,$f9
+	ld c,$44
 	call setTile
-	ld bc,$4830
-	call _interactiondc_spawnPuff
-	ld bc,$4860
-	jp _interactiondc_spawnPuff
+	ld a,$1b
+	ld c,$45
+  call setTile
+  ld a,$1b
+	ld c,$36
+  call setTile
+  ld a,$1b
+	ld c,$32
+  jp setTile
 
 ;;
 _interactiondc_7bde:

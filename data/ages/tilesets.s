@@ -145,7 +145,7 @@ tilesetData: ; 4:4f9c
 	.db UNIQGFXH_03
 	.db GFXH_41
 	.db PALH_23
-	.db $01 $02 $01
+	.db $01 $01 $01
 
 ; Tileset 0x14
 	.db $0f $81

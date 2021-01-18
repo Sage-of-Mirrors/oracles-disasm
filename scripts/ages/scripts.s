@@ -9228,10 +9228,20 @@ interactiondcSubid01Script:
 	checkcfc0bit 0
 	setmusic SNDCTRL_STOPMUSIC
 	wait 60
+  asm15 setScreenShakeCounter, 240
+  playsound SND_FLOODGATES
+  wait 60
 	asm15 scriptHelp.interactiondc_removeGraveyardGateTiles1
-	wait 45
+	wait 30
 	asm15 scriptHelp.interactiondc_removeGraveyardGateTiles2
+  wait 30
+	asm15 scriptHelp.interactiondc_removeGraveyardGateTiles3
+  wait 30
+	asm15 scriptHelp.interactiondc_removeGraveyardGateTiles4
+  wait 30
+	asm15 scriptHelp.interactiondc_removeGraveyardGateTiles5
 	wait 60
+  playsound SNDCTRL_STOPSFX
 	resetmusic
 	playsound SND_SOLVEPUZZLE
 	enableinput

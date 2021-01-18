@@ -108,6 +108,12 @@ _interactiondc_subid01:
 	call getThisRoomFlags
 	and $80
 	jp nz,interactionDelete
+  
+  ; Set layout swap flags for post-waterfall state
+  set ROOMFLAG_BIT_LAYOUTSWAP,(hl)
+  ld l,$01
+  set ROOMFLAG_BIT_LAYOUTSWAP,(hl)
+  
 	ld hl,mainScripts.interactiondcSubid01Script
 	call interactionSetScript
 	call interactionSetAlwaysUpdateBit

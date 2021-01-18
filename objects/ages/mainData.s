@@ -751,6 +751,7 @@ group0Map10ObjectData:
 
 group0Map11ObjectData:
 	obj_Pointer group0Map11EnemyObjectData
+	obj_Interaction $dc $01
 	obj_End
 
 group0Map15ObjectData:
