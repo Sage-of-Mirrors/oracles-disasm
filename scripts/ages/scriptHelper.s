@@ -8601,30 +8601,12 @@ interactiondc_removeGraveyardGateTiles5:
 	ld c,$32
   jp setTile
 
-;;
-_interactiondc_7bde:
-	ldi a,(hl)
-	ldh (<hFF8C),a
-	ldi a,(hl)
-	ldh (<hFF8F),a
-	ldi a,(hl)
-	ldh (<hFF8E),a
-	ldi a,(hl)
-	push hl
-	call setInterleavedTile
-	pop hl
-	ret
-
-;;
-_interactiondc_spawnPuff:
-	call getFreeInteractionSlot
-	ret nz
-	ld (hl),INTERACID_PUFF
-	ld l,Interaction.yh
-	ld (hl),b
-	ld l,Interaction.xh
-	ld (hl),c
-	ret
+;
+interactiondc_setRoom001LayoutSwap:
+	call getThisRoomFlags
+	ld l,$01
+  set ROOMFLAG_BIT_LAYOUTSWAP,(hl)
+  ret
 
 ; ==============================================================================
 ; INTERACID_GET_ROD_OF_SEASONS

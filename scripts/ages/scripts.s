@@ -9226,6 +9226,8 @@ slateSlotScript_placeSlate:
 ; Graveyard gate opening cutscene
 interactiondcSubid01Script:
 	checkcfc0bit 0
+  orroomflag $01
+  asm15 scriptHelp.interactiondc_setRoom001LayoutSwap
 	setmusic SNDCTRL_STOPMUSIC
 	wait 60
   asm15 setScreenShakeCounter, 240

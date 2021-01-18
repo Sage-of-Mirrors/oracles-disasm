@@ -109,16 +109,10 @@ _interactiondc_subid01:
 	and $80
 	jp nz,interactionDelete
   
-  ; Set layout swap flags for post-waterfall state
-  set ROOMFLAG_BIT_LAYOUTSWAP,(hl)
-  ld l,$01
-  set ROOMFLAG_BIT_LAYOUTSWAP,(hl)
-  
 	ld hl,mainScripts.interactiondcSubid01Script
 	call interactionSetScript
 	call interactionSetAlwaysUpdateBit
 	jp interactionIncState
-
 
 ; Initiates cutscene where present d2 collapses
 _interactiondc_subid02:
