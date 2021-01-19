@@ -2648,8 +2648,6 @@ group4Map24ObjectData:
 	obj_End
 
 group4Map25ObjectData:
-	obj_Interaction $1e $08 $0a $00
-	obj_Interaction $1e $0b $50 $00
 	obj_Pointer group4Map25EnemyObjectData
 	obj_End
 
