@@ -16,14 +16,6 @@ cliffTiles_collisions4:
 	.db $84 $10
 	.db $85 $10
 	.db $86 $10
-	.db $96 $10
-	.db $87 $00
-	.db $87 $18
-	.db $88 $00
-	.db $89 $00
-	.db $89 $08
-	.db $97 $18
-	.db $99 $08
 cliffTiles_collisions0:
 	.db $05 $10
 	.db $06 $10

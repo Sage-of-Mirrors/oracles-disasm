@@ -593,35 +593,34 @@ enemy61Animations:
 enemy63Animations:
 	.dw enemyAnimation3779f
 enemy4fAnimations:
+	.dw enemyAnimation374fb
+	.dw enemyAnimation37500
+	.dw enemyAnimation37515
+	.dw enemyAnimation3751a
+	.dw enemyAnimation3751f
+	.dw enemyAnimation37524
+	.dw enemyAnimation37529
+	.dw enemyAnimation37724
+	.dw enemyAnimation37729
+	.dw enemyAnimation37218
+	.dw enemyAnimation37565
+	.dw enemyAnimation3774c
+	.dw enemyAnimation379bd
+	.dw enemyAnimation379c2
+	.dw enemyAnimation3722d
+	.dw enemyAnimation379c7
+	.dw enemyAnimation37389
+	.dw enemyAnimation3738c
+	.dw enemyAnimation379cc
+	.dw enemyAnimation37398
+	.dw enemyAnimation3739b
+	.dw enemyAnimation3738f
 enemy7dAnimations:
 	.dw enemyAnimation374fb	; 33480
 	.dw enemyAnimation37500 ; 33485
 	.dw enemyAnimation37515 ; 3349a
 	.dw enemyAnimationGleeok3 ; 333b1
 	.dw enemyAnimationGleeok4 ; 333b9
-
-;	.dw enemyAnimation374fb
-;	.dw enemyAnimation37500
-;	.dw enemyAnimation37515
-;	.dw enemyAnimation3751a
-;	.dw enemyAnimation3751f
-;	.dw enemyAnimation37524
-;	.dw enemyAnimation37529
-;	.dw enemyAnimation37724
-;	.dw enemyAnimation37729
-;	.dw enemyAnimation37218
-;	.dw enemyAnimation37565
-;	.dw enemyAnimation3774c
-;	.dw enemyAnimation379bd
-;	.dw enemyAnimation379c2
-;	.dw enemyAnimation3722d
-;	.dw enemyAnimation379c7
-;	.dw enemyAnimation37389
-;	.dw enemyAnimation3738c
-;	.dw enemyAnimation379cc
-;	.dw enemyAnimation37398
-;	.dw enemyAnimation3739b
-;	.dw enemyAnimation3738f
 
 enemy53Animations:
 	.dw enemyAnimation3772e

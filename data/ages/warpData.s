@@ -123,7 +123,7 @@ group0WarpDestTable:
 	m_WarpDest $13 $15 $0 $1
 	m_WarpDest $06 $03 $0 $1
 	m_WarpDest $57 $02 $0 $1
-	m_WarpDest $68 $25 $0 $1
+	m_WarpDest $68 $18 $0 $1
 	m_WarpDest $68 $11 $0 $1
 	m_WarpDest $48 $ff $f $1
 	m_WarpDest $28 $35 $0 $1

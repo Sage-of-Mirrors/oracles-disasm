@@ -5762,7 +5762,7 @@ checkRoomPackAfterWarp_body:
 .else ; ROM_AGES
 
 checkRoomPackAfterWarp_body:
-	ld a,(wLoadingRoomPack)
+	ld a,(wRoomPack)
 	sub $80
 	ret c
 	ld (wCurrentSeason),a

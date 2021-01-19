@@ -29,10 +29,6 @@ _itemPassableCliffTilesTable:
 	.db $84 $ff
 	.db $85 $ff
 	.db $86 $ff
-	.db $96 $ff
-	.db $87 $01
-	.db $88 $01
-	.db $89 $01
 	.db $00
 @@down:
 	.db $64 $01
@@ -45,28 +41,14 @@ _itemPassableCliffTilesTable:
 	.db $84 $01
 	.db $85 $01
 	.db $86 $01
-	.db $96 $01
-	.db $87 $ff
-	.db $88 $ff
-	.db $89 $ff
 	.db $00
 @@right:
 	.db $0b $01
 	.db $0a $ff
-
-	.db $87 $ff
-	.db $97 $ff
-	.db $89 $01
-	.db $99 $01
 	.db $00
 @@left:
 	.db $0b $ff
 	.db $0a $01
-
-	.db $87 $01
-	.db $97 $01
-	.db $89 $ff
-	.db $99 $ff
 	.db $00
 
 @collisions1:
@@ -82,6 +64,9 @@ _itemPassableCliffTilesTable:
 	.db $c7 $ff
 	.db $c8 $ff
 	.db $c9 $ff
+
+	.db $c1 $ff
+	.db $c3 $01
 	.db $00
 @@down:
 	.db $b0 $01
@@ -89,12 +74,19 @@ _itemPassableCliffTilesTable:
 	.db $c7 $01
 	.db $c8 $01
 	.db $c9 $01
+
+	.db $c1 $01
+	.db $c3 $ff
 	.db $00
-@@right:
+@@right:	
+	.db $c4 $01
+	.db $c2 $ff
 	.db $b3 $01
 	.db $b1 $ff
 	.db $00
 @@left:
+	.db $c4 $ff
+	.db $c2 $01
 	.db $b3 $ff
 	.db $b1 $01
 	.db $00

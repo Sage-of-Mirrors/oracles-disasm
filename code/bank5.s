@@ -7556,13 +7556,13 @@ _checkLinkJumpingOffCliff:
 	ld l,SpecialObject.knockbackCounter
 	ld (hl),$00
 
-;.ifdef ROM_SEASONS
+.ifdef ROM_SEASONS
 	ldh a,(<hFF8B)
 	cp $05
 	jr z,@setSpeed140
 	cp $06
 	jr z,@setSpeed140
-;.endif
+.endif
 
 	; Return from caller (don't execute any more "linkState01" code)
 	pop hl
@@ -7885,14 +7885,16 @@ _landableTileFromCliffExceptions:
 
 .ifdef ROM_AGES
 @collisions1:
+	.db TILEINDEX_DUNGEON_STUMP
 @collisions2:
 @collisions5:
 	.db TILEINDEX_RAISABLE_FLOOR_1 TILEINDEX_RAISABLE_FLOOR_2
-	.db TILEINDEX_DUNGEON_STUMP
 @collisions0:
-	.db TILEINDEX_STUMP $d5
+	.db $d5
+	.db $00
 @collisions3:
 @collisions4:
+	.db TILEINDEX_STUMP	
 	.db $00
 .else
 @collisions0:
