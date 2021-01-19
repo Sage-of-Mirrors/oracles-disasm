@@ -24511,13 +24511,13 @@ sound1cStart:
 sound1fStart:
 sound07Start:
 sound26Start:
-sound19Start:
+fireWaterStart:
 ; @addr{f0000}
 sound1cChannel6:
 sound1fChannel6:
 sound07Channel6:
 sound26Channel6:
-sound19Channel6:
+fireWaterChannel6:
 	cmdff
 ; $f0001
 sound15Start:
@@ -27718,828 +27718,269 @@ musicf14ba:
 	note cs3 $05
 	goto musicf14ba
 	cmdff
-; $f1532
-sound18Start:
-; @addr{f1532}
-sound18Channel1:
-	cmdf2
+; $eeb7b
+faronWoodsStart:
+; @addr{eeb7b}
+faronWoodsChannel1:
+	octave 4
+	.redefine BEAT 1
+	vol $6
+	duty $0a
+; Measure 1
+	beat gs 3 b 3 ou e 14 ds 20 od b 20 fs 20 
+	vibrato $82
+	beat cs 80
 	vibrato $00
-	env $0 $00
-	duty $01
-musicf1539:
-	vol $6
-	note ds4 $21
-	vol $4
-	note ds4 $0b
-	vol $6
-	note f4  $21
-	vol $4
-	note f4  $0b
-	vol $6
-	note as4 $42
-	vol $4
-	note as4 $16
-	vol $6
-	note ds4 $21
-	vol $4
-	note ds4 $0b
-	vol $6
-	note f4  $21
-	vol $4
-	note f4  $0b
-	vol $6
-	note b4  $42
-	vol $4
-	note b4  $16
-	vol $6
-	note ds4 $21
-	vol $4
-	note ds4 $0b
-	vol $6
-	note f4  $21
-	vol $4
-	note f4  $0b
-	vol $6
-	note cs5 $21
-	vol $4
-	note cs5 $0b
-	vol $6
-	note b4  $21
-	vol $4
-	note b4  $0b
-	vol $6
-	note gs4 $21
-	vol $4
-	note gs4 $0b
-	vol $6
-	note as4 $21
-	vol $4
-	note as4 $0b
-	wait1 $0e
-	vol $4
-	note as3 $0b
-	note b3  $0b
-	vol $4
-	note as3 $0b
-	note b3  $0b
-	note ds4 $0b
-	note e4  $0b
-	note ds4 $0b
-	vol $4
-	note e4  $0b
-	note as4 $0b
-	note b4  $0b
-	note ds5 $0b
-	note e5  $0b
-	note as5 $0b
-	note b5  $0b
-	note ds6 $08
-	vol $6
-	note e4  $21
-	vol $2
-	note e4  $0b
-	vol $6
-	note fs4 $21
-	vol $4
-	note fs4 $0b
-	vol $6
-	note b4  $42
-	vol $3
-	note b4  $16
-	vol $6
-	note e4  $21
-	vol $4
-	note e4  $0b
-	vol $6
-	note fs4 $21
-	vol $4
-	note fs4 $0b
-	vol $6
-	note cs5 $42
-	vol $3
-	note cs5 $16
-	vol $6
-	note b4  $21
-	vol $4
-	note b4  $0b
-	vol $6
-	note cs5 $21
-	vol $4
-	note cs5 $0b
-	vol $6
-	note ds5 $21
-	vol $4
-	note ds5 $0b
-	vol $6
-	note fs5 $21
-	vol $4
-	note fs5 $0b
-	vol $6
-	note e5  $21
-	vol $4
-	note e5  $0b
-	vol $6
-	note a5  $2c
-	wait1 $0b
-	vol $4
-	note f3  $0b
-	note fs3 $0b
-	note f3  $0b
-	note fs3 $0b
-	note as3 $0b
-	note b3  $0b
-	note as3 $0b
-	note b3  $0b
-	note f4  $0b
-	note fs4 $0b
-	note as4 $0b
-	note b4  $0b
-	note f5  $0b
-	note fs5 $0b
-	note c6  $0b
-	note cs6 $0b
-	wait1 $05
-	vol $2
-	note cs6 $0b
-	wait1 $06
-	vol $1
-	note cs6 $0b
-	wait1 $2c
-	goto musicf1539
-	cmdff
-; $f161c
-; @addr{f161c}
-sound18Channel0:
+faronWoodsChannel1Measure2:
+	duty $0a
+	vol $0
 	cmdf2
+; Measure 2-5
+	beat r 255 r 255 r 130
+	vol $6
+; Measure 6
+	beat ou c 3 cs 17 c 20 od gs 20
+	vibrato $81
+	beat fs 80
 	vibrato $00
-	env $0 $00
-	duty $02
-musicf1623:
-	vol $6
-	note as5 $05
-	wait1 $06
-	note f5  $05
-	vol $2
-	note as5 $06
-	vol $6
-	note ds5 $05
-	vol $2
-	note f5  $06
-	vol $6
-	note f5  $05
-	vol $2
-	note ds5 $06
-	vol $6
-	note as4 $05
-	vol $2
-	note f5  $06
-	vol $6
-	note ds5 $05
-	vol $2
-	note as4 $06
-	vol $6
-	note f5  $05
-	vol $2
-	note ds5 $06
-	vol $6
-	note ds5 $05
-	vol $2
-	note f5  $06
-	vol $6
-	note as5 $05
-	vol $2
-	note ds5 $06
-	vol $6
-	note f5  $05
-	vol $2
-	note as5 $06
-	vol $6
-	note ds5 $05
-	vol $2
-	note f5  $06
-	vol $6
-	note f5  $05
-	vol $2
-	note ds5 $06
-	vol $6
-	note as4 $05
-	vol $2
-	note f5  $06
-	vol $6
-	note ds5 $05
-	vol $2
-	note as4 $06
-	vol $6
-	note f5  $05
-	vol $2
-	note ds5 $06
-	vol $6
-	note ds5 $05
-	vol $2
-	note f5  $06
-	vol $6
-	note as5 $05
-	vol $2
-	note ds5 $06
-	vol $6
-	note f5  $05
-	vol $2
-	note as5 $06
-	vol $6
-	note ds5 $05
-	vol $2
-	note f5  $06
-	vol $6
-	note f5  $05
-	vol $2
-	note ds5 $06
-	vol $6
-	note as4 $05
-	vol $2
-	note f5  $06
-	vol $6
-	note ds5 $05
-	vol $2
-	note as4 $06
-	vol $6
-	note f5  $05
-	vol $2
-	note ds5 $06
-	vol $6
-	note ds5 $05
-	vol $2
-	note f5  $06
-	vol $6
-	note b5  $05
-	vol $2
-	note ds5 $06
-	vol $6
-	note f5  $05
-	vol $2
-	note b5  $06
-	vol $6
-	note ds5 $05
-	vol $2
-	note f5  $06
-	vol $6
-	note f5  $05
-	vol $2
-	note ds5 $06
-	vol $6
-	note b4  $05
-	vol $2
-	note f5  $06
-	vol $6
-	note ds5 $05
-	vol $2
-	note b4  $06
-	vol $6
-	note f5  $05
-	vol $2
-	note ds5 $06
-	vol $6
-	note ds5 $05
-	vol $2
-	note f5  $06
-	vol $6
-	note as5 $05
-	vol $2
-	note ds5 $06
-	vol $6
-	note f5  $05
-	vol $2
-	note as5 $06
-	vol $6
-	note ds5 $05
-	vol $2
-	note f5  $06
-	vol $6
-	note f5  $05
-	vol $2
-	note ds5 $06
-	vol $6
-	note as4 $05
-	vol $2
-	note f5  $06
-	vol $6
-	note ds5 $05
-	vol $2
-	note as4 $06
-	vol $6
-	note f5  $05
-	vol $2
-	note ds5 $06
-	vol $6
-	note ds5 $05
-	vol $2
-	note f5  $06
-	vol $6
-	note as5 $05
-	vol $2
-	note ds5 $06
-	vol $6
-	note f5  $05
-	vol $2
-	note as5 $06
-	vol $6
-	note ds5 $05
-	vol $2
-	note f5  $06
-	vol $6
-	note f5  $05
-	vol $2
-	note ds5 $06
-	vol $6
-	note as4 $05
-	vol $2
-	note f5  $06
-	vol $6
-	note ds5 $05
-	vol $2
-	note as4 $06
-	vol $6
-	note f5  $05
-	vol $2
-	note ds5 $06
-	vol $6
-	note ds5 $05
-	vol $2
-	note f5  $06
-	vol $6
-	note as5 $05
-	wait1 $06
-	note f5  $05
-	vol $2
-	note as5 $06
-	vol $6
-	note ds5 $05
-	vol $2
-	note f5  $06
-	vol $6
-	note f5  $05
-	vol $2
-	note ds5 $06
-	vol $6
-	note as4 $05
-	vol $2
-	note f5  $06
-	vol $6
-	note ds5 $05
-	vol $2
-	note as4 $06
-	vol $6
-	note e5  $05
-	vol $2
-	note ds5 $06
-	vol $6
-	note ds5 $05
-	vol $2
-	note e5  $06
-	vol $5
-	note as3 $0b
-	note b3  $0b
-	note as3 $0b
-	note b3  $0b
-	note ds4 $0b
-	note e4  $0b
-	note ds4 $0b
-	note e4  $0b
-	note as4 $0b
-	note b4  $0b
-	note ds5 $0b
-	note e5  $0b
-	note as5 $0b
-	note b5  $0b
-	note ds6 $0b
-	note e6  $0b
-	vol $6
-	note b5  $05
-	wait1 $06
-	note fs5 $05
-	vol $2
-	note b5  $06
-	vol $6
-	note e5  $05
-	vol $2
-	note fs5 $06
-	vol $6
-	note fs5 $05
-	vol $2
-	note e5  $06
-	vol $6
-	note b4  $05
-	vol $2
-	note fs5 $06
-	vol $6
-	note e5  $05
-	vol $2
-	note b4  $06
-	vol $6
-	note fs5 $05
-	vol $2
-	note e5  $06
-	vol $6
-	note e5  $05
-	vol $2
-	note fs5 $06
-	vol $6
-	note b5  $05
-	vol $2
-	note e5  $06
-	vol $6
-	note fs5 $05
-	vol $2
-	note b5  $06
-	vol $6
-	note e5  $05
-	vol $2
-	note fs5 $06
-	vol $6
-	note fs5 $05
-	vol $2
-	note e5  $06
-	vol $6
-	note b4  $05
-	vol $2
-	note fs5 $06
-	vol $6
-	note e5  $05
-	vol $2
-	note b4  $06
-	vol $6
-	note fs5 $05
-	vol $2
-	note e5  $06
-	vol $6
-	note e5  $05
-	vol $2
-	note fs5 $06
-	vol $6
-	note b5  $05
-	vol $2
-	note e5  $06
-	vol $6
-	note fs5 $05
-	vol $2
-	note b5  $06
-	vol $6
-	note e5  $05
-	vol $2
-	note fs5 $06
-	vol $6
-	note fs5 $05
-	vol $2
-	note e5  $06
-	vol $6
-	note b4  $05
-	vol $2
-	note fs5 $06
-	vol $6
-	note e5  $05
-	vol $2
-	note b4  $06
-	vol $6
-	note fs5 $05
-	vol $2
-	note e5  $06
-	vol $6
-	note e5  $05
-	vol $2
-	note fs5 $06
-	vol $6
-	note b5  $05
-	vol $2
-	note e5  $06
-	vol $6
-	note fs5 $05
-	vol $2
-	note b5  $06
-	vol $6
-	note e5  $05
-	vol $2
-	note fs5 $06
-	vol $6
-	note fs5 $05
-	vol $2
-	note e5  $06
-	vol $6
-	note b4  $05
-	vol $2
-	note fs5 $06
-	vol $6
-	note e5  $05
-	vol $2
-	note b4  $06
-	vol $6
-	note fs5 $05
-	vol $2
-	note e5  $06
-	vol $6
-	note e5  $05
-	vol $2
-	note fs5 $06
-	vol $6
-	note cs6 $05
-	vol $2
-	note e5  $06
-	vol $6
-	note gs5 $05
-	vol $2
-	note cs6 $06
-	vol $6
-	note fs5 $05
-	vol $2
-	note gs5 $06
-	vol $6
-	note gs5 $05
-	vol $2
-	note fs5 $06
-	vol $6
-	note cs5 $05
-	vol $2
-	note gs5 $06
-	vol $6
-	note fs5 $05
-	vol $2
-	note cs5 $06
-	vol $6
-	note gs5 $05
-	vol $2
-	note fs5 $06
-	vol $6
-	note fs5 $05
-	vol $2
-	note gs5 $06
-	vol $6
-	note ds6 $05
-	vol $2
-	note fs5 $06
-	vol $6
-	note a5  $05
-	vol $2
-	note ds6 $06
-	vol $6
-	note gs5 $05
-	vol $2
-	note a5  $06
-	vol $6
-	note a5  $05
-	vol $2
-	note gs5 $06
-	vol $6
-	note d5  $05
-	vol $2
-	note a5  $06
-	vol $6
-	note gs5 $05
-	vol $2
-	note d5  $06
-	vol $6
-	note a5  $05
-	vol $2
-	note gs5 $06
-	vol $6
-	note gs5 $05
-	vol $2
-	note a5  $06
-	vol $6
-	note e6  $05
-	vol $2
-	note gs5 $06
-	vol $6
-	note b5  $05
-	vol $2
-	note e6  $06
-	vol $6
-	note a5  $05
-	vol $2
-	note b5  $06
-	vol $6
-	note b5  $05
-	vol $2
-	note a5  $06
-	vol $6
-	note e5  $05
-	vol $2
-	note b5  $06
-	vol $6
-	note a5  $05
-	vol $2
-	note e5  $06
-	vol $6
-	note b5  $05
-	vol $2
-	note a5  $06
-	vol $6
-	note a5  $05
-	vol $2
-	note b5  $06
-	vol $5
-	note f3  $0b
-	note fs3 $0b
-	note f3  $0b
-	note fs3 $0b
-	note as3 $0b
-	note b3  $0b
-	note as3 $0b
-	note b3  $0b
-	note f4  $0b
-	note fs4 $0b
-	note as4 $0b
-	note b4  $0b
-	note f5  $0b
-	note fs5 $0b
-	note c6  $0b
-	note cs6 $0b
-	wait1 $58
-	goto musicf1623
-	cmdff
-; $f1905
-; @addr{f1905}
-sound18Channel4:
-musicf1905:
+	beat ds 20
+; Measure 7
+	beat fs 40 f 3 e 3
+	vibrato $81
+	beat ds 74
+	vibrato $00
+	beat od gs 20 ou cs 20
+; Measure 8
+	vibrato $e2
+	beat ds 160
+; Measure 9
+	beat ds 115 
+	vibrato $00
+	beat r 5 od gs 5 b 35
+; Measure 10
+	beat ou d 3 f 3 ds 3 
+	vibrato $81
+	beat fs 106 
+	vibrato $00
+	beat r 5 fs 5 a 35
+; Measure 11
+	beat e 5 
+	vibrato $81
+	beat gs 115
+	vibrato $00
+	beat a 5 ou cs 35
+; Measure 12-13
+	beat od gs 5
+	vibrato $e2	
+	beat b 155 
+	vibrato $00
+	vol $0
+	beat r 160
+	vol $6
+; Measure 14
 	duty $0e
-	note as3 $2c
-	note b3  $2c
-	note f4  $42
-	wait1 $16
-	note as3 $2c
-	note b3  $2c
-	note fs4 $42
-	wait1 $16
-	note as3 $2c
-	note b3  $2c
-	note gs4 $2c
-	note fs4 $2c
-	note ds4 $2c
-	note e4  $58
-	wait1 $84
-	note b3  $2c
-	note cs4 $2c
-	note e4  $42
-	wait1 $16
-	note b3  $2c
-	note cs4 $2c
-	note g4  $42
-	wait1 $16
-	note fs4 $2c
-	note gs4 $2c
-	note a4  $2c
-	note d5  $2c
-	note c5  $2c
-	note e5  $2c
-	note fs5 $58
-	wait1 $b0
-	goto musicf1905
+	beat fs 5
+	vibrato $81	
+	beat a 115
+	vibrato $00	
+	beat ds 5 fs 35
+; Measure 15
+	beat f 5 
+	vibrato $e2	
+	beat gs 155
+	vibrato $00
+; Measure 16
+	beat e 5
+	vibrato $81	
+	beat gs 115
+	vibrato $00	
+	beat cs 5 e 35
+; Measure 17
+	beat ds 5
+	vibrato $e2	
+	beat fs 155
+	vibrato $00
+; Measure 18
+	duty $0a
+	beat ou ds 20 e 20 fs 20 gs 20 ds 60 cs 20
+; Measure 19
+	vibrato $81	
+	beat ds 120
+	vibrato $00
+	beat gs 20 a 20
+; Measure 20
+	vibrato $81		
+	beat gs 120 
+	vibrato $00	
+	beat a 20 b 20
+; Measure 21
+	beat a 40 gs 3 g 3
+	vibrato $81		
+	beat fs 114
+	vibrato $00
+; Measure 22
+	beat ds 20 e 20 fs 20 gs 20 ds 60 cs 20	
+; Measure 23
+	vibrato $81	
+	beat ds 120
+	vibrato $00	
+	beat gs 20 a 20
+; Measure 24-25
+	vibrato $81	
+	beat gs 80	
+	beat a 3 as 3
+	vibrato $e2	
+	beat b 234
+	vibrato $00
+; Measure 26
+	duty $02
+	vol $4
+	beat fs 3 a 3 ou cs 3 d 11 cs 20 od gs 20
+	vibrato $e2	
+	beat fs 180
+	vibrato $00
+; Measure 27
+	beat ou e 20 ds 20 od b 20
+	vibrato $e2	
+	beat as 180
+	vibrato $00
+; Measure 28
+	beat e 3 g 3 b 3 ou cs 11 od b 20 gs 20
+	vibrato $e2	
+	beat e 180
+	vibrato $00
+; Measure 29
+	beat ou e 20 cs 20 od as 20
+	vibrato $e2
+	beat g 180	
+	vibrato $00
+
+	goto faronWoodsChannel1Measure2
+	cmdff 
+; $eece0
+; @addr{eece0}
+faronWoodsChannel0:
+	octave 3
+	.redefine BEAT 1
+; Measure 1
+	beat r 160
+faronWoodsChannel0Measure2:
+	vol $4
+	duty $02
+.rept 24
+; Measures 2-25
+	beat r 20 gs 20 ds 20 cs 20 gs 20 ds 20 cs 20 gs 20
+.endr
+; Measures 26-29
+	vol $0
+	beat r 255 r 255 r 255 r 195
+
+	goto faronWoodsChannel0Measure2
 	cmdff
-; $f1949
-; @addr{f1949}
-sound18Channel6:
-musicf1949:
-	vol $3
-	note $2a $0b
-	vol $1
-	note $2a $0b
-	note $2a $0b
-	vol $1
-	note $2a $0b
+; $eee03
+; @addr{eee03}
+faronWoodsChannel4:
+	octave 2
+	.redefine BEAT 1
+; Measure 1
+	beat r 160
+faronWoodsChannel4Measure2:
+.redefine NOTE_END_WAIT 5
+	duty $0e
 	vol $2
-	note $2a $0b
-	vol $2
-	note $2a $0b
+.rept 6
+; Measure 2-3,6-7,10-11,14-15,18-19,22-23
+	.rept 2
+		vibrato $e1
+		beat gs 160
+		vibrato $00
+	.endr
+; Measure 4-5,8-9,12-13,16-17,20-21,24-25
+	.rept 2
+		vibrato $e1
+		beat a 160
+		vibrato $00
+	.endr
+.endr
+.redefine NOTE_END_WAIT 0
+	duty $04
 	vol $3
-	note $2a $0b
+; Measure 26
+	beat ou ou d 20 cs 20 od gs 20 fs 20 gs 20 fs 20
+	beat e 20 gs 20 fs 20 ou cs 20 od gs 20 fs 20
+; Measure 27
+	beat ou e 20 ds 20 od b 20 as 20 b 20 as 20
+	beat e 20 b 20 as 20 ou ds 20 od b 20 as 20
+; Measure 28
+	beat ou cs 20 od b 20 g 20 e 20 g 20 e 20
+	beat cs 20 g 20 e 20 b 20 g 20 e 20
+; Measure 29
+	beat ou e 20 cs 20 od as 20 g 20 as 20 g 20
+	beat ds 20 as 20 gs 20 ou cs 20 od as 20 gs 20
+
+	goto faronWoodsChannel4Measure2
+	cmdff
+; $eeffd
+; @addr{eeffd}
+faronWoodsChannel6:
+; Measure 1
+	wait1 160
+faronWoodsChannel6Measure2:
 	vol $4
-	note $2a $0b
-	wait1 $58
-	vol $3
-	note $2a $0b
-	vol $1
-	note $2a $0b
-	note $2a $0b
-	vol $1
-	note $2a $0b
-	vol $2
-	note $2a $0b
-	vol $2
-	note $2a $0b
-	vol $3
-	note $2a $0b
-	vol $4
-	note $2a $0b
-	wait1 $58
-	vol $3
-	note $2a $0b
-	vol $1
-	note $2a $0b
-	note $2a $0b
-	vol $1
-	note $2a $0b
-	vol $2
-	note $2a $0b
-	vol $2
-	note $2a $0b
-	vol $3
-	note $2a $0b
-	vol $4
-	note $2a $0b
-	wait1 $58
-	vol $3
-	note $2a $0b
-	vol $1
-	note $2a $0b
-	note $2a $0b
-	vol $1
-	note $2a $0b
-	vol $2
-	note $2a $0b
-	vol $2
-	note $2a $0b
-	vol $3
-	note $2a $0b
-	vol $4
-	note $2a $0b
-	wait1 $b0
-	vol $3
-	note $2a $0b
-	vol $1
-	note $2a $0b
-	note $2a $0b
-	vol $1
-	note $2a $0b
-	vol $2
-	note $2a $0b
-	vol $2
-	note $2a $0b
-	vol $3
-	note $2a $0b
-	vol $4
-	note $2a $0b
-	wait1 $58
-	vol $3
-	note $2a $0b
-	vol $1
-	note $2a $0b
-	note $2a $0b
-	vol $1
-	note $2a $0b
-	vol $2
-	note $2a $0b
-	vol $2
-	note $2a $0b
-	vol $3
-	note $2a $0b
-	vol $4
-	note $2a $0b
-	wait1 $58
-	vol $3
-	note $2a $0b
-	vol $1
-	note $2a $0b
-	note $2a $0b
-	vol $1
-	note $2a $0b
-	vol $2
-	note $2a $0b
-	vol $2
-	note $2a $0b
-	vol $3
-	note $2a $0b
-	vol $4
-	note $2a $0b
-	wait1 $58
-	vol $3
-	note $2a $0b
-	vol $1
-	note $2a $0b
-	note $2a $0b
-	vol $1
-	note $2a $0b
-	vol $2
-	note $2a $0b
-	vol $2
-	note $2a $0b
-	vol $3
-	note $2a $0b
-	vol $4
-	note $2a $0b
-	wait1 $b0
-	vol $3
-	note $2a $0b
-	vol $1
-	note $2a $0b
-	note $2a $0b
-	vol $1
-	note $2a $0b
-	vol $2
-	note $2a $0b
-	vol $2
-	note $2a $0b
-	vol $3
-	note $2a $0b
-	vol $4
-	note $2a $0b
-	goto musicf1949
+; Measures 2-5
+.rept 4
+	note $2e 20
+	wait1 120
+	note $2e 20
+.endr
+; Measures 6-13
+.rept 8
+	note $2e 20
+	note $2a 20
+	wait1 80
+	note $2a 20
+	note $2e 20
+.endr	
+; Measures 14-17
+.rept 4
+	note $2a 20
+	note $2a 20
+	wait1 20
+	note $2a 20
+	wait1 20
+	note $2a 20
+	wait1 20
+	note $2a 20	
+.endr
+; Measures 18-21
+.rept 4
+	note $2e 20
+	wait1 120
+	note $2e 20
+.endr
+; Measures 22-25
+.rept 4
+	note $2e 20
+	note $2a 20
+	wait1 80
+	note $2a 20
+	note $2e 20
+.endr
+; Measures 26-29
+.rept 4
+	note $2e 20
+	wait1 60
+	note $2a 20
+	note $2a 20
+	wait1 20
+	note $2a 20
+	wait1 20
+	note $2a 20
+	note $2a 20
+	wait1 20
+.endr
+
+	goto faronWoodsChannel6Measure2
 	cmdff
 ; $f1a2c
 sound16Start:
@@ -32882,488 +32323,192 @@ musicf3732:
 	cmdff
 ; $f3769
 ; @addr{f3769}
-sound19Channel1:
-	vibrato $e1
-	env $0 $00
-	cmdf2
-	duty $01
-musicf3770:
-	vol $7
-	note e4  $2c
-	vol $7
-	note ds4 $2c
-	note f4  $2c
-	note e4  $2c
-	note d4  $42
-	note cs4 $0b
-	note c4  $0b
-	note as3 $21
-	vibrato $01
-	vol $3
-	note as3 $0b
-	vibrato $e1
-	vol $7
-	note g3  $2c
-	vibrato $01
-	vol $3
-	note g3  $2c
-	vibrato $e1
-	vol $7
-	note a3  $2c
-	note e4  $2c
-	note a4  $2c
-	note as4 $58
-	note ds4 $2c
-	note e4  $16
-	vibrato $01
-	vol $3
-	note e4  $16
-	vibrato $e1
-	vol $7
-	note a3  $16
-	note e3  $16
-	note f3  $16
-	note cs3 $16
-	note a3  $16
-	note e3  $16
-	note f3  $16
-	note cs3 $16
-	note cs4 $58
-	note e3  $42
-	vibrato $01
-	vol $3
-	note e3  $16
-	vibrato $e1
-	vol $7
-	note b3  $16
-	note fs3 $16
-	note g3  $16
-	note ds3 $16
-	note b3  $16
-	note fs3 $16
-	note g3  $16
-	note ds3 $16
-	note d4  $58
-	note f3  $42
-	vibrato $01
-	vol $3
-	note f3  $15
-	wait1 $01
-	vibrato $e1
-	goto musicf3770
-	cmdff
-; $f37e5
-; @addr{f37e5}
-sound19Channel0:
+fireWaterChannel1:
+;	vibrato $e1
+;	env $0 $00
+;	cmdf2
+	octave 3
+	.redefine BEAT 1
+fireWaterChannel1Measure1:
+	vol $6
+.rept 2
+	duty $0e
+; Measure 1,9
+	vibrato $e2
+	beat cs 3 e 3 gs 84
 	vibrato $00
-	env $0 $00
-	cmdf2
-	duty $02
-musicf37ec:
-	vol $5
-	note a4  $0b
-	wait1 $0b
-	note as4 $0b
-	vol $2
-	note a4  $0b
-	vol $5
-	note e5  $0b
-	vol $2
-	note as4 $0b
-	vol $5
-	note a4  $0b
-	vol $2
-	note e5  $0b
-	vol $5
-	note as4 $0b
-	vol $2
-	note a4  $0b
-	vol $5
-	note e5  $0b
-	vol $2
-	note as4 $0b
-	vol $5
-	note a4  $0b
-	vol $2
-	note e5  $0b
-	vol $5
-	note as4 $0b
-	vol $2
-	note a4  $0b
-	vol $5
-	note g4  $0b
-	vol $2
-	note as4 $0b
-	vol $5
-	note gs4 $0b
-	vol $2
-	note g4  $0b
-	vol $5
-	note d5  $0b
-	vol $2
-	note gs4 $0b
-	vol $5
-	note g4  $0b
-	vol $2
-	note d5  $0b
-	vol $5
-	note gs4 $0b
-	vol $2
-	note g4  $0b
-	vol $5
-	note d5  $0b
-	vol $2
-	note gs4 $0b
-	vol $5
-	note g4  $0b
-	vol $2
-	note d5  $0b
-	vol $5
-	note gs4 $0b
-	vol $2
-	note g4  $0b
-	vol $5
-	note a4  $0b
-	vol $2
-	note gs4 $0b
-	vol $5
-	note as4 $0b
-	vol $2
-	note a4  $0b
-	vol $5
-	note e5  $0b
-	vol $2
-	note as4 $0b
-	vol $5
-	note a4  $0b
-	vol $2
-	note e5  $0b
-	vol $5
-	note as4 $0b
-	vol $2
-	note a4  $0b
-	vol $5
-	note e5  $0b
-	vol $2
-	note as4 $0b
-	vol $5
-	note a4  $0b
-	vol $2
-	note e5  $0b
-	vol $5
-	note as4 $0b
-	vol $2
-	note a4  $0b
-	vol $5
-	note g4  $0b
-	vol $2
-	note as4 $0b
-	vol $5
-	note gs4 $0b
-	vol $2
-	note g4  $0b
-	vol $5
-	note d5  $0b
-	vol $2
-	note gs4 $0b
-	vol $5
-	note g4  $0b
-	vol $2
-	note d5  $0b
-	vol $5
-	note gs4 $0b
-	vol $2
-	note g4  $0b
-	vol $5
-	note d5  $0b
-	vol $2
-	note gs4 $0b
-	vol $5
-	note g4  $0b
-	vol $2
-	note d5  $0b
-	vol $5
-	note gs4 $0b
-	vol $2
-	note g4  $0b
-	vol $5
-	note a4  $0b
-	vol $2
-	note gs4 $0b
-	vol $5
-	note as4 $0b
-	vol $2
-	note a4  $0b
-	vol $5
-	note e5  $0b
-	vol $2
-	note as4 $0b
-	vol $5
-	note a4  $0b
-	vol $2
-	note e5  $0b
-	vol $5
-	note as4 $0b
-	vol $2
-	note a4  $0b
-	vol $5
-	note e5  $0b
-	vol $2
-	note as4 $0b
-	vol $5
-	note a4  $0b
-	vol $2
-	note e5  $0b
-	vol $5
-	note as4 $0b
-	vol $2
-	note a4  $0b
-	vol $5
-	note g4  $0b
-	vol $2
-	note as4 $0b
-	vol $5
-	note gs4 $0b
-	vol $2
-	note g4  $0b
-	vol $5
-	note d5  $0b
-	vol $2
-	note gs4 $0b
-	vol $5
-	note g4  $0b
-	vol $2
-	note d5  $0b
-	vol $5
-	note gs4 $0b
-	vol $2
-	note g4  $0b
-	vol $5
-	note d5  $0b
-	vol $2
-	note gs4 $0b
-	vol $5
-	note g4  $0b
-	vol $2
-	note d5  $0b
-	vol $5
-	note gs4 $0b
-	vol $2
-	note g4  $0b
-	vol $5
-	note b4  $0b
-	wait1 $0b
-	note c5  $0b
-	vol $2
-	note b4  $0b
-	vol $5
-	note fs5 $0b
-	vol $2
-	note c5  $0b
-	vol $5
-	note b4  $0b
-	vol $2
-	note fs5 $0b
-	vol $5
-	note c5  $0b
-	vol $2
-	note b4  $0b
-	vol $5
-	note fs5 $0b
-	vol $2
-	note c5  $0b
-	vol $5
-	note b4  $0b
-	vol $2
-	note fs5 $0b
-	vol $5
-	note c5  $0b
-	vol $2
-	note b4  $0b
-	vol $5
-	note cs5 $0b
-	vol $2
-	note c5  $0b
-	vol $5
-	note d5  $0b
-	vol $2
-	note cs5 $0b
-	vol $5
-	note gs5 $0b
-	vol $2
-	note d5  $0b
-	vol $5
-	note cs5 $0b
-	vol $2
-	note gs5 $0b
-	vol $5
-	note d5  $0b
-	vol $2
-	note cs5 $0b
-	vol $5
-	note gs5 $0b
-	vol $2
-	note d5  $0b
-	vol $5
-	note cs5 $0b
-	vol $2
-	note gs5 $0b
-	vol $5
-	note d5  $0b
-	vol $2
-	note cs5 $0b
-	goto musicf37ec
+	duty $05
+	beat ou ou gs 30
+; Measure 2,10
+	beat a 30
+	duty $0f
+	vibrato $e1
+	beat od od gs 60
+	vibrato $00
+	duty $05
+	beat ou ou e 30
+; Measure 3,11
+	beat cs 30
+	duty $0f
+	vibrato $e1
+	beat od od gs 60
+	vibrato $00
+	duty $05
+	beat ou ou fs 30
+; Measure 4,12
+	beat ds 30
+	duty $0f
+	vibrato $e2
+	beat od od gs 90
+	vibrato $00	
+; Measure 5,13
+	duty $0e	
+	vibrato $e2
+	beat cs 3 e 3 gs 84
+	vibrato $00
+	duty $05
+	beat ou ou gs 30
+; Measure 6,14
+	beat a 30
+	duty $0f
+	vibrato $e1
+	beat od od gs 60
+	vibrato $00
+	duty $05
+	beat ou ou gs 30
+; Measure 7,15
+	beat e 30
+	duty $0f
+	vibrato $e1
+	beat od od gs 60
+	vibrato $00
+	duty $05
+	beat ou ou ou c 27 r 3
+; Measure 8,16
+	beat c 30
+	duty $0f
+	vibrato $e1
+	beat od od od gs 60
+	vibrato $00
+	duty $05
+	beat ou ou ou e 15 ds 15 od od od
+.endr
+
+	goto fireWaterChannel1Measure1
 	cmdff
-; $f396c
-; @addr{f396c}
-sound19Channel4:
-	cmdf2
-musicf396d:
+; $eece0
+; @addr{eece0}
+fireWaterChannel0:
+;	vibrato $e1
+;	env $0 $00
+;	cmdf2
+	octave 3
+	.redefine BEAT 1
+fireWaterChannel0Measure1:
+	vol $6
+	duty $02
+; Measure 1
+.redefine NOTE_END_WAIT 23
+	beat r 30 cs 30 e 30 gs 30
+.redefine NOTE_END_WAIT 0
+.rept 3
+; Measure 2,6,10
 	duty $0e
-	note a2  $0b
-	duty $0f
-	note a2  $0b
+	beat c 3 ds 3 gs 24
+.redefine NOTE_END_WAIT 23
+	duty $02
+	beat c 30 ds 30 gs 30
+.redefine NOTE_END_WAIT 0
+; Measure 3,7,11
 	duty $0e
-	note a2  $0b
-	duty $0f
-	note a2  $0b
-	wait1 $2c
+	beat cs 3 e 3 gs 24
+.redefine NOTE_END_WAIT 23
+	duty $02
+	beat cs 30 e 30 gs 30
+; Measure 4,8,12
+	beat od gs 30 a 30 gs 30 e 30
+; Measure 5,9,13
+	beat cs 30 ou cs 30 e 30 gs 30
+.redefine NOTE_END_WAIT 0
+.endr 
+; Measure 14
 	duty $0e
-	note a2  $0b
-	duty $0f
-	note a2  $0b
+	beat c 3 ds 3 gs 24
+.redefine NOTE_END_WAIT 23
+	duty $02
+	beat c 30 ds 30 gs 30
+.redefine NOTE_END_WAIT 0
+; Measure 15
 	duty $0e
-	note a2  $0b
-	duty $0f
-	note a2  $0b
-	wait1 $2c
+	beat cs 3 e 3 gs 24
+.redefine NOTE_END_WAIT 23
+	duty $02
+	beat cs 30 e 30 gs 30	
+; Measure 16
+	beat od gs 30 a 30 gs 30 e 30
+.redefine NOTE_END_WAIT 0
+	goto fireWaterChannel0Measure1
+	cmdff
+; $eee03
+; @addr{eee03}
+fireWaterChannel4:
+	octave 4
+	.redefine BEAT 1
+fireWaterChannel4Measure1:
 	duty $0e
-	note g2  $0b
-	duty $0f
-	note g2  $0b
-	duty $0e
-	note g2  $0b
-	duty $0f
-	note g2  $0b
-	wait1 $2c
-	duty $0e
-	note g2  $0b
-	duty $0f
-	note g2  $0b
-	duty $0e
-	note g2  $0b
-	duty $0f
-	note g2  $0b
-	wait1 $2c
-	duty $0e
-	note a2  $0b
-	duty $0f
-	note a2  $0b
-	duty $0e
-	note a2  $0b
-	duty $0f
-	note a2  $0b
-	wait1 $2c
-	duty $0e
-	note a2  $0b
-	duty $0f
-	note a2  $0b
-	duty $0e
-	note a2  $0b
-	duty $0f
-	note a2  $0b
-	wait1 $2c
-	duty $0e
-	note g2  $0b
-	duty $0f
-	note g2  $0b
-	duty $0e
-	note g2  $0b
-	duty $0f
-	note g2  $0b
-	wait1 $2c
-	duty $0e
-	note g2  $0b
-	duty $0f
-	note g2  $0b
-	duty $0e
-	note g2  $0b
-	duty $0f
-	note g2  $0b
-	wait1 $2c
-	duty $0e
-	note a2  $0b
-	duty $0f
-	note a2  $0b
-	duty $0e
-	note a2  $0b
-	duty $0f
-	note a2  $0b
-	wait1 $2c
-	duty $0e
-	note a2  $0b
-	duty $0f
-	note a2  $0b
-	duty $0e
-	note a2  $0b
-	duty $0f
-	note a2  $0b
-	wait1 $2c
-	duty $0e
-	note gs2 $0b
-	duty $0f
-	note gs2 $0b
-	duty $0e
-	note gs2 $0b
-	duty $0f
-	note gs2 $0b
-	wait1 $2c
-	duty $0e
-	note gs2 $0b
-	duty $0f
-	note gs2 $0b
-	duty $0e
-	note gs2 $0b
-	duty $0f
-	note gs2 $0b
-	wait1 $2c
-	duty $0e
-	note as2 $0b
-	duty $0f
-	note as2 $0b
-	duty $0e
-	note as2 $0b
-	duty $0f
-	note as2 $0b
-	wait1 $2c
-	duty $0e
-	note as2 $0b
-	duty $0f
-	note as2 $0b
-	duty $0e
-	note as2 $0b
-	duty $0f
-	note as2 $0b
-	wait1 $2c
-	duty $0e
-	note b2  $0b
-	duty $0f
-	note b2  $0b
-	duty $0e
-	note b2  $0b
-	duty $0f
-	note b2  $0b
-	wait1 $2c
-	duty $0e
-	note b2  $0b
-	duty $0f
-	note b2  $0b
-	duty $0e
-	note b2  $0b
-	duty $0f
-	note b2  $0b
-	wait1 $2c
-	goto musicf396d
+	vol $2
+.rept 2
+; Measure 1,5
+	.rept 2
+		beat cs 15 e 15 gs 15 e 15
+	.endr
+; Measure 2,6
+	.rept 2
+		beat c 15 ds 15 gs 15 ds 15
+	.endr
+; Measure 3,7
+	.rept 2
+		beat cs 15 e 15 gs 15 e 15
+	.endr
+; Measure 4,8
+	.rept 2
+		beat c 15 e 15 a 15 e 15
+	.endr
+.endr
+; Measure 9
+	vibrato $e1
+	beat cs 120
+	vibrato $00
+; Measure 10
+	vibrato $e1
+	beat ds 120
+	vibrato $00
+; Measure 11
+	vibrato $e1
+	beat e 120
+	vibrato $00
+; Measure 12
+	vibrato $e1
+	beat fs 120
+	vibrato $00
+; Measure 13
+	vibrato $e2
+	beat a 120
+	vibrato $00
+; Measure 14
+	vibrato $e2
+	beat gs 120
+	vibrato $00
+; Measure 15
+	vibrato $e3
+	beat fs 120
+	vibrato $00
+; Measure 16
+	vibrato $e3
+	beat ds 120 ou
+	vibrato $00
+
+	goto fireWaterChannel4Measure1
 	cmdff
 ; $f3a91
 sound4eStart:
@@ -34425,66 +33570,66 @@ soundafChannel7:
 	cmdff
 	cmdff
 	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
 .bank $76 slot 1
 .org 0
 sound1bStart:

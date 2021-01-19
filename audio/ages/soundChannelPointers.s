@@ -515,15 +515,15 @@ sound07:
 	.dw sound07Channel6
 	.db $ff
 ; @addr{5365}
-sound18:
+faronWoods:
 	.db $00
-	.dw sound18Channel0
+	.dw faronWoodsChannel0
 	.db $01
-	.dw sound18Channel1
+	.dw faronWoodsChannel1
 	.db $04
-	.dw sound18Channel4
+	.dw faronWoodsChannel4
 	.db $06
-	.dw sound18Channel6
+	.dw faronWoodsChannel6
 	.db $ff
 ; @addr{5372}
 sound16:
@@ -658,15 +658,15 @@ sound17:
 	.dw sound17Channel6
 	.db $ff
 ; @addr{540e}
-sound19:
+fireWater:
 	.db $00
-	.dw sound19Channel0
+	.dw fireWaterChannel0
 	.db $01
-	.dw sound19Channel1
+	.dw fireWaterChannel1
 	.db $04
-	.dw sound19Channel4
+	.dw fireWaterChannel4
 	.db $06
-	.dw sound19Channel6
+	.dw fireWaterChannel6
 	.db $ff
 ; @addr{541b}
 sound1a:
