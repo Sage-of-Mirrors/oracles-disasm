@@ -947,6 +947,7 @@ group0Map4dObjectData:
 	obj_End
 
 group0Map50ObjectData:
+	obj_Part $24 $00 $16
 	obj_End
 
 group0Map51ObjectData:

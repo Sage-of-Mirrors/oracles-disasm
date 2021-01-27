@@ -3132,27 +3132,6 @@ _warpTransition6:
 
 ; Warp is completed; create a time portal if necessary, restore control to Link
 
-	; Check if a time portal should be created
-	ld a,(wLinkTimeWarpTile)
-	or a
-	jr nz,++
-
-	; Create a time portal
-	ld hl,wPortalGroup
-	ld a,(wActiveGroup)
-	ldi (hl),a
-	ld a,(wActiveRoom)
-	ldi (hl),a
-	ld a,(wWarpDestPos)
-	ld (hl),a
-	ld c,a
-	call getFreeInteractionSlot
-	jr nz,++
-
-	ld (hl),INTERACID_TIMEPORTAL
-	ld l,Interaction.yh
-	call setShortPosition_paramC
-++
 	; Check whether to show the "Sent back by strange force" text.
 	ld a,(wSentBackByStrangeForce)
 	or a
