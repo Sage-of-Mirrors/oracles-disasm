@@ -255,18 +255,22 @@
 .endm
 
 ; f1-f3: does nothing
-.macro cmdf1
+.macro gotoCond
 	.db $f1
+	.db \1
+	.dw \2
 .endm
 .macro cmdf2
 	.db $f2
 .endm
-.macro cmdf3
+; increases wCoda
+.macro incCoda
 	.db $f3
 .endm
 
 ; f4-f5: duplicates of ff?
-.macro cmdf4
+; sets Coda back to zero
+.macro resetCoda
 	.db $f4
 .endm
 .macro cmdf5
@@ -310,3 +314,4 @@
 .macro cmdff
 	.db $ff
 .endm
+

@@ -685,22 +685,57 @@ _doNextChannelCommand:
 	.dw _channelCmdff
 	.dw _channelCmdf6
 	.dw _channelCmdff
-	.dw _channelCmdff
+	.dw _channelCmdf4
 	.dw _channelCmdf3
 	.dw _channelCmdf2
 	.dw _channelCmdf1
 	.dw _channelCmdf0
 
 ;;
+; gotoCond
+;
 _channelCmdf1:
+	call _getNextChannelByte
+	ld hl,wVolta
+call _getChannelVarInHL
+	bit 7,(hl)
+	jr nz,+
+	cp (hl)
+	jp z, _channelCmdfe
+;	jp nc, _channelCmdfe
++
+	call _getNextChannelByte
+	call _getNextChannelByte
 	jp _doNextChannelCommand
 ;;
 _channelCmdf2:
 	jp _doNextChannelCommand
 ;;
+; incCoda
+;
 _channelCmdf3:
+	ld hl,wVolta
+	call _getChannelVarInHL
+	inc (hl)
+	jp _doNextChannelCommand
+;;
+; resetCoda
+;
+_channelCmdf4:
+	ld hl,wVolta
+	call _getChannelVarInHL
+	ld (hl),$00
 	jp _doNextChannelCommand
 
+; @param 	hl	wram variable
+_getChannelVarInHL:
+	push af
+	ld a,(wSoundChannel)
+	ld e,a
+	ld d,$00
+	add hl,de
+	pop af
+	ret
 ;;
 ; Vibrato
 ;

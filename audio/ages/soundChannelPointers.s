@@ -471,15 +471,15 @@ sound06:
 	.dw sound06Channel6
 	.db $ff
 ; @addr{5331}
-sound04:
+gerudoValley:
 	.db $00
-	.dw sound04Channel0
+	.dw gerudoValleyChannel0
 	.db $01
-	.dw sound04Channel1
+	.dw gerudoValleyChannel1
 	.db $04
-	.dw sound04Channel4
+	.dw gerudoValleyChannel4
 	.db $06
-	.dw sound04Channel6
+	.dw gerudoValleyChannel6
 	.db $ff
 ; @addr{533e}
 sound08:
@@ -504,15 +504,15 @@ sound05:
 	.dw sound05Channel6
 	.db $ff
 ; @addr{5358}
-sound07:
+hyruleCastle:
 	.db $00
-	.dw sound07Channel0
+	.dw hyruleCastleChannel0
 	.db $01
-	.dw sound07Channel1
+	.dw hyruleCastleChannel1
 	.db $04
-	.dw sound07Channel4
+	.dw hyruleCastleChannel4
 	.db $06
-	.dw sound07Channel6
+	.dw hyruleCastleChannel6
 	.db $ff
 ; @addr{5365}
 faronWoods:

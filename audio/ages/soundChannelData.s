@@ -5439,168 +5439,7 @@ musice7f16:
 	cmdff
 ; $e7f5e
 ; GAP
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
+
 .bank $73 slot 1
 .org 0
 sound00Start:
@@ -15527,7 +15366,7 @@ sound02Start:
 sound03Start:
 sound0dStart:
 sound0fStart:
-sound04Start:
+
 sound08Start:
 sound0aStart:
 sound0bStart:
@@ -15538,7 +15377,7 @@ sound02Channel6:
 sound03Channel6:
 sound0dChannel6:
 sound0fChannel6:
-sound04Channel6:
+
 sound08Channel6:
 sound0aChannel6:
 sound0bChannel6:
@@ -20499,849 +20338,578 @@ musicee08c:
 	note $27 $05
 	goto musicee08c
 	cmdff
-; $ee3c1
-; @addr{ee3c1}
-sound04Channel1:
-	vibrato $e1
-	env $0 $00
-	cmdf2
+
+gerudoValleyStart
+; BPM = 129 B = 28
+gerudoValleyChannel1:
+	.redefine BEAT 7		;Sixteenth
+	resetCoda
+
+; Measures 1-3
+	vol $0
+	beat r 1
+	vol $7
 	duty $01
-musicee3c8:
-	vol $5
-	note a4  $0e
-	vol $3
-	note a4  $0e
-	vol $5
-	note e4  $0e
-	vol $3
-	note e4  $0e
-	wait1 $15
-	vol $5
-	note a4  $03
-	wait1 $04
-	note a4  $05
-	wait1 $02
-	note b4  $05
-	wait1 $02
-	note cs5 $05
-	wait1 $02
-	note d5  $05
-	wait1 $02
-	note e5  $38
-	vibrato $01
-	vol $3
-	note e5  $0e
-	wait1 $04
-	vibrato $e1
-	vol $5
-	note e5  $06
-	wait1 $04
-	note e5  $05
-	wait1 $04
-	note f5  $06
-	wait1 $03
-	note g5  $06
-	wait1 $04
-	note a5  $38
-	vibrato $01
-	vol $3
-	note a5  $0e
-	wait1 $04
-	vibrato $e1
-	vol $5
-	note a5  $06
-	wait1 $04
-	note a5  $05
-	wait1 $04
-	note g5  $06
-	wait1 $03
-	note f5  $06
-	wait1 $04
-	note g5  $09
-	wait1 $05
-	vol $3
-	note g5  $03
-	wait1 $01
-	vol $5
-	note f5  $0a
-	note e5  $1c
-	vibrato $01
-	vol $3
-	note e5  $1c
-	vibrato $e1
-	vol $5
-	note e5  $09
-	note f5  $09
-	note e5  $0a
-	note d5  $07
-	vol $3
-	note d5  $07
-	vol $5
-	note d5  $07
-	note e5  $07
-	note f5  $1c
-	vibrato $01
-	vol $3
-	note f5  $1c
-	vibrato $e1
-	vol $5
-	note e5  $0e
-	note d5  $0e
-	note c5  $07
-	vol $3
-	note c5  $07
-	vol $5
-	note c5  $07
-	note d5  $07
-	note e5  $1c
-	vibrato $01
-	vol $3
-	note e5  $1c
-	vibrato $e1
-	vol $5
-	note d5  $0e
-	note c5  $0e
-	note b4  $07
-	vol $3
-	note b4  $07
-	vol $5
-	note b4  $07
-	note cs5 $07
-	note ds5 $1c
-	vibrato $01
-	vol $3
-	note ds5 $1c
-	vibrato $e1
-	vol $5
-	note fs5 $1c
-	note e5  $0e
-	note e4  $01
-	wait1 $02
-	note e4  $01
-	wait1 $05
-	note e4  $01
-	wait1 $04
-	note fs4 $05
-	wait1 $04
-	note fs4 $06
-	wait1 $03
-	note fs4 $06
-	wait1 $04
-	note gs4 $1c
-	vibrato $01
-	vol $3
-	note gs4 $1c
-	vibrato $e1
-	vol $5
-	note a4  $0e
-	vol $3
-	note a4  $0e
-	vol $5
-	note e4  $0e
-	vol $3
-	note e4  $0e
-	wait1 $15
-	vol $5
-	note a4  $03
-	wait1 $04
-	note a4  $05
-	wait1 $02
-	note b4  $05
-	wait1 $02
-	note cs5 $05
-	wait1 $02
-	note d5  $05
-	wait1 $02
-	note e5  $38
-	vibrato $01
-	vol $3
-	note e5  $0e
-	wait1 $04
-	vibrato $e1
-	vol $5
-	note e5  $06
-	wait1 $04
-	note e5  $05
-	wait1 $04
-	note f5  $06
-	wait1 $03
-	note g5  $06
-	wait1 $04
-	note a5  $38
-	vibrato $01
-	vol $3
-	note a5  $0e
-	wait1 $04
-	vibrato $e1
-	vol $5
-	note a5  $06
-	wait1 $04
-	note a5  $05
-	wait1 $04
-	note g5  $06
-	wait1 $03
-	note f5  $06
-	wait1 $04
-	note g5  $07
-	wait1 $03
-	vol $3
-	note g5  $07
-	wait1 $01
-	vol $5
-	note f5  $0a
-	note e5  $1c
-	vol $3
-	note e5  $0e
-	wait1 $0e
-	vol $5
-	note e5  $09
-	note f5  $09
-	note e5  $0a
-	note d5  $07
-	vol $3
-	note d5  $07
-	vol $5
-	note d5  $07
-	note e5  $07
-	note f5  $1c
-	vibrato $01
-	vol $3
-	note f5  $1c
-	vibrato $e1
-	vol $5
-	note e5  $0e
-	note d5  $0e
-	note c5  $09
-	note b4  $09
-	note c5  $0a
-	note d5  $09
-	note c5  $09
-	note d5  $0a
-	note e5  $07
-	vol $3
-	note e5  $07
-	wait1 $04
-	vol $5
-	note e5  $04
-	wait1 $06
-	note e5  $09
-	note d5  $09
-	note c5  $0a
-	note e5  $38
-	note e6  $38
-	note a5  $46
-	wait1 $0e
-	note e5  $03
-	vol $3
-	note e5  $04
-	wait1 $02
-	vol $5
-	note c5  $03
-	vol $3
-	note c5  $04
-	wait1 $02
-	vol $5
-	note a4  $04
-	vol $3
-	note a4  $03
-	wait1 $03
-	goto musicee3c8
-	cmdff
-; $ee576
-; @addr{ee576}
-sound04Channel0:
-	vibrato $e1
+	env $0 $04
+	octave 3
+
+	beat d 1 gs 1
+	beat b 2 ou d 2 fs 2
+	beat f 1 gs 1 b 1
+
+	beat ou cs 36
+
+	.redefine NOTE_END_WAIT 3/7
+gerudoValleyChannel1Measure4:
+; Measures 4-5
+	octave 4
+	;vol $7
+	beat fs 1
+	vol $6
+	beat fs 1 fs 1
+	beat fs 2 fs 2 fs 1
+	vol $8
+
+	incCoda
+	gotoCond $04 gerudoValleyChannel1Measure6
+	goto gerudoValleyChannel1Measure4
+
+gerudoValleyChannel1Measure6:
+; Measure 6
+	beat e 1
+	vol $6
+	beat e 1 e 1
+	beat e 2 e 2 e 1
+	vol $8
+
+	incCoda 
+	gotoCond $05 gerudoValleyChannel1Measure6
+
+gerudoValleyChannel1Measure7:
+; Measure 7
+	beat f 1
+	vol $6
+	beat f 1 f 1
+	beat f 2 f 2 f 1
+	vol $8
+
+	incCoda
+	gotoCond $07 gerudoValleyChannel1Measure7
+
+	.redefine NOTE_END_WAIT 0
+	resetCoda
+gerudoValleyChannel1Measure8:
+; Measure 8		Coda = $08
+	octave 4
+	vol $0
+	beat r 1
+	vol $8
+	beat cs 1 fs 1 gs 1
+	beat a 3 cs 1 fs 1 gs 1
+	beat a 6
+; Measure 9
+	beat r 1 d 1 fs 1 gs 1
+	beat a 3 d 1 fs 1 gs 1
+	beat a 6	
+; Measure 10
+	beat r 1 od b 1 ou e 1 fs 1
+	beat gs 3 od b 1 ou e 1 fs 1
+	beat gs 6
+; Measure 11
+	beat r 1
+	
+	gotoCond $01 gerudoValleyChannel1Measure15
+
+	beat fs 1 gs 1 fs 1 f 12
+; Measure 12
+	vol $0
+	duty $02
 	env $0 $00
-	cmdf2
-	duty $01
-musicee57d:
-	vol $5
-	note cs4 $0e
-	vol $3
-	note cs4 $0e
-	vol $5
-	note d4  $09
-	note cs4 $09
-	note b3  $0a
-	note cs4 $0e
-	vol $3
-	note cs4 $07
-	vol $5
-	note cs4 $07
-	note cs4 $05
-	wait1 $02
-	note d4  $05
-	wait1 $02
-	note e4  $05
-	wait1 $02
-	note fs4 $05
-	wait1 $02
-	note g4  $15
-	note a4  $05
-	wait1 $02
-	note a4  $05
-	wait1 $02
-	note b4  $05
-	wait1 $02
-	note cs5 $05
-	wait1 $02
-	note d5  $05
-	wait1 $02
-	note e5  $07
-	wait1 $03
-	vol $3
-	note e5  $07
-	wait1 $04
-	vol $2
-	note e5  $07
-	vol $5
-	note g4  $09
-	note a4  $09
-	note b4  $0a
-	note c5  $12
-	note f4  $06
-	wait1 $04
-	note f4  $05
-	wait1 $02
-	note g4  $05
-	wait1 $02
-	note a4  $05
-	wait1 $02
-	note b4  $05
-	wait1 $02
-	note c5  $07
-	wait1 $07
-	vol $3
-	note c5  $03
-	wait1 $01
-	vol $5
-	note c5  $06
-	wait1 $04
-	note c5  $05
-	wait1 $04
-	note b4  $06
-	wait1 $03
-	note a4  $06
-	wait1 $04
-	note c5  $07
-	wait1 $03
-	vol $3
-	note c5  $07
-	wait1 $01
-	vol $5
-	note g4  $06
-	wait1 $04
-	note g4  $05
-	wait1 $04
-	note g4  $06
-	wait1 $03
-	note f4  $06
-	wait1 $04
-	note g4  $05
-	wait1 $05
-	vol $3
-	note g4  $06
-	wait1 $02
-	vol $5
-	note g4  $06
-	wait1 $04
-	note g4  $05
-	wait1 $04
-	note f4  $06
-	wait1 $03
-	note g4  $06
-	wait1 $04
-	note f4  $0b
-	wait1 $03
-	note f4  $07
-	note e4  $07
-	note f4  $0b
-	wait1 $03
-	note f4  $07
-	note g4  $07
-	note a4  $1c
-	note g4  $0e
-	note f4  $0e
-	note e4  $0b
-	wait1 $03
-	note e4  $07
-	note d4  $07
-	note e4  $0b
-	wait1 $03
-	note e4  $07
-	note f4  $07
-	note g4  $1c
-	note f4  $0e
-	note e4  $0e
-	note ds4 $15
-	wait1 $07
-	note ds4 $07
-	wait1 $03
-	vol $3
-	note ds4 $04
-	vol $5
-	note ds4 $07
-	note e4  $07
-	note fs4 $07
-	wait1 $03
-	vol $3
-	note fs4 $04
-	vol $5
-	note fs4 $07
-	note g4  $07
-	note a4  $07
-	note b4  $07
-	note cs5 $07
-	note d5  $07
-	note b4  $1c
-	note d4  $05
-	wait1 $04
-	note d4  $06
-	wait1 $03
-	note d4  $06
-	wait1 $04
-	note e4  $1c
 	vibrato $01
-	vol $3
-	note e4  $1c
-	vibrato $e1
-	vol $5
-	note cs4 $0e
-	vol $3
-	note cs4 $0e
-	vol $5
-	note d4  $09
-	note cs4 $09
-	note b3  $0a
-	note cs4 $0e
-	vol $3
-	note cs4 $07
-	vol $5
-	note cs4 $07
-	note cs4 $05
-	wait1 $02
-	note d4  $05
-	wait1 $02
-	note e4  $05
-	wait1 $02
-	note fs4 $05
-	wait1 $02
-	note g4  $15
-	note a4  $05
-	wait1 $02
-	note a4  $05
-	wait1 $02
-	note b4  $05
-	wait1 $02
-	note cs5 $05
-	wait1 $02
-	note d5  $05
-	wait1 $02
-	note e5  $1c
-	note g4  $09
-	note a4  $09
-	note b4  $0a
-	note c5  $12
-	note f4  $06
-	wait1 $04
-	note f4  $05
-	wait1 $02
-	note g4  $05
-	wait1 $02
-	note a4  $05
-	wait1 $02
-	note b4  $05
-	wait1 $02
-	note c5  $07
-	wait1 $03
-	vol $3
-	note c5  $07
-	wait1 $01
-	vol $5
-	note c5  $06
-	wait1 $04
-	note c5  $05
-	wait1 $04
-	note b4  $06
-	wait1 $03
-	note a4  $06
-	wait1 $04
-	note c5  $07
-	wait1 $03
-	vol $3
-	note c5  $07
-	wait1 $01
-	vol $5
-	note g4  $06
-	wait1 $04
-	note g4  $05
-	wait1 $04
-	note g4  $06
-	wait1 $03
-	note f4  $06
-	wait1 $04
-	note g4  $05
-	wait1 $05
-	vol $3
-	note g4  $06
-	wait1 $02
-	vol $5
-	note g4  $06
-	wait1 $04
-	note g4  $05
-	wait1 $04
-	note f4  $06
-	wait1 $03
-	note g4  $06
-	wait1 $04
-	note f4  $0b
-	wait1 $03
-	note f4  $07
-	note e4  $07
-	note f4  $0b
-	wait1 $03
-	note f4  $07
-	note g4  $07
-	note a4  $1c
-	note g4  $0e
-	note f4  $0e
-	note a3  $1c
-	note gs3 $1c
-	note g3  $38
-	note fs3 $1c
-	note d3  $1c
-	note e3  $15
-	wait1 $07
+
+	incCoda
+	goto gerudoValleyChannel1Measure8
+
+gerudoValleyChannel1Measure15:
+; Measure 15
+	octave 4
+	beat a 1 b 1 a 1
+	vibrato $82
+	beat gs 12
+
+gerudoValleyChannel1Measure16:
+	beat r 2
+	vibrato $00
+	duty $01
+	env $0 $04
+; Measure 16	Coda = $01
+	octave 4
 	vol $8
-	note e3  $04
-	wait1 $05
-	note e4  $05
-	wait1 $04
-	note d4  $05
-	wait1 $05
-	note c4  $04
-	wait1 $05
-	note b3  $05
-	wait1 $04
-	note a3  $05
-	wait1 $05
-	note b3  $04
-	wait1 $06
-	vol $5
-	note b3  $05
-	wait1 $06
-	vol $3
-	note b3  $04
-	wait1 $03
+	beat cs 3 a 3 gs 3 fs 3 cs 2
+; Measure 17
+	beat e 4 e 1 fs 1 e 1 d 7
+
+	gotoCond $02 gerudoValleyChannel1Measure22
+
+	beat r 4
+; Measure 18
+	beat od b 3 ou gs 3 fs 3 e 3 d 2
+; Measure 19
+	beat cs 4 d 1 e 1 d 1 cs 9
+
+	incCoda
+	goto gerudoValleyChannel1Measure16
+
+gerudoValleyChannel1Measure22:
+; Measure 21d
+	octave 4
+	env $0 $00
+	vibrato $01
+	beat d 2
+; Measures 22-23
+	vibrato $82
+	beat e 6 fs 2 e 6 d 2
+	vibrato $e2
+	beat cs 16 r 2
+	vibrato $00
+; Measure 24
+	env $0 $04
+	beat a 3 gs 3 a 3 gs 3 cs 2
+; Measure 25
+	beat e 5 d 1 cs 1 d 11
+; Measure 26
+	beat gs 3 fs 3 gs 3 e 3 d 2
+; Measure 27
+	beat cs 4 d 1 e 1 d 1 cs 11
+
+; Measure 28
+	octave 3
+	beat fs 1 gs 1 a 1 ou cs 3
+	beat od fs 1 gs 1 a 1 ou cs 7
+; Measure 29
+	beat od fs 1 gs 1 a 1 ou d 3
+	beat od fs 1 gs 1 a 1 ou d 3
+	env $0 $00
+	vibrato $01
+	beat d 2
+; Measures 30-31
+	vibrato $82
+	beat od b 6 ou gs 2 fs 6 od b 2
+	vibrato $e2
+	beat ou cs 16
+	vibrato $01
+
+gerudoValleyChannel1Measure32:
+; Measure 32		Coda = $02
+	octave 4
+	duty $02
+	beat a 1 gs 1
+	vibrato $82
+	beat a 8
+	vibrato $01
+	beat fs 1 gs 1
+	beat a 1 b 1 a 1 gs 1
+; Measure 33
+	beat a 1 gs 1
+	vibrato $e2
+	beat a 12 r 2
+	vibrato $01
+
+	gotoCond $03 gerudoValleyChannel1Measure38
+
+; Measure 34
+	beat gs 1 fs 1
+	vibrato $82
+	beat gs 8 
+	vibrato $01
+	beat e 1 fs 1
+	beat gs 1 a 1 gs 1 fs 1
+; Measure 35
+	beat gs 1 fs 1
+	vibrato $e2
+	beat f 12 r 2
+	vibrato $01
+
+	incCoda
+	goto gerudoValleyChannel1Measure32
+
+gerudoValleyChannel1Measure38:
+; Measure 38
+	octave 4
+	beat b 1 a 1
+	vibrato $82
+	beat b 8
+	vibrato $01
+	beat gs 1 a 1
+	beat b 1 ou cs 1 d 1 e 1
+; Measure 39
+	beat cs 1 d 1
+	vibrato $e2
+	beat cs 12 r 2
+	vibrato $00
+
+; Measure 40
+	octave 4
+	duty $01
+	env $0 $04
+.rept 2
+	beat fs 2 a 1 gs 3 a 2
+.endr
+; Measure 41
+.rept 2
+	beat d 2 a 1 gs 3 a 2
+.endr
+; Measure 42
+.rept 2
+	beat e 2 b 1 as 3 b 2
+.endr
+; Measure 43
+	beat ou d 1 e 1 d 1 cs 13
+
+	resetCoda
+	goto gerudoValleyChannel1Measure8
+	cmdff
+
+
+gerudoValleyChannel0:
+	.redefine BEAT 7		;Sixteenth
+
+; Measures 1-3
+	duty $01
+	env $0 $04
+	vol $7
+	octave 3
+	beat cs 9
+
+	beat gs 1 ds 1 d 1
+	beat cs 36
+
+	resetCoda
+gerudoValleyChannel0MeasureA:		;a
+	octave 3
+; Measure 4		(14 bytes)
+	beat a 1
+	vol $6
+	beat a 1 a 1
+	beat a 2 a 2 a 1
 	vol $8
-	note a3  $04
-	wait1 $06
+
+	beat a 1
+	vol $6
+	beat a 1 a 1
+	beat a 2 a 2 a 1
+	vol $8
+
+	incCoda 
+	gotoCond $01 gerudoValleyChannel0MeasureD4
+
+
+gerudoValleyChannel0MeasureFs:		;fs
+	octave 3
+; Measure 9
+	beat fs 1
+	vol $6
+	beat fs 1 fs 1
+	beat fs 2 fs 2 fs 1
+	vol $8
+
+	beat fs 1
+	vol $6
+	beat fs 1 fs 1
+	beat fs 2
+
+	gotoCond $09 gerudoValleyChannel0Measure22
+
+	beat fs 2 fs 1
+	vol $8
+
+gerudoValleyChannel0MeasureGs:		;gs
+	octave 3
+; Measure 10
+	beat gs 1
+	vol $6
+	beat gs 1 gs 1
+	beat gs 2 gs 2 gs 1
+	vol $8
+
+	beat gs 1
+	vol $6
+	beat gs 1 gs 1
+	beat gs 2 gs 2 gs 1
+	vol $8
+
+	gotoCond $07 gerudoValleyChannel0MeasureB
+	gotoCond $0f gerudoValleyChannel0MeasureB
+
+gerudoValleyChannel0MeasureF:		;f (es)
+	octave 3
+; Measure 11
+	env $0 $04
+	beat f 1
+	vol $6
+	beat f 1 f 1
+	beat f 2 f 2 f 1
+	vol $8
+
+	beat f 1
+	vol $6
+	beat f 1 f 1
+	beat f 2 f 2 f 1
+	vol $8
+
+	gotoCond $0a gerudoValleyChannel0MeasureCs
+	gotoCond $0e gerudoValleyChannel0Measure36
+	goto gerudoValleyChannel0MeasureA
+
+
+
+gerudoValleyChannel0MeasureD4:		;d
+	octave 4
+; Measure 5
+	beat d 1
+	vol $6
+	beat d 1 d 1
+	beat d 2 d 2 d 1
+	vol $8
+
+	incCoda 
+	gotoCond $02 gerudoValleyChannel0MeasureD4
+
+gerudoValleyChannel0MeasureB:		;b
+	octave 3
+; Measure 6
+	beat b 1
+	vol $6
+	beat b 1 b 1
+	beat b 2 b 2 b 1
+	vol $8
+
+	gotoCond $0e gerudoValleyChannel0MeasureA
+
+	beat b 1
+	vol $6
+	beat b 1 b 1
+	beat b 2 b 2 b 1
+	vol $8
+
+	gotoCond $07 gerudoValleyChannel0MeasureA
+	gotoCond $0f gerudoValleyChannel0MeasureAReset
+
+gerudoValleyChannel0MeasureCs4:		;cs
+	octave 4
+; Measure 7
+	beat cs 1
+	vol $6
+	beat cs 1 cs 1
+	beat cs 2 cs 2 cs 1
+	vol $8
+
+	incCoda 
+	gotoCond $04 gerudoValleyChannel0MeasureCs4
+
+	goto gerudoValleyChannel0MeasureA
+
+gerudoValleyChannel0MeasureCs:		;cs
+	octave 3
+; Measure 28
+	beat cs 1
+	vol $6
+	beat cs 1 cs 1
+	beat cs 2 cs 2 cs 1
+	vol $8
+
+	incCoda 
+	gotoCond $0b gerudoValleyChannel0MeasureCs
+
+gerudoValleyChannel0MeasureD:		;d
+	octave 3
+; Measure 29
+	beat d 1
+	vol $6
+	beat d 1 d 1
+	beat d 2
+
+	gotoCond $0d gerudoValleyChannel0Measure30
+
+	beat d 2 d 1
+	vol $8
+
+	incCoda 
+	goto gerudoValleyChannel0MeasureD
+
+
+gerudoValleyChannel0Measure22:
+	octave 3
+; Measure 21c
+	.redefine NOTE_END_WAIT 4/7
+	beat fs 1
+	vol $8
+	env $0 $00
+	beat a 2
+; Measure 22
+	vibrato $81
+	beat b 6 b 2 b 6 gs 2
+	vibrato $00
+
+	goto gerudoValleyChannel0MeasureF
+
+gerudoValleyChannel0Measure30:
+	octave 3
+; Measure 29c
+	.redefine NOTE_END_WAIT 4/7
+	beat d 1
+	vol $8
+	env $0 $00
+	beat a 2
+; Measure 30
+	vibrato $81
+	beat gs 6 ou e 2 d 6 od gs 2	
+	vibrato $00
+
+	goto gerudoValleyChannel0MeasureF
+
+gerudoValleyChannel0Measure36:
+; Measure 36
+	.redefine NOTE_END_WAIT 0
+	octave 4
+	env $0 $00
+	beat cs 1 od b 1
+	vibrato $81
+	beat ou cs 8
+	vibrato $00
+	beat od a 1 b 1 ou cs 1 d 1 cs 1 od b 1
+; Measure 37
+	beat ou cs 1 od b 1
+	vibrato $82
+	beat ou cs 9
+	vibrato $00
+
+	env $0 $04
+	vol $6
+	beat od fs 2 fs 2 fs 1
+	vol $8
+; Measure 38
+	octave 4
+	env $0 $00
+	beat d 1 cs 1
+	vibrato $81
+	beat d 8
+	vibrato $00
+	beat od b 1 ou c 1 d 1 e 1 fs 1 gs 1
+; Measure 39
+	beat f 1 fs 1
+	vibrato $82
+	beat f 6
+	vibrato $00
+	env $0 $04
+
+	goto gerudoValleyChannel0MeasureB
+
+gerudoValleyChannel0MeasureAReset:
+	resetCoda
+	incCoda
+	incCoda
+	incCoda
+	incCoda
+	incCoda
+	goto gerudoValleyChannel0MeasureA
+	cmdff
+
+gerudoValleyChannel4:
+	.redefine BEAT 1
+; Measures 1-3
+	beat r 255 r 81
+
+gerudoValleyChannel4Measure4:
+; Measure 4
+	octave 2
+	duty $0e
+.rept 2
+	beat fs 24 r 4
+	beat fs 14 r 14
+.endr
+
+; Measure 5
+.rept 2
+	beat d 24 r 4
+	beat d 14 r 14
+.endr
+
+; Measure 6
+.rept 2
+	beat e 24 r 4
+	beat e 14 r 14
+.endr
+
+; Measure 7
+	octave 3
+.rept 2
+	beat cs 24 r 4	
+	beat cs 14 r 14
+.endr
+
+	goto gerudoValleyChannel4Measure4
+	cmdff
+
+
+gerudoValleyChannel6:
+	.redefine BEAT 7
+	resetCoda
+
+; Measure 1
+	beat r 16
+gerudoValleyChannel6Measure2:
+; Measures 2-7
+.rept 2
+	vol $7
+	beat $24 1
 	vol $5
-	note a3  $05
-	wait1 $06
-	vol $3
-	note a3  $04
-	wait1 $1f
-	goto musicee57d
+	beat $24 1 $24 1
+.endr
+	vol $7
+	beat $24 1
+	vol $5
+	beat $24 1
+
+	vol $7
+.rept 2
+	beat $24 1
+	vol $5
+	beat $24 1 $24 1
+	vol $7
+	beat $24 1
+.endr
+
+	incCoda
+	gotoCond $05 gerudoValleyChannel6Measure8
+	goto gerudoValleyChannel6Measure2
+
+gerudoValleyChannel6Measure8:
+; Measures 8-43
+.rept 2
+	vol $7
+	beat $24 1
+	vol $5
+	.rept 3
+		beat $24 1
+	.endr
+.endr
+
+	vol $7
+	beat $24 1
+	vol $5
+	.rept 5
+		beat $24 1
+	.endr
+
+	vol $7
+	beat $24 1
+	vol $5
+	beat $24 1
+
+	goto gerudoValleyChannel6Measure8
 	cmdff
-; $ee79b
-; @addr{ee79b}
-sound04Channel4:
-musicee79b:
-	duty $0e
-	note a2  $04
-	duty $0f
-	note a2  $04
-	wait1 $14
-	duty $0e
-	note a2  $04
-	duty $0f
-	note a2  $04
-	wait1 $14
-	duty $0e
-	note a2  $04
-	duty $0f
-	note a2  $04
-	wait1 $14
-	duty $0e
-	note a2  $04
-	duty $0f
-	note a2  $04
-	wait1 $14
-	duty $0e
-	note g2  $04
-	duty $0f
-	note g2  $04
-	wait1 $14
-	duty $0e
-	note g2  $04
-	duty $0f
-	note g2  $04
-	wait1 $14
-	duty $0e
-	note g2  $04
-	duty $0f
-	note g2  $04
-	wait1 $14
-	duty $0e
-	note g2  $04
-	duty $0f
-	note g2  $04
-	wait1 $14
-	duty $0e
-	note f2  $04
-	duty $0f
-	note f2  $04
-	wait1 $14
-	duty $0e
-	note f2  $04
-	duty $0f
-	note f2  $04
-	wait1 $14
-	duty $0e
-	note f2  $04
-	duty $0f
-	note f2  $04
-	wait1 $14
-	duty $0e
-	note f2  $04
-	duty $0f
-	note f2  $04
-	wait1 $14
-	duty $0e
-	note c3  $04
-	duty $0f
-	note c3  $04
-	wait1 $14
-	duty $0e
-	note c3  $04
-	duty $0f
-	note c3  $04
-	wait1 $14
-	duty $0e
-	note c3  $04
-	duty $0f
-	note c3  $04
-	wait1 $14
-	duty $0e
-	note c3  $04
-	duty $0f
-	note c3  $04
-	wait1 $14
-	duty $0e
-	note as2 $04
-	duty $0f
-	note as2 $04
-	wait1 $14
-	duty $0e
-	note as2 $04
-	duty $0f
-	note as2 $04
-	wait1 $14
-	duty $0e
-	note as2 $04
-	duty $0f
-	note as2 $04
-	wait1 $14
-	duty $0e
-	note as2 $04
-	duty $0f
-	note as2 $04
-	wait1 $14
-	duty $0e
-	note a2  $04
-	duty $0f
-	note a2  $04
-	wait1 $14
-	duty $0e
-	note a2  $04
-	duty $0f
-	note a2  $04
-	wait1 $14
-	duty $0e
-	note a2  $04
-	duty $0f
-	note a2  $04
-	wait1 $14
-	duty $0e
-	note a2  $04
-	duty $0f
-	note a2  $04
-	wait1 $14
-	duty $0e
-	note b2  $04
-	duty $0f
-	note b2  $04
-	wait1 $14
-	duty $0e
-	note b2  $04
-	duty $0f
-	note b2  $04
-	wait1 $14
-	duty $0e
-	note b2  $04
-	duty $0f
-	note b2  $04
-	wait1 $14
-	duty $0e
-	note b2  $04
-	duty $0f
-	note b2  $04
-	wait1 $14
-	duty $0e
-	note e3  $04
-	duty $0f
-	note e3  $04
-	wait1 $14
-	duty $0e
-	note a3  $04
-	duty $0f
-	note a3  $04
-	wait1 $14
-	duty $0e
-	note b3  $1c
-	note fs3 $04
-	duty $0f
-	note fs3 $04
-	wait1 $06
-	duty $0e
-	note gs3 $04
-	duty $0f
-	note gs3 $04
-	wait1 $06
-	duty $0e
-	note a2  $04
-	duty $0f
-	note a2  $04
-	wait1 $14
-	duty $0e
-	note a2  $04
-	duty $0f
-	note a2  $04
-	wait1 $14
-	duty $0e
-	note a2  $04
-	duty $0f
-	note a2  $04
-	wait1 $14
-	duty $0e
-	note a2  $04
-	duty $0f
-	note a2  $04
-	wait1 $14
-	duty $0e
-	note g2  $04
-	duty $0f
-	note g2  $04
-	wait1 $14
-	duty $0e
-	note g2  $04
-	duty $0f
-	note g2  $04
-	wait1 $14
-	duty $0e
-	note g2  $04
-	duty $0f
-	note g2  $04
-	wait1 $14
-	duty $0e
-	note g2  $04
-	duty $0f
-	note g2  $04
-	wait1 $14
-	duty $0e
-	note f2  $04
-	duty $0f
-	note f2  $04
-	wait1 $14
-	duty $0e
-	note f2  $04
-	duty $0f
-	note f2  $04
-	wait1 $14
-	duty $0e
-	note f2  $04
-	duty $0f
-	note f2  $04
-	wait1 $14
-	duty $0e
-	note f2  $04
-	duty $0f
-	note f2  $04
-	wait1 $14
-	duty $0e
-	note c3  $04
-	duty $0f
-	note c3  $04
-	wait1 $14
-	duty $0e
-	note c3  $04
-	duty $0f
-	note c3  $04
-	wait1 $14
-	duty $0e
-	note c3  $04
-	duty $0f
-	note c3  $04
-	wait1 $14
-	duty $0e
-	note c3  $04
-	duty $0f
-	note c3  $04
-	wait1 $14
-	duty $0e
-	note as2 $04
-	duty $0f
-	note as2 $04
-	wait1 $14
-	duty $0e
-	note as2 $04
-	duty $0f
-	note as2 $04
-	wait1 $14
-	duty $0e
-	note as2 $04
-	duty $0f
-	note as2 $04
-	wait1 $14
-	duty $0e
-	note as2 $04
-	duty $0f
-	note as2 $04
-	wait1 $14
-	duty $17
-	note e4  $09
-	note ds4 $09
-	note e4  $0a
-	note gs4 $09
-	note a4  $09
-	note b4  $0a
-	note c5  $09
-	wait1 $09
-	note c5  $0a
-	note c5  $09
-	note b4  $09
-	note a4  $0a
-	note e5  $0e
-	wait1 $04
-	note c5  $0e
-	wait1 $05
-	note a4  $13
-	note gs4 $12
-	wait1 $0a
-	note gs4 $09
-	note fs4 $09
-	note gs4 $0a
-	note a4  $09
-	note b4  $09
-	note c5  $0a
-	note d5  $09
-	note c5  $09
-	note b4  $0a
-	note c5  $1c
-	wait1 $1c
-	goto musicee79b
-	cmdff
+
 ; $ee9e7
 ; @addr{ee9e7}
 sound08Channel1:
@@ -24353,169 +23921,167 @@ sound4cChannel7:
 	cmdff
 ; $eff68
 ; GAP
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
+;	cmdff
 .bank $75 slot 1
 .org 0
 sound1cStart:
 sound1fStart:
-sound07Start:
 sound26Start:
 fireWaterStart:
 ; @addr{f0000}
 sound1cChannel6:
 sound1fChannel6:
-sound07Channel6:
 sound26Channel6:
 fireWaterChannel6:
 	cmdff
@@ -26982,298 +26548,773 @@ musicf0f36:
 	note a4  $06
 	goto musicf0f36
 	cmdff
-; $f102d
-; @addr{f102d}
-sound07Channel0:
-	vol $0
-	note gs3 $18
-	cmdf2
-	vibrato $e1
-	env $0 $00
+
+hyruleCastleStart:
+; BPM = 100 (B=36)
+hyruleCastleChannel1:
+	.redefine BEAT 1
+	resetCoda
+
+; Measures 1-2 (Eighth Note Pickup and Full Measure)
+	vol $0	;temp
+	beat r 42
+	octave 5
 	duty $02
-musicf1037:
 	vol $8
-	note gs4 $18
+	.redefine NOTE_END_WAIT 3
+	beat d 6 d 6
+	.redefine NOTE_END_WAIT 9
+	beat d 18 c 18
+	.redefine NOTE_END_WAIT 0
+	vibrato $82
+	beat d 36
+	vibrato $00
+	beat ds 27 fs 9
+; Measure 3	
+	vibrato $e2
+	beat d 126
+; Measures 4-5	BPM = 150 (B=36)
+	beat r 222		;102+120
+hyruleCastleChannel1Measure6:
+; Measure 6
+	vol $4
+	octave 3
+	duty $01
+	env $0 $04
+	beat g 24 g 12 f 24 f 12 g 24
+; Measure 7
+	beat g 12 g 12 g 6 g 6
 	vol $5
-	note gs4 $0c
+	beat g 12 g 12 gs 12 fs 12
+
+hyruleCastleChannel1Measure8:
+; Measures 8,12,20
+	vol $6
+	octave 4
+	duty $02
+	env $0 $00
+	beat g 36 fs 3 f 3 e 3 ds 3
+	vibrato $e2
+	beat d 84
+; Measures 9,13,21
+	vibrato $00
+	beat g 12 gs 12 as 20 fs 8 as 8
+; Measures 10,14,22
+	beat g 36 fs 3 f 3 e 3 ds 3
+	vibrato $e2
+	beat d 84
+; Measures 11,15,23
+	vibrato $00
+	duty $01
+	env $0 $04
+	octave 5
+	beat d 6 d 6 f 12 f 12 
+	beat ds 6 d 6 cs 6 c 6
+	duty $02
+	env $0 $00
+
+	incCoda
+	gotoCond $01 hyruleCastleChannel1Measure8
+	gotoCond $03 hyruleCastleChannel1Measure24
+
+; Measure 16
+	octave 5
+	beat c 36 od b 3 as 3 a 3 gs 3
+	vibrato $e2
+	beat g 84
+; Measure 17
+	vibrato $00
+	beat ou c 12 f 16 ds 16 cs 8 od b 8
+; Measure 18
+	beat ou c 36 od b 3 as 3 a 3 gs 3
+	vibrato $e2
+	beat g 84
+; Measure 19
+	vibrato $00
+	duty $01
+	env $0 $04
+	octave 5
+	beat g 6 g 6 as 12 as 12
+	beat gs 6 g 6 fs 6 f 6
+
+	goto hyruleCastleChannel1Measure8
+
+hyruleCastleChannel1Measure24:
+; Measure 24,26
+	octave 4
+	beat f 32 ds 8 d 8
+	beat c 12 ds 12 f 12 ou c 12
+; Measure 25,27
+	vibrato $e2
+	beat od g 84 r 12
+	vibrato $00
+
+	incCoda
+	gotoCond $04 hyruleCastleChannel1Measure24
+
+; Measure 28 (Coda = $05)
+	octave 4
+	beat f 28 r 4 ds 8 d 8
+	beat c 12 d 12 
+	.redefine NOTE_END_WAIT 6
+	beat f 12 g 12
+	.redefine NOTE_END_WAIT 0
+; Measure 29
+	vol $7
+	beat as 28 r 4 gs 8 g 8
+	beat f 12 g 12 
+	.redefine NOTE_END_WAIT 6
+	beat gs 12 as 12
+	.redefine NOTE_END_WAIT 0	
+; Measure 30
+	beat ou c 28 r 4 od as 8 a 8
 	vol $8
-	note gs4 $06
-	vol $5
-	note gs4 $06
+	beat g 12 a 12 
+	.redefine NOTE_END_WAIT 6
+	beat as 12 ou c 12
+	.redefine NOTE_END_WAIT 0
+; Measure 31
+	vol $9
+	vibrato $e1
+	beat d 84 r 12
+	vibrato $00
+
+; Measure 32
+	octave 3
+	vol $6
+	duty $01
+	beat g 48 r 12
+	beat a 12 as 12 ou d 12
+; Measure 33
+	vibrato $e1
+	beat cs 48 od a 48
+; Measure 34
+	vibrato $82
+	beat ou c 48
+	vibrato $00
+	beat od as 16 fs 16 as 16
+; Measure 35
+	vibrato $e2
+	beat g 96
+
+; Measure 36
+	octave 4
+	vol $7
+	vibrato $82
+	beat g 48 r 12
+	beat a 12 as 12 ou d 12
+; Measure 37
+	vibrato $e1
+	beat cs 48 od a 48
+; Measure 38
+	vibrato $82
+	beat ou c 48
+	vibrato $00
+	beat od as 16 fs 16 as 16
+; Measure 39
+	vibrato $e3
+	beat g 96 
+
+; Measure 40
+	octave 5
 	vol $8
-	note gs4 $1e
-	vol $5
-	note gs4 $06
-	vol $8
-	note gs4 $0c
-	note a4  $0c
-	wait1 $06
-	vol $5
-	note a4  $06
-	vol $8
-	note a4  $0c
-	wait1 $06
-	vol $5
-	note a4  $06
-	vol $8
-	note a4  $0c
-	wait1 $06
-	vol $5
-	note a4  $06
-	vol $8
-	note fs4 $0c
-	note cs4 $0c
-	note e4  $0c
-	note ds4 $0c
-	note e4  $0c
-	note cs4 $0c
-	note gs4 $12
-	vol $5
-	note gs4 $06
-	vol $8
-	note gs4 $0c
-	note b3  $0c
-	note gs3 $0c
-	wait1 $06
-	vol $5
-	note gs3 $06
-	vol $8
-	note gs3 $0c
-	note a3  $0c
-	note d4  $0c
-	note cs4 $0c
-	note b3  $0c
-	note a3  $0c
-	note fs3 $0c
-	wait1 $06
-	vol $5
-	note fs3 $06
-	vol $8
-	note fs3 $0c
-	note a3  $0c
-	vol $5
-	note a3  $0c
-	wait1 $0c
-	vol $8
-	note a3  $0c
-	note b3  $0c
-	note a3  $0c
-	wait1 $06
-	vol $5
-	note a3  $06
-	vol $8
-	note fs3 $0c
-	wait1 $06
-	vol $5
-	note fs3 $06
-	vol $8
-	note a3  $0c
-	note g3  $0c
-	note fs3 $0c
-	note d3  $0c
-	note g3  $0c
-	wait1 $06
-	vol $5
-	note g3  $06
-	vol $8
-	note g3  $0c
-	note a3  $0c
-	note b3  $0c
-	wait1 $06
-	vol $5
-	note b3  $06
-	vol $8
-	note b3  $0c
-	note cs4 $0c
-	note d4  $0c
-	note cs4 $0c
-	note b3  $0c
-	note fs3 $0c
-	note a3  $0c
-	wait1 $06
-	vol $5
-	note a3  $06
-	vol $8
-	note b3  $0c
-	wait1 $06
-	vol $5
-	note b3  $06
-	vol $8
-	note fs3 $24
-	note a3  $0c
-	note e4  $0c
-	note d4  $0c
-	note cs4 $0c
-	note b3  $0c
-	note d4  $0c
-	wait1 $06
-	vol $5
-	note d4  $06
-	vol $8
-	note a3  $0c
-	wait1 $06
-	vol $5
-	note a3  $06
-	vol $8
-	note g3  $18
-	note fs3 $18
-	note e3  $0c
-	vol $5
-	note e3  $0c
-	vol $8
-	note e4  $0c
-	note d4  $0c
-	note cs4 $0c
-	wait1 $06
-	vol $5
-	note cs4 $06
-	vol $8
-	note b3  $0c
-	wait1 $06
-	vol $5
-	note b3  $06
-	vol $8
-	note d4  $0c
-	wait1 $06
-	vol $5
-	note d4  $06
-	vol $8
-	note cs4 $0c
-	note d4  $0c
-	note b3  $18
-	note as3 $12
-	wait1 $06
-	note b2  $24
-	note c3  $0c
-	note ds3 $0c
-	note e3  $0c
-	note fs3 $0c
-	note g3  $0c
-	note a3  $18
-	note g3  $0c
-	note fs3 $0c
-	note c4  $0c
-	wait1 $06
-	vol $5
-	note c4  $06
-	vol $8
-	note b3  $0c
-	wait1 $06
-	vol $5
-	note b3  $06
-	goto musicf1037
+	vibrato $82
+	beat ds 24
+	vibrato $00
+	env $0 $04
+	beat r 12 ds 6 ds 6
+	beat ds 12 c 12 od g 12 ou ds 12
+; Measure 41
+	env $0 $00
+	vibrato $e2
+	beat d 84 r 12
+; Measure 42
+	vibrato $82
+	beat c 24
+	vibrato $00
+	env $0 $04
+	beat r 12 c 6 c 6
+	beat c 12 od g 12 ds 12 ou c 12	
+; Measure 43
+	env $0 $00
+	vibrato $e2
+	beat od as 84 r 12
+; Measure 44
+	octave 5
+	env $0 $00
+	vibrato $82
+	beat ds 30
+	vibrato $00
+	env $0 $04
+	beat r 6 ds 6 ds 6
+	beat ds 12 c 12 od g 12 ou ds 12
+; Measure 45
+	env $0 $00
+	vibrato $82
+	beat d 30
+	vibrato $00
+	env $0 $04	
+	beat r 6 d 6 d 6
+	beat d 12 od as 12 g 12 ou d 12
+; Measure 46
+	env $0 $00
+	vibrato $82
+	beat c 30
+	vibrato $00
+	env $0 $04
+	beat r 6 c 6 c 6
+	beat c 12 od fs 12 ds 12 ou c 12
+; Measure 47
+	env $0 $00
+	vibrato $e2
+	beat od as 108 r 96
+	vibrato $00
+
+	resetCoda
+	goto hyruleCastleChannel1Measure6
+
 	cmdff
-; $f115d
-; @addr{f115d}
-sound07Channel4:
-	wait1 $18
-musicf115f:
-	duty $0e
-	note e3  $1e
-	wait1 $06
-	note e3  $06
-	wait1 $06
-	note e3  $18
-	wait1 $0c
-	note e3  $06
-	wait1 $06
-	duty $0e
-	note e3  $12
-	wait1 $06
-	note e3  $12
-	wait1 $06
-	note e3  $12
-	wait1 $06
-	note a2  $12
-	wait1 $06
-	note b2  $12
-	wait1 $06
-	note b2  $12
-	wait1 $06
-	note e3  $0c
-	note ds3 $0c
-	note e3  $0c
-	note b2  $0c
-	note gs2 $0c
-	note a2  $0c
-	note gs2 $0c
-	note fs2 $0c
-	note a2  $0c
-	duty $0f
-	note a2  $0c
-	duty $0e
-	note g2  $0c
-	note fs2 $0c
-	note b2  $0c
-	duty $0f
-	note b2  $0c
-	duty $0e
-	note b2  $0c
-	duty $0f
-	note b2  $0c
-	duty $0e
-	note e2  $30
-	note d3  $30
-	note b2  $30
-	note e2  $12
-	wait1 $06
-	note e2  $12
-	wait1 $06
-	note e2  $1e
-	wait1 $06
-	note gs2 $0c
-	note a2  $18
-	note e3  $0c
-	duty $0e
-	note cs3 $0c
-	note e3  $0c
-	duty $0f
-	note e3  $0c
-	duty $0e
-	note e3  $0c
-	note b2  $0c
-	note cs3 $0c
-	duty $0f
-	note cs3 $0c
-	duty $0e
-	note b2  $0c
-	note e3  $0c
-	note d3  $0c
-	duty $0f
-	note d3  $0c
-	duty $0e
-	note fs3 $0c
-	duty $0f
-	note fs3 $0c
-	duty $0e
-	note a2  $24
-	note fs2 $0c
-	note b2  $12
-	wait1 $06
-	note b2  $12
-	wait1 $06
-	note e3  $30
-	note d3  $30
-	note cs3 $30
-	note as2 $30
-	note b2  $0c
-	duty $0f
-	note b2  $0c
-	duty $0e
-	note b2  $0c
-	note a2  $0c
-	note g2  $18
-	note fs2 $0c
-	note g2  $0c
-	note e2  $18
-	note fs2 $0c
-	note e2  $0c
-	note ds2 $0c
-	note fs2 $0c
-	note a2  $0c
-	note c3  $0c
-	goto musicf115f
+
+hyruleCastleChannel0:
+	.redefine BEAT 1
+	resetCoda
+
+; Measures 1-2 (Eighth Note Pickup and Full Measure)
+	vol $0	;temp
+	beat r 42
+	octave 4
+	duty $01
+	vol $8
+	.redefine NOTE_END_WAIT 3
+	beat g 6 g 6
+	.redefine NOTE_END_WAIT 9
+	beat g 18 f 18
+	.redefine NOTE_END_WAIT 0
+	vibrato $82
+	beat g 36
+	vibrato $00
+	beat gs 27 b 9
+; Measure 3	
+	vibrato $e2
+	beat g 126	r 30
+	vibrato $00
+
+	env $0 $04
+	vol $4
+	octave 3
+; Measure 4
+	beat d 24
+hyruleCastleChannel0Measure4a:
+	vol $4
+	beat d 12 c 24 c 12 d 24
+; Measure 5
+	vol $5
+	beat d 12 d 12 d 6 d 6 
+	beat d 12 d 12 ds 12 cs 24
+; Measure 6
+	vol $6
+	beat d 24 d 12 c 24 c 12 d 24
+; Measure 7
+	vol $7
+	beat d 12 d 12 d 6 d 6 
+	vol $8
+	beat d 12 d 12 ds 12 cs 24
+
+hyruleCastleChannel0Measure8:
+	vol $4
+; Measure 8,12,20
+	beat d 24 d 12 c 24 c 12 d 24
+; Measure 9,13,21
+	vol $5
+	beat d 12 d 12
+	vol $6
+	beat d 6 d 6 
+	beat d 12 d 12 ds 12 cs 24	
+; Measure 10,14,22
+	vol $4
+	beat d 24 d 12 c 20
+	octave 4
+	vol $6
+	beat g 4 a 4 as 4 ou c 4 d 24
+; Measure 11,15,23
+	beat d 12 d 12
+	octave 3
+	beat d 6 d 6 
+	beat d 12 d 12 ds 12 cs 24
+
+	incCoda
+	gotoCond $01 hyruleCastleChannel0Measure8
+	gotoCond $03 hyruleCastleChannel0Measure24
+
+	vol $4
+	octave 3
+; Measure 16
+	beat g 24 g 12 f 24 f 12 g 24
+; Measure 17
+	vol $5
+	beat g 12 g 12
+	vol $6
+	beat g 6 g 6 
+	beat g 12 g 12 gs 12 fs 24	
+; Measure 18
+	vol $4
+	beat g 24 g 12 f 20
+	octave 5
+	vol $6
+	beat c 4 d 4 ds 4 f 4
+	env $0 $00
+	vibrato $82
+	beat g 36 r 12
+; Measure 19
+	vibrato $00
+	env $0 $04
+	octave 3
+	beat g 6 g 6 
+	beat g 12 g 12 gs 12 fs 24
+
+	goto hyruleCastleChannel0Measure8
+
+hyruleCastleChannel0Measure24:
+; Measure 24,26
+	beat r 108
+	octave 5
+	vol $6
+; Measure 25,27
+	beat d 4 d 4 d 8 d 8
+	beat d 12 ds 12 f 8 ds 8 d 8
+	vol $0
+	beat r 12
+
+	incCoda
+	gotoCond $04 hyruleCastleChannel0Measure24
+
+; Measure 28
+	beat r 52
+	vol $6
+	beat f 4 f 4
+.rept 3
+	beat f 8
+.endr
+; Measure 29
+	env $0 $00
+	vibrato $81
+	beat g 48 r 16
+	vibrato $00
+	env $0 $04
+
+	beat g 4 g 4
+	vol $7
+.rept 3
+	beat g 8
+.endr
+; Measure 30
+	env $0 $00
+	vibrato $81
+	beat g 48 r 16
+	vibrato $00
+	env $0 $04
+
+	beat g 4 g 4
+	vol $8
+.rept 3
+	beat g 8
+.endr
+	vol $9
+; Measure 31
+	env $0 $00
+	vibrato $82
+	beat g 48 fs 48
+
+hyruleCastleChannel1Measure32:
+; Coda = $05
+	vol $4
+	octave 4
+	env $0 $04
+	duty $02
+
+hyruleCastleChannel1Measure32a:
+	incCoda
+; Measure 32,35,36,39
+	beat as 12 d 12 as 8 as 8 as 8
+	gotoCond $09 hyruleCastleChannel1Measure39b
+	beat as 12 d 12 as 12 d 12
+
+	gotoCond $07 hyruleCastleChannel1Measure32a
+	gotoCond $0a hyruleCastleChannel1Measure42		;exit loop
+
+; Measure 33,37
+	beat ou cs 12 od e 12 ou cs 8 cs 8 cs 8
+	beat cs 12 od e 12 ou cs 12 od e 12
+
+	gotoCond $09 hyruleCastleChannel1Measure32a
+
+hyruleCastleChannel1Measure34:
+; Measure 34,38
+	beat ou c 12 od ds 12 ou c 8 c 8 c 8
+	beat c 12 od ds 12 ou c 12 od ds 12
+
+	goto hyruleCastleChannel1Measure32a
+
+
+hyruleCastleChannel1Measure39b:
+; Measure 39b
+	duty $01
+	vol $6
+	octave 5
+	beat d 12
+	beat od od g 4 ou c 4 d 4
+	vol $7
+	beat ds 4 f 4 a 4
+	vol $8
+	beat as 4 ou c 4 d 4
+
+	vol $5
+	duty $02
+	goto hyruleCastleChannel1Measure34
+
+hyruleCastleChannel1Measure42:
+; Measure 42
+	octave 4
+	beat g 12 c 12 g 8 g 8 g 8
+	beat g 12 c 12 g 12 c 12
+; Measure 43
+	beat g 12 od as 12 ou g 8 g 8 g 8
+	beat g 12 od as 12 ou g 12 od as 12
+
+; Measure 44
+	octave 4
+	duty $01
+	env $0 $00
+	vibrato $82
+	beat g 30
+	vibrato $00
+	env $0 $04
+	beat r 6 g 6 g 6
+	beat g 12 ds 12 c 12 g 12
+; Measure 45
+	env $0 $00
+	vibrato $82
+	beat f 30
+	vibrato $00
+	env $0 $04	
+	beat r 6 f 6 f 6
+	beat f 12 d 12 od as 12 ou f 12
+; Measure 46
+	env $0 $00
+	vibrato $82
+	beat ds 30
+	vibrato $00
+	env $0 $04
+	beat r 6 ds 6 ds 6
+	beat ds 12 c 12 od a 12 ou ds 12
+; Measure 47
+	env $0 $00
+	vibrato $e2
+	beat d 36
+	vibrato $00
+
+	env $0 $04
+	resetCoda
+	goto hyruleCastleChannel0Measure4a
 	cmdff
+
+hyruleCastleChannel4:
+	.redefine BEAT 1
+	octave 2
+
+; Measures 1-2 (Eighth Note Pickup and Full Measure)
+	beat r 6
+	duty $0a
+	beat g 3 r 3 g 3 r 3
+	vibrato $82
+	beat g 108
+	vibrato $00
+	beat gs 36
+; Measure 3	
+	vibrato $e2
+	beat g 126 r 18
+
+hyruleCastleChannel4Measure4a:
+	resetCoda
+	duty $14
+hyruleCastleChannel4Measure4:
+; Measure 4
+	beat g 48 f 48
+; Measure 5
+	beat g 48 gs 24 fs 24
+
+	incCoda
+	gotoCond $06 hyruleCastleChannel4Measure16
+	gotoCond $0a hyruleCastleChannel4Measure24
+	goto hyruleCastleChannel4Measure4
+
+hyruleCastleChannel4Measure16:
+; Measure 4
+	octave 3
+	beat c 48 od as 48
+; Measure 5
+	beat ou c 48 cs 24 od b 24
+
+	incCoda 
+	gotoCond $08 hyruleCastleChannel4Measure4
+	goto hyruleCastleChannel4Measure16
+
+
+hyruleCastleChannel4Measure24:
+; Coda == $09
+	duty $0e
+	octave 2
+; Measures 24,26
+	beat gs 32 ou ds 8 gs 8
+	beat ou ds 12 r 24 od od gs 6 r 6
+; Measure 25,27
+	beat g 32 ou d 8 g 8
+	beat ou d 32 od od g 6 r 2 g 8
+
+	incCoda
+	gotoCond $0b hyruleCastleChannel4Measure24
+
+; Coda == $0c
+; Measure 28
+	beat as 32 ou ds 8 f 8
+	beat as 36 od as 12
+; Measure 29
+	beat gs 32 ou d 8 ds 8
+	beat gs 32
+	.redefine NOTE_END_WAIT 2
+	beat od gs 8 gs 8
+	.redefine NOTE_END_WAIT 0
+; Measure 30
+	duty $0a
+	beat a 32 ou ds 8 g 8
+	beat a 36 od a 6 r 6
+; Measure 31
+	beat ou d 32 a 8 ou c 8
+	beat d 32
+	.redefine NOTE_END_WAIT 2
+	beat od d 8 d 8
+
+	.redefine NOTE_END_WAIT 0
+	octave 2
+hyruleCastleChannel4Measure32:
+	incCoda
+; Measure 32,35,36,39,44
+.rept 6
+	duty $0e
+	beat g 6
+	duty $0f
+	beat g 5 r 1
+.endr
+.rept 3
+	duty $0e
+	beat g 4
+	duty $0f
+	beat g 3 r 1
+.endr
+	gotoCond $0e hyruleCastleChannel4Measure32
+	gotoCond $10 hyruleCastleChannel4Measure40
+	gotoCond $11 hyruleCastleChannel4Measure40
+
+hyruleCastleChannel4Measure33:
+; Measure 33,37,43,47
+.rept 6
+	duty $0e
+	beat a 6
+	duty $0f
+	beat a 5 r 1
+.endr
+.rept 3
+	duty $0e
+	beat a 4
+	duty $0f
+	beat a 3 r 1
+.endr
+	gotoCond $10 hyruleCastleChannel4Measure32
+	gotoCond $11 hyruleCastleChannel4Measure4a	;back to beginning
+
+; Measure 34,38
+.rept 6
+	duty $0e
+	beat fs 6
+	duty $0f
+	beat fs 5 r 1
+.endr
+.rept 3
+	duty $0e
+	beat fs 4
+	duty $0f
+	beat fs 3 r 1
+.endr
+	goto hyruleCastleChannel4Measure32
+
+hyruleCastleChannel4Measure40:
+; Measure 40,45
+	octave 3
+.rept 6
+	duty $0e
+	beat c 6
+	duty $0f
+	beat c 5 r 1
+.endr
+.rept 3
+	duty $0e
+	beat c 4
+	duty $0f
+	beat c 3 r 1
+.endr
+; Measure 41,46
+	octaved
+.rept 6
+	duty $0e
+	beat as 6
+	duty $0f
+	beat as 5 r 1
+.endr
+.rept 3
+	duty $0e
+	beat as 4
+	duty $0f
+	beat as 3 r 1
+.endr
+	goto hyruleCastleChannel4Measure33
+
+	cmdff
+
+hyruleCastleChannel6:
+	.redefine BEAT 6
+	octave 2
+
+; Measures 1-2 (Eighth Note Pickup and Full Measure)
+	beat r 1
+	vol $6
+.rept 2
+	beat $2a 1
+.endr
+	beat $52 18
+	vol $3
+.rept 4
+	beat $2a 1
+.endr
+	beat $2a 2
+; Measure 3	
+.rept 4
+	beat $2a 1
+.endr
+
+vol $4
+.rept 4
+	beat $2a 1
+.endr
+
+vol $5
+.rept 4
+	beat $2a 1
+.endr
+
+vol $6
+.rept 4
+	beat $2a 1
+.endr
+.rept 2
+	beat $2a 2
+.endr
+	beat $2a 4
+
+	.redefine BEAT 6
+hyruleCastleChannel6Measure4:
+	vol $5
+	resetCoda
+hyruleCastleChannel6Measure4a:
+; Measure 4
+	beat $2a 2 $2a 4 $2a 2
+	beat $2a 6 $2a 4
+; Measure 5
+.rept 2
+	beat $2a 2
+.endr
+.rept 2	
+	 beat $2a 1
+.endr
+.rept 4
+	beat $2a 2
+.endr
+
+	incCoda
+	gotoCond $0a hyruleCastleChannel6Measure24
+	goto hyruleCastleChannel6Measure4a
+
+hyruleCastleChannel6Measure24:
+	.redefine BEAT 4
+	vol $4
+; Measure 24
+	beat $2a 12
+.rept 4
+	beat $2a 3
+.endr
+; Measure 25
+	beat $2a 8 
+.rept 2
+	beat $2a 2
+.endr
+.rept 2
+	beat $2a 3
+.endr
+.rept 3
+	beat $2a 2
+.endr
+
+	incCoda
+	gotoCond $0e hyruleCastleChannel6Measure32
+	goto hyruleCastleChannel6Measure24
+
+hyruleCastleChannel6Measure32:
+	.redefine BEAT 6
+	vol $5
+; Measure 32
+	beat $2a 14
+.rept 2
+	beat $2a 1
+.endr
+
+	incCoda
+	gotoCond $16 hyruleCastleChannel6Measure40
+	goto hyruleCastleChannel6Measure32
+
+hyruleCastleChannel6Measure40:
+	.redefine BEAT 2
+	vol $6
+; Measure 40
+	beat $2a 12 
+.rept 3
+	beat $2a 4
+.endr
+	beat $2a 18
+.rept 2
+	beat $2a 3
+.endr
+
+	incCoda
+	gotoCond $1a hyruleCastleChannel6Measure44
+	goto hyruleCastleChannel6Measure40
+
+hyruleCastleChannel6Measure44:
+; Measure 44
+	beat $2a 12 $2a 6
+.rept 2
+	beat $2a 3
+.endr
+.rept 2
+	beat $2a 6
+.endr
+.rept 3
+	beat $2a 4
+.endr
+
+	incCoda
+	gotoCond $1d hyruleCastleChannel6Measure4
+	goto hyruleCastleChannel6Measure44
+	cmdff
+
 ; $f1233
 ; @addr{f1233}
 sound26Channel1:
@@ -27719,6 +27760,7 @@ musicf14ba:
 	goto musicf14ba
 	cmdff
 ; $eeb7b
+; $eeb7b
 faronWoodsStart:
 ; @addr{eeb7b}
 faronWoodsChannel1:
@@ -27732,12 +27774,16 @@ faronWoodsChannel1:
 	beat cs 80
 	vibrato $00
 faronWoodsChannel1Measure2:
+	resetCoda
 	duty $0a
 	vol $0
 	cmdf2
 ; Measure 2-5
 	beat r 255 r 255 r 130
 	vol $6
+
+faronWoodsChannel1Measure6:
+	incCoda
 ; Measure 6
 	beat ou c 3 cs 17 c 20 od gs 20
 	vibrato $81
@@ -27777,6 +27823,9 @@ faronWoodsChannel1Measure2:
 	vol $0
 	beat r 160
 	vol $6
+
+	gotoCond 1 faronWoodsChannel1Measure6
+
 ; Measure 14
 	duty $0e
 	beat fs 5
@@ -27800,14 +27849,19 @@ faronWoodsChannel1Measure2:
 	vibrato $e2	
 	beat fs 155
 	vibrato $00
-; Measure 18
+
+faronWoodsChannel1Measure18:
+	incCoda
+; Measure 18,22
 	duty $0a
 	beat ou ds 20 e 20 fs 20 gs 20 ds 60 cs 20
-; Measure 19
+; Measure 19,24
 	vibrato $81	
 	beat ds 120
 	vibrato $00
 	beat gs 20 a 20
+
+	gotoCond 4 faronWoodsChannel1Measure24
 ; Measure 20
 	vibrato $81		
 	beat gs 120 
@@ -27818,13 +27872,10 @@ faronWoodsChannel1Measure2:
 	vibrato $81		
 	beat fs 114
 	vibrato $00
-; Measure 22
-	beat ds 20 e 20 fs 20 gs 20 ds 60 cs 20	
-; Measure 23
-	vibrato $81	
-	beat ds 120
-	vibrato $00	
-	beat gs 20 a 20
+
+	goto faronWoodsChannel1Measure18
+
+faronWoodsChannel1Measure24:
 ; Measure 24-25
 	vibrato $81	
 	beat gs 80	
@@ -27832,6 +27883,7 @@ faronWoodsChannel1Measure2:
 	vibrato $e2	
 	beat b 234
 	vibrato $00
+
 ; Measure 26
 	duty $02
 	vol $4
@@ -27864,18 +27916,24 @@ faronWoodsChannel0:
 	.redefine BEAT 1
 ; Measure 1
 	beat r 160
-faronWoodsChannel0Measure2:
+faronWoodsChannel0Measure2Reset:
+	resetCoda
 	vol $4
 	duty $02
-.rept 24
+faronWoodsChannel0Measure2:
+	incCoda
 ; Measures 2-25
 	beat r 20 gs 20 ds 20 cs 20 gs 20 ds 20 cs 20 gs 20
-.endr
+
+	gotoCond 32 faronWoodsChannel0Measure26
+	goto faronWoodsChannel0Measure2
+
+faronWoodsChannel0Measure26:
 ; Measures 26-29
 	vol $0
 	beat r 255 r 255 r 255 r 195
 
-	goto faronWoodsChannel0Measure2
+	goto faronWoodsChannel0Measure2Reset
 	cmdff
 ; $eee03
 ; @addr{eee03}
@@ -27884,25 +27942,29 @@ faronWoodsChannel4:
 	.redefine BEAT 1
 ; Measure 1
 	beat r 160
-faronWoodsChannel4Measure2:
-.redefine NOTE_END_WAIT 5
+faronWoodsChannel4Measure2Reset:
+	resetCoda
+	.redefine NOTE_END_WAIT 5
 	duty $0e
 	vol $2
-.rept 6
+	vibrato $e1
+faronWoodsChannel4Measure2:
+	incCoda
 ; Measure 2-3,6-7,10-11,14-15,18-19,22-23
 	.rept 2
-		vibrato $e1
 		beat gs 160
-		vibrato $00
 	.endr
 ; Measure 4-5,8-9,12-13,16-17,20-21,24-25
 	.rept 2
-		vibrato $e1
 		beat a 160
-		vibrato $00
 	.endr
-.endr
-.redefine NOTE_END_WAIT 0
+
+	gotoCond 8 faronWoodsChannel4Measure26
+	goto faronWoodsChannel4Measure2
+
+faronWoodsChannel4Measure26:
+	.redefine NOTE_END_WAIT 0
+	vibrato $00
 	duty $04
 	vol $3
 ; Measure 26
@@ -27924,63 +27986,46 @@ faronWoodsChannel4Measure2:
 ; @addr{eeffd}
 faronWoodsChannel6:
 ; Measure 1
-	wait1 160
+	beat r 160
 faronWoodsChannel6Measure2:
 	vol $4
-; Measures 2-5
-.rept 4
-	note $2e 20
-	wait1 120
-	note $2e 20
-.endr
-; Measures 6-13
-.rept 8
-	note $2e 20
-	note $2a 20
-	wait1 80
-	note $2a 20
-	note $2e 20
-.endr	
-; Measures 14-17
-.rept 4
-	note $2a 20
-	note $2a 20
-	wait1 20
-	note $2a 20
-	wait1 20
-	note $2a 20
-	wait1 20
-	note $2a 20	
-.endr
-; Measures 18-21
-.rept 4
-	note $2e 20
-	wait1 120
-	note $2e 20
-.endr
-; Measures 22-25
-.rept 4
-	note $2e 20
-	note $2a 20
-	wait1 80
-	note $2a 20
-	note $2e 20
-.endr
-; Measures 26-29
-.rept 4
-	note $2e 20
-	wait1 60
-	note $2a 20
-	note $2a 20
-	wait1 20
-	note $2a 20
-	wait1 20
-	note $2a 20
-	note $2a 20
-	wait1 20
-.endr
+	resetCoda
+faronWoodsChannel6Part1:
+	incCoda
+	beat $2e 140 $2e 20
 
-	goto faronWoodsChannel6Measure2
+	gotoCond 4 faronWoodsChannel6Part2		; Measures 2-5
+	gotoCond 28 faronWoodsChannel6Part4		; Measures 18-21
+	goto faronWoodsChannel6Part1
+
+faronWoodsChannel6Part2:
+	incCoda
+	beat $2e 20 $2a 100 $2a 20 $2e 20
+
+	gotoCond 20 faronWoodsChannel6Part3		; Measures 6-13
+	goto faronWoodsChannel6Part2	
+
+faronWoodsChannel6Part3:
+	incCoda
+	beat $2a 20 $2a 40 $2a 40 $2a 40 $2a 20
+
+	gotoCond 24 faronWoodsChannel6Part1		; Measures 14-17
+	goto faronWoodsChannel6Part3
+
+
+faronWoodsChannel6Part4:
+	incCoda
+	beat $2e 20 $2a 100 $2a 20 $2e 20
+
+	gotoCond 32 faronWoodsChannel6Part5		; Measures 22-25
+	goto faronWoodsChannel6Part4
+
+faronWoodsChannel6Part5:
+	incCoda
+	beat $2e 80 $2a 20 $2a 40 $2a 40 $2a 20 $2a 40
+
+	gotoCond 36 faronWoodsChannel6Measure2		; Measures 26-29
+	goto faronWoodsChannel6Part5
 	cmdff
 ; $f1a2c
 sound16Start:
@@ -32323,192 +32368,9 @@ musicf3732:
 	cmdff
 ; $f3769
 ; @addr{f3769}
-fireWaterChannel1:
-;	vibrato $e1
-;	env $0 $00
-;	cmdf2
-	octave 3
-	.redefine BEAT 1
-fireWaterChannel1Measure1:
-	vol $6
-.rept 2
-	duty $0e
-; Measure 1,9
-	vibrato $e2
-	beat cs 3 e 3 gs 84
-	vibrato $00
-	duty $05
-	beat ou ou gs 30
-; Measure 2,10
-	beat a 30
-	duty $0f
-	vibrato $e1
-	beat od od gs 60
-	vibrato $00
-	duty $05
-	beat ou ou e 30
-; Measure 3,11
-	beat cs 30
-	duty $0f
-	vibrato $e1
-	beat od od gs 60
-	vibrato $00
-	duty $05
-	beat ou ou fs 30
-; Measure 4,12
-	beat ds 30
-	duty $0f
-	vibrato $e2
-	beat od od gs 90
-	vibrato $00	
-; Measure 5,13
-	duty $0e	
-	vibrato $e2
-	beat cs 3 e 3 gs 84
-	vibrato $00
-	duty $05
-	beat ou ou gs 30
-; Measure 6,14
-	beat a 30
-	duty $0f
-	vibrato $e1
-	beat od od gs 60
-	vibrato $00
-	duty $05
-	beat ou ou gs 30
-; Measure 7,15
-	beat e 30
-	duty $0f
-	vibrato $e1
-	beat od od gs 60
-	vibrato $00
-	duty $05
-	beat ou ou ou c 27 r 3
-; Measure 8,16
-	beat c 30
-	duty $0f
-	vibrato $e1
-	beat od od od gs 60
-	vibrato $00
-	duty $05
-	beat ou ou ou e 15 ds 15 od od od
-.endr
-
-	goto fireWaterChannel1Measure1
-	cmdff
-; $eece0
-; @addr{eece0}
 fireWaterChannel0:
-;	vibrato $e1
-;	env $0 $00
-;	cmdf2
-	octave 3
-	.redefine BEAT 1
-fireWaterChannel0Measure1:
-	vol $6
-	duty $02
-; Measure 1
-.redefine NOTE_END_WAIT 23
-	beat r 30 cs 30 e 30 gs 30
-.redefine NOTE_END_WAIT 0
-.rept 3
-; Measure 2,6,10
-	duty $0e
-	beat c 3 ds 3 gs 24
-.redefine NOTE_END_WAIT 23
-	duty $02
-	beat c 30 ds 30 gs 30
-.redefine NOTE_END_WAIT 0
-; Measure 3,7,11
-	duty $0e
-	beat cs 3 e 3 gs 24
-.redefine NOTE_END_WAIT 23
-	duty $02
-	beat cs 30 e 30 gs 30
-; Measure 4,8,12
-	beat od gs 30 a 30 gs 30 e 30
-; Measure 5,9,13
-	beat cs 30 ou cs 30 e 30 gs 30
-.redefine NOTE_END_WAIT 0
-.endr 
-; Measure 14
-	duty $0e
-	beat c 3 ds 3 gs 24
-.redefine NOTE_END_WAIT 23
-	duty $02
-	beat c 30 ds 30 gs 30
-.redefine NOTE_END_WAIT 0
-; Measure 15
-	duty $0e
-	beat cs 3 e 3 gs 24
-.redefine NOTE_END_WAIT 23
-	duty $02
-	beat cs 30 e 30 gs 30	
-; Measure 16
-	beat od gs 30 a 30 gs 30 e 30
-.redefine NOTE_END_WAIT 0
-	goto fireWaterChannel0Measure1
-	cmdff
-; $eee03
-; @addr{eee03}
+fireWaterChannel1:
 fireWaterChannel4:
-	octave 4
-	.redefine BEAT 1
-fireWaterChannel4Measure1:
-	duty $0e
-	vol $2
-.rept 2
-; Measure 1,5
-	.rept 2
-		beat cs 15 e 15 gs 15 e 15
-	.endr
-; Measure 2,6
-	.rept 2
-		beat c 15 ds 15 gs 15 ds 15
-	.endr
-; Measure 3,7
-	.rept 2
-		beat cs 15 e 15 gs 15 e 15
-	.endr
-; Measure 4,8
-	.rept 2
-		beat c 15 e 15 a 15 e 15
-	.endr
-.endr
-; Measure 9
-	vibrato $e1
-	beat cs 120
-	vibrato $00
-; Measure 10
-	vibrato $e1
-	beat ds 120
-	vibrato $00
-; Measure 11
-	vibrato $e1
-	beat e 120
-	vibrato $00
-; Measure 12
-	vibrato $e1
-	beat fs 120
-	vibrato $00
-; Measure 13
-	vibrato $e2
-	beat a 120
-	vibrato $00
-; Measure 14
-	vibrato $e2
-	beat gs 120
-	vibrato $00
-; Measure 15
-	vibrato $e3
-	beat fs 120
-	vibrato $00
-; Measure 16
-	vibrato $e3
-	beat ds 120 ou
-	vibrato $00
-
-	goto fireWaterChannel4Measure1
 	cmdff
 ; $f3a91
 sound4eStart:

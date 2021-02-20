@@ -3,10 +3,10 @@ _soundPointers:
 	m_soundPointer sound01 ; $e511c
 	m_soundPointer sound02 ; $e5129
 	m_soundPointer sound03 ; $e5136
-	m_soundPointer sound04 ; $e5331
+	m_soundPointer gerudoValley ; $e5331
 	m_soundPointer sound05 ; $e534b
 	m_soundPointer sound06 ; $e5324
-	m_soundPointer sound07 ; $e5358
+	m_soundPointer hyruleCastle ; $e5358
 	m_soundPointer sound08 ; $e533e
 	m_soundPointer sound09 ; $e5150
 	m_soundPointer sound0a ; $e53b3

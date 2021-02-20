@@ -121,6 +121,9 @@ wChannelWaitCounters: ; $c075
 wChannelVolumes: ; $c07d
 	dsb 8
 
+wVolta: ; $c085
+	db
+
 ; $c085-$c09f unused?
 
 .ENDS
