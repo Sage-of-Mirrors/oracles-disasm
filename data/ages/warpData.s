@@ -24,7 +24,7 @@ group0WarpDestTable:
 	m_WarpDest $03 $35 $0 $e
 	m_WarpDest $0a $17 $0 $1
 	m_WarpDest $48 $28 $0 $1
-	m_WarpDest $00 $00 $0 $1
+	m_WarpDest $00 $00 $0 $4
 	m_WarpDest $38 $ff $9 $3
 	m_WarpDest $16 $15 $0 $1
 	m_WarpDest $02 $22 $0 $1
@@ -125,9 +125,10 @@ group0WarpDestTable:
 	m_WarpDest $57 $02 $0 $1
 	m_WarpDest $68 $18 $0 $1
 	m_WarpDest $68 $11 $0 $1
-	m_WarpDest $48 $ff $f $1
+	m_WarpDest $00 $00 $0 $1
 	m_WarpDest $28 $35 $0 $1
 	m_WarpDest $08 $27 $0 $1
+	m_WarpDest $00 $00 $0 $4
 
 group1WarpDestTable:
 	m_WarpDest $48 $21 $0 $1
@@ -465,7 +466,7 @@ group5WarpDestTable:
 	m_WarpDest $fc $84 $0 $1
 	m_WarpDest $2a $ff $0 $3
 	m_WarpDest $44 $ff $9 $3
-	m_WarpDest $20 $5c $0 $4
+	m_WarpDest $21 $2d $0 $4
 	m_WarpDest $25 $8c $0 $4
 	m_WarpDest $33 $5c $0 $4
 	m_WarpDest $35 $8c $0 $4
@@ -481,7 +482,7 @@ group5WarpDestTable:
 	m_WarpDest $8a $57 $0 $4
 	m_WarpDest $35 $02 $0 $4
 	m_WarpDest $f1 $66 $0 $4
-	m_WarpDest $f4 $57 $0 $4
+	m_WarpDest $30 $1c $0 $4
 	m_WarpDest $f5 $9d $0 $4
 	m_WarpDest $b0 $22 $0 $4
 	m_WarpDest $b2 $3b $0 $4
@@ -659,7 +660,9 @@ group7WarpDestTable:
 	m_WarpDest $48 $05 $0 $4
 	m_WarpDest $4a $06 $0 $4
 	m_WarpDest $4a $0c $0 $4
-	m_WarpDest $47 $00 $0 $1
+	m_WarpDest $11 $03 $0 $4
+	m_WarpDest $11 $0b $0 $4
+	m_WarpDest $46 $00 $0 $4
 
 
 warpSourcesTable: ; $1359e
@@ -1363,7 +1366,11 @@ group5WarpSources: ; $13c46
 	m_StandardWarp $00 $0a $62 $0 $2
 	m_PointerWarp  $40 $0b group5Room0bWarpSources
 	m_PointerWarp  $40 $62 group5Room62WarpSources
+	m_PointerWarp  $40 $30 group5Room30WarpSources
+	m_StandardWarp $00 $21 $2f $7 $2
 	m_WarpSourcesEnd
+group5Room30WarpSources:
+	m_PointedWarp $80 $1c $2e $7 $2
 group5Room0bWarpSources:
 	m_PointedWarp $00 $8b $63 $0 $2
 	m_PointedWarp $80 $24 $56 $3 $2
@@ -1451,6 +1458,7 @@ group7WarpSources: ; $13e5e
 	m_StandardWarp $00 $07 $3b $5 $2
 	m_StandardWarp $01 $10 $08 $5 $3
 	m_StandardWarp $02 $11 $07 $5 $3
+	m_StandardWarp $01 $11 $17 $5 $3
 	m_StandardWarp $01 $29 $0a $5 $3
 	m_StandardWarp $02 $2a $09 $5 $3
 	m_StandardWarp $01 $47 $0b $5 $3

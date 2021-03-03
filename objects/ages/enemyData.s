@@ -1684,7 +1684,7 @@ group5Map10EnemyObjectData:
 	obj_EndPointer
 
 group5Map11EnemyObjectData:
-	obj_RandomEnemy $44 $32 $00
+	obj_RandomEnemy $84 $32 $00
 	obj_EndPointer
 
 group5Map13EnemyObjectData:
@@ -1713,9 +1713,15 @@ group5Map1aEnemyObjectData:
 	obj_EndPointer
 
 group5Map19EnemyObjectData:
+	obj_ItemDrop 0 $09 $41
+	obj_ItemDrop     $09 $51
+	obj_ItemDrop     $09 $4d
+	obj_ItemDrop     $09 $5d
 	obj_EndPointer
 
 group5Map1bEnemyObjectData:
+	obj_SpecificEnemyA 0 $45 $00 $38 $28
+	obj_SpecificEnemyA     $45 $00 $78 $c8
 	obj_EndPointer
 
 group5Map1cEnemyObjectData:
@@ -1784,6 +1790,10 @@ group5Map29EnemyObjectData:
 	obj_EndPointer
 
 group5Map2aEnemyObjectData:
+	obj_ItemDrop 0 $08 $5d
+	obj_ItemDrop     $08 $4d
+	obj_ItemDrop     $08 $51
+	obj_ItemDrop     $08 $41
 	obj_EndPointer
 
 group5Map30EnemyObjectData:
@@ -1793,7 +1803,7 @@ group5Map30EnemyObjectData:
 group5Map2eEnemyObjectData:
 	obj_SpecificEnemyA 0 $2a $02 $60 $20
 	obj_SpecificEnemyA     $2a $03 $50 $d0
-	obj_RandomEnemy $64 $32 $00
+	obj_RandomEnemy $44 $32 $00
 	obj_ItemDrop 0 $04 $99
 	obj_EndPointer
 
@@ -1813,6 +1823,10 @@ group5Map34EnemyObjectData:
 	obj_EndPointer
 
 group5Map35EnemyObjectData:
+	obj_ItemDrop 0 $07 $5d
+	obj_ItemDrop     $07 $4d
+	obj_ItemDrop     $07 $51
+	obj_ItemDrop     $07 $41
 	obj_EndPointer
 
 group5Map36EnemyObjectData:
@@ -1865,15 +1879,14 @@ group5Map3fEnemyObjectData:
 	obj_EndPointer
 
 group5Map40EnemyObjectData:
+	obj_ItemDrop 0 $05 $41
+	obj_ItemDrop     $05 $51
+	obj_ItemDrop     $05 $4d
+	obj_ItemDrop     $05 $5d
 	obj_EndPointer
 
 group5Map41EnemyObjectData:
-	obj_ItemDrop 0 $04 $94
-	obj_SpecificEnemyA 0 $45 $00 $38 $d8
-	obj_SpecificEnemyA     $45 $00 $68 $c8
-	obj_SpecificEnemyA     $13 $00 $38 $28
-	obj_SpecificEnemyA     $13 $00 $38 $48
-	obj_SpecificEnemyA     $1c $00 $48 $38
+	obj_ItemDrop 0 $04 $91
 	obj_EndPointer
 
 group5Map42EnemyObjectData:
@@ -2466,6 +2479,8 @@ group5Map59BeforeEventObjectData:
 
 group5Map56EnemyObjectData:
 	obj_SpecificEnemyA 0 $1d $00 $27 $a0
+	obj_ItemDrop 0 $04 $9c
+	obj_ItemDrop     $04 $92
 	obj_EndPointer
 
 group5Map6aBeforeEventObjectData:

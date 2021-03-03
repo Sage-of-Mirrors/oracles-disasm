@@ -118,11 +118,12 @@ partCode16:
 ; ==============================================================================
 partCode24:
   push af
-  push de
+;  push de
   ld e,Part.subid
   ld a,(de)
+  or a
   jr z,@subid00  
-  pop de
+;  pop de
   pop af  ; Restore AF
 
 ;; Original behavior
@@ -162,7 +163,7 @@ partCode24:
 
 ;; Custom behavior - swaps the player between groups 0 and 1 when struck
 @subid00:
-  pop de
+;  pop de
   pop af  ; Restore AF
   
   jr z,@normalStatus01
