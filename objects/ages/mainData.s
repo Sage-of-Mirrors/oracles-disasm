@@ -954,6 +954,7 @@ group0Map51ObjectData:
 	obj_End
 
 group0Map54ObjectData:
+	obj_Pointer group0Map54EnemyObjectData
 	obj_End
 
 group0Map55ObjectData:
