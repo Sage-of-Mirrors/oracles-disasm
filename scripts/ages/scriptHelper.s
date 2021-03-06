@@ -42,6 +42,29 @@ seasonsShrine_minibossDeath:
 	set ROOMFLAG_BIT_80,(hl)
 	ret
 
+createBridgeSpawner:
+	call getFreePartSlot
+	ret nz
+	ld (hl),PARTID_BRIDGE_SPAWNER
+	ld l,Part.counter2
+	ld (hl),b
+	ld l,Part.angle
+	ld (hl),c
+	ld l,Part.yh
+	ld (hl),e
+	ret
+
+
+seasonsShrineScript_bossKeyRoom2_bridge1:
+	ld bc,$0a01
+	ld e,$55
+	jp createBridgeSpawner
+
+seasonsShrineScript_bossKeyRoom2_bridge2:
+	ld bc,$0401
+	ld e,$7c
+	jp createBridgeSpawner
+
 ;;
 ; Unused?
 playSoundAndRoomFlag80;func_4f5d:

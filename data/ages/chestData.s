@@ -40,6 +40,7 @@ chestGroup2Data:
 	.db $ff
 
 chestGroup3Data:
+	.db $06 $57 $28 $05
 	.db $14 $1a $38 $00
 	.db $14 $48 $28 $18
 	.db $18 $2b $28 $03
@@ -112,7 +113,7 @@ chestGroup4Data:
 chestGroup5Data:
 	.db $42 $12 $28 $04
 	.db $43 $24 $28 $04
-	.db $58 $3e $28 $04
+	.db $58 $3e $30 $03
 	.db $2b $61 $28 $05
 	.db $12 $fd $28 $05
 	.db $17 $37 $31 $03

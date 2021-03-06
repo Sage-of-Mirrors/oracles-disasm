@@ -783,6 +783,7 @@ interactionCode20:
 	.dw mainScripts.seasonsShrineScript_stairsToWinter
 	.dw mainScripts.seasonsShrineScript_bossKeyRoom
 	.dw mainScripts.spawn80Rupees
+	.dw mainScripts.seasonsShrineScript_bossKeyRoom2
 @dungeon5:
 	.dw mainScripts.dungeonScript_minibossDeath
 	.dw mainScripts.dungeonScript_bossDeath

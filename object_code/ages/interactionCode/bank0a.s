@@ -6020,9 +6020,7 @@ _miscPuzzles_subid01:
 	jpab agesInteractionsBank08.spawnChestAndDeleteSelf
 
 @diamondPositions:
-	.db TILEINDEX_RED_PUSHABLE_BLOCK $59 $ff
-	.db TILEINDEX_YELLOW_PUSHABLE_BLOCK $99 $ff
-	.db TILEINDEX_BLUE_PUSHABLE_BLOCK $55 $95
+	.db TILEINDEX_PUSHABLE_ARMOS $22 $2c $82 $8c
 	.db $00
 
 

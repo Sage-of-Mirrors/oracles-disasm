@@ -65,6 +65,7 @@ applyRoomSpecificTileChanges:
   .dw tileReplacement_group3Map08 ; $39
   .dw tileReplacement_group0Map57 ; $3a
   .dw tileReplacement_group0Map74 ; $3b
+  .dw tileReplacement_group5Map37 ; $3c
 
 roomTileChangerCodeGroupTable:
   .dw roomTileChangerCodeGroup0Data
@@ -133,6 +134,7 @@ roomTileChangerCodeGroup4Data:
   .db $00
 roomTileChangerCodeGroup5Data:
   .db $f5 $00
+  .db $37 $3c
   ;.db $38 $0a
   ;.db $25 $0b
   ;.db $43 $0c
@@ -1531,3 +1533,33 @@ replaceSimpleGround:
   add hl,bc
   ld (hl),$3a
   ret
+
+tileReplacement_group5Map37:
+  call getThisRoomFlags
+  and ROOMFLAG_40
+  jr z,+
+
+  ld hl, wRoomLayout + $26
+  ld (hl),TILEINDEX_LIT_TORCH
+  ld hl,@bridge1Data
+  call fillRectInRoomLayout
++
+  call getThisRoomFlags
+  and ROOMFLAG_80
+  ret z
+
+  ld hl, wRoomLayout + $6b
+  ld (hl),TILEINDEX_LIT_TORCH
+  ld hl,@bridge2Data
+  jp fillRectInRoomLayout  
+
+; - Top-left position (YX)
+; - Height
+; - Width
+; - Tile value
+  @bridge1Data:
+  .db $55 $01 $05 $6d
+  @bridge2Data:
+  .db $7c $01 $02 $6d 
+
+  

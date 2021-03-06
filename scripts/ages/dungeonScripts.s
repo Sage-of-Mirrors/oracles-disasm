@@ -165,6 +165,25 @@ seasonsShrineScript_bossKeyRoom:
 	settilehere $f1
 	scriptend
 
+seasonsShrineScript_bossKeyRoom2:
+	stopifitemflagset
+	asm15 scriptHelp.makeTorchesLightable
+	checkmemoryeq wNumTorchesLit, $01
+	jumpifroomflagset ROOMFLAG_40 @checkSecondTorch
+
+@checkFirstTorch:
+	asm15 scriptHelp.seasonsShrineScript_bossKeyRoom2_bridge1
+	orroomflag ROOMFLAG_40
+	checkmemoryeq wNumTorchesLit, $02
+
+@checkSecondTorch:
+	asm15 scriptHelp.seasonsShrineScript_bossKeyRoom2_bridge2
+	orroomflag ROOMFLAG_80
+	scriptend
+
+
+
+
 
 ; The room with the moving platform and an orb to hit
 skullDungeonScript_spawnChestWhenOrb0Hit:
