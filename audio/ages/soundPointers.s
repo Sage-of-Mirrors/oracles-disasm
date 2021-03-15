@@ -23,8 +23,8 @@ _soundPointers:
 	m_soundPointer sound15 ; $e53f4
 	m_soundPointer sound16 ; $e5372
 	m_soundPointer sound17 ; $e5401
-	m_soundPointer faronWoods ; $e5365
-	m_soundPointer fireWater ; $e540e
+	m_soundPointer theGreatPalace ; $e5365
+	m_soundPointer lightWorldDungeon ; $e540e
 	m_soundPointer sound1a ; $e541b
 	m_soundPointer sound1b ; $e51ab
 	m_soundPointer sound1c ; $e51b8

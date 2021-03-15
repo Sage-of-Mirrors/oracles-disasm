@@ -16,7 +16,7 @@ sounda1Channel7:
 	cmdff
 ; $e5a01
 ; GAP
-	cmdff
+
 sound99Start:
 ; @addr{e5a02}
 sound99Channel2:
@@ -59,17 +59,7 @@ sound99Channel2:
 	cmdff
 ; $e5a4b
 ; GAP
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
+
 ; @addr{e5a56}
 sounda1Channel2:
 	duty $00
@@ -10303,14 +10293,14 @@ sound8dChannel2:
 	cmdff
 ; $e9f98
 ; GAP
-	cmdff
+
 soundd5Start:
 ; @addr{e9f99}
 soundd5Channel2:
 	cmdff
 ; $e9f9a
 ; GAP
-	cmdff
+
 soundc0Start:
 ; @addr{e9f9b}
 soundc0Channel2:
@@ -14446,7 +14436,7 @@ sound7aChannel2:
 	cmdff
 ; $ebad9
 ; GAP
-	cmdff
+
 sound8eStart:
 ; @addr{ebada}
 sound8eChannel2:
@@ -15358,8 +15348,7 @@ sounda6Channel7:
 	cmdff
 ; $ebffe
 ; GAP
-	cmdff
-	cmdff
+
 .bank $74 slot 1
 .org 0
 sound02Start:
@@ -23921,169 +23910,16 @@ sound4cChannel7:
 	cmdff
 ; $eff68
 ; GAP
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
+
 .bank $75 slot 1
 .org 0
 sound1cStart:
 sound1fStart:
 sound26Start:
-fireWaterStart:
 ; @addr{f0000}
 sound1cChannel6:
 sound1fChannel6:
 sound26Channel6:
-fireWaterChannel6:
 	cmdff
 ; $f0001
 sound15Start:
@@ -27759,278 +27595,194 @@ musicf14ba:
 	note cs3 $05
 	goto musicf14ba
 	cmdff
-; $eeb7b
-; $eeb7b
-; $eeb7b
-; $eeb7b
-faronWoodsStart:
-; @addr{eeb7b}
-faronWoodsChannel1:
+
+theGreatPalaceStart:
+; sound2c
+; BPM = 150 B = 24
+theGreatPalaceChannel1:
+    .redefine BEAT 12
+    .redefine CHANNEL 1
+    .redefine HI_VOL $6
+    .redefine LO_VOL $3
+    .redefine LO_NOTE_RATIO 0.25
+    octave 4
+; Measure 1
+    duty $02
+	volbeat a 2 g 1 a 2 e 2 g 1
+; Measure 2
+	volbeat f 1 g 1 a 1 b 2 a 1 g 2
+	volbeat r 2
+
+theGreatPalaceChannel1Measure3bReset:
+    resetCoda
+
+theGreatPalaceChannel1Measure3b:
+	incCoda
+; Measure 3b,7b
 	octave 4
-	.redefine BEAT 1
-	vol $6
-	duty $0a
-; Measure 1
-	beat gs 3 b 3 ou e 14 ds 20 od b 20 fs 20 
-	vibrato $82
-	beat cs 80
-	vibrato $00
-faronWoodsChannel1Measure2:
-	resetCoda
-	duty $0a
-	vol $0
-	cmdf2
-; Measure 2-5
-	beat r 255 r 255 r 130
-	vol $6
+	vibrato $02
+	volbeat a 1 a 1
+	volbeat b 1 ou c 1 d 1 e 1
+; Measure 4,8
+	volbeat b 3 a 3 e 2
+; Measure 5,9
+	volbeat g 3 fs 3 d 2
+; Measure 6,10
+	volbeat f 3 e 3 c 3 r 1
 
-faronWoodsChannel1Measure6:
+	gotoCond 1 theGreatPalaceChannel1Measure3b
+
+theGreatPalaceChannel1Measure11b:
 	incCoda
-; Measure 6
-	beat ou c 3 cs 17 c 20 od gs 20
-	vibrato $81
-	beat fs 80
-	vibrato $00
-	beat ds 20
-; Measure 7
-	beat fs 40 f 3 e 3
-	vibrato $81
-	beat ds 74
-	vibrato $00
-	beat od gs 20 ou cs 20
-; Measure 8
-	vibrato $e2
-	beat ds 160
-; Measure 9
-	beat ds 115 
-	vibrato $00
-	beat r 5 od gs 5 b 35
-; Measure 10
-	beat ou d 3 f 3 ds 3 
-	vibrato $81
-	beat fs 106 
-	vibrato $00
-	beat r 5 fs 5 a 35
-; Measure 11
-	beat e 5 
-	vibrato $81
-	beat gs 115
-	vibrato $00
-	beat a 5 ou cs 35
-; Measure 12-13
-	beat od gs 5
-	vibrato $e2	
-	beat b 155 
-	vibrato $00
-	vol $0
-	beat r 160
-	vol $6
-
-	gotoCond 1 faronWoodsChannel1Measure6
-
+; Measure 11b
+	octave 4
+	volbeat gs 2 ou c 1 d 2 f 4
+; Measure 12
+	volbeat ds 2 f 3
+; Measure 13
+	volbeat g 1 f 1 ds 1 f 2 ds 1 d 2
 ; Measure 14
-	duty $0e
-	beat fs 5
-	vibrato $81	
-	beat a 115
-	vibrato $00	
-	beat ds 5 fs 35
-; Measure 15
-	beat f 5 
-	vibrato $e2	
-	beat gs 155
-	vibrato $00
-; Measure 16
-	beat e 5
-	vibrato $81	
-	beat gs 115
-	vibrato $00	
-	beat cs 5 e 35
-; Measure 17
-	beat ds 5
-	vibrato $e2	
-	beat fs 155
-	vibrato $00
+	volbeat ds 1 d 1 c 1 d 2 c 1 
 
-faronWoodsChannel1Measure18:
-	incCoda
-; Measure 18,22
-	duty $0a
-	beat ou ds 20 e 20 fs 20 gs 20 ds 60 cs 20
-; Measure 19,24
-	vibrato $81	
-	beat ds 120
-	vibrato $00
-	beat gs 20 a 20
+	gotoCond 4 theGreatPalaceChannel1Measure18d
 
-	gotoCond 4 faronWoodsChannel1Measure24
+	volbeat od as 3 r 1
+
+	goto theGreatPalaceChannel1Measure11b
+
+theGreatPalaceChannel1Measure18d:
+; Measure 18d
+	octave 4
+	volbeat as 2
+; Measure 19
+	octaveu
+	volbeat c 1 od a 2 ou e 5
 ; Measure 20
-	vibrato $81		
-	beat gs 120 
-	vibrato $00	
-	beat a 20 b 20
+	volbeat c 1 od a 2 ou g 2 fs 3
 ; Measure 21
-	beat a 40 gs 3 g 3
-	vibrato $81		
-	beat fs 114
-	vibrato $00
+	volbeat c 1 od a 2 ou e 5
+; Measure 22
+	octaved
+	volbeat e 1 f 2 gs 2 b 3 r 2
 
-	goto faronWoodsChannel1Measure18
+	goto theGreatPalaceChannel1Measure3bReset
+    cmdff
 
-faronWoodsChannel1Measure24:
-; Measure 24-25
-	vibrato $81	
-	beat gs 80	
-	beat a 3 as 3
-	vibrato $e2	
-	beat b 234
-	vibrato $00
-
-; Measure 26
+theGreatPalaceChannel0:
+    .redefine BEAT 12
+    .redefine CHANNEL 0
+    .redefine HI_VOL $4
+    .redefine LO_VOL $2
+    .redefine LO_NOTE_RATIO 0.25
+; Measure 1
+	octave 4
 	duty $02
-	vol $4
-	beat fs 3 a 3 ou cs 3 d 11 cs 20 od gs 20
-	vibrato $e2	
-	beat fs 180
-	vibrato $00
-; Measure 27
-	beat ou e 20 ds 20 od b 20
-	vibrato $e2	
-	beat as 180
-	vibrato $00
-; Measure 28
-	beat e 3 g 3 b 3 ou cs 11 od b 20 gs 20
-	vibrato $e2	
-	beat e 180
-	vibrato $00
-; Measure 29
-	beat ou e 20 cs 20 od as 20
-	vibrato $e2
-	beat g 180	
-	vibrato $00
+	volbeat e 2 d 1 e 2 od b 2 ou d 1
+; Measure 2
+	volbeat r 1 c 1 c 1
+.redefine BEAT 6
+	volbeat d 3 r 1
+.redefine BEAT 12
+	volbeat d 1
+	vol $6
+	beat d 2
 
-	goto faronWoodsChannel1Measure2
-	cmdff 
-; $eece0
-; @addr{eece0}
-faronWoodsChannel0:
+theGreatPalaceChannel0Measure3Reset:
+	resetCoda
+	env $0 $06
+theGreatPalaceChannel0Measure3:
+	incCoda
+; Measure 3
 	octave 3
-	.redefine BEAT 1
-; Measure 1
-	beat r 160
-faronWoodsChannel0Measure2Reset:
-	resetCoda
-	vol $4
-	duty $02
-faronWoodsChannel0Measure2:
+	volbeat a 1 ou c 1 e 1 a 1
+	octaved
+	volbeat a 1 ou c 1 e 1 gs 1
+
+	gotoCond 22 theGreatPalaceChannel0Measure22
+
+; Measure 4
+	octaved
+	volbeat a 1 ou c 1 e 1 g 1	
+	octaved
+	volbeat a 1 ou c 1 e 1 fs 1
+
+	gotoCond 4 theGreatPalaceChannel0Measure11
+	goto theGreatPalaceChannel0Measure3
+
+theGreatPalaceChannel0Measure11:
 	incCoda
-; Measures 2-25
-	beat r 20 gs 20 ds 20 cs 20
-	beat gs 20 ds 20 cs 20 gs 20
+; Measure 11
+	octave 3
+	volbeat gs 1 ou c 1 d 1 f 1
 
-	gotoCond 32 faronWoodsChannel0Measure26
-	goto faronWoodsChannel0Measure2
+	gotoCond 20 theGreatPalaceChannel0Measure3
+	goto theGreatPalaceChannel0Measure11
 
-faronWoodsChannel0Measure26:
-; Measures 26-29
-	vol $0
-	beat r 255 r 255 r 255 r 195
+theGreatPalaceChannel0Measure22:
+; Measure 22
+	octave 3
+	volbeat b 1 ou c 2 d 2 e 3
 
-	goto faronWoodsChannel0Measure2Reset
-	cmdff
-; $eee03
-; @addr{eee03}
-faronWoodsChannel4:
+	goto theGreatPalaceChannel0Measure3Reset
+    cmdff
+
+
+theGreatPalaceChannel4:
+    .redefine BEAT 12
+    .redefine CHANNEL 4
+    .redefine HI_VOL $0e
+    .redefine LO_VOL $0f
+    .redefine LO_NOTE_RATIO 0.5
 	octave 2
-	.redefine BEAT 1
 ; Measure 1
-	beat r 160
-faronWoodsChannel4Measure2Reset:
+    volbeat a 1 r 1 g 1 a 1
+    volbeat r 1 e 1 r 1 g 1
+; Measure 2
+    volbeat f 1 f 1 f 1 g 1
+    volbeat r 1 g 1 g 1 r 1
+
+theGreatPalaceChannel4Measure3Reset:
 	resetCoda
-	.redefine NOTE_END_WAIT 5
-	duty $0e
-	vol $2
-	vibrato $e1
-faronWoodsChannel4Measure2:
+theGreatPalaceChannel4Measure3:
 	incCoda
-; Measure 2-3,6-7,10-11,14-15,18-19,22-23
-	.rept 2
-		beat gs 160
-	.endr
-; Measure 4-5,8-9,12-13,16-17,20-21,24-25
-	.rept 2
-		beat a 160
-	.endr
+; Measure 3
+	volbeat a 1 r 1 e 1 a 1 r 3 e 1
 
-	gotoCond 8 faronWoodsChannel4Measure26
-	goto faronWoodsChannel4Measure2
+	gotoCond 8 theGreatPalaceChannel4Measure11
+	gotoCond 19 theGreatPalaceChannel4Measure22
+	goto theGreatPalaceChannel4Measure3
 
-faronWoodsChannel4Measure26:
-	.redefine NOTE_END_WAIT 0
-	vibrato $00
-	duty $04
-	vol $3
-; Measure 26
-	beat ou ou d 20 cs 20 od gs 20
-	beat fs 20 gs 20 fs 20
-	beat e 20 gs 20 fs 20
-	beat ou cs 20 od gs 20 fs 20
-; Measure 27
-	beat ou e 20 ds 20 od b 20
-	beat as 20 b 20 as 20
-	beat e 20 b 20 as 20
-	beat ou ds 20 od b 20 as 20
-; Measure 28
-	beat ou cs 20 od b 20
-	beat g 20 e 20 g 20 e 20
-	beat cs 20 g 20 e 20
-	beat b 20 g 20 e 20
-; Measure 29
-	beat ou e 20 cs 20 od as 20
-	beat g 20 as 20 g 20
-	beat ds 20 as 20 gs 20
-	beat ou cs 20 od as 20 gs 20
+theGreatPalaceChannel4Measure11:
+	incCoda
+; Measure 4
+	volbeat f 1 r 1 c 1 f 1 r 3 c 1
 
-	goto faronWoodsChannel4Measure2Reset
-	cmdff
-; $eeffd
-; @addr{eeffd}
-faronWoodsChannel6:
-; Measure 1
-	beat r 160
-faronWoodsChannel6Measure2:
-	vol $4
+	gotoCond 16 theGreatPalaceChannel4Measure3
+	goto theGreatPalaceChannel4Measure11
+
+theGreatPalaceChannel4Measure22
+; Measure 22
+	volbeat e 1 f 1 r 1 gs 1 r 1 b 1 r 2
+
+	goto theGreatPalaceChannel4Measure3Reset
+
+theGreatPalaceChannel6:
+    .redefine BEAT 12
+; Measure 1-2
+	vol $0
+	beat r 8
+theGreatPalaceChannel6Measure3Reset:
+	beat r 8
 	resetCoda
-faronWoodsChannel6Part1:
+	vol $5
+theGreatPalaceChannel6Measure3:
 	incCoda
-	beat $2e 140 $2e 20
+; Measure 3-21
+	beat $2a 3 $2a 3 $2a 2
 
-	gotoCond 4 faronWoodsChannel6Part2		; Measures 2-5
-	gotoCond 28 faronWoodsChannel6Part2		; Measures 18-21
-	goto faronWoodsChannel6Part1
-
-faronWoodsChannel6Part2:
-	incCoda
-	beat $2e 20 $2a 100 $2a 20 $2e 20
-
-	gotoCond 20 faronWoodsChannel6Part3		; Measures 6-13
-	gotoCond 32 faronWoodsChannel6Part4		; Measures 22-25
-	goto faronWoodsChannel6Part2	
-
-faronWoodsChannel6Part3:
-	incCoda
-	beat $2a 20 $2a 40 $2a 40 $2a 40 $2a 20
-
-	gotoCond 24 faronWoodsChannel6Part1		; Measures 14-17
-	goto faronWoodsChannel6Part3
-
-faronWoodsChannel6Part4:
-	incCoda
-	beat $2e 80 $2a 20 $2a 40 $2a 40 $2a 20 $2a 40
-
-	gotoCond 36 faronWoodsChannel6Measure2		; Measures 26-29
-	goto faronWoodsChannel6Part4
-	cmdff
+	gotoCond 19 theGreatPalaceChannel6Measure3Reset
+	goto theGreatPalaceChannel6Measure3
+    cmdff
 ; $f1a2c
 sound16Start:
 ; @addr{f1a2c}
@@ -30824,508 +30576,16 @@ musicf2be8:
 	note $2a $07
 	goto musicf2be8
 	cmdff
-; $f2d21
+
+;sound13
 sound13Start:
-; @addr{f2d21}
 sound13Channel1:
-	vibrato $00
-	env $0 $00
-	duty $02
-musicf2d27:
-	vol $5
-	note as4 $07
-	wait1 $03
-	vol $3
-	note as4 $07
-	wait1 $04
-	vol $1
-	note as4 $07
-	vol $5
-	note f5  $07
-	wait1 $03
-	vol $2
-	note f5  $07
-	wait1 $04
-	vol $1
-	note f5  $07
-	wait1 $1c
-	vol $5
-	note e5  $07
-	wait1 $03
-	vol $2
-	note e5  $07
-	wait1 $04
-	vol $1
-	note e5  $07
-	vol $5
-	note f5  $07
-	wait1 $03
-	vol $2
-	note f5  $07
-	wait1 $04
-	vol $1
-	note f5  $07
-	wait1 $1c
-	vol $5
-	note gs5 $07
-	wait1 $03
-	vol $2
-	note gs5 $07
-	wait1 $04
-	vol $1
-	note gs5 $07
-	vol $5
-	note b6  $02
-	wait1 $01
-	vol $2
-	note b6  $02
-	wait1 $02
-	vol $1
-	note b6  $02
-	wait1 $01
-	vol $0
-	note b6  $02
-	wait1 $2c
-	vol $5
-	note g5  $07
-	wait1 $03
-	vol $2
-	note g5  $07
-	wait1 $04
-	vol $1
-	note g5  $07
-	vol $5
-	note as6 $02
-	wait1 $01
-	vol $2
-	note as6 $02
-	wait1 $02
-	vol $1
-	note as6 $02
-	wait1 $01
-	vol $0
-	note as6 $02
-	wait1 $2c
-	vol $5
-	note e5  $38
-	note f5  $07
-	wait1 $03
-	vol $3
-	note f5  $07
-	wait1 $04
-	vol $1
-	note f5  $07
-	vol $5
-	note b7  $02
-	wait1 $01
-	vol $2
-	note b7  $02
-	wait1 $02
-	vol $1
-	note b7  $02
-	wait1 $01
-	vol $0
-	note b7  $02
-	wait1 $48
-	vol $5
-	note f5  $07
-	wait1 $03
-	vol $3
-	note f5  $07
-	wait1 $04
-	vol $1
-	note f5  $07
-	vol $5
-	note e5  $07
-	wait1 $03
-	vol $3
-	note e5  $07
-	wait1 $04
-	vol $2
-	note e5  $07
-	wait1 $03
-	vol $2
-	note e5  $07
-	wait1 $12
-	vol $5
-	note ds5 $07
-	wait1 $03
-	vol $3
-	note ds5 $07
-	wait1 $04
-	vol $1
-	note ds5 $07
-	vol $5
-	note d5  $07
-	wait1 $03
-	vol $3
-	note d5  $07
-	wait1 $04
-	vol $2
-	note d5  $07
-	wait1 $03
-	vol $2
-	note d5  $07
-	wait1 $12
-	vol $5
-	note cs5 $07
-	wait1 $03
-	vol $2
-	note cs5 $07
-	wait1 $04
-	vol $1
-	note cs5 $07
-	vol $4
-	note f6  $02
-	wait1 $02
-	vol $4
-	note b6  $03
-	wait1 $02
-	vol $3
-	note b6  $02
-	wait1 $03
-	vol $3
-	note b6  $02
-	wait1 $28
-	vol $5
-	note c5  $07
-	wait1 $03
-	vol $3
-	note c5  $07
-	wait1 $04
-	vol $2
-	note c5  $07
-	wait1 $03
-	vol $2
-	note c5  $07
-	wait1 $12
-	vol $5
-	note as6 $02
-	wait1 $02
-	vol $5
-	note e6  $03
-	wait1 $02
-	vol $3
-	note e6  $02
-	wait1 $03
-	vol $3
-	note e6  $02
-	wait1 $02
-	vol $2
-	note e6  $03
-	wait1 $07
-	vol $5
-	note e3  $07
-	note f3  $07
-	note e4  $07
-	note f4  $07
-	note e5  $07
-	note f5  $07
-	note e6  $07
-	note f6  $07
-	note e7  $07
-	note f7  $07
-	note b6  $07
-	note c7  $07
-	note a6  $03
-	note gs6 $04
-	note g6  $03
-	note fs6 $04
-	note f6  $03
-	wait1 $01
-	vol $3
-	note f6  $04
-	wait1 $01
-	vol $2
-	note f6  $03
-	wait1 $72
-	goto musicf2d27
-	cmdff
-; $f2e87
-; @addr{f2e87}
 sound13Channel0:
-	vibrato $00
-	env $0 $00
-	duty $02
-musicf2e8d:
-	vol $0
-	note gs3 $1c
-	vol $5
-	note cs5 $07
-	wait1 $03
-	vol $2
-	note cs5 $07
-	wait1 $04
-	vol $1
-	note cs5 $07
-	wait1 $1c
-	vol $5
-	note c5  $07
-	wait1 $03
-	vol $2
-	note c5  $07
-	wait1 $04
-	vol $1
-	note c5  $07
-	vol $5
-	note cs5 $07
-	wait1 $03
-	vol $2
-	note cs5 $07
-	wait1 $04
-	vol $1
-	note cs5 $07
-	wait1 $1c
-	vol $5
-	note d5  $07
-	wait1 $03
-	vol $2
-	note d5  $07
-	wait1 $04
-	vol $1
-	note d5  $07
-	vol $5
-	note f7  $02
-	wait1 $02
-	vol $3
-	note f7  $03
-	wait1 $02
-	vol $2
-	note f7  $02
-	wait1 $03
-	vol $1
-	note f7  $02
-	wait1 $28
-	vol $5
-	note cs5 $07
-	wait1 $03
-	vol $2
-	note cs5 $07
-	wait1 $04
-	vol $1
-	note cs5 $07
-	vol $5
-	note e7  $02
-	wait1 $02
-	vol $3
-	note e7  $03
-	wait1 $02
-	vol $2
-	note e7  $02
-	wait1 $03
-	vol $1
-	note e7  $02
-	wait1 $28
-	vol $5
-	note cs5 $38
-	note d5  $07
-	wait1 $03
-	vol $2
-	note d5  $07
-	wait1 $04
-	vol $1
-	note d5  $07
-	vol $5
-	note f6  $02
-	wait1 $02
-	vol $3
-	note f6  $03
-	wait1 $02
-	vol $2
-	note f6  $02
-	wait1 $03
-	vol $1
-	note f6  $02
-	wait1 $44
-	vol $5
-	note d5  $07
-	wait1 $03
-	vol $2
-	note d5  $07
-	wait1 $04
-	vol $1
-	note d5  $07
-	vol $5
-	note cs5 $07
-	wait1 $03
-	vol $3
-	note cs5 $07
-	wait1 $04
-	vol $3
-	note cs5 $07
-	wait1 $03
-	vol $2
-	note cs5 $07
-	wait1 $12
-	vol $5
-	note c5  $07
-	wait1 $03
-	vol $2
-	note c5  $07
-	wait1 $04
-	vol $1
-	note c5  $07
-	vol $5
-	note b4  $07
-	wait1 $03
-	vol $3
-	note b4  $07
-	wait1 $04
-	vol $3
-	note b4  $07
-	wait1 $03
-	vol $2
-	note b4  $07
-	wait1 $12
-	vol $5
-	note as4 $07
-	wait1 $03
-	vol $3
-	note as4 $07
-	wait1 $04
-	vol $3
-	note as4 $07
-	wait1 $03
-	vol $2
-	note as4 $04
-	vol $4
-	note f7  $03
-	wait1 $01
-	vol $4
-	note b7  $03
-	wait1 $02
-	vol $2
-	note b7  $02
-	wait1 $03
-	vol $2
-	note b7  $02
-	wait1 $21
-	vol $5
-	note a4  $07
-	wait1 $03
-	vol $3
-	note a4  $07
-	wait1 $04
-	vol $3
-	note a4  $07
-	wait1 $03
-	vol $2
-	note a4  $07
-	wait1 $19
-	vol $5
-	note as5 $02
-	wait1 $02
-	vol $5
-	note e5  $03
-	wait1 $02
-	vol $3
-	note e5  $02
-	wait1 $03
-	vol $2
-	note e5  $02
-	wait1 $02
-	vol $2
-	note e5  $03
-	wait1 $0b
-	vol $4
-	note e3  $07
-	note f3  $07
-	note e4  $07
-	note f4  $07
-	note e5  $07
-	note f5  $07
-	note e6  $07
-	note f6  $07
-	note e7  $07
-	note f7  $07
-	note b6  $07
-	note c7  $07
-	note a6  $04
-	note gs6 $03
-	note g6  $04
-	vol $2
-	note fs6 $03
-	vol $2
-	note f6  $03
-	wait1 $70
-	goto musicf2e8d
-	cmdff
-; $f2fe0
-; @addr{f2fe0}
 sound13Channel4:
-musicf2fe0:
-	wait1 $c4
-	duty $0e
-	note d2  $54
-	note cs2 $2a
-	note c2  $07
-	note b1  $07
-	note as1 $3f
-	note a1  $07
-	note gs1 $07
-	note g1  $07
-	note fs1 $46
-	duty $0f
-	note fs1 $07
-	wait1 $07
-	duty $0e
-	note cs2 $38
-	note a2  $38
-	note gs2 $38
-	note a1  $38
-	note cs3 $38
-	note c3  $38
-	note fs1 $38
-	note f1  $38
-	wait1 $70
-	goto musicf2fe0
-	cmdff
-; $f3014
-; @addr{f3014}
 sound13Channel6:
-musicf3014:
-	wait1 $38
-	vol $2
-	note $2a $0e
-	note $2a $0e
-	wait1 $38
-	note $2e $0e
-	wait1 $0e
-	note $2a $0e
-	wait1 $46
-	note $2a $0e
-	wait1 $62
-	note $2a $0e
-	note $2a $0e
-	note $2e $0e
-	wait1 $0e
-	note $2a $0e
-	wait1 $62
-	note $2a $0e
-	wait1 $0e
-	note $2e $0e
-	wait1 $0e
-	note $2a $0e
-	wait1 $46
-	note $2a $0e
-	note $2a $0e
-	note $2e $0e
-	wait1 $2a
-	note $2a $0e
-	wait1 $46
-	note $2a $0e
-	note $2a $0e
-	wait1 $38
-	note $2a $07
-	note $2a $0e
-	wait1 $23
-	note $2a $0e
-	note $2a $0e
-	wait1 $1c
-	note $2e $0e
-	wait1 $0e
-	goto musicf3014
 	cmdff
+
+
 ; $f3067
 sound14Start:
 ; @addr{f3067}
@@ -32370,12 +31630,420 @@ musicf3732:
 	note $2e $0d
 	goto musicf3732
 	cmdff
-; $f3769
-; @addr{f3769}
-fireWaterChannel0:
-fireWaterChannel1:
-fireWaterChannel4:
+
+
+lightWorldDungeonStart:
+; BPM = 150, Quarter = 24
+lightWorldDungeonChannel1:
+	resetCoda
+	.redefine BEAT 6
+lightWorldDungeonChannel1Measure1:
+	incCoda	
+; Measure 1
+; 9/8
+	octave 4
+	vol $6
+	duty $03
+	beat cs 5 od g 5 fs 4 ou fs 4
+; Measure 2-4
+; 4/4 x2 + 7/8
+	beat c 4 
+	
+	gotoCond 2 lightWorldDungeonChannel1Measure6b
+
+	beat c 42
+
+	goto lightWorldDungeonChannel1Measure1		; 4 bytes
+
+lightWorldDungeonChannel1Measure6b:
+; Measure 6b-8
+	beat d 42
+; Measure 9
+; 9/8
+	beat ds 5 e 5 f 4 a 4
+; Measure 10-12
+; 4/4 x2 + 7/8
+	beat gs 4 c 4 od b 38
+; Measure 13
+; 3/4
+	vol $6
+	octaveu
+	beat g 4 fs 4 od as 4
+; Measure 14
+; 3/4
+	beat a 12
+; Measure 15
+; 3/4
+	octaveu
+	beat f 4 e 4 od gs 4
+; Measure 16
+; 3/4
+	beat g 11 r 1
+; Measure 17
+	beat g 2 fs 2 ou c 2 od b 2
+	beat ou f 2 e 2 as 2 a 2
+; Measures 18-19
+	beat ds 16 r 18
+
+lightWorldDungeonChannel1Measure20:
+	octave 4
+	vol $6
+	duty $02
+	vibrato $00
+; Measure 20-21
+.rept 2
+	beat cs 2 d 2 a 4
+.endr
+	beat cs 2 d 2 a 10 r 2	
+; Measure 22-23
+.rept 2
+	beat c 2 cs 2 gs 4
+.endr
+	beat c 2 cs 2 gs 10 r 2
+; Measure 24-25
+.rept 2
+	beat od b 2 ou c 2 g 4
+.endr
+	beat od b 2 ou c 2 g 10	r 2
+; Measure 26-27
+	vol $5
+.rept 2
+	beat c 2 cs 2 gs 4
+.endr
+	beat c 2 cs 2 gs 10
+
+; Measure 28
+	octave 4
+	duty $01
+	vibrato $01
+	beat a 12 gs 2 a 2
+; Measure 29
+	beat b 12 a 2 gs 2
+; Measure 30-31
+	beat cs 26 r 2
+.redefine BEAT 8
+	beat cs 1 c 1 cs 1
+.redefine BEAT 6
+; Measure 32
+	beat g 12 fs 2 g 2
+; Measure 33
+	beat a 12 g 2 fs 2
+; Measure 34-35
+	octaved
+	beat b 26 r 2
+.redefine BEAT 8
+	beat b 1 as 1 b 1
+; Measure 36
+	beat as 8 ou c 1
+	beat f 1 fs 1 ou cs 1
+.redefine BEAT 6
+; Measure 37
+	beat c 12 od gs 4
+; Measure 38-39
+	octaveu
+	beat c 2 od b 22 e 8
+; Measure 40
+	beat ds 10 c 2
+.redefine BEAT 8
+	beat d 1 e 1 ou ds 1
+; Measure 41
+	beat d 9 od as 3
+; Measure 42-43
+	beat a 24
+.redefine BEAT 6
+	beat r 2
+
+	goto lightWorldDungeonChannel1Measure20
 	cmdff
+
+lightWorldDungeonChannel0:
+	resetCoda
+	.redefine BEAT 6
+lightWorldDungeonChannel0Measure1:
+	incCoda	
+; Measure 1
+; 9/8
+	octave 3
+	vol $3
+	duty $03
+	beat gs 5 d 5 cs 4 ou cs 4
+; Measure 2-4
+; 4/4 x2 + 7/8
+	octaved
+	beat g 4 
+	
+	gotoCond 2 lightWorldDungeonChannel0Measure6b
+
+	beat g 42
+
+	goto lightWorldDungeonChannel0Measure1		; 4 bytes
+
+lightWorldDungeonChannel0Measure6b:
+; Measure 6b-8
+	beat a 42
+; Measure 9
+; 9/8
+	beat as 5 b 5 ou c 4 e 4
+; Measure 10-12
+; 4/4 x2 + 7/8
+	beat ds 4 od g 4 fs 38
+; Measure 13
+; 3/4
+	vol $6
+	octaveu
+	beat d 4 cs 4 od fs 4
+; Measure 14
+; 3/4
+	beat e 12
+; Measure 15
+; 3/4
+	octaveu
+	beat c 4 od b 4 ds 4
+; Measure 16
+; 3/4
+	beat d 11 r 1
+; Measure 17
+	beat d 2 cs 2 g 2 fs 2
+	beat ou c 2 od b 2 ou f 2 e 2
+; Measures 18-19
+	beat od ds 16 r 16
+
+lightWorldDungeonChannel0Measure20:
+; Measurese 20-27
+	vol $0
+	duty $02
+.redefine BEAT 1
+.rept 3
+	beat r 255
+.endr
+	beat r 3
+
+.redefine BEAT 6
+	vol $4
+; Measure 28-29
+	beat r 2
+.rept 2
+	beat cs 2 d 2 a 4
+.endr
+	beat cs 2 d 2 a 10 r 2	
+; Measure 30-31
+.rept 2
+	beat c 2 cs 2 gs 4
+.endr
+	beat c 2 cs 2 gs 10 r 2
+; Measure 32-33
+.rept 2
+	beat od b 2 ou c 2 g 4
+.endr
+	beat od b 2 ou c 2 g 10	r 2
+
+; Measure 34-35
+.rept 2
+	beat od as 2 b 2 ou fs 4
+.endr
+	beat od as 2 b 2 ou fs 10 r 2	
+; Measure 36-37
+	octaveu
+.rept 2
+	beat od f 2 fs 2 ou cs 4
+.endr
+	beat od f 2 fs 2 ou cs 10 r 2	
+; Measure 38-39
+.rept 2
+	beat od e 2 f 2 ou c 4
+.endr
+	beat od e 2 f 2 ou c 10 r 2	
+; Measure 40-41
+.rept 2
+	beat od g 2 gs 2 ou ds 4
+.endr
+	beat od g 2 gs 2 ou ds 10 r 2	
+; Measure 42-43
+.rept 2
+	beat od gs 2 a 2 ou e 4
+.endr
+	beat od gs 2 a 2 ou e 10
+
+	goto lightWorldDungeonChannel0Measure20
+	cmdff
+
+
+lightWorldDungeonChannel4:
+	resetCoda
+	.redefine BEAT 6
+lightWorldDungeonChannel4Measure1:
+	incCoda	
+; Measure 1
+; 9/8
+	octave 3
+	duty $0e
+	beat cs 5 od g 5 fs 4 ou fs 4
+; Measure 2-4
+; 4/4 x2 + 7/8
+	beat c 4 
+	
+	gotoCond 2 lightWorldDungeonChannel4Measure6b
+
+	beat c 42
+
+	goto lightWorldDungeonChannel4Measure1		; 4 bytes
+
+lightWorldDungeonChannel4Measure6b:
+; Measure 6b-8
+	beat d 42
+; Measure 9
+; 9/8
+	beat ds 5 e 5 f 4 a 4
+; Measure 10-12
+; 4/4 x2 + 7/8
+	beat gs 4 c 4 od b 38
+; Measure 13
+; 3/4
+	duty $0e
+	octaveu
+	beat g 4 fs 4 od as 4
+; Measure 14
+; 3/4
+	beat a 12
+; Measure 15
+; 3/4
+	octaveu
+	beat f 4 e 4 od gs 4
+; Measure 16
+; 3/4
+	beat g 11 r 1
+; Measure 17
+	beat g 2 fs 2 ou c 2 od b 2
+	beat ou f 2 e 2 as 2 a 2
+
+lightWorldDungeonChannel4Measure18:
+;Coda 2
+	incCoda
+; Measures 18-19
+	octave 2
+	duty $0e
+	beat b 1
+	duty $0f
+	beat b 1
+
+	gotoCond 18 lightWorldDungeonChannel4MeasureBReset
+	goto lightWorldDungeonChannel4Measure18
+
+lightWorldDungeonChannel4MeasureBReset:
+	resetCoda
+lightWorldDungeonChannel4MeasureB:
+;Coda 0,64
+	incCoda
+; Measures 20-21,28-29
+	octave 2
+	duty $0e
+	beat b 1
+	duty $0f
+	beat b 1
+
+	gotoCond $10 lightWorldDungeonChannel4MeasureAs
+	gotoCond $50 lightWorldDungeonChannel4MeasureAs
+	goto lightWorldDungeonChannel4MeasureB
+
+lightWorldDungeonChannel4MeasureAs:
+;Coda 16,80
+	incCoda
+; Measures 22-23,30-31
+	octave 2
+	duty $0e
+	beat as 1
+	duty $0f
+	beat as 1
+
+	gotoCond $20 lightWorldDungeonChannel4MeasureA
+	gotoCond $40 lightWorldDungeonChannel4MeasureB
+	gotoCond $60 lightWorldDungeonChannel4MeasureA
+	goto lightWorldDungeonChannel4MeasureAs
+
+lightWorldDungeonChannel4MeasureA:
+;Coda 32,96
+	incCoda
+; Measures 24-25,32-33
+	octave 2
+	duty $0e
+	beat a 1
+	duty $0f
+	beat a 1
+
+	gotoCond $30 lightWorldDungeonChannel4MeasureAs
+	gotoCond $70 lightWorldDungeonChannel4MeasureGs
+	goto lightWorldDungeonChannel4MeasureA
+
+lightWorldDungeonChannel4MeasureGs:
+;Coda 112
+	incCoda
+; Measures 34-35
+	octave 2
+	duty $0e
+	beat gs 1
+	duty $0f
+	beat gs 1
+
+	gotoCond $80 lightWorldDungeonChannel4MeasureDs
+	goto lightWorldDungeonChannel4MeasureGs
+
+lightWorldDungeonChannel4MeasureDs:
+;Coda 128
+	incCoda
+; Measures 36-37
+	octave 3
+	duty $0e
+	beat ds 1
+	duty $0f
+	beat ds 1
+
+	gotoCond $90 lightWorldDungeonChannel4MeasureD
+	goto lightWorldDungeonChannel4MeasureDs
+
+lightWorldDungeonChannel4MeasureD:
+;Coda 144
+	incCoda
+; Measures 38-39
+	octave 3
+	duty $0e
+	beat d 1
+	duty $0f
+	beat d 1
+
+	gotoCond $a0 lightWorldDungeonChannel4MeasureF
+	goto lightWorldDungeonChannel4MeasureD
+
+lightWorldDungeonChannel4MeasureF:
+;Coda 160
+	incCoda
+; Measures 38-39
+	octave 3
+	duty $0e
+	beat f 1
+	duty $0f
+	beat f 1
+
+	gotoCond $b0 lightWorldDungeonChannel4MeasureFs
+	goto lightWorldDungeonChannel4MeasureF
+
+lightWorldDungeonChannel4MeasureFs:
+;Coda 180
+	incCoda
+; Measures 38-39
+	octave 3
+	duty $0e
+	beat fs 1
+	duty $0f
+	beat fs 1
+
+	gotoCond $c0 lightWorldDungeonChannel4MeasureBReset
+	goto lightWorldDungeonChannel4MeasureFs
+
+lightWorldDungeonChannel6:
+	cmdff
+
+
+
 ; $f3a91
 sound4eStart:
 ; @addr{f3a91}
@@ -32818,684 +32486,7 @@ soundafChannel7:
 	cmdff
 ; $f3d5a
 ; GAP
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
-;	cmdff
+
 .bank $76 slot 1
 .org 0
 sound1bStart:
@@ -42947,7 +41938,6 @@ sound5bChannel3:
 	cmdff
 ; $f7f84
 ; GAP
-	cmdff
 sound5fStart:
 ; @addr{f7f85}
 sound5fChannel5:
@@ -42974,99 +41964,7 @@ sound62Channel2:
 	cmdff
 ; $f7fa3
 ; GAP
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
-	cmdff
+
 .bank $77 slot 1
 .org 0
 sound0cStart:
@@ -43203,10 +42101,8 @@ soundddChannel6:
 	cmdff
 ; $f8005
 ; GAP
-	cmdff
-	cmdff
-	cmdff
-	cmdff
+
+
 ; @addr{f8009}
 sound39Channel1:
 	vibrato $00

@@ -515,15 +515,15 @@ hyruleCastle:
 	.dw hyruleCastleChannel6
 	.db $ff
 ; @addr{5365}
-faronWoods:
+theGreatPalace:
 	.db $00
-	.dw faronWoodsChannel0
+	.dw theGreatPalaceChannel0
 	.db $01
-	.dw faronWoodsChannel1
+	.dw theGreatPalaceChannel1
 	.db $04
-	.dw faronWoodsChannel4
+	.dw theGreatPalaceChannel4
 	.db $06
-	.dw faronWoodsChannel6
+	.dw theGreatPalaceChannel6
 	.db $ff
 ; @addr{5372}
 sound16:
@@ -658,15 +658,15 @@ sound17:
 	.dw sound17Channel6
 	.db $ff
 ; @addr{540e}
-fireWater:
+lightWorldDungeon:
 	.db $00
-	.dw fireWaterChannel0
+	.dw lightWorldDungeonChannel0
 	.db $01
-	.dw fireWaterChannel1
+	.dw lightWorldDungeonChannel1
 	.db $04
-	.dw fireWaterChannel4
+	.dw lightWorldDungeonChannel4
 	.db $06
-	.dw fireWaterChannel6
+	.dw lightWorldDungeonChannel6
 	.db $ff
 ; @addr{541b}
 sound1a:

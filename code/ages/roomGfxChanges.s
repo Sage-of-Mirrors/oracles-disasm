@@ -109,7 +109,8 @@ applyRoomSpecificTileChangesAfterGfxLoad:
 ; $0a: Maku tree past screen
 
 @group0:
-	.db $76 $01
+	.db $87 $01
+	.db $71 $01
 
 	;.db $05 $08
 	;.db $2c $08
@@ -413,7 +414,8 @@ treeGfxLocationsTable:
 ; w2: Start of tree gfx in w3VramTiles to overwrite
 
 @present:
-	dbbw $76 $00 w3VramTiles+$0c4
+	dbbw $87 $00 w3VramTiles+$048
+	dbbw $71 $00 w3VramTiles+$048
 
 	;dbbw $13 $02 w3VramTiles+$0c8
 	;dbbw $ac $00 w3VramTiles+$0c6
@@ -430,8 +432,8 @@ treeGfxLocationsTable:
 seasonsTable:
 	; <hFF93 - use $04 for no change
 	.db $02	;SEASON_SUMMER, gale
-	.db $01	;SEASON_FALL, pegasus
-	.db $04	;SEASON_WINTER, ember
+	.db $01	;SEASON_FALL, 	pegasus
+	.db $00	;SEASON_WINTER, scent
 	.db $03	;SEASON_SPRING, mystery
 
 treeTilesTable:

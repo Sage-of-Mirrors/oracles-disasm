@@ -697,9 +697,7 @@ _doNextChannelCommand:
 _channelCmdf1:
 	call _getNextChannelByte
 	ld hl,wVolta
-call _getChannelVarInHL
-	bit 7,(hl)
-	jr nz,+
+	call _getChannelVarInHL
 	cp (hl)
 	jp z, _channelCmdfe
 ;	jp nc, _channelCmdfe

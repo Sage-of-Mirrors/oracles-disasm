@@ -6107,6 +6107,10 @@ _galeSeedMenu_state2:
 	ld a,(wMapMenu.warpIndex)
 	call _getTreeWarpDataIndex
 	ldi a,(hl)
+	cp $77
+	jr nz,+
+	add $10
++
 	ld (wWarpDestRoom),a
 	ldi a,(hl)
 	ld (wWarpDestPos),a

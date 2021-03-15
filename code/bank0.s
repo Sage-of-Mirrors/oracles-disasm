@@ -11953,6 +11953,15 @@ loadScreenMusicAndSetRoomPack:
 ;	rst_addAToHl
 ;	ld a,(hl)
 ;	ld (wCurrentSeason),a
+
+;	ld a,(wDungeonIndex)
+;	inc a
+;	ret z
+
+;	ld a,(wDungeonFloor)
+;	inc a
+;	xor $03
+;	ld (wCurrentSeason),a
 	ret
 seasonsGroupTable:
 	.db SEASON_SUMMER SEASON_SPRING SEASON_WINTER SEASON_FALL

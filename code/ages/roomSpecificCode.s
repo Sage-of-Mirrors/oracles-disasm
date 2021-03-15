@@ -45,6 +45,7 @@ _roomSpecificCodeGroup0Table:
 	.db $38 $00
 	.db $68 $00
 	.db $78 $04
+	.db $87 $04
 ;	.db $93 $00
 ;	.db $38 $06
 ;	.db $39 $08

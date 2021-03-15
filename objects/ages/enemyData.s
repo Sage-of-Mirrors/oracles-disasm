@@ -1712,6 +1712,8 @@ group5Map17EnemyObjectData:
 	obj_EndPointer
 
 group5Map1aEnemyObjectData:
+	obj_SpecificEnemyA 0 $4f $00 $20 $c0
+	obj_SpecificEnemyA     $4f $00 $38 $18
 	obj_EndPointer
 
 group5Map19EnemyObjectData:
@@ -1892,7 +1894,7 @@ group5Map40EnemyObjectData:
 	obj_EndPointer
 
 group5Map41EnemyObjectData:
-	obj_ItemDrop 0 $04 $91
+	obj_ItemDrop 0 $04 $92
 	obj_SpecificEnemyA 0 $45 $00 $78 $c8
 	obj_SpecificEnemyA     $45 $00 $28 $c8
 	obj_EndPointer

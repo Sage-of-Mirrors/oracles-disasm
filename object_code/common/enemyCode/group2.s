@@ -8071,19 +8071,19 @@ enemyCode5a:
 .ifdef ROM_SEASONS
 @seasonsTable_0d_68fb:
 	; <hFF8B (seed type) - required season - checked against wSeedTreeRefilledBitset
-	.db $00	SEASON_WINTER	$80		;ember, winter
-	.db $04	SEASON_SUMMER	$40		;summer
-	.db $01	SEASON_SPRING	$20		;scent, spring
-	.db $02	SEASON_FALL		$10		;pegasus, fall
-	.db $03	SEASON_SUMMER	$08		;summer
-	.db $03	SEASON_SUMMER	$04		;summer
+	.db EMBER_SEEDS		SEASON_WINTER	SEED_TREE_7		;ember, winter
+	.db MYSTERY_SEEDS	SEASON_SUMMER	SEED_TREE_6		;summer
+	.db SCENT_SEEDS		SEASON_SPRING	SEED_TREE_5		;scent, spring
+	.db PEGASUS_SEEDS	SEASON_FALL		SEED_TREE_4		;pegasus, fall
+	.db GALE_SEEDS		SEASON_SUMMER	SEED_TREE_3		;summer
+	.db GALE_SEEDS		SEASON_SUMMER	SEED_TREE_2		;summer
 .else
 	@seasonsSeedsTable:
 	; <hFF8B - use $05 for no seeds
-	.db $03	;SEASON_SUMMER, gale
-	.db $02	;SEASON_FALL, pegasus
-	.db $00	;SEASON_WINTER, ember
-	.db $04	;SEASON_SPRING, mystery
+	.db GALE_SEEDS		;SEASON_SUMMER
+	.db PEGASUS_SEEDS	;SEASON_FALL
+	.db SCENT_SEEDS		;SEASON_WINTER
+	.db MYSTERY_SEEDS	;SEASON_SPRING
 .endif
 
 

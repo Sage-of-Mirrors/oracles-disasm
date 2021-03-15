@@ -25,7 +25,6 @@ group0Map7dObjectData:
 group0Map7eObjectData:
 group0Map7fObjectData:
 group0Map85ObjectData:
-group0Map87ObjectData:
 group0Map8aObjectData:
 group0Map8cObjectData:
 group0Map8eObjectData:
@@ -1083,8 +1082,9 @@ group0Map77ObjectData:
 	obj_End
 
 group0Map78ObjectData:
-	obj_SpecificEnemyA $00 $5a $06 $00 $00
-	obj_Interaction $80 $00 $18 $58
+	obj_SpecificEnemyA $00 $5a $00 $00 $00
+	obj_Condition $01
+	obj_Interaction $80 $00 $38 $58
 	obj_End
 
 group0Map79ObjectData:
@@ -1339,7 +1339,7 @@ group1Map25ObjectData:
 
 group1Map78ObjectData:
 	obj_SpecificEnemyA $00 $5a $0c $00 $00
-	obj_Interaction $80 $00 $18 $58
+	obj_Interaction $80 $00 $38 $58
 	obj_End
 
 group1Map79ObjectData:
@@ -4901,7 +4901,7 @@ group3Map48ObjectData:
 	obj_End
 
 group0Map76ObjectData:
-	obj_SpecificEnemyA 0 $5a $00 $00 $00
+	obj_SpecificEnemyA 0 $5a $34 $00 $00
 	obj_End
 
 group5Mapb7ObjectData:
@@ -5026,4 +5026,9 @@ group2Map08ObjectData:
 
 group0Map28ObjectData:
 	obj_Interaction $80 $00 $38 $58
+	obj_End
+
+group0Map87ObjectData:
+	obj_SpecificEnemyA 0 $5a $00 $00 $00
+	obj_Interaction $dc $10 $68 $18 $01
 	obj_End

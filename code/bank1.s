@@ -4446,6 +4446,13 @@ updateActiveRoom:
 	add (hl)
 	jr @gotRoom
 @dungeon:
+	cp $05	;dungeon 4
+	jr nz,+
+	ld a,(wDungeonFloor)
+	inc a
+	xor $03
+	ld (wCurrentSeason),a
++
 	ld a,(wScreenTransitionDirection)
 	ld hl,@largeMapDirectionTable
 	rst_addAToHl
@@ -5765,6 +5772,21 @@ checkRoomPackAfterWarp_body:
 	ld a,(wRoomPack)
 	sub $80
 	ret c
+	
+	ld b,a
+	ld a,(wActiveRoom)
+	cp $87
+	jr nz,+
+	ld a,(wDungeonIndex)
+	inc a
+	jr z,+
+	ld a,(wDungeonFloor)
+	xor $03
+	dec a
+	and $03
+	ld b,a
++
+	ld a,b
 	ld (wCurrentSeason),a
 	ret
 ;;

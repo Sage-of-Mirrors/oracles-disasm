@@ -750,22 +750,50 @@ _interactiondc_subid10:
 	call checkLinkVulnerable
 	ret nc
 
+	ld e, Interaction.var03
+	ld a,(de)
+	or a
+	jr nz,@@Room87
+@@Room26:
 	ld a,(wCurrentSeason)
 	cp SEASON_WINTER
-	ld hl,@warp1
+	ld hl,@@warp1
 	jr z,+
-	ld hl,@warp2
+	ld hl,@@warp2
 +
 	call setWarpDestVariables
 	ld a,SND_ENTERCAVE
 	call playSound
 	jp interactionDelete
 
-@warp1:
+@@warp1:
 	m_HardcodedWarpA ROOM_AGES_339, $93, $ff, $01
-
-@warp2:
+@@warp2:
 	m_HardcodedWarpA ROOM_AGES_338, $93, $ff, $01
+
+
+@@Room87:
+	ld a,(wCurrentSeason)
+	ld c,$05
+	call multiplyAByC
+	ld bc,@@summerWarp
+	add hl,bc
+	rst_addAToHl
+
+	call setWarpDestVariables
+	ld a,SND_ENTERCAVE
+	call playSound
+	jp interactionDelete
+
+@@summerWarp:
+	m_HardcodedWarpA ROOM_AGES_52a, $93, $91, $03
+@@fallWarp:
+	m_HardcodedWarpA ROOM_AGES_52d, $93, $91, $03
+@@winterWarp:
+	m_HardcodedWarpA ROOM_AGES_53d, $93, $91, $03
+@@springWarp:
+	m_HardcodedWarpA ROOM_AGES_514, $93, $91, $03	
+
 
 
 ; Gives D6 Past boss key when you get D6 Present boss key

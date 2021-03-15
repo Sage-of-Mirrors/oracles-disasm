@@ -100,3 +100,37 @@
 .else; ROM_SEASONS
 	.define GANON_ROOM $59e
 .endif
+
+.enum 0
+	EMBER_SEEDS		db ; $00
+	SCENT_SEEDS 	db ; $01
+	PEGASUS_SEEDS 	db ; $02
+	GALE_SEEDS 		db ; $03
+	MYSTERY_SEEDS	db ; $04
+.ende
+
+.enum $15
+	EMBER_SEEDS_POPUP 	db ; $15
+	SCENT_SEEDS_POPUP 	db ; $16
+	PEGASUS_SEEDS_POPUP	db ; $17
+	GALE_SEEDS_POPUP 	db ; $18
+	MYSTERY_SEEDS_POPUP	db ; $19	
+.ende
+
+	.define SEED_TREE_0_BIT 0
+	.define SEED_TREE_1_BIT 1
+	.define SEED_TREE_2_BIT 2
+	.define SEED_TREE_3_BIT 3
+	.define SEED_TREE_4_BIT 4
+	.define SEED_TREE_5_BIT 5
+	.define SEED_TREE_6_BIT 6
+	.define SEED_TREE_7_BIT 7
+
+	.define SEED_TREE_0 $01
+	.define SEED_TREE_1 $02
+	.define SEED_TREE_2 $04	
+	.define SEED_TREE_3 $08
+	.define SEED_TREE_4 $10
+	.define SEED_TREE_5 $20
+	.define SEED_TREE_6 $40
+	.define SEED_TREE_7 $80
