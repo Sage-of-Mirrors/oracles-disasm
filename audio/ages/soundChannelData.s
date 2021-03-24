@@ -27604,7 +27604,7 @@ theGreatPalaceChannel1:
     .redefine CHANNEL 1
     .redefine HI_VOL $6
     .redefine LO_VOL $3
-    .redefine LO_NOTE_RATIO 0.25
+    .redefine LO_VOL_RATIO 0.25
     octave 4
 ; Measure 1
     duty $02
@@ -27673,7 +27673,7 @@ theGreatPalaceChannel0:
     .redefine CHANNEL 0
     .redefine HI_VOL $4
     .redefine LO_VOL $2
-    .redefine LO_NOTE_RATIO 0.25
+    .redefine LO_VOL_RATIO 0.25
 ; Measure 1
 	octave 4
 	duty $02
@@ -27732,7 +27732,7 @@ theGreatPalaceChannel4:
     .redefine CHANNEL 4
     .redefine HI_VOL $0e
     .redefine LO_VOL $0f
-    .redefine LO_NOTE_RATIO 0.5
+    .redefine LO_VOL_RATIO 0.5
 	octave 2
 ; Measure 1
     volbeat a 1 r 1 g 1 a 1

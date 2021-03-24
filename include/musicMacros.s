@@ -259,12 +259,17 @@
 		.ifndef LO_VOL
 			.define LO_VOL 0
 		.endif	
+		.ifndef NO_FIRST_VOL
+			.define NO_FIRST_VOL 0
+		.endif	
 
 	.if \1 >= 0
-		.if CHANNEL == 4
-			duty HI_VOL
-		.else
-			vol HI_VOL
+		.if NO_FIRST_VOL == 0
+			.if CHANNEL == 4
+				duty HI_VOL
+			.else
+				vol HI_VOL
+			.endif
 		.endif
 
 		.db \1+offset
