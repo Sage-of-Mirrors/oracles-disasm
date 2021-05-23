@@ -1,5 +1,5 @@
 .ifdef ROM_AGES
-.define SIMPLE_SCRIPT_BANK $0c
+.define SIMPLE_SCRIPT_BANK $15	;$0c
 .else
 .define SIMPLE_SCRIPT_BANK $14
 .endif

@@ -9201,7 +9201,7 @@ greatFairySubid0Script:
 	playsound SND_KILLENEMY ; Why?
 	createpuff
 	wait 32
-	setmusic MUS_FAIRY
+	setmusic MUS_FAIRY_FOUNTAIN
 	asm15 objectSetVisible
 	writeobjectbyte Interaction.var3e, $00
 	scriptjump linkedGameNpcScript
@@ -9315,4 +9315,16 @@ gettingRodOfSeasonsScript:
 
 gettingRodOfSeasonsScript_setCounter1To32:
 	setcounter1 $32
+	scriptend
+
+; ==============================================================================
+; INTERACID_WATER_PUSHBLOCK
+; ==============================================================================
+waterPushblock_screenShake:
+	playsound SNDCTRL_STOPMUSIC
+	wait 30
+	playsound SND_RUMBLE2
+	shakescreen 255
+	wait 60
+	writememory w1Link.direction, DIR_DOWN
 	scriptend

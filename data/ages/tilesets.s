@@ -28,7 +28,7 @@ tilesetData: ; 4:4f9c
 	.db UNIQGFXH_05
 	.db GFXH_40
 	.db PALH_2d
-	.db $14 $00 $01
+	.db $14 $01 $01
 
 ; Tileset 0x04
 	.db $0f $01
@@ -42,7 +42,7 @@ tilesetData: ; 4:4f9c
 	.db UNIQGFXH_07
 	.db GFXH_40
 	.db PALH_14
-	.db $04 $00 $01
+	.db $04 $01 $16	;$01
 
 ; Tileset 0x06
 	.db $0f $01
@@ -141,7 +141,7 @@ tilesetData: ; 4:4f9c
 	.db $0f $02 $00
 
 ; Tileset 0x13
-	.db $0f $81
+	.db $0f $01
 	.db UNIQGFXH_03
 	.db GFXH_41
 	.db PALH_23
@@ -214,8 +214,8 @@ tilesetData: ; 4:4f9c
 	.db $0f $81
 	.db UNIQGFXH_0a
 	.db GFXH_41
-	.db PALH_2a
-	.db $07 $02 $01
+	.db PALH_13		;PALH_2a
+	.db $07 $03 $01
 
 ; Tileset 0x1e
 	.db $0f $81

@@ -2411,7 +2411,7 @@ _greatFairy_state1:
 
 	ld l,Enemy.counter1
 	ld (hl),$11
-	ld a,MUS_FAIRY
+	ld a,MUS_FAIRY_FOUNTAIN
 	ld (wActiveMusic),a
 	ret
 
@@ -7943,20 +7943,20 @@ enemyCode59:
 ;   var03: Child "PARTID_SEED_ON_TREE" objects write here when Link touches them?
 ; ==============================================================================
 enemyCode5a:
-	ld e,Enemy.subid
-	ld a,(de)
-	or a
-	jr nz,+
-	ld a,(wCurrentSeason)
-	ld hl,@seasonsSeedsTable
-	rst_addAToHl
-	ld a,(hl)
-	swap a
-	ld b,a
-	ld a,(wCurrentSeason)
-	or b
-	ld (de),a
-+
+;	ld e,Enemy.subid
+;	ld a,(de)
+;	or a
+;	jr nz,+
+;	ld a,(wCurrentSeason)
+;	ld hl,@seasonsSeedsTable
+;	rst_addAToHl
+;	ld a,(hl)
+;	swap a
+;	ld b,a
+;	ld a,(wCurrentSeason)
+;	or b
+;	ld (de),a
+;+
 	ld e,Enemy.state
 	ld a,(de)
 	or a

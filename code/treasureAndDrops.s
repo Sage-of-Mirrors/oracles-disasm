@@ -308,6 +308,20 @@ giveTreasure_body:
 ; Used for small keys.
 @mode7:
 	ld a,(wDungeonIndex)
+	ld b,a
+	ld a,(wActiveGroup)
+	; Check if in Group 0 or 1
+	xor $01
+	or a
+	jr nz,+
+	; Check if in Rooms $00-$03 (mod $08)
+	ld a,(wActiveRoom)
+	and $07
+	sub $04
+	jr nc,+
+	ld b,$02	;Main Ages Dungeon
++
+	ld a,b
 	add e
 	ld l,a
 	ld h,d

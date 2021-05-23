@@ -3,7 +3,6 @@ group0Map0fObjectData:
 group0Map1cObjectData:
 group0Map1eObjectData:
 group0Map1fObjectData:
-group0Map23ObjectData:
 group0Map2dObjectData:
 group0Map2eObjectData:
 group0Map2fObjectData:
@@ -24,7 +23,6 @@ group0Map6fObjectData:
 group0Map7dObjectData:
 group0Map7eObjectData:
 group0Map7fObjectData:
-group0Map85ObjectData:
 group0Map8aObjectData:
 group0Map8cObjectData:
 group0Map8eObjectData:
@@ -258,7 +256,6 @@ group2Map14ObjectData:
 group2Map15ObjectData:
 group2Map16ObjectData:
 group2Map17ObjectData:
-group2Map18ObjectData:
 group2Map19ObjectData:
 group2Map1aObjectData:
 group2Map1bObjectData:
@@ -277,7 +274,6 @@ group2Map2aObjectData:
 group2Map2bObjectData:
 group2Map2cObjectData:
 group2Map2dObjectData:
-group2Map30ObjectData:
 group2Map31ObjectData:
 group2Map32ObjectData:
 group2Map33ObjectData:
@@ -655,7 +651,6 @@ group5Map0dObjectData:
 group5Map0eObjectData:
 group5Map0fObjectData:
 group5MapafObjectData:
-group5MapbaObjectData:
 group5Mapc5ObjectData:
 group5MapcdObjectData:
 group5Mape5ObjectData:
@@ -672,10 +667,12 @@ group0Map12ObjectData:
 
 group0Map13ObjectData:
 	obj_Pointer group0Map13EnemyObjectData
+	obj_Interaction $3d $02 $48 $68
 	obj_End
 
 group0Map14ObjectData:
 	obj_Pointer group0Map14EnemyObjectData
+	obj_Interaction $3b $03 $38 $38
 	obj_End
 
 group0MapacObjectData:
@@ -701,12 +698,16 @@ group0Map02ObjectData:
 
 group0Map03ObjectData:
 	obj_Pointer group0Map03EnemyObjectData
+	obj_Interaction $42 $00 $68 $38
+	obj_Interaction $40 $0d $28 $48
+	obj_Interaction $40 $0d $28 $78
 	obj_End
 
 group0Map04ObjectData:
 	obj_Pointer group0Map04EnemyObjectData
 	obj_SpecificEnemyA 0 $5a $05 $00 $00
 	obj_Interaction $44 $04 $38 $78
+	obj_Interaction $3b $01 $58 $38
 	obj_End
 
 group0Map05ObjectData:
@@ -800,6 +801,7 @@ group0Map22ObjectData:
 
 group0Map24ObjectData:
 	obj_Pointer group0Map24EnemyObjectData
+	obj_Interaction $49 $02 $18 $88
 	obj_End
 
 group0Map25ObjectData:
@@ -833,10 +835,13 @@ group0Map2cObjectData:
 
 group0Map30ObjectData:
 	obj_Pointer group0Map30EnemyObjectData
+	obj_Interaction $90 $24
 	obj_End
 
 group0Map31ObjectData:
 	obj_Pointer group0Map31EnemyObjectData
+	obj_Interaction $e1 $00 $18 $38
+	obj_Part $24 $00 $14
 	obj_End
 
 group0Map32ObjectData:
@@ -946,7 +951,7 @@ group0Map4dObjectData:
 	obj_End
 
 group0Map50ObjectData:
-	obj_Part $24 $00 $16
+	obj_Interaction $e1 $00 $18 $58
 	obj_End
 
 group0Map51ObjectData:
@@ -1062,6 +1067,7 @@ group0Map70ObjectData:
 	obj_End
 
 group0Map71ObjectData:
+	obj_SpecificEnemyA 0 $5a $14 $00 $00
 	obj_End
 
 group0Map72ObjectData:
@@ -1134,10 +1140,11 @@ group0Map82ObjectData:
 
 group0Map84ObjectData:
 	obj_Pointer group0Map84EnemyObjectData
+	obj_SpecificEnemyA 0 $5a $30 $00 $00
 	obj_End
 
 group0Map86ObjectData:
-	obj_Interaction $54 $01 $38 $88
+	obj_SpecificEnemyA 0 $5a $02 $00 $00
 	obj_End
 
 group0Map88ObjectData:
@@ -1351,8 +1358,6 @@ group1Mapc1ObjectData:
 	obj_End
 
 group1Map01ObjectData:
-	obj_Interaction $1f $00 $18 $00
-	obj_Interaction $b6 $08 $28 $38
 	obj_Pointer group1Map01EnemyObjectData
 	obj_End
 
@@ -1367,9 +1372,7 @@ group1Map11ObjectData:
 group1Map13ObjectData:
 	obj_Interaction $80 $09 $1e $50
 	obj_Interaction $80 $0a $18 $50
-group1Map02ObjectData:
 group1Map04ObjectData:
-group1Map12ObjectData:
 group1Map14ObjectData:
 	obj_Interaction $dc $05
 	obj_End
@@ -1436,9 +1439,9 @@ group1Map1bObjectData:
 	obj_End
 
 group1Map20ObjectData:
-	obj_Interaction $e1 $00 $28 $18
-	obj_Interaction $37 $0b $38 $a8
 	obj_Pointer group1Map20EnemyObjectData
+	obj_Interaction $9e $00 $58 $48
+	obj_Interaction $9e $01 $58 $38
 	obj_End
 
 group1Map21ObjectData:
@@ -1477,6 +1480,8 @@ group1Map2dObjectData:
 
 group1Map31ObjectData:
 	obj_Pointer group1Map31EnemyObjectData
+	obj_Interaction $e1 $00 $28 $18
+	obj_Part $24 $00 $31
 	obj_End
 
 group1Map32ObjectData:
@@ -1488,7 +1493,6 @@ group1Map33ObjectData:
 	obj_End
 
 group1Map34ObjectData:
-	obj_Interaction $b6 $0b $48 $58
 	obj_End
 
 group1Map35ObjectData:
@@ -1578,7 +1582,6 @@ group1Map4bObjectData:
 	obj_End
 
 group1Map51ObjectData:
-	obj_Interaction $e1 $00 $48 $48
 	obj_End
 
 group1Map53ObjectData:
@@ -1666,20 +1669,18 @@ group1Map6dObjectData:
 	obj_End
 
 group1Map70ObjectData:
-	obj_Interaction $ce $06 $58 $38
 	obj_Pointer group1Map70EnemyObjectData
 	obj_End
 
 group1Map71ObjectData:
 	obj_Pointer group1Map71EnemyObjectData
+	obj_SpecificEnemyA 0 $5a $16 $00 $00
 	obj_End
 
 group1Map72ObjectData:
-	obj_Interaction $40 $00 $58 $28
 	obj_End
 
 group1Map73ObjectData:
-	obj_Interaction $40 $00 $18 $18 $01
 	obj_End
 
 group1Map74ObjectData:
@@ -3663,7 +3664,6 @@ group5Map13ObjectData:
 
 group5Map14ObjectData:
 	obj_Pointer group5Map14EnemyObjectData
-	obj_Interaction $12 $04 $28 $c8
 	obj_End
 
 group5Map15ObjectData:
@@ -3738,7 +3738,6 @@ group5Map1fObjectData:
 
 group5Map20ObjectData:
 	obj_Pointer group5Map20EnemyObjectData
-	obj_Interaction $12 $04 $28 $c8
 	obj_End
 
 group5Map21ObjectData:
@@ -3826,7 +3825,6 @@ group5Map2fObjectData:
 
 group5Map30ObjectData:
 	obj_Pointer group5Map30EnemyObjectData
-	obj_Interaction $12 $04 $28 $c8
 	obj_End
 
 group5Map31ObjectData:
@@ -3904,7 +3902,6 @@ group5Map3bObjectData:
 
 group5Map3cObjectData:
 	obj_Pointer group5Map3cEnemyObjectData
-	obj_Interaction $12 $04 $28 $c8
 	obj_End
 
 group5Map3dObjectData:
@@ -4576,9 +4573,12 @@ group5MapaeObjectData:
 	obj_End
 
 group5Mapc3ObjectData:
+	obj_Interaction $40 $0d $68 $38 $07
+	obj_Interaction $40 $0d $38 $b8 $07
 	obj_End
 
 group5Mapc4ObjectData:
+	obj_Interaction $40 $0d $48 $b8 $08
 	obj_End
 
 group5Mapc6ObjectData:
@@ -4610,10 +4610,12 @@ group5Mapb6ObjectData:
 
 group5MapbeObjectData:
 	obj_Pointer group5MapbeEnemyObjectData
+	obj_Interaction $40 $0d $28 $b8 $0c
 	obj_End
 
 group5Mapb8ObjectData:
 	obj_Pointer group5Mapb8EnemyObjectData
+	obj_Interaction $40 $0d $58 $18 $06
 	obj_End
 
 group5Mapb9ObjectData:
@@ -4622,9 +4624,13 @@ group5Mapb9ObjectData:
 	obj_End
 
 group5MapbbObjectData:
+	obj_Interaction $3c $02 $88 $98
+	obj_Interaction $40 $0d $28 $48 $0a
+	obj_Interaction $40 $0d $28 $a8 $0a
 	obj_End
 
 group5MapbcObjectData:
+	obj_Interaction $40 $0d $58 $60 $09
 	obj_End
 
 group5MapbdObjectData:
@@ -4644,12 +4650,16 @@ group5Mapc1ObjectData:
 	obj_End
 
 group5Mapc2ObjectData:
+	obj_Interaction $40 $0d $48 $38 $08
 	obj_End
 
 group5MapcaObjectData:
+	obj_Interaction $40 $0d $58 $98 $03
+	obj_Interaction $3a $01 $38 $68
 	obj_End
 
 group5MapccObjectData:
+	obj_Interaction $40 $0d $58 $58 $03
 	obj_End
 
 group5Mapc9ObjectData:
@@ -4658,6 +4668,8 @@ group5Mapc9ObjectData:
 
 group5MapcbObjectData:
 	obj_Pointer group5MapcbEnemyObjectData
+	obj_Interaction $45 $00 $28 $28
+	obj_Interaction $40 $0d $58 $78 $04
 	obj_End
 
 group5MapceObjectData:
@@ -4672,15 +4684,19 @@ group5Mapd1ObjectData:
 	obj_End
 
 group5Mapd2ObjectData:
+	obj_Interaction $40 $0d $48 $78 $02
 	obj_End
 
 group5Mapd3ObjectData:
 	obj_Pointer group5Mapd3EnemyObjectData
 	obj_Interaction $12 $00 $88 $78
+	obj_Interaction $40 $0d $38 $28 $03
+	obj_Interaction $40 $0d $38 $c8 $01
 	obj_End
 
 group5Mapd4ObjectData:
 	obj_Pointer group5Mapd4EnemyObjectData
+	obj_Interaction $40 $0d $48 $78 $02
 	obj_End
 
 group5Mapd5ObjectData:
@@ -4731,10 +4747,14 @@ group5Mapb0ObjectData:
 	obj_Pointer group5Mapb0EnemyObjectData
 	obj_Part $09 $01 $5b
 	obj_Interaction $21 $17 $57 $02
+	obj_Interaction $40 $0d $28 $d8 $05
 	obj_End
 
 group5Mapb1ObjectData:
 	obj_Pointer group5Mapb1EnemyObjectData
+	obj_Interaction $ad $04 $38 $78
+	obj_Interaction $40 $0d $50 $50 $0b
+	obj_Interaction $40 $0d $50 $a0 $0b
 	obj_End
 
 group5Mapb2ObjectData:
@@ -4743,10 +4763,12 @@ group5Mapb2ObjectData:
 
 group5Mapb3ObjectData:
 	obj_Pointer group5Mapb3EnemyObjectData
+	obj_Interaction $40 $0d $78 $58 $0d
 	obj_End
 
 group5Mapb4ObjectData:
 	obj_Pointer group5Mapb4EnemyObjectData
+	obj_Interaction $40 $0d $88 $b8 $0e
 	obj_End
 
 group5Mapb5ObjectData:
@@ -5003,7 +5025,6 @@ group3Map1aObjectData:
 	obj_End
 
 group2Map28ObjectData:
-	obj_Interaction $60 $3d
 	obj_End
 
 group3Map69ObjectData:
@@ -5022,6 +5043,7 @@ group0Map08ObjectData:
 	obj_End
 
 group2Map08ObjectData:
+	obj_Interaction $3a $03 $28 $68
 	obj_End
 
 group0Map28ObjectData:
@@ -5029,6 +5051,33 @@ group0Map28ObjectData:
 	obj_End
 
 group0Map87ObjectData:
-	obj_SpecificEnemyA 0 $5a $00 $00 $00
-	obj_Interaction $dc $10 $68 $18 $01
+	obj_SpecificEnemyA 0 $5a $43 $00 $00
+	obj_End
+
+group0Map23ObjectData:
+	obj_Interaction $3c $0e $68 $78
+	obj_Interaction $3a $0c $68 $38
+	obj_End
+
+group2Map18ObjectData:
+	obj_Interaction $52 $03 $28 $50
+	obj_End
+
+group5MapbaObjectData:
+	obj_Interaction $40 $0d $58 $90 $09
+	obj_End
+
+group0Map85ObjectData:
+	obj_SpecificEnemyA 0 $5a $21 $00 $00
+	obj_End
+
+group1Map02ObjectData:
+	obj_End
+
+group1Map12ObjectData:
+	obj_Pointer group1Map12EnemyObjectData
+	obj_SpecificEnemyA 0 $5a $37 $00 $00
+	obj_End
+
+group2Map30ObjectData:
 	obj_End

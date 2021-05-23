@@ -563,7 +563,7 @@ treasureObjectData2e:
 	.db $0a $00 $7a $31
 
 treasureObjectData30:
-	.db $18 $01 $ff $42
+	.db $38 $01 $ff $42
 	.db $28 $01 $ff $42
 	.db $49 $01 $1a $42
 	.db $38 $01 $1a $42

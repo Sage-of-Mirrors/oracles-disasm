@@ -1546,10 +1546,8 @@ groups:
   data:
   - name:
     - TX_0200
-    - TX_020d
     index:
     - 0x00
-    - 0x0d
     text: |2-
       Hyrule Castle
 
@@ -1558,11 +1556,14 @@ groups:
     text: |2-
       Spirit's Grotto
 
-  - name: TX_0202
-    index: 0x02
+  - name:
+    - TX_0202
+    - TX_020b
+    index:
+    - 0x02
+    - 0x0b
     text: |2-
-      Timeshift Stone
-         Refinery
+       Lost Labrinth
 
   - name: TX_0203
     index: 0x03
@@ -1578,8 +1579,7 @@ groups:
   - name: TX_0205
     index: 0x05
     text: |2-
-       Level 5
-        Crown Dungeon
+       Lost Labrinth
 
   - name:
     - TX_0206
@@ -1588,8 +1588,8 @@ groups:
     - 0x06
     - 0x0c
     text: |2-
-       Level 6
-        Mermaid's Cave
+       Temple of
+          the Tokay
 
   - name: TX_0207
     index: 0x07
@@ -1615,8 +1615,8 @@ groups:
     text: |2-
         Room of Rites
 
-  - name: TX_020b
-    index: 0x0b
+  - name: TX_020d
+    index: 0x0d
     text: |2-
         Hero's Cave
 
@@ -1646,53 +1646,52 @@ groups:
   - name: TX_0302
     index: 0x02
     text: |-
-      Talus Peaks
+      Forest of Time
 
   - name: TX_0303
     index: 0x03
     text: |-
-      Symmetry Village
+      Deeper Woods
 
   - name: TX_0304
     index: 0x04
     text: |-
-      Nuun Highlands
+      Seasons Shrine
 
   - name: TX_0305
     index: 0x05
     text: |-
-      Rolling Ridge
+      Manic Dunes
 
   - name: TX_0306
     index: 0x06
     text: |-
-      Rolling Ridge
-      Base
+      Moblin Cliffs
 
   - name: TX_0307
     index: 0x07
     text: |-
-      Lynna City
+      Hyrule Castle Town
 
   - name: TX_0308
     index: 0x08
     text: |-
-      Forest of Time
+      Revinna Oasis
 
   - name: TX_0309
     index: 0x09
     text: |-
-      Yoll Graveyard
+      Forever Falls
 
   - name: TX_030a
     index: 0x0a
     text: |-
-      Fairies' Woods
+      \Link's House
 
   - name: TX_030b
     index: 0x0b
     text: |-
-      South Lynna
+      Laruden Heights
 
   - name: TX_030c
     index: 0x0c
@@ -1726,7 +1725,7 @@ groups:
     - 0x11
     - 0x12
     text: |-
-      Crescent Island
+      Tepid Forest
 
   - name: TX_0313
     index: 0x13
@@ -1907,7 +1906,7 @@ groups:
   - name: TX_0337
     index: 0x37
     text: |-
-      Deku Forest
+      Forest of Time
 
   - name: TX_0338
     index: 0x38

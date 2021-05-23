@@ -950,7 +950,7 @@ partCode2f:
   ld (hl),$14
   ld l,$c6
   ld (hl),$1e
-  ld a,SND_CHARGE
+  ld a,SND_BLUE_STALFOS_CHARGE
   call playSound
   jp objectSetVisible82
 @state1:
@@ -2991,7 +2991,7 @@ _blueStalfosProjectile_subid0:
   ld l,Part.var03
   inc (hl)
 ++
-  ld a,SND_CHARGE
+  ld a,SND_BLUE_STALFOS_CHARGE
   call playSound
   jp objectSetVisible81
 

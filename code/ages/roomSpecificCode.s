@@ -14,6 +14,7 @@ runRoomSpecificCode:
 	.dw _setMinimapVars_Group1Map78
 	.dw _setMinimapVars_Group3Map79
 	.dw _setRoomFlags_Group5Map30
+	.dw _setMinimapVars_Group1Map84	
 ;	.dw _roomSpecificCode5
 ;	.dw setDeathRespawnPoint
 ;	.dw _roomSpecificCode7
@@ -45,7 +46,10 @@ _roomSpecificCodeGroup0Table:
 	.db $38 $00
 	.db $68 $00
 	.db $78 $04
-	.db $87 $04
+	.db $84 $07
+	.db $85 $07
+	.db $86 $07
+	.db $87 $07
 ;	.db $93 $00
 ;	.db $38 $06
 ;	.db $39 $08
@@ -117,6 +121,7 @@ _setMinimapVars_Group3Map79:
 _setMinimapVars_Group1Map78:
 	ld a,GLOBALFLAG_DONT_UPDATE_MINIMAP
 	call setGlobalFlag
+_setMinimapVars_Group1Map84:
 	ld a,$77
 	jr _setMiniMapVarsGroup0
 

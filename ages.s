@@ -260,6 +260,7 @@ specialObjectLoadAnimationFrameToBuffer:
 	 m_section_free "Scripts" namespace "mainScripts"
 		.include "code/scripting.s"
 		.include "scripts/ages/scripts.s"
+;		.include "scripts/ages/scripts2.s"
 	.ends
 
 

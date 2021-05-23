@@ -1,7 +1,9 @@
 
 ; Define is just for LynnaLab
-.define NUM_ANIMATION_GROUPS $16
+.define NUM_ANIMATION_GROUPS $17
 
+
+; Byte 1:	$80|2^(Number of animation data words)-1
 
 animationGroupTable: ; 0x11b52
 	.dw animationGroup00
@@ -26,6 +28,7 @@ animationGroupTable: ; 0x11b52
 	.dw animationGroup13
 	.dw animationGroup14
 	.dw animationGroup15
+	.dw animationGroup16
 
 animationGroup00: ; 0x11b7e
 	.db $8f
@@ -110,3 +113,10 @@ animationGroup15: ; 0x11be0
 	.dw animationDataJabu
 	.dw animationDataSpike
 	.dw animationDataWaterThing
+
+animationGroup16: ; 0x
+	.db $87
+	.dw animationDataWaterfallFastNoSource
+	.dw animationDataOverworldWaterFlower
+;	.dw animationDataWhirlpool2
+	.dw animationDataQuicksand

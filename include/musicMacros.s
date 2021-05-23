@@ -1,36 +1,36 @@
 .enum $0
-	c1: db
-	cs1: db
-	d1: db
-	ds1: db
-	e1: db
-	f1: db
-	fs1: db
-	g1: db
-	gs1: db
-	a1: db
-	as1: db
-	b1: db
-	c2: db
-	cs2: db
-	d2: db
-	ds2: db
-	e2: db
-	f2: db
-	fs2: db
-	g2: db
-	gs2: db
-	a2: db
-	as2: db
-	b2: db
-	c3: db
-	cs3: db
-	d3: db
-	ds3: db
-	e3: db
-	f3: db
-	fs3: db
-	g3: db
+	c1: db	; $00
+	cs1: db ; $01
+	d1: db	; $02
+	ds1: db	; $03
+	e1: db	; $04
+	f1: db	; $05
+	fs1: db	; $06
+	g1: db	; $07
+	gs1: db ; $08
+	a1: db	; $09
+	as1: db ; $0a
+	b1: db	; $0b
+	c2: db	; $0c
+	cs2: db	; $0d
+	d2: db	; $0e
+	ds2: db	; $0f
+	e2: db	; $10
+	f2: db	; $11
+	fs2: db	; $12
+	g2: db	; $13
+	gs2: db	; $14
+	a2: db	; $15
+	as2: db ; $16
+	b2: db  ; $17
+	c3: db  ; $18
+	cs3: db ; $19
+	d3: db  ; $1a
+	ds3: db ; $1b
+	e3: db  ; $1c
+	f3: db  ; $1d
+	fs3: db ; $1e
+	g3: db  ; $1f
 	gs3: db
 	a3: db
 	as3: db
@@ -155,7 +155,7 @@
 
 	.if NARGS >= 2
 	.if \1 == r
-		wait1 \2
+		rest \2
 		.shift
 		.shift
 	.else
@@ -193,7 +193,7 @@
 
 	.if NARGS >= 2
 	.if \1 == r
-		wait1 \2*BEAT
+		rest \2*BEAT
 		.shift
 		.shift
 	.else
@@ -206,7 +206,7 @@
 
 		.if NOTE_END_WAIT != 0
 			.db \2*BEAT - NOTE_END_WAIT
-			wait1 NOTE_END_WAIT
+			rest NOTE_END_WAIT
 		.else
 			.db \2*BEAT
 		.endif
@@ -219,7 +219,6 @@
 	.endr
 .endm
 
-
 ; A variation of the "beat" macro that includes a common functionality of the
 ; volume adjustments in the music. 
 ;	volbeat a 2
@@ -229,6 +228,34 @@
 ;	vol $3
 ;	beat a 1
 .macro volbeat
+		.ifndef HI_VOL
+			.define HI_VOL 0
+		.endif	
+
+		.ifndef LO_VOL
+			.define LO_VOL 0
+		.endif
+			
+		.ifndef NO_FIRST_VOL
+			.define NO_FIRST_VOL 0
+		.endif
+
+		.ifndef REST
+			.define REST 0
+		.endif
+		.redefine REST 0
+
+		.ifndef CHANNEL
+			.define CHANNEL 0
+		.endif
+		.ifndef NOTE_MID_WAIT
+			.define NOTE_MID_WAIT 0
+		.endif
+
+		.ifndef NOTE_END_WAIT
+			.define NOTE_END_WAIT 0
+		.endif
+
 	.redefine offset 0
 	.rept NARGS
 	.if NARGS >= 1
@@ -247,23 +274,12 @@
 
 	.if NARGS >= 2
 	.if \1 == r
-		wait1 \2*BEAT
+		rest \2*BEAT
 		.shift
 		.shift
 	.else
-
-		.ifndef HI_VOL
-			.define HI_VOL 0
-		.endif	
-
-		.ifndef LO_VOL
-			.define LO_VOL 0
-		.endif	
-		.ifndef NO_FIRST_VOL
-			.define NO_FIRST_VOL 0
-		.endif	
-
 	.if \1 >= 0
+		;First volume change
 		.if NO_FIRST_VOL == 0
 			.if CHANNEL == 4
 				duty HI_VOL
@@ -272,28 +288,49 @@
 			.endif
 		.endif
 
+		;First note
 		.db \1+offset
-		.db \2*BEAT*(1-LO_NOTE_RATIO)
 
+		.if NOTE_MID_WAIT != 0
+			.db \2*BEAT*(1-LO_VOL_RATIO) - NOTE_MID_WAIT
+			rest NOTE_MID_WAIT
+		.else
+			.db \2*BEAT*(1-LO_VOL_RATIO)
+		.endif
+
+		;Second volume change
 		.if CHANNEL == 4
 			duty LO_VOL
 		.else
 			vol LO_VOL
 		.endif
 
+		;Second note
 		.db \1+offset
 
-		.ifndef NOTE_END_WAIT
-			.define NOTE_END_WAIT 0
+		.if NARGS >= 4
+			.if \3 == r
+				.redefine REST \4*BEAT
+			.endif
 		.endif
+
 
 		.if NOTE_END_WAIT != 0
-			.db \2*BEAT*LO_NOTE_RATIO - NOTE_END_WAIT
-			wait1 NOTE_END_WAIT
+			.db \2*BEAT*LO_VOL_RATIO - (NOTE_END_WAIT + REST)
+			rest NOTE_END_WAIT + REST
 		.else
-			.db \2*BEAT*LO_NOTE_RATIO
+			.db \2*BEAT*LO_VOL_RATIO
 		.endif
 
+		.if NARGS >= 4
+			.if \3 == r
+				.if NOTE_END_WAIT == 0
+					rest REST
+				.endif
+				.shift
+				.shift
+			.endif
+		.endif
 
 		.shift
 		.shift
@@ -305,13 +342,237 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+; A variation of the "beat" macro that includes a common functionality of the
+; volume adjustments in the music. 
+;	volbeat a 2
+;	
+;	vol $6
+;	beat a 1
+;	vol $3
+;	beat a 1
+.macro volbeat2
+
+		.ifndef HI_VOL
+			.define HI_VOL 0
+		.endif	
+
+		.ifndef LO_VOL
+			.define LO_VOL 0
+		.endif
+			
+		.ifndef NO_FIRST_VOL
+			.define NO_FIRST_VOL 0
+		.endif
+
+		.ifndef REST
+			.define REST 0
+		.endif
+		.redefine REST 0
+
+		.ifndef CHANNEL
+			.define CHANNEL 0
+		.endif
+		.ifndef NOTE_MID_WAIT
+			.define NOTE_MID_WAIT 0
+		.endif
+
+	.redefine offset 0
+	.rept NARGS
+	.if NARGS >= 1
+		.if \1 == od
+			octaved
+			.redefine offset offset-12
+			.shift
+		.else
+		.if \1 == ou
+			octaveu
+			.redefine offset offset+12
+			.shift
+		.endif
+		.endif
+	.endif
+
+	.if NARGS >= 2
+	.if \1 != r
+	.if \1 >= 0
+		;First volume change
+		.if NO_FIRST_VOL == 0
+			.if CHANNEL == 4
+				duty HI_VOL
+			.else
+				vol HI_VOL
+			.endif
+		.endif
+
+		;First note
+		.db \1+offset
+
+		.if NOTE_MID_WAIT != 0
+			.db \2*BEAT*(1-LO_VOL_RATIO) - NOTE_MID_WAIT
+			rest NOTE_MID_WAIT
+		.else
+			.db \2*BEAT*(1-LO_VOL_RATIO)
+		.endif
+
+		;Second volume change
+		.if CHANNEL == 4
+			duty LO_VOL
+		.else
+			vol LO_VOL
+		.endif
+
+		;Second note
+		.db \1+offset
+
+		.ifndef NOTE_END_WAIT
+			.define NOTE_END_WAIT 0
+		.endif
+
+		.if NOTE_END_WAIT != 0
+			.db \2*BEAT*LO_VOL_RATIO - (NOTE_END_WAIT + REST)
+			rest NOTE_END_WAIT + REST
+		.else
+			.db \2*BEAT*LO_VOL_RATIO
+		.endif
+		.shift
+		.shift
+	.else
+		.if NOTE_END_WAIT != 0
+			.define REST \2
+			.shift
+			.shift	
+		.else
+			rest \2*BEAT
+			.shift
+			.shift
+		.endif
+	.endif
+	.endif
+	.endif
+	.endr
+.endm
+
+
+;; Used in Tarm Ruins music
+;	tarmbeat a 24 b 24 c 24
+;
+;	vol HI_VOL
+;	beat a 12
+;	rest 12
+;
+;	beat b 12
+;	vol LO_VOL
+;	beat a 12
+;
+;	vol HI_VOL
+;	beat c 12
+;	vol LO_VOL
+;	beat b 12
+;
+;
+.macro tarmbeat
+	.redefine offset 0
+	.rept NARGS
+	.if NARGS >= 1
+		.if \1 == od
+			octaved
+			.redefine offset offset-12
+			.shift
+		.else
+		.if \1 == ou
+			octaveu
+			.redefine offset offset+12
+			.shift
+		.endif
+		.endif
+	.endif
+
+	.if NARGS >= 2
+	.if \1 == r
+		rest \2*BEAT
+		.shift
+		.shift
+	.else
+	.if \1 >= 0
+
+
+		.ifndef HI_VOL
+			.define HI_VOL 0
+		.endif	
+
+		.ifndef LO_VOL
+			.define LO_VOL 0
+		.endif
+			
+		.ifndef NO_FIRST_VOL
+			.define NO_FIRST_VOL 0
+		.endif	
+
+		.ifndef CHANNEL
+			.define CHANNEL 0
+		.endif
+			
+		.ifndef TARM_NOTE
+			.define TARM_NOTE 0
+		.endif
+
+		;First volume change
+		.if NO_FIRST_VOL == 0
+			.if CHANNEL == 4
+				duty HI_VOL
+			.else
+				vol HI_VOL
+			.endif
+		.endif
+		;First note
+		.db \1+offset
+		.db \2*BEAT*(1-LO_VOL_RATIO)
+
+		;Second volume change
+		.if TARM_NOTE != 0
+			.if CHANNEL == 4
+				duty LO_VOL
+			.else
+				vol LO_VOL
+			.endif
+
+		;Second note
+			.db TARM_NOTE
+			.db \2*BEAT*LO_VOL_RATIO
+			.redefine NO_FIRST_VOL 0
+		.else
+			rest \2*BEAT*LO_VOL_RATIO
+			.redefine NO_FIRST_VOL 1
+		.endif
+
+			.redefine TARM_NOTE \1+offset
+
+
+		.shift
+		.shift
+	.endif
+	.endif
+	.endif
+	.endr
+.endm
+
 ; 60/61: set wait counters.
 
-.macro wait1
+.macro rest
 	.db $60 \1
 .endm
 
-.macro wait2
+.macro rest2
 	.db $61 \1
 .endm
 
@@ -364,6 +625,7 @@
 .endm
 
 ; f6: sets wChannelDutyCycles
+; Channels other than 4 and 5 are modulated by $03
 .macro duty
 	.db $f6 \1
 .endm

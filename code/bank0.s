@@ -3983,9 +3983,13 @@ loadTilesetAnimation:
 ;;
 ; Seasons-only function
 ; Called when displaying D4 entrance after water shuts off in screen above
-func_1383:
+;@param		a	New room to load
+;@param		b	Direction of new room
 
-.ifdef ROM_SEASONS
+loadRoomWithDirection:
+;func_1383:
+
+;.ifdef ROM_SEASONS
 	push de
 	ld (wActiveRoom),a
 	ld a,b
@@ -3996,12 +4000,12 @@ func_1383:
 	ld b,a
 	push bc
 	ld a,$08
-	ld ($cd00),a
+	ld (wScrollMode),a		;$cd00
 	ld a,$03
-	ld ($cd04),a
+	ld (wScreenTransitionState),a	;$cd04
 	xor a
-	ld ($cd05),a
-	ld ($cd06),a
+	ld (wScreenTransitionState2),a	;cd05
+	ld (wScreenTransitionState3),a	;$cd06
 	ld a,$01
 	setrombank
 	call bank1.func_49c9
@@ -4021,7 +4025,9 @@ func_1383:
 	pop de
 	ret
 
-.else ; ROM_AGES
+;@param		a	New room to load
+loadRoomWithoutDirection:
+;.else ; ROM_AGES
 	ld (wActiveRoom),a
 	ld a,($ff00+R_SVBK)
 	ld c,a
@@ -4041,7 +4047,7 @@ func_1383:
 	pop bc
 	ld a,b
 	setrombank
-.endif
+;.endif
 
 ;;
 ; Loads w2WaveScrollValues to make the screen sway in a sine wave.

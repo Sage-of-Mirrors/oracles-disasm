@@ -231,3 +231,16 @@ animationDataWTF: ; 0x11fe5
 	.db $0f $5b
 	m_AnimationLoop animationDataWTF
 
+animationDataQuicksand:
+	.db $05 $70
+	.db $05 $71
+	.db $05 $72
+	.db $05 $73
+	m_AnimationLoop animationDataQuicksand	
+
+animationDataWaterfallFastNoSource: ; 0x11ebb
+	.db $04 $00
+	.db $04 $01
+	.db $04 $02
+	.db $04 $03
+	m_AnimationLoop animationDataWaterfallFastNoSource

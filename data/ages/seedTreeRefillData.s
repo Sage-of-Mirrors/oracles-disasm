@@ -12,10 +12,10 @@
 .endm
 
 seedTreeRefillLocations:
-	m_TreeRefillData $076 (<wxSeedTreeRefillData+$10)
-	m_TreeRefillData $076 (<wxSeedTreeRefillData+$18)
-	m_TreeRefillData $076 (<wxSeedTreeRefillData+$20)
-	m_TreeRefillData $076 (<wxSeedTreeRefillData+$28)
+	m_TreeRefillData $084 (<wxSeedTreeRefillData+$10)
+	m_TreeRefillData $085 (<wxSeedTreeRefillData+$18)
+	m_TreeRefillData $086 (<wxSeedTreeRefillData+$20)
+	m_TreeRefillData $087 (<wxSeedTreeRefillData+$28)
 	m_TreeRefillData $004 (<wxSeedTreeRefillData+$00)
 	m_TreeRefillData $071 (<wxSeedTreeRefillData+$08)
 

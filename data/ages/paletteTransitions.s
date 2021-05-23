@@ -34,26 +34,34 @@ paletteTransitionGroup7:
 paletteTransitionGroup0:
 	dbbww DIR_RIGHT $22  paletteData4a90 paletteData4a30
 	dbbww DIR_LEFT  $21  paletteData4a30 paletteData4a90
-	dbbww DIR_UP  $21  paletteData4a30 paletteData4a90
-	dbbww DIR_DOWN    $31  paletteData4a90 paletteData4a30
-	dbbww DIR_UP    $8b  paletteData4c10 paletteData4a90
-	dbbww DIR_DOWN  $9b  paletteData4a90 paletteData4c10
-	dbbww DIR_UP    $12  paletteData4cd0 paletteData4c70
-	dbbww DIR_DOWN  $22  paletteData4c70 paletteData4cd0
-	dbbww DIR_UP    $14  paletteData4cd0 paletteData4c70
-	dbbww DIR_DOWN  $24  paletteData4c70 paletteData4cd0
-	dbbww DIR_DOWN  $29  paletteData4d90 paletteData4a30
-	dbbww DIR_DOWN  $2a  paletteData4d90 paletteData4a30
-	dbbww DIR_DOWN  $3d  paletteData4d90 paletteData4bb0
+	dbbww DIR_UP  	$21  paletteData4a30 paletteData4a90
+	dbbww DIR_DOWN  $31  paletteData4a90 paletteData4a30
+
+	dbbww DIR_UP    $43  paletteData4d90 paletteData4a30
+	dbbww DIR_DOWN  $53  paletteData4a30 paletteData4d90 
+	dbbww DIR_UP    $63  paletteData4a30 paletteData4d90
+	dbbww DIR_DOWN  $73  paletteData4d90 paletteData4a30 
+
+
+;	dbbww DIR_UP    $8b  paletteData4c10 paletteData4a90
+;	dbbww DIR_DOWN  $9b  paletteData4a90 paletteData4c10
+;	dbbww DIR_UP    $12  paletteData4cd0 paletteData4c70
+;	dbbww DIR_DOWN  $22  paletteData4c70 paletteData4cd0
+;	dbbww DIR_UP    $14  paletteData4cd0 paletteData4c70
+;	dbbww DIR_DOWN  $24  paletteData4c70 paletteData4cd0
+;	dbbww DIR_DOWN  $29  paletteData4d90 paletteData4a30
+;	dbbww DIR_DOWN  $2a  paletteData4d90 paletteData4a30
+;	dbbww DIR_DOWN  $3d  paletteData4d90 paletteData4bb0
 	.db $ff
 
 paletteTransitionGroup1:
-	dbbww DIR_UP    $12  paletteData4d00 paletteData4ca0
-	dbbww DIR_DOWN  $22  paletteData4ca0 paletteData4d00
-	dbbww DIR_UP    $14  paletteData4d00 paletteData4ca0
-	dbbww DIR_DOWN  $24  paletteData4ca0 paletteData4d00
-	dbbww DIR_UP    $36  paletteData4a60 paletteData4f40
-	dbbww DIR_DOWN  $46  paletteData4f40 paletteData4a60
+	dbbww DIR_DOWN  $30  paletteData4d00 paletteData4be0	
+;	dbbww DIR_UP    $12  paletteData4d00 paletteData4ca0
+;	dbbww DIR_DOWN  $22  paletteData4ca0 paletteData4d00
+;	dbbww DIR_UP    $14  paletteData4d00 paletteData4ca0
+;	dbbww DIR_DOWN  $24  paletteData4ca0 paletteData4d00
+;	dbbww DIR_UP    $36  paletteData4a60 paletteData4f40
+;	dbbww DIR_DOWN  $46  paletteData4f40 paletteData4a60
 	.db $ff
 
 paletteTransitionGroup2:

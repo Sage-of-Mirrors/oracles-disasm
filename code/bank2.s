@@ -6107,10 +6107,13 @@ _galeSeedMenu_state2:
 	ld a,(wMapMenu.warpIndex)
 	call _getTreeWarpDataIndex
 	ldi a,(hl)
-	cp $77
-	jr nz,+
-	add $10
-+
+;	cp $77
+;	jr nz,+
+;	ld b,a
+;	ld a,(wMapMenu.warpIndex)
+;	add $0b
+;	add b
+;+
 	ld (wWarpDestRoom),a
 	ldi a,(hl)
 	ld (wWarpDestPos),a
@@ -6167,6 +6170,12 @@ _galeSeedMenu_addOffsetToWarpIndex:
 	jr z,--
 
 	ldi a,(hl)
+
+	cp $84
+	jr c,+
+	ld a,$77
++
+
 	ld (wMapMenu.cursorIndex),a
 
 	ld hl,wMapMenu.warpIndex
@@ -6344,10 +6353,18 @@ _loadMinimapDisplayRoom:
 	and $01 ; This tests TILESETFLAG_PAST
 	bit TILESETFLAG_BIT_MAKU,b
 	ld b,a
-	jr z,@setRoom
+	jr z,@checkForShrine
 
 	; If the area is the maku tree, hardcode the room index?
 	ld c,$38
+
+@checkForShrine:
+	ld a,c
+	sub $84
+	jr c,@setRoom
+	cp $05
+	jr nc,@setRoom
+	ld c,$77
 
 @setRoom:
 	ld a,c
@@ -6634,9 +6651,9 @@ _mapGetRoomTextOrReturn:
 _mapGetRoomText:
 	call _mapGetRoomIndexWithoutUnusedColumns
 	ld hl,presentMapTextIndices
-	jr nc,+
+	jr nc,++
 	ld hl,pastMapTextIndices
-+
+++
 	ld b,>TX_0300
 	rst_addAToHl
 	ld c,(hl)
@@ -6710,12 +6727,12 @@ _mapGetRoomText:
 	ld c,a
 	call @checkDungeonEntered
 	jr nz,+
-	ld a,(hl)
+	ld a,(hl)		;reset to lower byte of 03XX text
 	and $7f
 	ld c,a
 	ret
 +
-	ld b,>TX_0200
+	ld b,>TX_0200	;use dungeon index lower byte
 	ret
 
 ; Moblin's keep
@@ -6873,7 +6890,7 @@ _mapMenu_loadPopupData:
 ; 0: no popup
 ; 1: present house
 ; 2: tokay trading hut
-; 3: past house
+; 3: past house/stump
 ; 4: maku tree icon (past or present)
 ; 5: eyeglass library
 ; 6: shooting gallery
@@ -6980,6 +6997,19 @@ _minimapPopupType_portalSpot:
 
 _minimapPopupType_seedTree:
 	ld a,(wMapMenu.cursorIndex)
+
+	cp $77
+	jr nz,+
+	ld b,a
+	ld a,(wOpenedMenuType)
+	cp $05
+	ld a,b
+	jr nz,+
+	ld a,(wMapMenu.warpIndex)
+	add $0b
+	add b
++
+
 	call _getTreeWarpDataForRoom
 	ret c
 	inc hl
@@ -7890,6 +7920,12 @@ _mapMenu_drawWarpSites:
 
 	; If so, draw the sprite
 	ld a,c
+
+	cp $84
+	jr c,+
+	ld a,$77
++
+
 	ld hl,wTmpcec0
 	call _mapMenu_drawSpriteAtRoomIndex
 @nextTree:
@@ -8577,11 +8613,11 @@ _dungeonMapFloorListStartPositions:
 ; b1: Y position at which to draw the Boss symbol in a dungeon (next to the floor indicator)
 _dungeonMapSymbolPositions:
 	.ifdef ROM_AGES
-		.db $50 $00
 		.db $50 $50
 		.db $50 $50
-		.db $50 $58
-		.db $50 $58
+		.db $50 $50
+		.db $50 $60	;$58
+		.db $50 $68	;$58
 		.db $50 $50
 		.db $50 $00
 		.db $48 $50
@@ -8692,10 +8728,17 @@ mapIconOamTable:
 	.db $02
 	.db $08 $00 $34 $03
 	.db $08 $08 $34 $23
-@mapIcon03: ; Past house
+
+@mapIcon03: ; Stump
 	.db $02
-	.db $08 $00 $32 $03
-	.db $08 $08 $32 $23
+	.db $08 $00 $2c $03
+	.db $08 $08 $2e $03
+
+;@mapIcon03: ; Past house
+;	.db $02
+;	.db $08 $00 $32 $03
+;	.db $08 $08 $32 $23
+
 @mapIcon04: ; Present maku tree
 	.db $02
 	.db $08 $00 $28 $03
@@ -9001,11 +9044,12 @@ mapIconOamTable:
 _mapMenu_dungeonEntranceText:
 
 	.ifdef ROM_AGES
-		.db $04  $80|(<TX_0307)
+		.db $d3  	 (<TX_0307)
 		.db $24  $80|(<TX_0309)
-		.db $46  $80|(<TX_0337)
-		.db $66  $80|(<TX_0311)
-		.db $91  $80|(<TX_0303)
+		.db $46  $80|(<TX_0337)		;change later
+		.db $50  	 (<TX_0311)
+		.db $2a  	 (<TX_0303)
+
 		.db $bb  $80|(<TX_0305)
 		.db $26      (<TX_0306)
 		.db $56      (<TX_030a)

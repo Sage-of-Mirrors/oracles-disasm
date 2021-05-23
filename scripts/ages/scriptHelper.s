@@ -1213,7 +1213,7 @@ nayruScript07:
 
 	setanimation $07
 	writeobjectbyte Interaction.direction, $07
-	asm15 playSound, SND_ECHO
+	asm15 playSound, SND_ECHOES
 	wait 210
 
 	xorcfc0bit 0
@@ -1409,7 +1409,7 @@ ralph_updateGravity:
 
 ;;
 ralph_restoreMusic:
-	ld a,MUS_OVERWORLD_PRES
+	ld a,MUS_OVERWORLD
 	ld (wActiveMusic2),a
 	ld (wActiveMusic),a
 	jp playSound
@@ -8682,3 +8682,204 @@ forceLinksDirection:
 	ld (hl),a
 	ld a,$80
 	jp setLinkForceStateToState08_withParam
+
+
+; ==============================================================================
+; INTERACID_WATER_PUSHBLOCK
+; ==============================================================================
+simpleScript_waterfallEmptyingAbove:
+	ss_wait 20
+	ss_setinterleavedtile $54, $1b, $f9, DIR_DOWN
+	ss_wait 20
+
+	ss_settile $54, $1b
+	ss_wait 20
+
+	ss_setinterleavedtile $63, $1b, $f9, DIR_DOWN
+	ss_setinterleavedtile $64, $1b, $f9, DIR_DOWN
+	ss_wait 20
+	
+	ss_settile $63, $1b
+	ss_settile $64, $1b
+	ss_wait 20
+
+	ss_setinterleavedtile $73, $06, $ba, DIR_DOWN
+	ss_setinterleavedtile $74, $06, $ba, DIR_DOWN
+	ss_wait 20
+	
+	ss_settile $73, $06
+	ss_settile $74, $06
+	ss_wait 10
+	ss_end
+
+simpleScript_waterfallEmptyingBelow:
+	ss_wait 20
+	ss_setinterleavedtile $03, $55, $ff, DIR_DOWN
+	ss_setinterleavedtile $04, $56, $ff, DIR_DOWN
+	ss_wait 20
+
+	ss_settile $03, $55
+	ss_settile $04, $56
+	ss_wait 20
+
+	ss_setinterleavedtile $13, $60, $fe, DIR_DOWN
+	ss_setinterleavedtile $14, $61, $fe, DIR_DOWN
+	ss_wait 20
+
+	ss_settile $13, $60
+	ss_settile $14, $61
+	ss_wait 20	
+
+	ss_setinterleavedtile $23, $1b, $fa, DIR_DOWN
+	ss_setinterleavedtile $24, $1b, $fa, DIR_DOWN
+	ss_wait 20
+
+	ss_settile $23, $1b
+	ss_settile $24, $1b
+	ss_wait 20	
+
+	ss_setinterleavedtile $22, $f9, $fa, DIR_LEFT
+	ss_setinterleavedtile $32, $1b, $fa, DIR_DOWN
+	ss_setinterleavedtile $33, $1a, $fa, DIR_DOWN
+	ss_wait 20
+
+	ss_settile $22, $f9
+	ss_settile $32, $1b
+	ss_settile $33, $1a
+	ss_wait 20	
+
+	ss_setinterleavedtile $21, $f9, $fa, DIR_LEFT
+;	ss_setinterleavedtile $31, $f9, $fa, DIR_LEFT
+	ss_setinterleavedtile $41, $1b, $fa, DIR_DOWN
+	ss_setinterleavedtile $42, $1b, $fa, DIR_DOWN
+	ss_wait 20
+
+	ss_settile $21, $f9
+;	ss_settile $31, $f9
+	ss_settile $41, $1b
+	ss_settile $42, $1b
+	ss_wait 20
+
+	ss_setinterleavedtile $51, $1b, $fa, DIR_DOWN
+	ss_setinterleavedtile $52, $1b, $fa, DIR_DOWN
+	ss_wait 20
+
+	ss_settile $51, $1b
+	ss_settile $52, $1b
+	ss_wait 20	
+
+	ss_setinterleavedtile $61, $1a, $fa, DIR_DOWN
+	ss_setinterleavedtile $62, $1b, $fa, DIR_DOWN
+	ss_wait 20
+
+	ss_settile $61, $1a
+	ss_settile $62, $1b
+	ss_wait 20	
+
+	ss_setinterleavedtile $71, $45, $ff, DIR_DOWN
+	ss_setinterleavedtile $72, $46, $ff, DIR_DOWN
+	ss_wait 20
+
+	ss_settile $71, $45
+	ss_settile $72, $46
+	ss_wait 60
+	ss_end
+
+simpleScript_waterfallFillingAbove:
+	ss_wait 20
+	ss_setinterleavedtile $54, $1b, $f9, DIR_UP
+	ss_wait 20
+
+	ss_settile $54, $f9
+	ss_wait 20
+
+	ss_setinterleavedtile $63, $1b, $f9, DIR_UP
+	ss_setinterleavedtile $64, $1b, $f9, DIR_UP
+	ss_wait 20
+	
+	ss_settile $63, $f9
+	ss_settile $64, $f9
+	ss_wait 20
+
+	ss_setinterleavedtile $73, $06, $ba, DIR_UP
+	ss_setinterleavedtile $74, $06, $ba, DIR_UP
+	ss_wait 20
+	
+	ss_settile $73, $ba
+	ss_settile $74, $ba
+	ss_wait 10
+	ss_end
+
+simpleScript_waterfallFillingBelow:
+	ss_wait 20
+	ss_setinterleavedtile $03, $55, $ff, DIR_UP
+	ss_setinterleavedtile $04, $56, $ff, DIR_UP
+	ss_wait 20
+
+	ss_settile $03, $ff
+	ss_settile $04, $ff
+	ss_wait 20
+
+	ss_setinterleavedtile $13, $60, $fe, DIR_UP
+	ss_setinterleavedtile $14, $61, $fe, DIR_UP
+	ss_wait 20
+
+	ss_settile $13, $fe
+	ss_settile $14, $fe
+	ss_wait 20	
+
+	ss_setinterleavedtile $23, $1b, $fa, DIR_UP
+	ss_setinterleavedtile $24, $1b, $fa, DIR_UP
+	ss_wait 20
+
+	ss_settile $23, $fa
+	ss_settile $24, $fa
+	ss_wait 20	
+
+	ss_setinterleavedtile $22, $f9, $fa, DIR_RIGHT
+	ss_setinterleavedtile $32, $1b, $fa, DIR_UP
+	ss_setinterleavedtile $33, $1a, $fa, DIR_UP
+	ss_wait 20
+
+	ss_settile $22, $fa
+	ss_settile $32, $fa
+	ss_settile $33, $fa
+	ss_wait 20	
+
+	ss_setinterleavedtile $21, $f9, $fa, DIR_RIGHT
+;	ss_setinterleavedtile $31, $f9, $fa, DIR_RIGHT
+	ss_setinterleavedtile $41, $1b, $fa, DIR_UP
+	ss_setinterleavedtile $42, $1b, $fa, DIR_UP
+	ss_wait 20
+
+	ss_settile $21, $fa
+;	ss_settile $31, $fa
+	ss_settile $41, $fa
+	ss_settile $42, $fa
+	ss_wait 20
+
+	ss_setinterleavedtile $51, $1b, $fa, DIR_UP
+	ss_setinterleavedtile $52, $1b, $fa, DIR_UP
+	ss_wait 20
+
+	ss_settile $51, $fa
+	ss_settile $52, $fa
+	ss_wait 20	
+
+	ss_setinterleavedtile $61, $1a, $fa, DIR_UP
+	ss_setinterleavedtile $62, $1b, $fa, DIR_UP
+	ss_wait 20
+
+	ss_settile $61, $fa
+	ss_settile $62, $fa
+	ss_wait 20	
+
+	ss_setinterleavedtile $71, $45, $ff, DIR_UP
+	ss_setinterleavedtile $72, $46, $ff, DIR_UP
+	ss_wait 20
+
+	ss_settile $71, $ff
+	ss_settile $72, $ff
+	ss_wait 60
+	ss_end
+

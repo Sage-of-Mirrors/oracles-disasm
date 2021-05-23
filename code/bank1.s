@@ -1631,6 +1631,8 @@ getPaletteFadeTransitionData:
 	; Don't do a transition in symmetry city if the tuni nut was fixed
 	call checkSymmetryCityPaletteTransition
 	ret nc
+	call checkDesertLakePaletteTransition
+	ret nc
 
 	ld a,(wActiveGroup)
 	ld hl,paletteTransitionData
@@ -1725,6 +1727,30 @@ checkSymmetryCityPaletteTransition:
 	xor a
 	ret
 
+checkDesertLakePaletteTransition:
+	ld a,(wActiveGroup)
+	or a
+	jr nz,@ok
+
+	ld a,(wPastRoomFlags+<ROOM_AGES_120)
+	bit 0,a
+	jr z,@ok
+
+	ld a,(wActiveRoom)
+	cp $43
+	jr z,@notOk
+	cp $53
+	jr z,@notOk
+	cp $63
+	jr z,@notOk
+	cp $73
+	jr z,@notOk
+@ok:
+	scf
+	ret
+@notOk:
+	xor a
+	ret
 
 .else ; ROM_SEASONS
 
@@ -3806,7 +3832,7 @@ _func_5c18:
 	ld a,(wTilesetFlags)
 	and TILESETFLAG_DUNGEON
 	call nz, offsetForDungeonStump
-+
+;+
 	jp resetCamera
 
 ;;
@@ -4231,6 +4257,23 @@ checkPlayRoomMusic:
 	ld a, MUS_SADNESS
 	ld (wActiveMusic2),a
 ++
+
+	ld a,(wActiveMusic2)
+	cp MUS_GERUDO_VALLEY
+	jr nz,+++
+
+	ld a,(wActiveGroup)
+	or a
+	jr nz,+++
+
+	ld a,(wPastRoomFlags+<ROOM_AGES_120)
+	bit 0,a
+	jr nz,+++
+
+	ld a, MUS_OVERWORLD
+	ld (wActiveMusic2),a	
+
++++
 .endif
 
 	ld a,(wActiveMusic2)

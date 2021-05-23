@@ -62,6 +62,7 @@ _initSound:
 	ld c,@readFunctionEnd-@readFunction+2
 	ld hl,@readFunction
 	ld de,wMusicReadFunction
+
 -
 	ldi a,(hl)
 	ld (de),a
@@ -90,6 +91,7 @@ _initSound:
 ; @param	a	Volume (0-3)
 ;
 _updateMusicVolume:
+
 	push bc
 	push de
 	push hl
@@ -2450,10 +2452,6 @@ _waveformTable:
 
 	.include "audio/ages/soundChannelData.s"
 
-	.ifdef BUILD_VANILLA
-		.db $ff $ff $ff
-	.endif
-
 .else; ROM_SEASONS
 	.include "audio/seasons/soundChannelPointers.s"
 	.include "audio/seasons/soundPointers.s"
@@ -2464,7 +2462,4 @@ _waveformTable:
 
 	.include "audio/seasons/soundChannelData.s"
 
-	.ifdef BUILD_VANILLA
-		.dsb 10 $ff
-	.endif
 .endif

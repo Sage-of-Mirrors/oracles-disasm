@@ -2049,7 +2049,7 @@ interactionCode70:
 	jr z,@@lostGame
 
 @@wonGame:
-	ld a,SND_CRANEGAME
+	ld a,SND_FILLED_HEART_CONTAINER
 	call playSound
 	jr ++
 
@@ -5913,6 +5913,7 @@ interactionCode90:
 	.dw _miscPuzzles_subid21
 	.dw _miscPuzzles_subid22
 	.dw _miscPuzzles_subid23
+	.dw _miscPuzzles_subid24
 
 
 ; Boss key puzzle in D6
@@ -7313,6 +7314,88 @@ _miscPuzzles_subid23:
 	xor $08
 	ld (hl),a ; [wcc50]
 +
+	jp interactionDelete
+
+_miscPuzzles_subid24:
+	ld e,Interaction.state
+	ld a,(de)
+	rst_jumpTable
+	.dw @state0
+	.dw @state1
+	.dw @state2
+
+@state0:
+	call getThisRoomFlags
+	and ROOMFLAG_80
+	jp nz,@state2
+	ld a,$01
+	ld (de),a
+
+@state1:
+	inc e		;ld e,Interaction.substate
+
+	;a has substate
+	ld a,(de)
+;	inc a
+	inc a
+	ld h,d
+	ld l,Interaction.var03
+	call checkFlag
+	jp nz,interactionDelete
+
+	ld a,(de)
+	rst_jumpTable
+	.dw @@substate0
+	.dw @@substate1
+	.dw @@substate2
+	.dw @@substate3
+	.dw interactionIncState
+
+@@substate0
+	ldbc $32,$33
+	jp @@checkIfGraveMoved
+
+@@checkIfGraveMoved:
+
+
+	ld a,c
+	ld hl,wRoomLayout
+	rst_addAToHl
+	ld a,(hl)
+	cp TILEINDEX_OVERWORLD_STANDARD_GROUND
+	ret nz
+
+	ld a,b
+	ld hl,wRoomLayout
+	rst_addAToHl
+	ld a,(hl)
+	cp TILEINDEX_GRAVE_STATIONARY
+	ret nz
+
+	call interactionIncSubstate
+	ld a,(hl)
+	dec a
+	ld l,Interaction.var03
+	jp setFlag
+
+@@substate1:
+	ldbc $53,$52
+	jp @@checkIfGraveMoved
+
+@@substate2:
+	ldbc $36,$35
+	jp @@checkIfGraveMoved
+
+@@substate3:
+	ldbc $44,$54
+	jp @@checkIfGraveMoved
+
+@state2:
+	ld hl,wRoomLayout + $31
+	ld a,TILEINDEX_GRAVE_HIDING_DOOR
+	ld (hl),a
+	call getThisRoomFlags
+	set ROOMFLAG_BIT_80,(hl)
 	jp interactionDelete
 
 

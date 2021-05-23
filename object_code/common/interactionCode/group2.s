@@ -1722,7 +1722,7 @@ interactionCode50:
 	ld l,Interaction.zh
 	ld (hl),$00
 
-	ld a,MUS_FAIRY
+	ld a,MUS_FAIRY_FOUNTAIN
 	ld (wActiveMusic),a
 	jp playSound
 
