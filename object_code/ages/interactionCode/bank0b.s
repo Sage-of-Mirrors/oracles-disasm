@@ -1226,7 +1226,7 @@ interactionCode9e:
 
 @@xor:
 	ld a,(hl)
-	xor $01
+	xor ROOMFLAG_LAYOUTSWAP
 	ldi (hl),a
 	ret
 
@@ -2012,7 +2012,7 @@ _sidescrollPlatform_updateLinkSubpixels:
 
 
 ; ==============================================================================
-; INTERACID_TOUCHING_BOOK
+; INTERACID_GHASTLY_DOLL
 ; ==============================================================================
 interactionCodea5:
 	ld e,Interaction.state
@@ -2132,7 +2132,7 @@ interactionCodea5:
 	jp interactionIncState
 
 @state7:
-	ldbc TREASURE_TRADEITEM, TRADEITEM_MAGIC_OAR
+	ldbc TREASURE_TRADEITEM, TRADEITEM_LIFE_POTION
 	call createTreasure
 	ret nz
 	ld e,Interaction.counter1

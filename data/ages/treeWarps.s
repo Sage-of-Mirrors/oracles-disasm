@@ -10,31 +10,19 @@
 ;   b2: map popup index (should show the tree type)
 
 presentTreeWarps:
-	.db $ac $54 SCENT_SEEDS_POPUP ; This entry is ignored unless the scent seedling is planted
-	.db $04 $34 EMBER_SEEDS_POPUP
-	.db $71 $26 SCENT_SEEDS_POPUP
-	.db $84 $34 GALE_SEEDS_POPUP
-	.db $85 $34 PEGASUS_SEEDS_POPUP
-	.db $86 $34 EMBER_SEEDS_POPUP
-	.db $87 $34 MYSTERY_SEEDS_POPUP
-	;.db $13 $55 $18
-	;.db $78 $55 $15
-	;.db $c1 $34 $18
-	;.db $00 $00 $00
-	;.db $00 $00 $00
-	;.db $00 $00 $00
+	.db <ROOM_AGES_0ac $54 SCENT_SEEDS_POPUP ; This entry is ignored unless the scent seedling is planted
+	.db <ROOM_AGES_004 $34 EMBER_SEEDS_POPUP
+	.db <ROOM_AGES_071 $35 SCENT_SEEDS_POPUP
+	.db <ROOM_AGES_084 $34 GALE_SEEDS_POPUP
+	.db <ROOM_AGES_085 $34 PEGASUS_SEEDS_POPUP
+	.db <ROOM_AGES_086 $34 EMBER_SEEDS_POPUP
+	.db <ROOM_AGES_087 $34 MYSTERY_SEEDS_POPUP
 	.db $00 $00 $00
 	.db $00 $00 $00 ; Extra, 9th entry here since the 1st one is sometimes skipped
 
 pastTreeWarps:
-	;.db $08 $43 $17		;pegasus
-	;.db $25 $44 $16		;scent
-	;.db $2d $36 $19		;mystery
-	;.db $78 $55 $15		;ember
-	;.db $80 $36 $19		;mystery
-	;.db $c1 $34 $18		;gale
-	.db $00 $00 $00
-	.db $00 $00 $00
+	.db <ROOM_AGES_112 $54 GALE_SEEDS_POPUP
+	.db <ROOM_AGES_171 $35 SCENT_SEEDS_POPUP
 	.db $00 $00 $00
 	.db $00 $00 $00
 	.db $00 $00 $00

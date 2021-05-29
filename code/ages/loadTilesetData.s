@@ -33,6 +33,8 @@ loadTilesetData_body:
 	bit TILESETFLAG_BIT_DUNGEON,a
 	jr z,+
 
+	ld a,(wDungeonIndex)
+	ld (wLastDungeonIndex),a
 	ld a,e
 	and $0f
 	ld (wDungeonIndex),a

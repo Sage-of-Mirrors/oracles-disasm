@@ -233,6 +233,7 @@ interactionCodeTable: ; $3b8b
 	.dw agesInteractionsBank10.interactionCodee6 ; 0xe6
 	.dw agesInteractionsBank10.interactionCodee7 ; 0xe7
 	.dw agesInteractionsBank10.interactionCodee8 ; 0xe8
+	.dw agesInteractionsBank10.interactionCodee9 ; 0xe9	
 
 .else; ROM_SEASONS
 

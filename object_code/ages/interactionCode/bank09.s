@@ -471,22 +471,20 @@ interactionCode40:
 
 _soldierSubid00:
 _soldierSubid01:
-	ld a,GLOBALFLAG_FINISHEDGAME
-	call checkGlobalFlag
-	jp nz,interactionDelete
+	ld a,>TX_0a00
+	call interactionSetHighTextIndex
+	call checkInteractionState
+	jr nz,@state1
 
-	ld a,GLOBALFLAG_0b
-	call checkGlobalFlag
-	ld e,Interaction.var03
-	ld a,(de)
-	jr nz,_label_09_090
-	or a
-	jp nz,interactionDelete
-	jr _soldierSubid0c
-
-_label_09_090:
-	or a
-	jp z,interactionDelete
+@state0:
+	call _soldierInitGraphicsAndLoadScript
+	call interactionSetAlwaysUpdateBit
+@state1:
+	call interactionRunScript
+	jp c,interactionDelete
+	jp interactionAnimateAsNpc
+	call interactionInitGraphics
+	jp interactionIncState
 
 
 _soldierSubid0c:
@@ -768,9 +766,9 @@ _soldierSubid0d:
 	jr nz,@state1
 
 @state0:
-	ld a,GLOBALFLAG_FINISHEDGAME
-	call checkGlobalFlag
-	jp z,interactionDelete
+;	ld a,GLOBALFLAG_FINISHEDGAME
+;	call checkGlobalFlag
+;	jp z,interactionDelete
 
 	call _soldierInitGraphicsAndLoadScript
 	ld e,Interaction.var03
@@ -790,8 +788,8 @@ _soldierSubid0d:
 	jr @state1
 
 @behaviours:
-	.db $01 $02 $00 $00 $00 $00 $00 $03
-	.db $00 $00 $00 $00 $00 $00 $00 $00
+	.db $00 $03 $00 $04 $02 $00 $00 $04
+	.db $03 $00 $01 $00 $00 $00 $00 $00
 
 @state1:
 	call interactionRunScript
@@ -1413,6 +1411,43 @@ getGameProgress_1:
 	.db TREASURE_SWORD
 
 ;;
+; @param[out]	b
+;			$00 before starting quest
+;			$01 if got sword
+;			$02 if got satchel
+;			$03 if got bracelet
+;			$04 if got a trade item
+;			$05 if got Harp of Ages
+;			$06 if got switchhook
+;			$07 if got gift
+;			$08 if game finished (unlinked only)
+;Gamma's version
+getGameProgress_2:
+	ld b,$08
+	ld a,GLOBALFLAG_FINISHEDGAME
+	call checkGlobalFlag
+	ret nz
+
+	ld hl,@itemTable
+@checkItemObtained:
+	dec b
+	ret z
+	ldi a,(hl)
+	call checkTreasureObtained
+	ret c
+	jr @checkItemObtained
+
+
+@itemTable:
+	.db TREASURE_NAYRUS_GIFT
+	.db TREASURE_SWITCH_HOOK
+	.db TREASURE_HARP
+	.db TREASURE_TRADEITEM
+	.db TREASURE_BRACELET
+	.db TREASURE_SEED_SATCHEL
+	.db TREASURE_SWORD
+
+;;
 ; @param[out]	b	$00 before beating d2;
 ;			$01 if beat d2;
 ;			$02 if beat d4;
@@ -1422,7 +1457,7 @@ getGameProgress_1:
 ;			$06 if beat veran but not twinrova (linked only);
 ;			$07 if game finished (unlinked only)
 ;Gamma's version
-getGameProgress_2:
+getGameProgress_3:
 	ld b,$07
 	ld a,GLOBALFLAG_FINISHEDGAME
 	call checkGlobalFlag
@@ -1512,6 +1547,7 @@ checkNpcShouldExistAtGameStage_body:
 	jr --
 +
 	or $01
+
 	ret
 
 @table:
@@ -1522,6 +1558,7 @@ checkNpcShouldExistAtGameStage_body:
 	.dw @data4
 	.dw @data5
 	.dw @data6
+	.dw @data7
 
 @data0: ; INTERACID_FEMALE_VILLAGER subids 1-2
 	.dw @@subid1
@@ -1586,6 +1623,20 @@ checkNpcShouldExistAtGameStage_body:
 	.db $02 $03 $04 $05 $ff
 @@subid4:
 	.db $06 $07 $ff
+
+@data7: ; INTERACID_OLD_LADY subids 0-5
+	.dw @@subid0
+	.dw @@subid1
+	.dw @@subid2
+	.dw @@subid3	
+@@subid0:
+	.db $00 $ff
+@@subid1:
+	.db $01 $02 $03 $ff
+@@subid2:
+	.db $04 $05 $06 $ff	
+@@subid3:
+	.db $07 $08 $ff
 
 
 miscMan2ScriptTable:
@@ -4595,15 +4646,29 @@ interactionCode52:
 	.dw @runSubid04
 	.dw @runSubid05
 	.dw @runSubid06
-  .dw @runSubid07 ; Old man that gives Link seed satchel
+    .dw @runSubid07 ; Old man that gives Link seed satchel
+
 
 ; Old man who takes a secret to give you the shield (same spot as subid $02)
 @runSubid00:
+	ld a,>TX_0b00
+	call interactionSetHighTextIndex
 	call checkInteractionState
 	jr nz,@@state1
 
-
 @@state0:
+	ld e,Interaction.oamFlags
+	ld a,$03
+	ld (de),a
+
+	callab getGameProgress_2
+	ld a,$04
+	cp b			;has trade item
+	jr z,+
+	ld h,d
+	ld l,Interaction.subid
+	inc (hl)
++
 	call @loadScriptAndInitGraphics
 @@state1:
 	call interactionRunScript
@@ -4751,8 +4816,8 @@ interactionCode52:
   
 
 @scriptTable:
-	.dw mainScripts.oldManScript_givesShieldUpgrade
-	.dw mainScripts.oldManScript_givesBookOfSeals
+	.dw mainScripts.oldManScript_givesLabrinthKey
+	.dw mainScripts.oldManScriptSubid01
 	.dw mainScripts.oldManScript_givesFairyPowder
   .dw 0
   .dw 0
@@ -5893,6 +5958,8 @@ interactionCode5b:
 ; INTERACID_MASK_SALESMAN
 ; ==============================================================================
 interactionCode5c:
+	ld a,>TX_0b00
+	call interactionSetHighTextIndex
 	call checkInteractionState
 	jr nz,@state1
 
@@ -8835,5 +8902,7 @@ goronDanceScriptTable:
 	.dw mainScripts.goron_subid00Script
 	.dw mainScripts.goronDanceScript_failedRound
 	.dw mainScripts.goronDanceScript_givePrize
+
+
 
 .ends

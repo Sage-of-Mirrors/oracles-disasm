@@ -345,9 +345,9 @@ interactionCode12:
 	.dw @subid02
 	.dw @subid03
 	.dw @subid04
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 	.dw @subid05
-.endif
+;.endif
 
 
 ; Show text upon entering a dungeon
@@ -386,19 +386,23 @@ interactionCode12:
 	ld a,$01
 .endif
 	ld (wSpinnerState),a
-
 @initialized:
 	call objectCheckCollidedWithLink_notDead
 	ret nc
-
+@showText:
 	ld a,(wDungeonIndex)
 	ld hl,@dungeonTextIndices
 	rst_addAToHl
 	ld c,(hl)
 	ld b,>TX_0200
 	call showText
+@initializedNoText:
 	call setDeathRespawnPoint
 	jp interactionDelete
+
+
+
+
 
 
 ; Text shown on entering a dungeon. One byte per dungeon.
@@ -583,6 +587,41 @@ interactionCode12:
 	ld (de),a
 	ret
 @@state2:
+	jp interactionDelete
+
+.else ; ROM_AGES
+@subid05:
+	call checkInteractionState
+	jr nz,@@state1
+
+	call objectGetTileAtPosition
+	ld a,(wEnteredWarpPosition)
+	cp l
+	jp nz,interactionDelete
+	call interactionIncState
+	call interactionSetAlwaysUpdateBit
+	ld a,$81
+	ld (wDisabledObjects),a
+	ld (wMenuDisabled),a
+@@state1:
+	ld a,(wPaletteThread_mode)
+	or a
+	ret nz
+
+	ld a,(wLastDungeonIndex)
+	ld b,a
+	ld a,(wDungeonIndex)
+	cp b
+	call nz,initializeDungeonStuff
+
+	ld e,Interaction.var03
+	ld a,(de)
+	or a
+	call nz,@showText
+
+	xor a
+	ld (wDisabledObjects),a
+	ld (wMenuDisabled),a
 	jp interactionDelete
 .endif
 

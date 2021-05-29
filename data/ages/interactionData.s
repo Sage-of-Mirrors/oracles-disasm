@@ -257,6 +257,7 @@ interactionData:
 	/* $e6 */ m_InteractionData $00 $60 $b0
 	/* $e7 */ m_InteractionData $00 $00 $00
 	/* $e8 */ m_InteractionData $7d $00 $00
+	/* $e9 */ m_InteractionData $00 $00 $00	
 
 interaction60SubidData:
 interaction63SubidData:
@@ -307,7 +308,7 @@ interaction63SubidData:
 	m_InteractionData $78 $06 $50
 	m_InteractionData $78 $08 $43
 	m_InteractionData $78 $08 $53
-	m_InteractionData $00 $00 $00
+	m_InteractionData $00 $00 $00 ; fairy powder?
 	m_InteractionData $79 $00 $00
 	m_InteractionData $79 $04 $53
 	m_InteractionData $79 $04 $00
@@ -350,7 +351,7 @@ interaction18SubidData:
 	m_InteractionData $81 $1c $53
 	m_InteractionData $83 $0a $04
 	m_InteractionData $83 $00 $33
-	m_InteractionData $82 $12 $32
+	m_InteractionData $82 $12 $32	;fairy powder
 	m_InteractionData $00 $00 $00
 	m_InteractionData $00 $00 $00
 	m_InteractionData $83 $06 $53
@@ -377,13 +378,13 @@ interactiond7SubidData:
 	m_InteractionData $00 $00 $00
 	m_InteractionData $80 $00 $53
 	m_InteractionData $80 $04 $22
-	m_InteractionData $80 $06 $03
-	m_InteractionData $80 $0a $33
-	m_InteractionData $80 $0e $33
+	m_InteractionData $80 $06 $03	;ghastly doll
+	m_InteractionData $80 $0a $33	;life potion
+	m_InteractionData $80 $0e $33	;
 	m_InteractionData $80 $12 $13
 	m_InteractionData $80 $16 $12
 	m_InteractionData $80 $18 $32
-	m_InteractionData $80 $1a $13
+	m_InteractionData $80 $1a $23	;Sparring Book		$13
 	m_InteractionData $81 $00 $33
 	m_InteractionData $81 $04 $33
 	m_InteractionData $81 $88 $13
@@ -421,7 +422,7 @@ interaction80SubidData:
 	m_InteractionData $6c $0c $04
 	m_InteractionData $82 $1a $53
 	m_InteractionData $82 $1a $53
-	m_InteractionData $82 $12 $32
+	m_InteractionData $82 $12 $32		;fairy powder
 	m_InteractionData $7a $16 $04
 	m_InteractionData $6f $00 $66
 	m_InteractionData $6f $90 $67
@@ -730,9 +731,9 @@ interactiona0SubidData:
 	m_InteractionData $45 $00 $30
 	m_InteractionData $00 $c4 $90
 
-interactiona5SubidData:
-	m_InteractionData $80 $1a $10
-	m_InteractionData $81 $9a $30
+interactiona5SubidData:	;ghastly doll, touching book
+	m_InteractionData $80 $06 $00				;$80 $1a $10
+	m_InteractionData $82 $12 $11				;$81 $9a $30
 
 interactiona7SubidData:
 	m_InteractionData $4b $10 $00

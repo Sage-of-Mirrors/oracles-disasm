@@ -161,18 +161,18 @@ treasureDisplayData_boomerang:
 	.db TREASURE_BOOMERANG          $9d $04 $00 $00 $00 $40
 
 treasureDisplayData_tradeItem:
-	.db TREASURE_TRADEITEM          $c0 $00 $c1 $00 $ff $09
-	.db TREASURE_TRADEITEM          $c2 $03 $c2 $23 $ff $0a
-	.db TREASURE_TRADEITEM          $c3 $00 $c4 $00 $ff $0b
-	.db TREASURE_TRADEITEM          $c5 $04 $c6 $04 $ff $0c
-	.db TREASURE_TRADEITEM          $da $05 $db $05 $ff $0d
-	.db TREASURE_TRADEITEM          $c7 $05 $c8 $05 $ff $0e
-	.db TREASURE_TRADEITEM          $c9 $01 $ca $01 $ff $0f
-	.db TREASURE_TRADEITEM          $d0 $01 $d1 $01 $ff $10
-	.db TREASURE_TRADEITEM          $d2 $05 $d3 $05 $ff $11
-	.db TREASURE_TRADEITEM          $d4 $03 $d5 $03 $ff $12
-	.db TREASURE_TRADEITEM          $d6 $01 $d7 $01 $ff $13
-	.db TREASURE_TRADEITEM          $d8 $00 $d9 $00 $ff $14
+	.db TREASURE_TRADEITEM          $c0 $00 $c1 $00 $ff $09 ; Cucco Book
+	.db TREASURE_TRADEITEM          $c2 $03 $c2 $23 $ff $0a ; Cucco Egg
+	.db TREASURE_TRADEITEM          $c3 $00 $c4 $00 $ff $0b ; Ghastly Doll
+	.db TREASURE_TRADEITEM          $c5 $04 $c6 $04 $ff $0c ; Iron Pot
+	.db TREASURE_TRADEITEM          $da $05 $db $05 $ff $0d ; Lava Soup
+	.db TREASURE_TRADEITEM          $c7 $05 $c8 $05 $ff $0e ; Goron Vase
+	.db TREASURE_TRADEITEM          $c9 $01 $ca $01 $ff $0f ; Fish Dinner
+	.db TREASURE_TRADEITEM          $d0 $01 $d1 $01 $ff $10 ; Megaphone
+	.db TREASURE_TRADEITEM          $d2 $05 $d3 $05 $ff $11 ; Mushroom
+	.db TREASURE_TRADEITEM          $d4 $03 $d5 $03 $ff $12 ; Wooden Bird
+	.db TREASURE_TRADEITEM          $d6 $01 $d7 $01 $ff $13 ; Oil
+	.db TREASURE_TRADEITEM          $d8 $00 $d9 $00 $ff $14 ; Phonograph
 
 treasureDisplayData_pirateBell:
 	.db TREASURE_PIRATES_BELL       $ec $02 $ed $02 $ff $48

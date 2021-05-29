@@ -553,141 +553,11 @@ interactionCode1b:
 	inc a
 	ld e,Interaction.state
 	ld (de),a
+interactionCode1f:
 	ret
 
 
-; ==============================================================================
-; INTERACID_SPECIAL_WARP
-; ==============================================================================
-interactionCode1f:
-	ld e,Interaction.subid
-	ld a,(de)
-	rst_jumpTable
-	.dw @subid0
-	.dw @subid1
-	.dw @subid2
 
-; Subid 0: Trigger a warp when Link dives touching this object
-@subid0:
-	call checkInteractionState
-	jr z,@@initialize
-
-	; Check that Link has collided with this object, he's not holding anything, and
-	; he's diving.
-	ld a,(wLinkSwimmingState)
-	rlca
-	ret nc
-	call objectCheckCollidedWithLink_notDeadAndNotGrabbing
-	ret nc
-
-	ld e,Interaction.var03
-	ld a,(de)
-	ld hl,@@warpData
-	rst_addDoubleIndex
-	ldi a,(hl)
-	ld (wWarpDestRoom),a
-	ld a,(hl)
-	ld (wWarpDestPos),a
-	ld a,$87
-	ld (wWarpDestGroup),a
-	ld a,$01
-	ld (wWarpTransition),a
-	ld a,$03
-	ld (wWarpTransition2),a
-	jp interactionDelete
-
-@@warpData:
-	.db $09 $01
-	.db $05 $03
-
-@@initialize:
-	ld a,$01
-	ld (de),a
-	ld a,$02
-	call objectSetCollideRadius
-
-	ld l,Interaction.xh
-	ld a,(hl)
-	ld l,Interaction.var03
-	ld (hl),a
-
-	ld l,Interaction.yh
-	ld c,(hl)
-	jp setShortPosition_paramC
-
-
-; Subid 1: a warp at the top of a waterfall
-@subid1:
-	ld e,Interaction.state
-	ld a,(de)
-	rst_jumpTable
-	.dw @subid1State0
-	.dw @subid1State1
-	.dw @subid1State2
-
-@subid1State0:
-	ld a,(wAnimalCompanion)
-	cp SPECIALOBJECTID_DIMITRI
-	jp nz,interactionDelete
-
-	ld bc,$0810
-	call objectSetCollideRadii
-	call objectCheckCollidedWithLink_notDeadAndNotGrabbing
-	call nc,interactionIncState
-	jp interactionIncState
-
-@subid1State1:
-	call objectCheckCollidedWithLink_notDeadAndNotGrabbing
-	ret c
-	jp interactionIncState
-
-@subid1State2:
-	ld a,d
-	ld (wcc90),a
-	ld a,(wLinkObjectIndex)
-	cp >w1Companion
-	ret nz
-	call objectCheckCollidedWithLink_notDeadAndNotGrabbing
-	ret nc
-	ld hl,@@warpDestVariables
-	jp setWarpDestVariables
-
-@@warpDestVariables:
-	m_HardcodedWarpA ROOM_AGES_5b8, $00, $93, $03
-
-
-; Subid 2: a warp in a cave in a waterfall
-@subid2:
-	ld a,d
-	ld (wDisableScreenTransitions),a
-	call checkInteractionState
-	jr z,@@initialize
-
-	call checkLinkCollisionsEnabled
-	ret nc
-	ld a,(wLinkObjectIndex)
-	bit 0,a
-	ret z
-
-	ld h,a
-	ld l,<w1Companion.yh
-	ld a,(hl)
-	cp $a8
-	ret c
-
-	ld a,$ff
-	ld (wDisabledObjects),a
-
-	ld hl,@@warpDestVariables
-	call setWarpDestVariables
-	jp interactionDelete
-
-@@warpDestVariables:
-	m_HardcodedWarpB ROOM_AGES_037, $0e, $22, $03
-
-@@initialize:
-	call interactionIncState
-	jp interactionSetAlwaysUpdateBit
 
 
 ; ==============================================================================
@@ -9701,219 +9571,56 @@ _boySubid02ScriptTable:
 ; INTERACID_OLD_LADY
 ; ==============================================================================
 interactionCode3d:
-	ld e,Interaction.state
-	ld a,(de)
-	rst_jumpTable
-	.dw @state0
-	.dw @state1
-
-@state0:
-	ld a,$01
-	ld (de),a
-
-	call interactionInitGraphics
-	call objectSetVisiblec2
-	call @initSubid
-
-	ld e,Interaction.enabled
-	ld a,(de)
-	or a
-	jp nz,objectMarkSolidPosition
-	ret
-
-@initSubid:
-	ld e,Interaction.subid
-	ld a,(de)
-	rst_jumpTable
-	.dw @initSubid0
-	.dw @loadScript
-	.dw @initSubid2
-	.dw @initSubid3
-	.dw @initSubid4
-	.dw @initSubid5
-
-@initSubid0:
-	ld a,$03
-	call interactionSetAnimation
-
-	; Check whether her grandson is stone
-	ld a,GLOBALFLAG_SAVED_NAYRU
-	call checkGlobalFlag
-	jr z,@loadScript
-
-	; Set var03 to nonzero if her grandson is stone, also change her position
-	ld a,$01
-	ld e,Interaction.var03
-	ld (de),a
-	ld bc,$4878
-	call interactionSetPosition
-
-@loadScript:
-	ld e,Interaction.subid
-	ld a,(de)
+	ldbc $07,$00
 	ld hl,_oldLadyScriptTable
-	rst_addDoubleIndex
+
+	
+; @param	b	(0-8)	(which data table)
+; @param	c	Subid "base"	(beginning subid)
+; @param	hl	script table
+_genericNPC:	
+	call checkInteractionState
+	jr nz,@@initialized
+
+	push hl
+	push bc
+	callab agesInteractionsBank09.getGameProgress_2
+	ld e,b
+
+	ld ($c6f2),a
+	pop bc
+;	ld c,$00
+	ld a,b		;input
+	ld b,e
+;	ld a,$07
+	call checkNpcShouldExistAtGameStage
+	pop hl
+	jp nz,interactionDelete
+
+	ld a,(de)	;Interaction.subid
+	sub c
+	rst_addDoubleIndex	;	hl = e.g. _oldLadyScriptTable
 	ldi a,(hl)
 	ld h,(hl)
 	ld l,a
-	jp interactionSetScript
-
-@initSubid2:
-	; This NPC only exists between saving Nayru and beating d7?
-	callab agesInteractionsBank09.getGameProgress_1
-	ld e,Interaction.subid
-	ld a,(de)
-	cp b
-	jp nz,interactionDelete
-	jr @loadScript
-
-@initSubid3:
-	ld e,Interaction.counter1
-	ld a,220
-	ld (de),a
-
-	ld a,$03
-	jp interactionSetAnimation
-
-@initSubid4:
-	ld a,$00
-	jr ++
-
-@initSubid5:
-	ld a,$09
-++
-	ld e,Interaction.var3f
-	ld (de),a
-	ld hl,mainScripts.linkedGameNpcScript
 	call interactionSetScript
+	call @initGraphicsAndIncState
+
+@@initialized:
 	call interactionRunScript
-	jr @state1
+	jp interactionAnimateAsNpc
 
-@state1:
-	ld e,Interaction.subid
-	ld a,(de)
-	rst_jumpTable
-	.dw @runSubid0
-	.dw @runSubid1
-	.dw @runSubid2
-	.dw @runSubid3
-	.dw @runSubid4
-	.dw @runSubid5
-
-
-; NPC with a grandson that is stone for part of the game
-@runSubid0:
-	call interactionRunScript
-
-	ld e,Interaction.var03
-	ld a,(de)
-	or a
-	jp z,interactionAnimateAsNpc
-	jp npcFaceLinkAndAnimate
-
-
-; Cutscene where her grandson gets turned to stone
-@runSubid1:
-	ld e,Interaction.substate
-	ld a,(de)
-	rst_jumpTable
-	.dw @@substate0
-	.dw @@substate1
-	.dw @@substate2
-	.dw @@substate3
-
-@@substate0:
-	call interactionAnimate
-	call interactionRunScript
-	jr nc,++
-
-	; Script ended
-	call interactionIncSubstate
-	ld l,Interaction.counter1
-	ld (hl),60
-	ret
-++
-	ld e,Interaction.counter2
-	ld a,(de)
-	or a
-	jp nz,interactionAnimate2Times
-	ret
-
-@@substate1:
-	call interactionDecCounter1
-	ret nz
-	ld (hl),20
-	jp interactionIncSubstate
-
-@@substate2:
-	call interactionDecCounter1
-	jp nz,interactionAnimate3Times
-	ld (hl),60
-	jp interactionIncSubstate
-
-@@substate3:
-	call interactionDecCounter1
-	ret nz
-	ld a,$ff
-	ld ($cfdf),a
-	ret
-
-
-; NPC in present, screen left from bipin&blossom's house
-@runSubid2:
-	call interactionRunScript
-	jp npcFaceLinkAndAnimate
-
-
-; Cutscene where her grandson is restored from stone
-@runSubid3:
-	ld e,Interaction.substate
-	ld a,(de)
-	rst_jumpTable
-	.dw @@substate0
-	.dw @@substate1
-	.dw @@substate2
-
-@@substate0:
-	call interactionDecCounter1
-	ret nz
-	call startJump
-	jp interactionIncSubstate
-
-@@substate1:
-	ld c,$20
-	call objectUpdateSpeedZ_paramC
-	ret nz
-
-	call interactionIncSubstate
-	ld l,Interaction.var38
-	ld (hl),$b4
-	jp @loadScript
-
-@@substate2:
-	ld h,d
-	ld l,Interaction.var38
-	dec (hl)
-	jr nz,++
-	ld a,$ff
-	ld ($cfdf),a
-++
-	call interactionRunScript
-	jp interactionAnimateBasedOnSpeed
-
-
-; Linked game NPC
-@runSubid4:
-@runSubid5:
-	call interactionRunScript
-	jp c,interactionDelete
-	jp npcFaceLinkAndAnimate
-
+@initGraphicsAndIncState:
+	call interactionInitGraphics
+	call objectMarkSolidPosition
+	jp interactionIncState
 
 _oldLadyScriptTable:
 	.dw mainScripts.oldLadySubid0Script
 	.dw mainScripts.oldLadySubid1Script
 	.dw mainScripts.oldLadySubid2Script
 	.dw mainScripts.oldLadySubid3Script
+
+
 
 .ends

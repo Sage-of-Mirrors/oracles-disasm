@@ -1737,14 +1737,16 @@ checkDesertLakePaletteTransition:
 	jr z,@ok
 
 	ld a,(wActiveRoom)
-	cp $43
-	jr z,@notOk
-	cp $53
-	jr z,@notOk
-	cp $63
-	jr z,@notOk
-	cp $73
-	jr z,@notOk
+	ld b,a
+	and $0f
+	sub $04
+	jr nc,@ok
+; In Ages area
+	ld a,b
+	sub $40
+	jr c,@ok
+	cp $40
+	jr c,@notOk
 @ok:
 	scf
 	ret
@@ -5027,10 +5029,10 @@ _checkSeedTreeRefillIndex:
 	; So visiting a tree which hasn't regrown yet will reset the counter...
 
 	pop de
-	;ld l,e
-	;ld h,d
-	;ld b,$08
-	;call clearMemory
+	ld l,e
+	ld h,d
+	ld b,$08
+	call clearMemory
 	pop hl
 	ret
 
@@ -5074,13 +5076,13 @@ initializeSeedTreeRefillData:
 
 .ifdef ROM_AGES
 	ld hl,wSeedTreeRefilledBitset
-	ld (hl),$f0
+	ld (hl),%11111111	;Index 0-7
 	inc l
-	ld (hl),$ff
+	ld (hl),%00000000	;Index 8-15
 
 .else; ROM_SEASONS
 
-	ld a,$fc
+	ld a,%11111100
 	ld (wSeedTreeRefilledBitset),a
 .endif
 

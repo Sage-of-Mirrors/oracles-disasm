@@ -3096,35 +3096,56 @@ boySubid0fScript:
 ; INTERACID_OLD_LADY
 ; ==============================================================================
 
-; NPC with a son that is stone for part of the game
 oldLadySubid0Script:
-	jumpifglobalflagset GLOBALFLAG_SAVED_NAYRU, @notStone
-	rungenericnpc TX_3800
-@notStone:
-	rungenericnpc TX_3801
-
-; Cutscene where her grandson gets turned to stone
-oldLadySubid1Script:
-	checkmemoryeq wTmpcfc0.genericCutscene.cfd1, $03
-	setspeed SPEED_280
-	movedown $0e
-	wait 4
-	moveleft $0d
-	wait 16
-	scriptend
-
-
-; NPC in present, screen left from bipin&blossom's house
-oldLadySubid2Script:
 	rungenericnpc TX_1809
 
+oldLadySubid1Script:
+	rungenericnpc TX_180a
 
-; Cutscene where her grandson is restored from stone
 oldLadySubid3Script:
-	setspeed SPEED_180
-	moveleft $16
-	scriptjump _boyRunAroundHouse
+	rungenericnpc TX_180b
 
+oldLadySubid2Script:
+@waiting:
+	initcollisions
+	checkabutton
+@pressedA:
+	disableinput
+	writeobjectbyte Interaction.pressedAButton, $00
+	jumpifroomflagset ROOMFLAG_ITEM, @alreadyGaveClock
+	showtext TX_0b07
+	jumpiftradeitemeq TRADEITEM_LIFE_POTION, @promptForTrade
+
+	; Don't have correct trade item
+	scriptjump @end
+
+
+@promptForTrade:
+	showtext TX_0b08
+	wait 30
+	jumpiftextoptioneq $00, @acceptedTrade
+
+	; Declined trade
+	showtext TX_0b0a
+	scriptjump @end
+
+@acceptedTrade:
+	showtext TX_0b09
+	wait 30
+	showtext TX_0b0b
+	wait 30
+	showtext TX_0b0c
+
+	giveitem TREASURE_TRADEITEM, TRADEITEM_WOOD_CLOCK
+	scriptjump @end
+
+@alreadyGaveClock:
+	showtext TX_0b09
+
+@end:
+	checktext
+	enableinput
+	scriptjump @waiting
 
 ; ==============================================================================
 ; INTERACID_VERAN_GHOST
@@ -3183,10 +3204,7 @@ boy2Subid2Script:
 ; ==============================================================================
 
 soldierSubid00Script:
-	jumpifglobalflagset $0b, script5df5
-	rungenericnpc TX_5900
-script5df5:
-	rungenericnpc TX_5901
+	loadscript scriptHelp.boredSoldierScript
 
 soldierSubid01Script:
 	jumpifglobalflagset $0b, script5dff
@@ -3384,6 +3402,7 @@ soldierSubid0dScript:
 	.dw @mode1_moveClockwise
 	.dw @mode2_moveCounterClockwise
 	.dw @mode3_moveVertically
+	.dw @mode4_moveVertically
 
 @mode0_genericNpc:
 	checkabutton
@@ -3394,17 +3413,17 @@ soldierSubid0dScript:
 	checkmemoryeq wcde0, $00
 	asm15 objectUnmarkSolidPosition
 @mode1Loop:
-	asm15 scriptHelp.hardhatWorker_setPatrolDirection, $02
-	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $60
+	asm15 scriptHelp.hardhatWorker_setPatrolDirection, DIR_DOWN
+	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $80
 	callscript @moveForVar3cFrames
-	asm15 scriptHelp.hardhatWorker_setPatrolDirection, $03
-	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $60
+	asm15 scriptHelp.hardhatWorker_setPatrolDirection, DIR_LEFT
+	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $40
 	callscript @moveForVar3cFrames
-	asm15 scriptHelp.hardhatWorker_setPatrolDirection, $00
-	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $60
+	asm15 scriptHelp.hardhatWorker_setPatrolDirection, DIR_UP
+	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $80
 	callscript @moveForVar3cFrames
-	asm15 scriptHelp.hardhatWorker_setPatrolDirection, $01
-	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $60
+	asm15 scriptHelp.hardhatWorker_setPatrolDirection, DIR_RIGHT
+	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $40
 	callscript @moveForVar3cFrames
 	scriptjump @mode1Loop
 
@@ -3412,17 +3431,17 @@ soldierSubid0dScript:
 	checkmemoryeq wcde0, $00
 	asm15 objectUnmarkSolidPosition
 @mode2Loop:
-	asm15 scriptHelp.hardhatWorker_setPatrolDirection, $02
+	asm15 scriptHelp.hardhatWorker_setPatrolDirection, DIR_DOWN
 	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $80
 	callscript @moveForVar3cFrames
-	asm15 scriptHelp.hardhatWorker_setPatrolDirection, $01
-	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $20
+	asm15 scriptHelp.hardhatWorker_setPatrolDirection, DIR_RIGHT
+	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $40
 	callscript @moveForVar3cFrames
-	asm15 scriptHelp.hardhatWorker_setPatrolDirection, $00
+	asm15 scriptHelp.hardhatWorker_setPatrolDirection, DIR_UP
 	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $80
 	callscript @moveForVar3cFrames
-	asm15 scriptHelp.hardhatWorker_setPatrolDirection, $03
-	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $20
+	asm15 scriptHelp.hardhatWorker_setPatrolDirection, DIR_LEFT
+	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $40
 	callscript @moveForVar3cFrames
 	scriptjump @mode2Loop
 
@@ -3430,13 +3449,25 @@ soldierSubid0dScript:
 	checkmemoryeq wcde0, $00
 	asm15 objectUnmarkSolidPosition
 @mode3Loop:
-	asm15 scriptHelp.hardhatWorker_setPatrolDirection, $02
-	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $c0
+	asm15 scriptHelp.hardhatWorker_setPatrolDirection, DIR_DOWN
+	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $a0
 	callscript @moveForVar3cFrames
-	asm15 scriptHelp.hardhatWorker_setPatrolDirection, $00
-	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $c0
+	asm15 scriptHelp.hardhatWorker_setPatrolDirection, DIR_UP
+	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $a0
 	callscript @moveForVar3cFrames
 	scriptjump @mode3Loop
+
+@mode4_moveVertically:
+	checkmemoryeq wcde0, $00
+	asm15 objectUnmarkSolidPosition
+@mode4Loop:
+	asm15 scriptHelp.hardhatWorker_setPatrolDirection, DIR_UP
+	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $a0
+	callscript @moveForVar3cFrames
+	asm15 scriptHelp.hardhatWorker_setPatrolDirection, DIR_DOWN
+	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $a0
+	callscript @moveForVar3cFrames
+	scriptjump @mode4Loop
 
 @moveForVar3cFrames:
 	jumpifobjectbyteeq Interaction.pressedAButton, $01, @@turnToLinkAndShowText
@@ -3668,7 +3699,7 @@ tokayMainThiefScript:
 
 ; Subid $05: NPC who trades meat for stink bag
 tokayCookScript:
-	loadscript scriptHelp.tokayCookScript
+	retscript
 
 
 ; Subid $06-$0a: NPC who holds something (ie. shovel or harp, but not shield upgrade).
@@ -4527,8 +4558,13 @@ dumbbellManScript:
 ; ==============================================================================
 ; INTERACID_OLD_MAN
 ; ==============================================================================
-oldManScript_givesShieldUpgrade:
-	loadscript scriptHelp.oldManScript_givesShieldUpgrade
+oldManScript_givesLabrinthKey:
+	loadscript scriptHelp.oldManScript_givesLabrinthKey
+
+oldManScriptSubid01:
+	setcollisionradii $12,$02
+	makeabuttonsensitive
+	rungenericnpclowindex <TX_0b24
 
 oldManScript_givesBookOfSeals:
 	loadscript scriptHelp.oldManScript_givesBookOfSeals
@@ -4809,160 +4845,7 @@ oldZoraScript:
 ; INTERACID_TOILET_HAND
 ; ==============================================================================
 toiletHandScript:
-	asm15 objectSetInvisible
-	initcollisions
-
-@npcLoop:
-	writeobjectbyte Interaction.pressedAButton, $00
-
-@waitForLinkToApproach:
-	wait 1
-	asm15 scriptHelp.toiletHand_checkLinkIsClose
-	jumpifmemoryset wcddb, $10, @waitForLinkToApproach
-
-	callscript @retreatAndReturnFromToilet
-@waitForLinkToRetreat:
-	jumpifobjectbyteeq Interaction.pressedAButton, $01, @pressedA
-	asm15 scriptHelp.toiletHand_checkLinkIsClose
-	jumpifmemoryset wcddb, $10, @linkRetreated
-	scriptjump @waitForLinkToRetreat
-
-@linkRetreated:
-	callscript @retreatIntoToilet
-	scriptjump @npcLoop
-
-@waitForLinkToReapproach:
-	asm15 scriptHelp.toiletHand_checkLinkIsClose
-	jumpifmemoryset wcddb, $10, ++
-	scriptjump @waitForLinkToReapproach
-++
-	scriptjump @npcLoop
-
-@pressedA:
-	disableinput
-	writeobjectbyte Interaction.pressedAButton, $00
-	jumpifroomflagset $20, @alreadyGaveStinkBag
-	showtextlowindex <TX_0b07
-	jumpiftradeitemeq TRADEITEM_STATIONERY, @promptForTrade
-
-	; Don't have correct trade item
-	callscript @retreatIntoToiletAfterDelay
-	enableinput
-	scriptjump @waitForLinkToReapproach
-
-@promptForTrade:
-	wait 30
-	showtextlowindex <TX_0b08
-	wait 30
-	jumpiftextoptioneq $00, @acceptedTrade
-
-	; Declined trade
-	showtextlowindex <TX_0b0a
-	callscript @retreatIntoToiletAfterDelay
-	enableinput
-	scriptjump @waitForLinkToReapproach
-
-@acceptedTrade:
-	showtextlowindex <TX_0b09
-	callscript @retreatIntoToiletAfterDelay
-	wait 30
-
-	showtextlowindex <TX_0b0b
-	callscript @retreatAndReturnFromToiletAfterDelay
-	wait 30
-	showtextlowindex <TX_0b0c
-	wait 30
-
-	giveitem TREASURE_TRADEITEM, $02
-	callscript @retreatIntoToiletAfterDelay
-	enableinput
-	scriptjump @waitForLinkToReapproach
-
-@alreadyGaveStinkBag:
-	showtextlowindex <TX_0b09
-	callscript @retreatIntoToiletAfterDelay
-	enableinput
-	scriptjump @waitForLinkToReapproach
-
-
-; Script functions
-
-@retreatAndReturnFromToiletAfterDelay:
-	wait 30
-@retreatAndReturnFromToilet:
-	writeobjectbyte Interaction.pressedAButton, $00
-	asm15 objectSetVisible
-	asm15 scriptHelp.toiletHand_disappear
-	checkobjectbyteeq Interaction.animParameter, $ff
-	asm15 scriptHelp.toiletHand_comeOutOfToilet
-	retscript
-
-
-@retreatIntoToiletAfterDelay:
-	wait 30
-@retreatIntoToilet:
-	asm15 scriptHelp.toiletHand_retreatIntoToilet
-
-_toiletHandScriptFunc_waitUntilFullyRetreated:
-	checkobjectbyteeq Interaction.animParameter, $ff
-	asm15 objectSetInvisible
-	retscript
-
-
-; Script runs when Link drops an object in a hole. var38 is set to an index based on which
-; item it was.
 toiletHandScript_reactToObjectInHole:
-	asm15 scriptHelp.toiletHand_checkVisibility
-
-	; This is weird. Did they mean to check bit 7? That would check visibility.
-	; Instead this checks his draw priority (bits 0-2).
-	jumpifmemoryset wcddb, $07, @retreatIntoToilet
-
-	wait 90
-	scriptjump @react
-
-@retreatIntoToilet:
-	asm15 scriptHelp.toiletHand_retreatIntoToiletIfNotAlready
-	callscript _toiletHandScriptFunc_waitUntilFullyRetreated
-	wait 45
-
-@react:
-	jumptable_objectbyte Interaction.var38
-	.dw @bomb
-	.dw @bombchu
-	.dw @somaria
-	.dw @emberSeed
-	.dw @scentSeed
-	.dw @galeSeed
-	.dw @mysterySeed
-	.dw @pot
-
-@bombchu:
-	showtextlowindex <TX_0b26
-	wait 30
-@bomb:
-	asm15 setScreenShakeCounter, 60
-	asm15 playSound, SND_EXPLOSION
-	wait 60
-	showtextlowindex <TX_0b25
-	scriptend
-@somaria:
-	showtextlowindex <TX_0b27
-	scriptend
-@emberSeed:
-	showtextlowindex <TX_0b28
-	scriptend
-@scentSeed:
-	showtextlowindex <TX_0b29
-	scriptend
-@galeSeed:
-	showtextlowindex <TX_0b2a
-	scriptend
-@mysterySeed:
-	showtextlowindex <TX_0b2b
-	scriptend
-@pot:
-	showtextlowindex <TX_0b0a
 	scriptend
 
 
@@ -4970,8 +4853,13 @@ toiletHandScript_reactToObjectInHole:
 ; INTERACID_MASK_SALESMAN
 ; ==============================================================================
 maskSalesmanScript:
+	setcollisionradii $04, $06
+	makeabuttonsensitive
+	jumpiftradeitemeq TRADEITEM_BROKEN_SWORD, @tradeBrokenSword
 	loadscript scriptHelp.maskSalesmanScript
 
+@tradeBrokenSword
+	loadscript scriptHelp.tradeBrokenSwordScript
 
 ; ==============================================================================
 ; INTERACID_BEAR
@@ -7859,8 +7747,8 @@ miscPuzzles_eyeglassLibraryOpeningScript:
 	setmusic SNDCTRL_STOPMUSIC
 	wait 60
 	playsound SND_DOORCLOSE
-	settileat $22, TILEINDEX_DUNGEON_DOOR_1
-	settileat $23, TILEINDEX_DUNGEON_DOOR_2
+	settileat $43, TILEINDEX_DUNGEON_DOOR_1
+	settileat $44, TILEINDEX_DUNGEON_DOOR_2
 	scriptjump _miscPuzzles_justOpenedKeyDoor
 
 

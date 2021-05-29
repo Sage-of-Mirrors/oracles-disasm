@@ -66,6 +66,8 @@ applyRoomSpecificTileChanges:
   .dw tileReplacement_group0Map57 ; $3a
   .dw tileReplacement_group0Map74 ; $3b
   .dw tileReplacement_group5Map37 ; $3c
+  .dw tileReplacement_group0Map32 ; $3d
+  .dw tileReplacement_group0Map40 ; $3e
 
 roomTileChangerCodeGroupTable:
   .dw roomTileChangerCodeGroup0Data
@@ -78,6 +80,9 @@ roomTileChangerCodeGroupTable:
   .dw roomTileChangerCodeGroup7Data
 
 roomTileChangerCodeGroup0Data:
+  .db $70 $37
+  .db $40 $3e
+  .db $32 $3d
   .db $57 $3a
   .db $74 $3b
   .db $01 $08
@@ -1390,11 +1395,11 @@ tileReplacement_group0Map76:
 ;;
 ; Present library
 tileReplacement_group0Mapa5:
-  ld a,(wPastRoomFlags+$a5)
+  ld a,(wPresentRoomFlags+<ROOM_AGES_070)
   bit 7,a
   ret z
 
-  ld hl,wRoomLayout+$22
+  ld hl,wRoomLayout+$43
   ld (hl),$ee
   inc l
   ld (hl),$ef
@@ -1518,11 +1523,15 @@ tileReplacement_group3Map08:
   ret
 
 tileReplacement_group0Map57:
-  ld bc,$0056
+  ld c,$56
+  jp replaceSimpleGround
+
+tileReplacement_group0Map32:
+  ld c,$55
   jp replaceSimpleGround
 
 tileReplacement_group0Map74:
-  ld bc,$0067
+  ld c,67
   
 replaceSimpleGround:
   call getThisRoomFlags
@@ -1530,6 +1539,7 @@ replaceSimpleGround:
   ret z
 
   ld hl,wRoomLayout
+  ld b,$00
   add hl,bc
   ld (hl),$3a
   ret
@@ -1539,7 +1549,7 @@ tileReplacement_group5Map37:
   and ROOMFLAG_40
   jr z,+
 
-  ld hl, wRoomLayout + $26
+  ld hl, wRoomLayout + $36
   ld (hl),TILEINDEX_LIT_TORCH
   ld hl,@bridge1Data
   call fillRectInRoomLayout
@@ -1548,7 +1558,7 @@ tileReplacement_group5Map37:
   and ROOMFLAG_80
   ret z
 
-  ld hl, wRoomLayout + $6b
+  ld hl, wRoomLayout + $7b
   ld (hl),TILEINDEX_LIT_TORCH
   ld hl,@bridge2Data
   jp fillRectInRoomLayout  
@@ -1563,3 +1573,21 @@ tileReplacement_group5Map37:
   .db $7c $01 $02 $6d 
 
   
+tileReplacement_group0Map40:
+	ld a,(wPastRoomFlags+<ROOM_AGES_120)
+	bit 0,a
+  ld l,$72
+	jr z,_ledgeReplacement
+  ld l,$50
+_ledgeReplacement:
+  ld a,TREASURE_HARP
+  call checkTreasureObtained
+  ret c
+
+  ld a,l
+  ld hl,wRoomLayout + $73
+  ldi (hl),a
+  ld a,$50
+  ldi (hl),a
+  ld (hl),a
+  ret

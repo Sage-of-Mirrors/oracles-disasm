@@ -9425,7 +9425,7 @@ _mapleStateB:
 .endif
 	call showText
 	ld e,SpecialObject.angle
-	ld a,$18
+	ld a,ANGLE_LEFT
 	ld (de),a
 
 	; Go to state $0c
@@ -9506,18 +9506,18 @@ _mapleSpawnItemDrops:
 	ld a,TREASURE_TRADEITEM
 	call checkTreasureObtained
 	jr nc,@noTradeItem
-.ifdef ROM_AGES
-	cp $08
-.else
-	cp $01
-.endif
+;.ifdef ROM_AGES
+;	cp TRADEITEM_TOUCHING_BOOK
+;.else
+	cp TRADEITEM_GHASTLY_DOLL
+;.endif
 	jr nz,@noTradeItem
 
-.ifdef ROM_AGES
-	ld b,INTERACID_TOUCHING_BOOK
-.else
+;.ifdef ROM_AGES
+;	ld b,INTERACID_TOUCHING_BOOK
+;.else
 	ld b,INTERACID_GHASTLY_DOLL
-.endif
+;.endif
 	call objectCreateInteractionWithSubid00
 	ret nz
 	ld hl,wMapleState

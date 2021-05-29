@@ -1473,7 +1473,8 @@
 .define INTERACID_CIRCULAR_SIDESCROLL_PLATFORM	$a4
 
 ;;
-.define INTERACID_TOUCHING_BOOK			$a5
+;.define INTERACID_TOUCHING_BOOK			$a5
+.define INTERACID_GHASTLY_DOLL			$a5
 
 ;;
 ; See also INTERACID_MAKU_SEED_AND_ESSENCES ($d7)...
@@ -1988,6 +1989,12 @@
 .define INTERACID_USED_ROD_OF_SEASONS   $e7
 
 .define INTERACID_HEROS_CAVE_SWORD_CHEST    $e8
+
+;;
+; subid_00{Regular quicksand that deals damage}
+; subid_01-04{The four that could lead to pirate's bell}
+; subid_05{Leads to SE samasa treasure chest}
+.define INTERACID_QUICKSAND		$e9
 
 
 

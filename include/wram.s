@@ -2201,8 +2201,19 @@ wEyePuzzleCorrectDirection: ; $cca5/$ccbe
 wBlockPushAngle: ; $cca6/$ccc0
 ; The angle a block is being pushed toward? bit 7 does something?
 	db
+
+.ifdef ROM_SEASONS
+wPirateSkullRandomNumber: ; $ccc1
+; Set to a random number from $01-$04 from var38 of INTERACID_PIRATE_SKULL
+; Bit 7 set if INTERACID_QUICKSAND subid matches
+; Used to determine whether the right quicksand pit has been found (for the bell)
+	db
+
+.else ; ROM_AGES
 wcca7: ; $cca7
 	db
+.endif
+
 wcca8: ; $cca8/$ccc2
 	db
 
@@ -2556,6 +2567,8 @@ wDeleteEnergyBeads: ; $cd2d
 ; When nonzero, energy beads (part ID $53) delete themselves? Used when getting essence.
 	db
 
+wLastDungeonIndex: ; $cd2e
+	db
 ; $cd2e-$cd2f unused?
 
 .ENDS

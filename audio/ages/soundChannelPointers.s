@@ -107,15 +107,15 @@ sound0e:
 	.dw sound0eChannel6
 	.db $ff
 
-sound0f:
+fairyFountain:
 	.db $00
-	.dw sound0fChannel0
+	.dw fairyFountainChannel0
 	.db $01
-	.dw sound0fChannel1
+	.dw fairyFountainChannel1
 	.db $04
-	.dw sound0fChannel4
+	.dw fairyFountainChannel4
 	.db $06
-	.dw sound0fChannel6
+	.dw fairyFountainChannel6
 	.db $ff
 
 sound10:
@@ -129,15 +129,15 @@ sound10:
 	.dw sound10Channel6
 	.db $ff
 
-sound11:
+fileSelect:
 	.db $00
-	.dw sound11Channel0
+	.dw fileSelectChannel0
 	.db $01
-	.dw sound11Channel1
+	.dw fileSelectChannel1
 	.db $04
-	.dw sound11Channel4
+	.dw fileSelectChannel4
 	.db $06
-	.dw sound11Channel6
+	.dw fileSelectChannel6
 	.db $ff
 
 sound1b:
@@ -624,15 +624,15 @@ sound13:
 	.dw sound13Channel6
 	.db $ff
 
-sound14:
+franticFactory:
 	.db $00
-	.dw sound14Channel0
+	.dw franticFactoryChannel0
 	.db $01
-	.dw sound14Channel1
+	.dw franticFactoryChannel1
 	.db $04
-	.dw sound14Channel4
+	.dw franticFactoryChannel4
 	.db $06
-	.dw sound14Channel6
+	.dw franticFactoryChannel6
 	.db $ff
 
 sound15:

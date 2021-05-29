@@ -14,12 +14,12 @@ _soundPointers:
 	m_soundPointer sound0c
 	m_soundPointer sound0d
 	m_soundPointer sound0e
-	m_soundPointer sound0f
+	m_soundPointer fairyFountain
 	m_soundPointer sound10
-	m_soundPointer sound11
+	m_soundPointer fileSelect
 	m_soundPointer sound12
 	m_soundPointer sound13
-	m_soundPointer sound14
+	m_soundPointer franticFactory
 	m_soundPointer sound15
 	m_soundPointer sound16
 	m_soundPointer sound17

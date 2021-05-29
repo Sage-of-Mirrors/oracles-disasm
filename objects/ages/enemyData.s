@@ -1045,7 +1045,6 @@ group4Map3cEnemyObjectData:
 	obj_EndPointer
 
 group4Map3dEnemyObjectData:
-	obj_SpecificEnemyA $03 $19 $00 $58 $38
 	obj_EndPointer
 
 group4Map3eEnemyObjectData:
@@ -2410,6 +2409,7 @@ group5MapfcEnemyObjectData:
 	obj_EndPointer
 
 group0Map56EnemyObjectData:
+	obj_ItemDrop 0 $04 $66
 	obj_EndPointer
 
 group5Mapb9EnemyObjectData:

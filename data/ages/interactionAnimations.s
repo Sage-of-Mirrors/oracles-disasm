@@ -922,6 +922,9 @@ interaction7aAnimations:
 	.dw interactionAnimation5a31b
 	.dw interactionAnimation5a327
 	.dw interactionAnimation5a333
+interactiona5Animations:
+	.dw interactionAnimation5a3af	;interactionAnimation5a40c
+	.dw interactionAnimation5a3b4	;interactionAnimation5a407
 interaction17Animations:
 interaction18Animations:
 interaction47Animations:
@@ -932,7 +935,6 @@ interaction81Animations:
 interaction8cAnimations:
 interaction8fAnimations:
 interaction91Animations:
-interactiona5Animations:
 interactionb1Animations:
 interactionb6Animations:
 interactiond7Animations:
@@ -3359,10 +3361,11 @@ interactione8OamDataPointers: ; 0x5af04
 	.dw interactionOamData500a9
 	.dw interactionOamData500ae
 	.dw interactionOamData50205
-
+interactiona5OamDataPointers: ; 0x5af0c
+	.dw interactionOamData5020e	;interactionOamData500ae		;ghastly doll
+	.dw interactionOamData50205	;fairy powder
 interaction1cOamDataPointers: ; 0x5af0c
 interaction71OamDataPointers: ; 0x5af0c
-interactiona5OamDataPointers: ; 0x5af0c
 interactione5OamDataPointers: ; 0x5af0c
 	.dw interactionOamData5020e
 	.dw interactionOamData51396

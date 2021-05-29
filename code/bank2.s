@@ -3906,8 +3906,8 @@ _inventoryMenuState0:
 	dec a
 	ld (wInventory.activeText),a
 	call _checkWhetherToDisplaySymbolInSubscreen
-	jr z,+
-	ld a,$01
+	jr nz,+		;z
+	inc a
 +
 	ld (wInventory.submenu2CursorPos2),a
 
@@ -4649,8 +4649,8 @@ _inventorySubmenu1CheckDirectionButtons:
 _inventorySubmenu2CheckDirectionButtons:
 	ld e,$80
 	call _checkWhetherToDisplaySymbolInSubscreen
-	jr z,+
-	ld e,$00
+	jr nz,+		;z
+	ld e,a
 +
 
 	ld hl,@offsets
@@ -4699,25 +4699,29 @@ _inventorySubmenu2CheckDirectionButtons:
 
 
 ;;
-; @param[out]	zflag	Set if the season should be displayed. (Unset in dungeons,
+; @param[out]	zflag	Set if the season should NOT be displayed. (Unset in dungeons,
 ;			subrosia, etc.)
 _checkWhetherToDisplaySymbolInSubscreen:
 	ld a,(wRoomPack)
 	or a
-	jr z,@fail
+	ret z
 	ld a,(wTilesetFlags)
 	bit TILESETFLAG_BIT_DUNGEON,a
 	jr z,@success
 	ld a,(wDungeonIndex)
+	or a
+	ret z
+	cp $01
+	ret z
 	cp $03
-	jr z,@fail
+	ret z
+
 @success:
-	xor a
-	ret
-@fail:
 	inc a
 	or a
+	ld a,$00
 	ret
+
 
 ;;
 _func_02_5938:
@@ -5409,7 +5413,7 @@ _inventorySubscreen2_drawTreasures:
 	call _checkWhetherToDisplaySymbolInSubscreen
 	ld hl,w4TileMap+$4d
 	ldbc $04,$06
-	jp nz,_fillRectangleInTileMapWithMenuBlock
+	jp z,_fillRectangleInTileMapWithMenuBlock	;nz
 
 	ld a,(wRoomPack)
 	bit 7,a
@@ -5870,7 +5874,7 @@ _subscreen1TreasureData:
 		.db TREASURE_DINS_GIFT			$01 $00		;FLIPPERS
 		.db TREASURE_NAYRUS_GIFT		$04 $01		;MERMAID_SUIT		$01 $00
 		.db TREASURE_POTION				$07 $02		;$04 $01
-;		.db TREASURE_TRADEITEM			$07 $02
+		.db TREASURE_TRADEITEM			$0a $03
 		.db TREASURE_EMPTY_BOTTLE		$0a $03
 		.db TREASURE_FAIRY_POWDER		$0a $03
 		.db TREASURE_ZORA_SCALE			$0a $03
@@ -6107,13 +6111,6 @@ _galeSeedMenu_state2:
 	ld a,(wMapMenu.warpIndex)
 	call _getTreeWarpDataIndex
 	ldi a,(hl)
-;	cp $77
-;	jr nz,+
-;	ld b,a
-;	ld a,(wMapMenu.warpIndex)
-;	add $0b
-;	add b
-;+
 	ld (wWarpDestRoom),a
 	ldi a,(hl)
 	ld (wWarpDestPos),a

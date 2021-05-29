@@ -12,17 +12,18 @@
 .endm
 
 seedTreeRefillLocations:
-	m_TreeRefillData $084 (<wxSeedTreeRefillData+$10)
-	m_TreeRefillData $085 (<wxSeedTreeRefillData+$18)
-	m_TreeRefillData $086 (<wxSeedTreeRefillData+$20)
-	m_TreeRefillData $087 (<wxSeedTreeRefillData+$28)
-	m_TreeRefillData $004 (<wxSeedTreeRefillData+$00)
-	m_TreeRefillData $071 (<wxSeedTreeRefillData+$08)
+	m_TreeRefillData ROOM_AGES_084 (<wxSeedTreeRefillData+$00)
+	m_TreeRefillData ROOM_AGES_085 (<wxSeedTreeRefillData+$08)
+	m_TreeRefillData ROOM_AGES_086 (<wxSeedTreeRefillData+$10)
+	m_TreeRefillData ROOM_AGES_087 (<wxSeedTreeRefillData+$18)
+	m_TreeRefillData ROOM_AGES_071 (<wxSeedTreeRefillData+$20)
+	m_TreeRefillData ROOM_AGES_004 (<wxSeedTreeRefillData+$28)
+	m_TreeRefillData ROOM_AGES_171 (<wxSeedTreeRefillData+$30)
+	m_TreeRefillData ROOM_AGES_112 (<wxSeedTreeRefillData+$38)
 
 	;above has been changed
 	
-	m_TreeRefillData $078 (<wxSeedTreeRefillData+$30)
-	m_TreeRefillData $0ac (<wxSeedTreeRefillData+$38)
+
 	m_TreeRefillData $0c1 (<wxSeedTreeRefillData+$40)
 	m_TreeRefillData $108 (<wxSeedTreeRefillData+$48)
 	m_TreeRefillData $125 (<wxSeedTreeRefillData+$50)

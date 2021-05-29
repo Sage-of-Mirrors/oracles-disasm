@@ -193,8 +193,9 @@ bank3bChannelFallback:
 
 
 .include "audio/mus/common/minigame.s"
-.include "audio/mus/common/fileSelect.s"
-.include "audio/mus/common/fairyFountain.s"
+;.include "audio/mus/common/fileSelect.s"		;within fairyFountainOoT
+;.include "audio/mus/common/fairyFountain.s"
+.include "audio/mus/ages/fairyFountainOoT.s"
 .include "audio/mus/common/overworld.s"
 .include "audio/mus/common/essenceRoom.s"
 .include "audio/mus/common/ganon.s"
@@ -252,7 +253,8 @@ bank3cChannelFallback:
 .include "audio/mus/ages/fairyForest.s"
 .include "audio/mus/ages/ralph.s"
 .include "audio/mus/ages/spiritsGrave.s"
-.include "audio/mus/ages/wingDungeon.s"
+;.include "audio/mus/ages/wingDungeon.s"
+.include "audio/mus/ages/franticFactory.s"
 .include "audio/mus/ages/crownDungeon.s"	;gutted
 .include "audio/mus/ages/jabuJabusBelly.s"
 .include "audio/sfx/common/damageEnemy.s"

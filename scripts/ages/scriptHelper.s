@@ -2159,7 +2159,7 @@ soldierGetRandomVar32Val:
 	ret
 
 @data:
-	.db $0d $0e $0f $0d
+	.db $11 $14 $13 $13
 
 ;;
 soldierSetTextToShow:
@@ -2176,8 +2176,8 @@ soldierSetTextToShow:
 	ret
 
 @soldierTextIndices:
-	.db <TX_5912, <TX_5913, <TX_5911, <TX_5910, <TX_5913, <TX_5911, <TX_5914, <TX_5913
-	.db <TX_5915, <TX_5913, <TX_5912, <TX_5915, <TX_5913, <TX_5913, <TX_5912, <TX_5914
+	.db <TX_5913, <TX_5915, <TX_5911, <TX_5910, <TX_5913, <TX_5911, <TX_5916, <TX_5913
+	.db <TX_5915, <TX_5913, <TX_5912, <TX_5914, <TX_590d, <TX_590e, <TX_590f, <TX_5914
 
 
 ; Left palace guard
@@ -2563,16 +2563,17 @@ tokayExplainingVinesScript:
 
 
 ; NPC who trades meat for stink bag (subid $05)
-tokayCookScript:
+boredSoldierScript:
 	initcollisions
 @npcLoop:
+	turntofacelink
 	checkabutton
-	disableinput
-	jumpifroomflagset $20, @alreadyTraded
+	disableinput	
+	jumpifroomflagset ROOMFLAG_ITEM, @alreadyTraded
 
 	showtextlowindex <TX_0a00
 	wait 30
-	jumpiftradeitemeq TRADEITEM_STINK_BAG, @askForTrade
+	jumpiftradeitemeq TRADEITEM_WOOD_CLOCK, @askForTrade
 
 	showtextlowindex <TX_0a09
 	enableinput
@@ -2591,32 +2592,34 @@ tokayCookScript:
 @acceptedTrade:
 	showtextlowindex <TX_0a02
 	wait 30
-	showtextlowindex <TX_0a03
+	setangleandanimation ANGLE_RIGHT
 	wait 30
+	setangleandanimation ANGLE_LEFT
+	wait 30
+	turntofacelink
+	showtextlowindex <TX_0a03
+	checktext
+
+	setspeed SPEED_080
+	moveup $60
+	wait 20
+	movedown $60
+
+	turntofacelink
 	showtextlowindex <TX_0a04
 	wait 30
+	giveitem TREASURE_TRADEITEM, TRADEITEM_BROKEN_SWORD
 
-	; Set var3f to nonzero as signal to start jumping around
-	writeobjectbyte Interaction.var3f, $01
+	checktext
 	showtextlowindex <TX_0a05
-
-	; Wait for signal that he's back in his starting position
-	checkobjectbyteeq Interaction.var3e, $00
-
-	writeobjectbyte Interaction.var3f, $00
-	wait 40
-	showtextlowindex <TX_0a06
 	wait 30
-
-	giveitem TREASURE_TRADEITEM, $03
 	enableinput
 	scriptjump @npcLoop
 
 @alreadyTraded:
-	showtextlowindex <TX_0a07
+	showtextlowindex <TX_0a05
 	enableinput
 	scriptjump @npcLoop
-
 
 ; ==============================================================================
 
@@ -2653,64 +2656,61 @@ ambiRiseUntilOffScreen:
 	cp $c0
 	jp _writeFlagsTocddb
 
-
-; The guy who you trade a dumbbell to for a mustache
 dumbbellManScript:
-	jumpifroomflagset $20, @liftingAnimation
-	setanimation $00 ; Swaying animation
-	scriptjump ++
+	scriptend
+; The guy who you trade a dumbbell to for a mustache
+tradeBrokenSwordScript:
+;	jumpifroomflagset $20, @liftingAnimation
+;	setanimation $00 ; Swaying animation
+;	scriptjump ++
 
-@liftingAnimation:
-	setanimation $01 ; Lifting animation
-++
-	initcollisions
+;@liftingAnimation:
+;	setanimation $01 ; Lifting animation
+;++
+;	initcollisions
 
 @npcLoop:
 	checkabutton
 	disableinput
-	jumpifroomflagset $20, @alreadyGaveMustache
+	jumpifroomflagset ROOMFLAG_ITEM, @alreadyGaveBook
 
+	setanimation $01		;angry
+	showtextlowindex <TX_0b17
+	wait 30
+	setanimation $00		;calm
 	showtextlowindex <TX_0b1d
 	wait 30
-	showtextlowindex <TX_0b20
-	wait 30
-	jumpiftradeitemeq TRADEITEM_DUMBBELL, @offerTrade
+	jumpiftradeitemeq TRADEITEM_BROKEN_SWORD, @offerTrade
 	enableinput
 	scriptjump @npcLoop
 
 @offerTrade:
-	showtextlowindex <TX_0b1e
+	setanimation $01		;angry
+	showtextlowindex <TX_0b18
 	wait 30
-	showtextlowindex <TX_0b20
-	wait 30
-	showtextlowindex <TX_0b1f
-	wait 30
-	showtextlowindex <TX_0b20
-	wait 30
-	showtextlowindex <TX_0b20
-	wait 30
-	showtextlowindex <TX_0b21
-	wait 30
-	jumpiftextoptioneq $00, @giveMustache
+	jumpiftextoptioneq $00, @giveBook
 
 	; Declined trade
-	showtextlowindex <TX_0b20
+	showtextlowindex <TX_0b1b
 	enableinput
 	scriptjump @npcLoop
 
-@giveMustache:
-	showtextlowindex <TX_0b22
+@giveBook:
+	setanimation $00		;calm	
+	showtextlowindex <TX_0b19
 	wait 30
-	showtextlowindex <TX_0b20
+	setanimation $01		;angry
+	showtextlowindex <TX_0b1a
 	wait 30
-	showtextlowindex <TX_0b23
+	setanimation $00		;calm	
+	showtextlowindex <TX_0b1c
 	wait 30
-	setanimation $01
-	giveitem TREASURE_TRADEITEM, $06
+	giveitem TREASURE_TRADEITEM, TRADEITEM_SPARRING_BOOK
 
-@alreadyGaveMustache:
-	showtextlowindex <TX_0b24
-	wait 30
+@alreadyGaveBook:
+	setanimation $01		;angry
+	showtextlowindex <TX_0b25
+	wait 15
 	enableinput
 	scriptjump @npcLoop
 
@@ -2931,50 +2931,53 @@ mamamuYanRandomizeDogLocation:
 	jr z,@loop
 	ld (hl),a
 	ret
-
 mamamuYanScript:
-	jumpifglobalflagset GLOBALFLAG_FINISHEDGAME, +
-	scriptjump @tradeScript
-+
-	jumpifroomflagset $20, @postgameScript
+	scriptend
+
+oldManScript_givesLabrinthKey:
+	setcollisionradii $12,$02
+	makeabuttonsensitive
+;	jumpifglobalflagset GLOBALFLAG_FINISHEDGAME, +
+;	scriptjump @tradeScript
+;+
+;	jumpifroomflagset ROOMFLAG_ITEM, @postgameScript
 
 ; This script runs if the game is not finished (or if you haven't traded with her yet).
 @tradeScript:
-	initcollisions
 @npcLoop:
 	checkabutton
 	disableinput
-	jumpifroomflagset $20, @alreadyGaveDoggieMask
+	jumpifroomflagset ROOMFLAG_ITEM, @alreadyGaveLabrinthKey
 
-	showtextlowindex <TX_0b16
+	showtextlowindex <TX_0b1e
 	wait 30
-	jumpiftradeitemeq TRADEITEM_DOGGIE_MASK, @askForTrade
+	jumpiftradeitemeq TRADEITEM_SPARRING_BOOK, @askForTrade
 
-	showtextlowindex <TX_0b17
+	showtextlowindex <TX_0b1f
 	enableinput
 	scriptjump @npcLoop
 
 @askForTrade:
-	showtextlowindex <TX_0b18
+	showtextlowindex <TX_0b21
 	wait 30
 	jumpiftextoptioneq $00, @acceptedTrade
 
 	; Declined trade
-	showtextlowindex <TX_0b1b
+	showtextlowindex <TX_0b20
 	enableinput
 	scriptjump @npcLoop
 
 @acceptedTrade:
-	showtextlowindex <TX_0b19
+	showtextlowindex <TX_0b22
 	wait 30
-	giveitem TREASURE_TRADEITEM, $05
+	giveitem TREASURE_LIBRARY_KEY_SUBID_00
 	wait 30
-	showtextlowindex <TX_0b1a
+	showtextlowindex <TX_0b23
 	enableinput
 	scriptjump @npcLoop
 
-@alreadyGaveDoggieMask:
-	showtextlowindex <TX_0b1c
+@alreadyGaveLabrinthKey:
+	showtextlowindex <TX_0b24
 	enableinput
 	scriptjump @npcLoop
 
@@ -3705,43 +3708,42 @@ toiletHand_checkVisibility:
 ; ==============================================================================
 
 maskSalesmanScript:
-	setcollisionradii $04, $06
-	makeabuttonsensitive
 @npcLoop:
 	checkabutton
 	disableinput
+@pressedAButton:
 	jumpifmemoryeq wSwordLevel, $03, @alreadySoldMaster
 	setanimation $00		;calm
-	showtext TX_0b0d
+	showtextlowindex <TX_0b0d
 	wait 15
 	setanimation $01		;angry
-	showtext TX_0b0e
+	showtextlowindex <TX_0b0e
 	wait 15
 	setanimation $00
-	showtext TX_0b0f
+	showtextlowindex <TX_0b0f
 	wait 15
 	jumpifmemoryeq wSwordLevel, $02, @sellMasterAlone
 
-	showtext TX_0b10		;trade prompt
+	showtextlowindex <TX_0b10		;trade prompt
 	jumpiftextoptioneq $00, @Noble
 	jumpiftextoptioneq $01, @Master
 
 @declinedTrade
 	wait 15
 	setanimation $01
-	showtext TX_0b14
+	showtextlowindex <TX_0b14
 
 @enableInput:
 	enableinput
 	scriptjump @npcLoop
 
 @sellMasterAlone:
-	showtext TX_0b11		;trade prompt
+	showtextlowindex <TX_0b11		;trade prompt
 	jumpiftextoptioneq $00, @Master
 	scriptjump @declinedTrade
 
 @Noble:
-	showtext TX_0b12
+	showtextlowindex <TX_0b12
 	jumpiftextoptioneq $01, @declinedTrade
 
 	asm15 @cpRupeeValue, RUPEEVAL_080
@@ -3753,7 +3755,7 @@ maskSalesmanScript:
 	scriptjump @enableInput
 
 @Master:
-	showtext TX_0b13
+	showtextlowindex <TX_0b13
 	jumpiftextoptioneq $01, @declinedTrade
 
 	asm15 @cpRupeeValue, RUPEEVAL_400
@@ -3767,13 +3769,13 @@ maskSalesmanScript:
 @alreadySoldMaster:
 	wait 15
 	setanimation $01
-	showtext TX_0b15
+	showtextlowindex <TX_0b15
 	scriptjump @enableInput
 
 @notEnoughRupees:
 	wait 15
 	setanimation $01
-	showtext TX_0b16
+	showtextlowindex <TX_0b16
 	scriptjump @enableInput
 
 @cpRupeeValue:

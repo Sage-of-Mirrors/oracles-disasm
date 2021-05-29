@@ -530,7 +530,7 @@ _nextToOverworldKeyhole:
 @group0:
 	.db <ROOM_AGES_011 TREASURE_GRAVEYARD_KEY
 	.db <ROOM_AGES_00a TREASURE_CROWN_KEY
-	.db <ROOM_AGES_0a5 TREASURE_LIBRARY_KEY ; unused since the present library doesn't have a keyhole
+	.db <ROOM_AGES_070 TREASURE_LIBRARY_KEY ; unused since the present library doesn't have a keyhole
 	.db $00
 @group1:
 	.db <ROOM_AGES_10e TREASURE_MERMAID_KEY

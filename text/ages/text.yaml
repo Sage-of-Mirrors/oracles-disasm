@@ -287,7 +287,7 @@ groups:
     index: 0x1e
     text: |-
       You got the
-      legendary \col(1)Master
+      legendary \col(1)Great
       Sword\col(0)!
 
   - name: TX_001f
@@ -750,41 +750,36 @@ groups:
     index: 0x5a
     text: |-
       \pos(2)You got the \col(0x84)\item(0x01)
-      \col(1)Poe Clock\col(0)!
-      It lightens the
-      heart?
+      \col(1)Ghastly Doll\col(0)!
+      Could someone have lost this?
 
   - name: TX_005b
     index: 0x5b
     text: |-
       You got \col(0x84)\item(0x02)
-      \col(1)Stationery\col(0)!
-      Who will you
-      write to?
+      \col(1)Life Potion\col(0)!
+      You can't use this right now.
 
   - name: TX_005c
     index: 0x5c
     text: |-
       You traded \col(0x84)\item(0x02)\col(0)
-      for a \col(0x84)\item(0x03) \col(1)Stink
-      Bag\col(0)! Eww...
-      It stinks!
+      for a \col(0x84)\item(0x03) \col(1)Wood Clock\col(0)!
+      This would be helpful to anyone on shift!
 
   - name: TX_005d
     index: 0x5d
     text: |-
-      You got \col(0x84)\item(0x04)
-      \col(1)Tasty Meat\col(0)! It's
-       the chef's
-       specialty!
+      You got a \col(0x84)\item(0x04)
+      \col(1)Broken Sword\col(0)!
+      A collector's item.
 
   - name: TX_005e
     index: 0x5e
     text: |-
-      You got a \col(0x84)\item(0x05)
-      \col(1)Doggie Mask\col(0)!
-      A dog-lover will
-      love it!
+      You got the \col(0x84)\item(0x05)
+      \col(1)Sparring Book\col(0)!
+      A useful text for a swordsman.
 
   - name: TX_005f
     index: 0x5f
@@ -1576,17 +1571,18 @@ groups:
     text: |2-
        Seasons Shrine
 
-  - name: TX_0205
-    index: 0x05
-    text: |2-
-       Lost Labrinth
-
   - name:
-    - TX_0206
+    - TX_0205
     - TX_020c
     index:
-    - 0x06
+    - 0x05
     - 0x0c
+    text: |2-
+       Temple of
+          the Tokay
+
+  - name: TX_0206
+    index: 0x06
     text: |2-
        Temple of
           the Tokay
@@ -3597,17 +3593,14 @@ groups:
   - name: TX_070d
     index: 0x0d
     text: |-
-      Hey! That book!
+      Hey! That doll!
 
   - name: TX_070e
     index: 0x0e
     text: |-
-      That's the \col(0x84)\item(0x09)
-      \col(1)Touching Book\col(0)
-      I need to take
-      to Syrup! Why do
-      you have it? Let
-      me read it!
+      That's the \col(0x84)\item(0x01)
+      \col(1)Ghastly Doll\col(0)
+      I had traded before for a useless egg!
 
   - name: TX_070f
     index: 0x0f
@@ -3615,27 +3608,26 @@ groups:
       What..?\stop
       Oh, my...\stop
       .........\stop
-      Ooo! ...........
+      Eek! ...........
 
   - name: TX_0710
     index: 0x10
     text: |-
       Uh-wahhh!\stop
       Ahhh...(sniff)
-      How touching!
+      How long I've wanted this back!
 
   - name: TX_0711
     index: 0x11
     text: |-
       Thanks...(sniff)
-      It was good...
       Take this. It's
       the first one I
       made. Syrup
       never gave me
       any compliments
-      on it. I'll keep
-      this book.
+      on it. I'll be keeping
+      this doll.
       (Sniff!)
 
   - name: TX_0712
@@ -3974,32 +3966,32 @@ groups:
   - name: TX_0909
     index: 0x09
     text: |-
-      Poe Clock
-      Lightens hearts?
+      Ghastly Doll
+      Frightening, but endearing
 
   - name: TX_090a
     index: 0x0a
     text: |-
-      Stationery
-      Fine paper.
+      Life Potion
+      Helpful for the ill.
 
   - name: TX_090b
     index: 0x0b
     text: |-
-      Stink Bag
-      Very stinky...
+      Wood Clock
+      What time is it?
 
   - name: TX_090c
     index: 0x0c
     text: |-
-      Tasty Meat
-      House specialty.
+      Broken Sword
+      Only useful to collectors
 
   - name: TX_090d
     index: 0x0d
     text: |-
-      Doggie Mask
-      For a dog lover.
+      Sparring Book
+      For a lover of the blade
 
   - name: TX_090e
     index: 0x0e
@@ -4151,7 +4143,7 @@ groups:
   - name: TX_0925
     index: 0x25
     text: |-
-      Master Sword
+      Great Sword
       The blade of
       legends.
 
@@ -4608,44 +4600,35 @@ groups:
   - name: TX_0a00
     index: 0x00
     text: |-
-      \sfx(0xb6)I hab to cook
-      dinner por all
-      da Tokay, but
-      by dose is all
-      stubbed up. Ib I
-      cook, it will
-      taste awbul.
+      No one comes back here to tell me when my watch is over.
 
   - name: TX_0a01
     index: 0x01
     text: |-
       Give him the \col(0x84)\item(0x03)
-      \col(1)Stink Bag\col(0)?
+      \col(1)Wood Clock\col(0)?
         \opt()Yes \opt()No
 
   - name: TX_0a02
     index: 0x02
     text: |-
-      Huh? What's dat?
+      Huh? What's that?
+      Hold on...
 
   - name: TX_0a03
     index: 0x03
     text: |-
-      Rrrrrip!
-      ...snifffff!
+      I might have the perfect trade for you!
 
   - name: TX_0a04
     index: 0x04
     text: |-
-      \sfx(0xb6)Ewww!!!
+      Here, this might be something you'd like.
 
   - name: TX_0a05
     index: 0x05
     text: |-
-      \sfx(0xb6)Peee-yewww!\stop
-      That smell!!!\stop
-      Ohhhhhh!!!\stop
-      Ewwwwwww!!!
+      Thanks again! Now I won't ever stay longer than I have to!
 
   - name: TX_0a06
     index: 0x06
@@ -4675,15 +4658,12 @@ groups:
   - name: TX_0a08
     index: 0x08
     text: |-
-      \sfx(0xb6)Oh, my nose...
+      Guess I'm working overtime again...
 
   - name: TX_0a09
     index: 0x09
     text: |-
-      \sfx(0xb6)I deed a super-
-      strog scet to
-      clear out by
-      dose.
+      I wish I had a way to tell time so I can leave.
 
   - name: TX_0a0a
     index: 0x0a
@@ -5519,25 +5499,25 @@ groups:
   - name: TX_0b07
     index: 0x07
     text: |-
-      P-paper! Do you
-      have any paper?
+      Dearie, do you have any medicine?
+      My bones are frail and I need to visit the market.
 
   - name: TX_0b08
     index: 0x08
     text: |-
-      Give him the \col(0x84)\item(0x02)
-      \col(1)Stationery\col(0)?
+      Give her the \col(0x84)\item(0x02)
+      \col(1)Life Potion\col(0)?
         \opt()Yes \opt()No
 
   - name: TX_0b09
     index: 0x09
     text: |-
-      Yay!
+      Oh, happy days! Thanks, dearie!
 
   - name: TX_0b0a
     index: 0x0a
     text: |-
-      Nooooo!
+      Well, that's too bad.
 
   - name: TX_0b0b
     index: 0x0b
@@ -5547,7 +5527,7 @@ groups:
   - name: TX_0b0c
     index: 0x0c
     text: |-
-      Take this.\sym(0x1c)
+      Oh! Take this, please.\sym(0x1c)
 
   - name: TX_0b0d
     index: 0x0d
@@ -5564,7 +5544,7 @@ groups:
     text: |-
       Pardon me. I
       just thought
-      you were leaving.\stop
+      you were looking.\stop
       I have a couple of swords that you might be interested in, adventurer.
       Both could substantially upgrade your strength.
       
@@ -5572,7 +5552,7 @@ groups:
     index: 0x10
     text: |-
       Which \col(1)sword\col(0) would you like to buy?
-        \opt()\col(1)Noble\col(0) \opt()\col(3)Master\col(0)
+        \opt()\col(1)Noble\col(0) \opt()\col(3)Great\col(0)
         \opt()Neither
 
   - name: TX_0b11
@@ -5618,128 +5598,90 @@ groups:
   - name: TX_0b17
     index: 0x17
     text: |-
-      Do you know of
-      a good way to
-      hide its face?
+      ARGH!! What are you doing here?
+      I've been wondering what my collection has been missing...
 
   - name: TX_0b18
     index: 0x18
     text: |-
-      Well!!!
-      That \col(0x84)\item(0x05) \col(1)mask\col(0)!!!
-      It fits my dog
-      perfectly!
-      Let me have that
-      \col(0x84)\item(0x05) \col(1)mask\col(0)!\stop
-      Give her the \col(0x84)\item(0x05)
-      \col(1)Doggie Mask\col(0)?
+      Wait!!!
+      That \col(0x84)\item(0x04) \col(3)sword\col(0)!!!
+      It would go nicely with my collection!
+      Boy! Let me have that
+      \col(0x84)\item(0x04) \col(3)sword\col(0)!\stop
+      Give him the \col(0x84)\item(0x04)
+      \col(1)Broken Sword\col(0)?
         \opt()Yes \opt()No
 
   - name: TX_0b19
     index: 0x19
     text: |-
-      Good boy!
-      You deserve the
-      toy that my dog
-      played with!
+      Fantastic! I...
 
   - name: TX_0b1a
     index: 0x1a
     text: |-
-      What's wrong,
-      boy? I only had
-      one to begin
-      with!
+      What's this?
+      It's broken?
 
   - name: TX_0b1b
     index: 0x1b
     text: |-
       Hyeee!
-      Bad boy! Behave!
+      What's the matter with you?
 
   - name: TX_0b1c
     index: 0x1c
     text: |-
-      Now \col(3)Mamamu Yan's\col(0)
-      dog is as cute
-      as can be!
-      Ha ha ha ha ha!
+      Just give it to me and go.
+      Take this with you.
 
   - name: TX_0b1d
     index: 0x1d
     text: |-
-      Sway right...
-      Sway left...
-      Move left,
-      sway right...
-      Move right,
-      sway left...
-      I'm so skinny...
-      I wish I could
-      change...
+      Forget it!
+      You can't help!
 
   - name: TX_0b1e
     index: 0x1e
     text: |-
-      I know! I'll
-      work out!
-      Except...
-      I have only one
-      \col(1)Dumbbell\col(0)...
+      My library is free to use, but it seems one of my books hasn't been returned.      
 
   - name: TX_0b1f
     index: 0x1f
     text: |-
-      Working one arm
-      at a time...
-      It goes against
-      my policy...
-      If I can't do
-      left and right
-      at the same
-      time...
+      That \col(3)salesman\col(0) must have swindled me from my \col(1)special book\col(0) on swordmanship!
 
   - name: TX_0b20
     index: 0x20
     text: |-
-      Sway left...
-      Sway right...
+      Will you be conning me too?
 
   - name: TX_0b21
     index: 0x21
     text: |-
-      He seems to be
-      fixated on your
-      \col(0x84)\item(0x06) \col(1)Dumbbell\col(0)...
-      Give him the \col(0x84)\item(0x06)
-      \col(1)Dumbbell\col(0)?
+      The man seems to be
+      fixated on the
+      \col(0x84)\item(0x05) \col(1)Sparring Book\col(0) in your pocket...
+      Give him the \col(0x84)\item(0x05)
+      \col(1)Sparring Book\col(0)?
         \opt()Yes \opt()No
 
   - name: TX_0b22
     index: 0x22
     text: |-
-      That's it...
-      What I wanted...
-      Now I can lift,
-      lift, lift...
-      I'll get all the
-      girls now, eh...
+      That's the one!
+      What can I give you in return...?
 
   - name: TX_0b23
     index: 0x23
     text: |-
-      I'm so skinny...
-      I can't offer
-      you much...
-      Umm...I know.\stop
-      Rrrrrip!\stop
-      Gotta work out!
+      Now I can work on getting the rest of my books back.
 
   - name: TX_0b24
     index: 0x24
     text: |-
-      Get the girls...
-      Get the girls...
+      Hello, sir. Will you be lending a book out?
 
   - name: TX_0b25
     index: 0x25
@@ -8692,6 +8634,18 @@ groups:
       work on the
       \col(3)Black Tower\col(0).
       I want him back.
+
+  - name: TX_180b
+    index: 0x0b
+    text: |-
+      My husband gave
+      \col(3)Queen Ambi\col(0) that
+      which pleases
+      her, but he was
+      still taken to
+      work on the
+      \col(3)Black Tower\col(0).
+      I want him back.   
 
 - group: 0x1a
   data:
@@ -21901,76 +21855,64 @@ groups:
   - name: TX_590d
     index: 0x0d
     text: |-
-      We must finish
-      the tower for
-      \col(3)Ambi\col(0) as quickly
-      as possible!
+      \col(2)Zelda\col(0) explicitly told me to watch who comes up those steps!
+      Sir \Link, please be careful on your way back.
 
   - name: TX_590e
     index: 0x0e
     text: |-
-      Loafers won't
-      get off easy!
+      Sending in a single guard may not have been the best of ideas...
 
   - name: TX_590f
     index: 0x0f
     text: |-
       What, kid?!?
-      Did you come to
-      help us build?
+      Are there any monsters around?
 
   - name: TX_5910
     index: 0x10
     text: |-
-      \col(3)Ambi\col(0) has gone
-      alone on a
-      soul-searching
-      journey. I hope
-      she returns
-      safely...
+      \col(2)Zelda\col(0) has gone
+      and done it this time with all of the festivities!
+      This \col(3)small vista\col(0) can't hold all of these guests!
 
   - name: TX_5911
     index: 0x11
     text: |-
       We must keep the
       palace safe
-      while \col(3)Ambi\col(0)
-      is away!
+      while \col(2)Zelda\col(0)
+      is sojourning here!
 
   - name: TX_5912
     index: 0x12
     text: |-
-      \col(3)Ambi\col(0) said she
-      was going on a
-      soul-searching
-      journey, but
-      perhaps she went
-      to search for
-      her lover.
+      \col(2)Zelda\col(0) said she
+      wanted to throw a party for the Oracles,
+      but we haven't seen them around!
 
   - name: TX_5913
     index: 0x13
     text: |-
-      You! Kids aren't
-      allowed in...
       Sir \Link!
-      Excuse me!
+      Welcome!
 
   - name: TX_5914
     index: 0x14
     text: |-
       It is our job to
-      guard the palace
+      guard the \col(3)vista\col(0)
       with our lives!
 
   - name: TX_5915
     index: 0x15
     text: |-
-      You look just
-      like the statue
-      outside... Say!
-      Are you
-      \Link?!?
-      I never thought
-      I'd actually get
-      get to you!
+      This is \col(2)Zelda's\col(0)
+      \col(3)summer vista\col(0) that
+      she uses to spend time with the Oracles.
+
+  - name: TX_5916
+    index: 0x16
+    text: |-
+      Be careful! Without a \col(1)shield\col(0),
+      monsters will try to ram into you!

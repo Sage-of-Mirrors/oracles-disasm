@@ -508,6 +508,15 @@ replaceShutterForLinkEntering:
 
 ;;
 replaceOpenedChest:
+	ld a,(wPastRoomFlags+<ROOM_AGES_120)
+	bit 0,a
+	jr nz,@noException
+	ld a,(wActiveRoom)
+	ld e,a
+	ld hl,@exceptionTable
+	call findByteAtHl
+	ret c
+@noException:
 	call getThisRoomFlags
 	bit ROOMFLAG_BIT_ITEM,a
 	ret z
@@ -517,6 +526,9 @@ replaceOpenedChest:
 	ld a,TILEINDEX_CHEST_OPENED
 	ld (de),a
 	ret
+
+@exceptionTable:
+	.db <ROOM_AGES_040 <ROOM_AGES_051 <ROOM_AGES_060 <ROOM_AGES_061 <ROOM_AGES_070 $00
 
 ;;
 ; Replaces switch tiles and whatever they control if the switch is set.
