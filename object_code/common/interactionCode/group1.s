@@ -337,6 +337,15 @@ interactionCode11_caller:
 ; INTERACID_DUNGEON_STUFF
 ; ==============================================================================
 interactionCode12:
+;	ld e,Interaction.var03
+;	ld a,(de)
+;	or a
+;	jr z,+
+;	ld e,Interaction.var3a
+;	ld a,$01
+;	ld (de),a
+;+
+;	dec e
 	ld e,Interaction.subid
 	ld a,(de)
 	rst_jumpTable
@@ -444,6 +453,7 @@ interactionCode12:
 	ld (de),a
 	ld a,b
 	or a
+;	cp $ff
 	ld hl,mainScripts.dropSmallKeyWhenNoEnemiesScript
 	jr z,+
 	ld hl,mainScripts.dropBossKeyWhenNoEnemiesScript

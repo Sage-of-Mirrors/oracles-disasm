@@ -33,7 +33,7 @@ dungeonData00:
 dungeonData01:
 	m_DungeonData >wGroup4Flags, $24, dungeon01Layout, $01, $03, $03, $00, $00
 dungeonData02:
-	m_DungeonData >wGroup4Flags, $46, dungeon02Layout, $02, $02, $01, $00, $00
+	m_DungeonData >wGroup4Flags, $46, dungeon02Layout, $03, $03, $01, $00, $00
 dungeonData03:
 	m_DungeonData >wGroup5Flags, $50, dungeon03Layout, $04, $00, $00, $00, $00
 dungeonData04:
@@ -52,9 +52,9 @@ dungeonData09:
 dungeonData0a:
 	m_DungeonData >wGroup5Flags, $f4, dungeon0aLayout, $01, $03, $00, $00, $00
 dungeonData0b:
-	m_DungeonData >wGroup4Flags, $ce, dungeon0bLayout, $02, $02, $00, $00, $00
+	m_DungeonData >wGroup4Flags, $ce, dungeon0bLayout, $03, $03, $00, $00, $00
 dungeonData0c:
-	m_DungeonData >wGroup4Flags, $44, dungeon0cLayout, $02, $02, $00, $00, $00
+	m_DungeonData >wGroup4Flags, $44, dungeon0cLayout, $03, $02, $00, $00, $00
 dungeonData0d:
 	m_DungeonData >wGroup4Flags, $04, dungeon0dLayout, $01, $03, $00, $00, $00
 dungeonData0e:

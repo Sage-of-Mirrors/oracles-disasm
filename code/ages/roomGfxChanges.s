@@ -429,7 +429,7 @@ treeGfxLocationsTable:
 	;dbbw $c1 $02 w3VramTiles+$08a
 	.db $00
 @past:
-	dbbw $12 $02 w3VramTiles+$0c6
+	dbbw $12 $02 w3VramTiles+$08e
 	dbbw $71 $00 w3VramTiles+$048	
 	;dbbw $08 $01 w3VramTiles+$086
 	;dbbw $25 $00 w3VramTiles+$0ca

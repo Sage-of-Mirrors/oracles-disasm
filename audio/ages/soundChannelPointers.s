@@ -635,15 +635,15 @@ franticFactory:
 	.dw franticFactoryChannel6
 	.db $ff
 
-sound15:
+floroCaverns:
 	.db $00
-	.dw sound15Channel0
+	.dw floroCavernsChannel0
 	.db $01
-	.dw sound15Channel1
+	.dw floroCavernsChannel1
 	.db $04
-	.dw sound15Channel4
+	.dw floroCavernsChannel4
 	.db $06
-	.dw sound15Channel6
+	.dw floroCavernsChannel6
 	.db $ff
 
 sound17:

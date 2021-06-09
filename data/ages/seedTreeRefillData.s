@@ -20,11 +20,8 @@ seedTreeRefillLocations:
 	m_TreeRefillData ROOM_AGES_004 (<wxSeedTreeRefillData+$28)
 	m_TreeRefillData ROOM_AGES_171 (<wxSeedTreeRefillData+$30)
 	m_TreeRefillData ROOM_AGES_112 (<wxSeedTreeRefillData+$38)
-
+	m_TreeRefillData ROOM_AGES_150 (<wxSeedTreeRefillData+$40)
 	;above has been changed
-	
-
-	m_TreeRefillData $0c1 (<wxSeedTreeRefillData+$40)
 	m_TreeRefillData $108 (<wxSeedTreeRefillData+$48)
 	m_TreeRefillData $125 (<wxSeedTreeRefillData+$50)
 	m_TreeRefillData $12d (<wxSeedTreeRefillData+$58)

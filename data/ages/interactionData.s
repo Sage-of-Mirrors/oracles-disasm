@@ -119,7 +119,7 @@ interactionData:
 	/* $5c */ m_InteractionData $5e $00 $00
 	/* $5d */ m_InteractionData $4e $00 $50
 	/* $5e */ m_InteractionData $64 $00 $10
-	/* $5f */ m_InteractionData $4f $00 $00
+	/* $5f */ m_InteractionData interaction5fSubidData
 	/* $60 */ m_InteractionData interaction60SubidData
 	/* $61 */ m_InteractionData $72 $0a $30
 	/* $62 */ m_InteractionData interaction62SubidData
@@ -840,3 +840,7 @@ interactione4SubidData:
 	m_InteractionData $71 $12 $20		;spr_woodentunnel_seasons	summer
 	m_InteractionData $71 $16 $11		;spr_woodentunnel_seasons	winter
 	m_InteractionData $71 $98 $32		;spr_woodentunnel_seasons	autumn
+
+interaction5fSubidData:
+	m_InteractionData $4f $00 $00
+	m_InteractionData $00 $00 $01

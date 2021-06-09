@@ -4917,6 +4917,36 @@ bearSubid02Script:
 ; ==============================================================================
 ; INTERACID_SYRUP
 ; ==============================================================================
+syrupScript_notTradedMushroomYet:
+	checkabutton
+	showtext TX_0b46
+	jumpiftradeitemeq TRADEITEM_MUSHROOM, @haveMushroom
+	scriptjump syrupScript_notTradedMushroomYet
+@haveMushroom:
+	setdisabledobjectsto91
+	wait 30
+-
+	showtext TX_0b48
+	jumpiftextoptioneq $00, @tradingMushroom
+	wait 30
+	showtext TX_0b4b
+	enableallobjects
+	checkabutton
+	setdisabledobjectsto91
+	scriptjump -
+@tradingMushroom:
+	wait 30
+	disableinput
+	asm15 loseTreasure, TREASURE_TRADEITEM
+	spawninteraction INTERACID_SYRUP, $01, $28, $20
+	wait 30
+	showtext TX_0b49
+	orroomflag ROOMFLAG_40
+;	enableinput
+-
+	checkabutton
+	showtext TX_0b4a
+	scriptjump -
 
 syrupScript_spawnShopItems:
 	spawninteraction INTERACID_SHOP_ITEM, $0b, $28, $44
@@ -7737,7 +7767,7 @@ miscPuzzles_mermaidsCaveDungeonOpeningScript:
 	setmusic SNDCTRL_STOPMUSIC
 	wait 60
 	playsound SND_DOORCLOSE
-	settilehere TILEINDEX_INDOOR_DOOR
+	settileat $37 $ef
 	scriptjump _miscPuzzles_justOpenedKeyDoor
 
 

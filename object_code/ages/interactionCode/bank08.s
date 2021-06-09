@@ -637,22 +637,33 @@ interactionCode20:
 	.dw mainScripts.dungeonScript_bossDeath
 	.dw mainScripts.spiritsGraveScript_stairsToBraceletRoom
 	.dw mainScripts.spiritsGraveScript_spawnMovingPlatform
+@dungeonb:
+	.dw mainScripts.dungeonScript_spawnChestOnTriggerBit0
+	.dw mainScripts.herosCaveScript_spawnChestWhen4TriggersActive
+	.dw mainScripts.herosCaveScript_spawnBridgeWhenTriggerPressed
+	.dw mainScripts.herosCaveScript_spawnNorthStairsWhenEnemiesKilled
 @dungeon2:
-	.dw mainScripts.wingDungeonScript_spawnFeather
+	;.dw mainScripts.wingDungeonScript_spawnFeather
 	;.dw mainScripts.wingDungeonScript_spawn30Rupees
 	.dw mainScripts.dungeonScript_minibossDeath
 	.dw mainScripts.wingDungeonScript_bossDeath
+	.dw mainScripts.ancientTombScript_retractWallWhenTrigger0Active
+	.dw mainScripts.lostLabrinthScript_keyFallsFromActiveTrigger
+@dungeonc:
+	.dw mainScripts.dungeonScript_bossDeath
+	.dw mainScripts.mermaidsCaveScript_spawnBridgeWhenOrbHit
+	.dw mainScripts.mermaidsCaveScript_updateTrigger2BasedOnTriggers0And1
 @dungeon3:
 	.dw mainScripts.dungeonScript_minibossDeath
 	.dw mainScripts.dungeonScript_bossDeath
 	.dw mainScripts.moonlitGrottoScript_spawnChestWhen2TorchesLit
-	.dw mainScripts.spawn80Rupees
+	.dw mainScripts.spawnHeartPiece
 @dungeon4:
 	.dw mainScripts.seasonsShrineScript_minibossDeath
 	.dw mainScripts.dungeonScript_bossDeath
 	.dw mainScripts.seasonsShrineScript_stairsToWinter
 	.dw mainScripts.seasonsShrineScript_bossKeyRoom
-	.dw mainScripts.spawn80Rupees
+	.dw mainScripts.spawnHeartPiece
 	.dw mainScripts.seasonsShrineScript_bossKeyRoom2
 @dungeon5:
 	.dw mainScripts.dungeonScript_minibossDeath
@@ -672,15 +683,7 @@ interactionCode20:
 	.dw mainScripts.ancientTombScript_spawnVerticalBridgeWhenTorchLit
 @dungeon9:
 @dungeona:
-@dungeonb:
-	.dw mainScripts.dungeonScript_spawnChestOnTriggerBit0
-	.dw mainScripts.herosCaveScript_spawnChestWhen4TriggersActive
-	.dw mainScripts.herosCaveScript_spawnBridgeWhenTriggerPressed
-	.dw mainScripts.herosCaveScript_spawnNorthStairsWhenEnemiesKilled
-@dungeonc:
-	.dw mainScripts.dungeonScript_bossDeath
-	.dw mainScripts.mermaidsCaveScript_spawnBridgeWhenOrbHit
-	.dw mainScripts.mermaidsCaveScript_updateTrigger2BasedOnTriggers0And1
+
 
 
 ; ==============================================================================
@@ -717,6 +720,7 @@ interactionCode21:
 	.dw _interaction21_subid18
 	.dw _interaction21_subid19
 	.dw _interaction21_subid1a
+	.dw _interaction21_subid1b
 
 
 ; D2: Verify a 2x2 floor pattern
@@ -1385,6 +1389,62 @@ _interaction21_subid1a:
 
 	ld a,SND_SOLVEPUZZLE
 	call playSound
+	jp interactionDelete
+
+;writes to wActiveTriggers if no holes exist
+_interaction21_subid1b:
+	call getThisRoomFlags
+	and ROOMFLAG_ITEM
+	jp nz,interactionDelete
+
+	ld e,Interaction.state
+	ld a,(de)
+	rst_jumpTable
+	.dw @state0
+	.dw @state1
+	.dw @state2
+@state0:
+	ld a,$01
+	ld (de),a
+
+	ld e,Interaction.var03
+	ld a,(de)
+	cp $ff
+	jr z,@state1
+
+	ld hl,wActiveTriggers
+	call unsetFlag
+
+@state1:
+	ld b,d
+	ld de,@@holeIndices
+-
+	ld a,(de)
+	or a
+	jr z,@@incState
+	call findTileInRoom
+	ret z
+	inc e
+	jr -
+@@incState:
+	ld h,b
+	ld l,Interaction.state
+	inc (hl)
+	ret
+
+@@holeIndices:
+	.db $48 $49 $4a $4b
+	.db $f4 $f5 $f6 $f7
+	.db $00
+
+@state2:
+	ld e,Interaction.var03
+	ld a,(de)
+	cp $ff
+	jr z,_spawnSmallKeyFromCeiling
+
+	ld hl,wActiveTriggers
+	call setFlag
 	jp interactionDelete
 
 ;;

@@ -68,6 +68,8 @@ applyRoomSpecificTileChanges:
   .dw tileReplacement_group5Map37 ; $3c
   .dw tileReplacement_group0Map32 ; $3d
   .dw tileReplacement_group0Map40 ; $3e
+  .dw tileReplacement_group4Map51 ; $3f
+  .dw tileReplacement_group1Map30 ; $40
 
 roomTileChangerCodeGroupTable:
   .dw roomTileChangerCodeGroup0Data
@@ -112,6 +114,7 @@ roomTileChangerCodeGroup0Data:
   ;.db $76 $36
   .db $00
 roomTileChangerCodeGroup1Data:
+  .db $30 $40
   ;.db $38 $09
   ;.db $27 $28
   .db $8c $2c
@@ -127,6 +130,8 @@ roomTileChangerCodeGroup3Data:
   .db $08 $39
   .db $00
 roomTileChangerCodeGroup4Data:
+  .db $50 $12     ;Group5Map95
+  .db $51 $3f
   ;.db $1b $01
   ;.db $4c $03
   ;.db $4e $04
@@ -149,7 +154,7 @@ roomTileChangerCodeGroup5Data:
   ;.db $4d $0f
   ;.db $5d $10
   ;.db $72 $10
-  ;.db $95 $12
+  .db $95 $12
   ;.db $c3 $13
   ;.db $b9 $27
   ;.db $c2 $29
@@ -535,22 +540,40 @@ tileReplacement_group5Map43:
 ; D8: room with retracting wall
 tileReplacement_group5Map95:
   call getThisRoomFlags
-  and $40
+  and ROOMFLAG_40
   ret nz
 
-  ld hl,wRoomLayout + $4d
-  ld (hl),$b4
+  ld hl,wRoomLayout + $3c
+  ld (hl),$b4   ;corner
   inc l
-  ld (hl),$b2
+  ld a,$b2
+  ldi (hl),a   ;edge
+  ld (hl),a    ;edge
   ld hl,@wallInterior
   call fillRectInRoomLayout
   ld hl,@wallEdge
   jp fillRectInRoomLayout
 
+;YX, Height, Length, Tile Index
 @wallInterior:
-  .db $5e $05 $01 $a7
+  .db $4d $06 $02 $a7
 @wallEdge:
-  .db $5d $05 $01 $b1
+  .db $4c $06 $01 $b1
+
+tileReplacement_group4Map51:
+  ld a,<ROOM_AGES_450
+  call getARoomFlags
+  and ROOMFLAG_40
+  ret nz
+
+  ld hl,wRoomLayout + $30
+  ld (hl),$b5   ;corner
+  ld hl,@wallEdge
+  call fillRectInRoomLayout
+
+@wallEdge:
+  .db $40 $06 $01 $b3
+
 
 ;;
 ; Past: cave with goron elder
@@ -1590,4 +1613,13 @@ _ledgeReplacement:
   ld a,$50
   ldi (hl),a
   ld (hl),a
+  ret
+
+tileReplacement_group1Map30:
+  call getThisRoomFlags
+  and ROOMFLAG_80
+  ret z
+
+  ld hl,wRoomLayout + $37
+  ld (hl),$ef
   ret

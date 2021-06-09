@@ -114,8 +114,8 @@ replacePollutionWithWaterIfPollutionFixed:
 +
 	jr replaceTiles
 
-@aboveWaterReplacement:
-	.db $fc $eb
+@aboveWaterReplacement:		;replaces ground with timeportals
+	.db $d7 $af
 	.db $00
 @belowWaterReplacement:
 	.db $3b $eb
@@ -508,8 +508,11 @@ replaceShutterForLinkEntering:
 
 ;;
 replaceOpenedChest:
+	ld a,(wActiveGroup)
+	or a
+	jr nz,@noException
 	ld a,(wPastRoomFlags+<ROOM_AGES_120)
-	bit 0,a
+	bit ROOMFLAG_BIT_LAYOUTSWAP,a
 	jr nz,@noException
 	ld a,(wActiveRoom)
 	ld e,a

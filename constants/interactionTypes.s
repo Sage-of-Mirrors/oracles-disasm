@@ -93,7 +93,7 @@
 ;
 ; @subid_00{Show text on entering dungeon; also initializes toggle blocks, switches, and loads
 ;       static objects.}
-; @subid_01{Small key falls here when [wNumEnemies] == 0}
+; @subid_01{Small key falls here when [wNumEnemies] == 0, Drops boss key when Var03 is nonzero}
 ; @subid_02{A chest appears here when [wNumEnemies] == 0}
 ; @subid_03{Set room flag $80 when [wNumEnemies] == 0}
 ; @subid_04{Create a staircase when [wNumEnemies] == 0 (and set room flag $80).
@@ -232,6 +232,7 @@
 ; @subid_19{d1: Set trigger 0 when the colored flames are lit blue.}
 ; @subid_1a{spawns a bridge at position Y when [wActiveTriggers] == high byte of X with angle
 ;       low byte of X and length [counter2] of Var03.}
+; @subid_1b{writes to wActiveTriggers from var03 (bitfield) (drops key if var03 == $ff) if no holes exist(Tile Indices $48-$4b & $f4-$f7)}
 .define INTERACID_DUNGEON_EVENTS	$21
 
 ;;

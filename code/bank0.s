@@ -8278,6 +8278,11 @@ cpInteractionSubstate:
 	ld l,Interaction.substate
 	cp (hl)
 	ret
+checkInteractionSubid:
+	ld e,Interaction.subid
+	ld a,(de)
+	or a
+	ret
 ;;
 checkInteractionState:
 	ld e,Interaction.state

@@ -5956,6 +5956,60 @@ groups:
     text: |-
       Pah! Meat!!!
 
+  - name:
+    - TX_0b46
+    - TX_0b47
+    index:
+    - 0x46
+    - 0x47
+    text: |-
+      \pos(2)If \col(3)Maple\col(0) were
+      here, I'd send
+      her to \col(3)that labrinth\col(0)
+      for \col(1)\item(0x06) Mushrooms\col(0),
+      but since she
+      hasn't come
+      back,
+      I can't make my
+      \col(1)Magic Potion\col(0)!
+
+  - name: TX_0b48
+    index: 0x48
+    text: |-
+      \pos(2)Sniff, sniff!!!
+      That scent!!!\stop
+      Ya've got a
+      \col(1)\item(0x06) Mushroom\col(0)!
+      I'll make it
+      worth your while!
+      How about it?
+        \opt()OK \opt()No way
+
+  - name: TX_0b49
+    index: 0x49
+    text: |-
+      \pos(2)Ee, hee, hee! I
+      can finally make
+      my \col(1)Magic Potion\col(0).
+      Guess I'll open
+      the shop soon.
+
+  - name: TX_0b4a
+    index: 0x4a
+    text: |-
+      \pos(2)But where's that
+      \col(3)Maple\col(0) wasting
+      her time away?
+
+  - name: TX_0b4b
+    index: 0x4b
+    text: |-
+      \pos(2)Hmph! Can't
+      someone give me
+      a Mushroom?
+
+
+
 - group: 0x0c
   data:
   - name: TX_0c00
@@ -18788,11 +18842,9 @@ groups:
   - name: TX_4109
     index: 0x09
     text: |-
-      Thank you,
-      young one!\stop
-      Now I can
-      cleanse the
-      seas of evil!
+      As thanks, I will
+      create portal spots
+      around the forest!
 
 - group: 0x42
   data:

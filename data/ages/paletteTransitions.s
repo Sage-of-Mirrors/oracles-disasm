@@ -41,7 +41,8 @@ paletteTransitionGroup0:
 	dbbww DIR_UP    $43  paletteData4d90 paletteData4a30
 	dbbww DIR_DOWN  $53  paletteData4a30 paletteData4d90 
 	dbbww DIR_UP    $63  paletteData4a30 paletteData4d90
-	dbbww DIR_DOWN  $73  paletteData4d90 paletteData4a30 
+	dbbww DIR_UP    $70  paletteData4d90 paletteData4a30
+	dbbww DIR_DOWN  $73  paletteData4d90 paletteData4a30
 
 
 ;	dbbww DIR_UP    $8b  paletteData4c10 paletteData4a90

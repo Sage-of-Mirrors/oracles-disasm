@@ -43,7 +43,6 @@ objectData4050:
 	obj_EndPointer
 
 objectData4056:
-	obj_Interaction $c7 $04 $0f $16
 	obj_EndPointer
 
 objectData405c:

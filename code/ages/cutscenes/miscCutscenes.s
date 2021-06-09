@@ -2035,7 +2035,7 @@ _cutscene_incCBB3:
 ; CUTSCENE_WALL_RETRACTION
 func_701d:
 	ld a,(wDungeonIndex)
-	cp $08
+	cp $02			;dungeon 2
 	jp z,_wallRetraction_dungeon8
 	ld a,(wCutsceneState)
 	rst_jumpTable
@@ -2043,7 +2043,7 @@ func_701d:
 	.dw @state1
 
 @state0:
-	ld a,$72
+	ld a,GFXH_72
 @func_702f:
 	call loadGfxHeader
 	ld b,$10
@@ -2052,9 +2052,9 @@ func_701d:
 	call reloadTileMap
 	call resetCamera
 	call getThisRoomFlags
-	set 6,(hl)
+	set ROOMFLAG_BIT_40,(hl)
 	call loadTilesetAndRoomLayout
-	ld a,$3c
+	ld a,60
 	ld (wTmpcbb4),a
 	xor a
 	ld (wScrollMode),a
@@ -2067,14 +2067,14 @@ func_701d:
 @cbb3_00:
 	call _cutscene_tickDownCBB4ThenSetTo30
 	ret nz
-	ld (hl),$3c
+	ld (hl),60
 	jr _cutscene_incCBB3
 @cbb3_01:
 	ld a,$3c
 	call setScreenShakeCounter
 	call _cutscene_tickDownCBB4ThenSetTo30
 	ret nz
-	ld (hl),$19
+	ld (hl),25
 	callab tilesets.generateW3VramTilesAndAttributes
 	ld bc,$260c
 	call _func_70f7
@@ -2090,7 +2090,7 @@ func_701d:
 	ret c
 	call _func_7098
 	ld a,$0f
-	ld ($ce5d),a
+	ld (wRoomCollisions + $5d),a		;$ce5d
 	ret
 
 _func_7098:
@@ -2112,7 +2112,7 @@ _wallRetraction_dungeon8:
 	.dw @state0
 	.dw @state1
 @state0:
-	ld a,$73
+	ld a,GFXH_73
 	jp func_701d@func_702f
 @state1:
 	ld a,(wTmpcbb3)
@@ -2120,13 +2120,14 @@ _wallRetraction_dungeon8:
 	.dw func_701d@cbb3_00
 	.dw @cbb3_01
 @cbb3_01:
-	ld a,$3c
+	ld a,60
 	call setScreenShakeCounter
 	call _cutscene_tickDownCBB4ThenSetTo30
 	ret nz
-	ld (hl),$19
+	ld (hl),25
 	callab tilesets.generateW3VramTilesAndAttributes
-	ld bc,$4d04
+;	YX of tile to start & Length of Reading unk_067ec0
+	ldbc $4c,$06		;$4d04
 	call _func_70f7
 	xor a
 	ld ($ff00+R_SVBK),a
@@ -2138,6 +2139,7 @@ _wallRetraction_dungeon8:
 	ld a,(hl)
 	cp $0b
 	ret c
+; Repeat 11 times
 	jr _func_7098
 	
 _func_70f7:
@@ -2880,11 +2882,14 @@ func_03_7619:
 	call clearMemory
 	call clearScreenVariablesAndWramBank1
 	call refreshObjectGfx
-	ld a,MUS_FAIRY_FOUNTAIN
+	ld a,MUS_ESSENCE_ROOM
 	call playSound
 	call _cleanSeas_incState
 	xor a
-	ld bc, ROOM_AGES_1a5
+	ld bc, ROOM_AGES_150
+	call @func_764a
+	ld hl,objectData.group1Map50ObjectData
+	jp parseGivenObjectData
 @func_764a:
 	push bc
 	call disableLcd
@@ -2899,12 +2904,12 @@ func_03_7619:
 	ld (wMenuDisabled),a
 	xor a
 	pop bc
-	call func_36f6
-	call func_131f
+	call func_36f6		;loads room
+	call func_131f		;used for fadein transitions
 	call loadCommonGraphics
 	ld a,$02
 	jp loadGfxRegisterStateIndex
-@state1:
+@state1:		;sprinking in room
 	ld a,(wTmpcbb3)
 	rst_jumpTable
 	.dw @@cbb3_00
@@ -2915,7 +2920,7 @@ func_03_7619:
 	ld a,(wPaletteThread_mode)
 	or a
 	ret nz
-	ld a,$f0
+	ld a,240
 	ld (wTmpcbb4),a
 	jp _cleanSeas_incCBB3
 @@cbb3_01:
@@ -2937,7 +2942,7 @@ func_03_7619:
 	call z,playSound
 	call _cleanSeas_decCBB4
 	ret nz
-	ld (hl),$78
+	ld (hl),120
 	ld a,$04
 	call fadeoutToWhiteWithDelay
 	ld a,SND_FADEOUT
@@ -2963,11 +2968,11 @@ func_03_7619:
 	ret nz
 	call _cleanSeas_decCBB4
 	ret nz
-	ld (hl),$3c
+	ld (hl),120		;60
 	call _cleanSeas_incState
 	xor a
 	ld (wTmpcbb3),a
-	ld bc, ROOM_AGES_1d2
+	ld bc, ROOM_AGES_151
 	jp @func_764a
 @state2:
 	ld a,(wTmpcbb3)
@@ -2982,14 +2987,14 @@ func_03_7619:
 	ret nz
 	call _cleanSeas_decCBB4
 	ret nz
-	ld (hl),$3c
+	ld (hl),120		;60
 	call _cleanSeas_incState
 	xor a
 	ld (wTmpcbb3),a
-	ld bc, ROOM_AGES_3b1
-	call @func_764a
-	ld hl,objectData.objectData7e71
-	jp parseGivenObjectData
+	ld bc, ROOM_AGES_160
+	jp @func_764a
+;	ld hl,objectData.objectData7e71
+;	jp parseGivenObjectData
 @state3:
 	ld a,(wTmpcbb3)
 	rst_jumpTable
@@ -3001,19 +3006,22 @@ func_03_7619:
 	ld a,(wPaletteThread_mode)
 	or a
 	ret nz
-	ld hl,$cfc0
-	bit 7,(hl)
-	ret z
-	res 7,(hl)
+	call _cleanSeas_decCBB4
+	ret nz
+	ld (hl),120		;60
+;	ld hl,$cfc0		;checks if Zoras have finished animating
+;	bit 7,(hl)
+;	ret z
+;	res 7,(hl)
 	call _cleanSeas_incState
 	xor a
 	ld (wTmpcbb3),a
 	ld a,$3c
 	ld (wTmpcbb4),a
-	ld bc, ROOM_AGES_3b0
-	call @func_764a
-	ld hl,objectData.objectData7e7b
-	jp parseGivenObjectData
+	ld bc, ROOM_AGES_161
+	jp @func_764a
+;	ld hl,objectData.objectData7e7b
+;	jp parseGivenObjectData
 @state4:
 	ld a,(wTmpcbb3)
 	rst_jumpTable
@@ -3025,24 +3033,27 @@ func_03_7619:
 	ld a,(wPaletteThread_mode)
 	or a
 	ret nz
-	ld hl,$cfc0
-	bit 7,(hl)
-	ret z
-	ld a,$3c
-	ld (wTmpcbb4),a
+;	ld hl,$cfc0		;checks if Zoras have finished animating
+;	bit 7,(hl)
+;	ret z
+	call _cleanSeas_decCBB4
+	ret nz
+	ld (hl),120		;60
+;	ld a,60
+;	ld (wTmpcbb4),a
 	call _cleanSeas_incState
 	xor a
 	ld (wTmpcbb3),a
-	ld bc, ROOM_AGES_1a3
+	ld bc, ROOM_AGES_130
 	call @func_764a
-	ld hl,$d000
+	ld hl,w1Link.enabled
 	ld (hl),$03
-	ld l,$0b
+	ld l,$0b ;w1Link.yh
 	ld (hl),$38
-	ld l,$0d
-	ld (hl),$68
-	ld l,$08
-	ld (hl),$02
+	ld l,$0d ;w1Link.xh
+	ld (hl),$78
+	ld l,$08 ;w1Link.direction
+	ld (hl),DIR_DOWN
 	jp setLinkForceStateToState08
 @state5:
 	ld a,(wTmpcbb3)
@@ -3068,10 +3079,11 @@ func_03_7619:
 	ld a,(wPaletteThread_mode)
 	or a
 	ret nz
-	ld hl,$cfc0
-	bit 7,(hl)
-	ret z
-	ld a,$3c
+; Useless code probably copied from previous section
+;	ld hl,$cfc0
+;	bit 7,(hl)
+;	ret z
+	ld a,60
 	ld (wTmpcbb4),a
 	ld a,SND_SOLVEPUZZLE_2
 	call playSound
@@ -3091,29 +3103,29 @@ func_03_7619:
 	ld (wRoomPack),a
 	ld a,(wActiveRoom)
 	ld (wLoadingRoom),a
-	ld a,MUS_CAVE
+	ld a,$37
 	ld (wEnteredWarpPosition),a
 	ld a,(wActiveMusic2)
 	ld (wActiveMusic),a
 	call playSound
 	ld a,CUTSCENE_LOADING_ROOM
 	ld (wCutsceneIndex),a
-	ld a,$02
+	ld a,DIR_DOWN
 	ld (w1Link.direction),a
 	ld a,GLOBALFLAG_WATER_POLLUTION_FIXED
 	call setGlobalFlag
 	jp setDeathRespawnPoint
 	
 _func_782a:
-	ld a,$eb
+	ld a,$af		;TILEINDEX_POLLUTION
 	call findTileInRoom
 	ret nz
 	ld c,l
 	ld a,(wTilesetFlags)
-	and $40
-	ld a,$fc
+	and TILESETFLAG_UNDERWATER
+	ld a,TILEINDEX_PORTAL_SPOT
 	jr z,+
-	ld a,$3a
+	ld a,TILEINDEX_OVERWORLD_STANDARD_GROUND
 +
 	call setTile
 	xor a

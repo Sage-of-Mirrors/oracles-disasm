@@ -214,6 +214,7 @@ bank3bChannelFallback:
 .include "audio/sfx/common/unknown7.s"
 .include "audio/sfx/common/enemyJump.s"
 .include "audio/sfx/common/galeSeed.s"
+.include "audio/mus/ages/tokayHouse.s"
 
 soundcaStart:
 soundcaChannel2:
@@ -239,20 +240,21 @@ bank3cChannelFallback:
 .redefine MUSIC_CHANNEL_FALLBACK bank3cChannelFallback
 
 
-.include "audio/mus/ages/moonlitGrotto.s"
+;.include "audio/mus/ages/moonlitGrotto.s"
+.include "audio/mus/ages/floroCaverns.s"
 .include "audio/mus/common/onoxCastle.s"
 .include "audio/mus/common/sadness.s"
 .include "audio/mus/common/intro2.s"
 ;.include "audio/mus/ages/ambiPalace.s"
 .include "audio/mus/ages/hyruleCastle.s"
-.include "audio/mus/ages/tokayHouse.s"
+
 ;.include "audio/mus/ages/mermaidsCave.s"
 .include "audio/mus/ages/theGreatPalace.s"
 .include "audio/mus/ages/skullDungeon.s"
 .include "audio/mus/ages/blackTower.s"
 .include "audio/mus/ages/fairyForest.s"
 .include "audio/mus/ages/ralph.s"
-.include "audio/mus/ages/spiritsGrave.s"
+.include "audio/mus/ages/spiritsGrave.s"	;gutted
 ;.include "audio/mus/ages/wingDungeon.s"
 .include "audio/mus/ages/franticFactory.s"
 .include "audio/mus/ages/crownDungeon.s"	;gutted

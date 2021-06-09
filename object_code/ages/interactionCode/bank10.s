@@ -1823,12 +1823,12 @@ interactionCodee9:
 	ld (wWarpTransition2),a
 	jp interactionDelete
 @warpDestLocations:
-	.db $80|>ROOM_AGES_462 <ROOM_AGES_462 $57 ; 
-	.db $80|>ROOM_AGES_463 <ROOM_AGES_463 $57 ; 
-	.db $80|>ROOM_AGES_465 <ROOM_AGES_465 $57 ; 
-	.db $80|>ROOM_AGES_466 <ROOM_AGES_466 $57 ; 
-	.db $80|>ROOM_AGES_468 <ROOM_AGES_468 $57 ; 
-	.db $80|>ROOM_AGES_469 <ROOM_AGES_469 $57 ; 
+	.db $80|>ROOM_AGES_470 <ROOM_AGES_470 $57 ; 
+	.db $80|>ROOM_AGES_472 <ROOM_AGES_472 $57 ; 
+	.db $80|>ROOM_AGES_475 <ROOM_AGES_475 $57 ; 
+	.db $80|>ROOM_AGES_476 <ROOM_AGES_476 $57 ; 
+	.db $80|>ROOM_AGES_479 <ROOM_AGES_479 $97 ; 
+	.db $80|>ROOM_AGES_47a <ROOM_AGES_47a $57 ; 
 
 
 ; Param			b		Radius Y collision

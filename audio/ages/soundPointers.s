@@ -20,7 +20,7 @@ _soundPointers:
 	m_soundPointer sound12
 	m_soundPointer sound13
 	m_soundPointer franticFactory
-	m_soundPointer sound15
+	m_soundPointer floroCaverns
 	m_soundPointer sound16
 	m_soundPointer sound17
 	m_soundPointer theGreatPalace

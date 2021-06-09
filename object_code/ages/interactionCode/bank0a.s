@@ -3898,8 +3898,8 @@ interactionCode80:
 
 ; Subid $01 (moblin's keep flag)
 @deleteIfMoblinsKeepDestroyed:
-	ld a,GLOBALFLAG_MOBLINS_KEEP_DESTROYED
-	call checkGlobalFlag
+	ld a,(wPastRoomFlags + <ROOM_AGES_120)
+	bit ROOMFLAG_BIT_LAYOUTSWAP,a
 	ret z
 	jp interactionDelete
 
@@ -6758,11 +6758,9 @@ _miscPuzzles_subid12:
 
 	call getThisRoomFlags
 	and ROOMFLAG_80
-	jp nz,interactionDelete
+	jp nz, interactionDelete
 	ld hl,mainScripts.miscPuzzles_mermaidsCaveDungeonOpeningScript
 	jr _miscPuzzles_setScriptAndIncState
-
-
 
 ; Eyeglass library keyhole opening
 _miscPuzzles_subid13:

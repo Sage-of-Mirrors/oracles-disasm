@@ -99,7 +99,7 @@ updateItems:
 	.dw itemDelete ; 0x1c
 	.dw itemCode1d ; 0x1d
 	.dw itemCode1e ; 0x1e
-	.dw itemDelete ; 0x1f
+	.dw itemCode1f ; 0x1f
 	.dw itemCode20 ; 0x20
 	.dw itemCode21 ; 0x21
 	.dw itemCode22 ; 0x22
@@ -748,7 +748,7 @@ _itemUpdateThrowingVertically:
 ; @param	c	Gravity
 ; @param[out]	cflag	Set if the object has landed in water, lava, or a hole.
 ; @param[out]	zflag	Set if the object is in midair.
-_itemUpdateThrowingVerticallyAndCheckHazards:
+itemUpdateThrowingVerticallyAndCheckHazards:
 	call _itemUpdateThrowingVertically
 	jr c,@landed
 

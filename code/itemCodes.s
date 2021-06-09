@@ -212,7 +212,7 @@ _seedItemState1:
 
 	call objectApplySpeed
 	ld c,$1c
-	call _itemUpdateThrowingVerticallyAndCheckHazards
+	call itemUpdateThrowingVerticallyAndCheckHazards
 	jp c,_seedItemDelete
 	ret z
 
@@ -1054,7 +1054,7 @@ itemCode0d:
 	jr nz,+
 
 	ld c,$18
-	call _itemUpdateThrowingVerticallyAndCheckHazards
+	call itemUpdateThrowingVerticallyAndCheckHazards
 	jp c,itemDelete
 +
 	ld e,Item.state
@@ -1893,7 +1893,7 @@ _bombUpdateThrowingVerticallyAndCheckDelete:
 	; Within the room boundary
 
 	; Return if it hasn't landed in a hazard (hole/water/lava)
-	call _itemUpdateThrowingVerticallyAndCheckHazards
+	call itemUpdateThrowingVerticallyAndCheckHazards
 	ret nc
 
 .ifdef ROM_AGES
@@ -4205,6 +4205,9 @@ itemCode04:
 	ld (hl),b
 	ld a,(w1Link.zh)
 	ld l,Item.zh
+
+	jp caneHook1
+
 	ldd (hl),a
 	dec l
 	ld (hl),c
@@ -4242,8 +4245,11 @@ itemCode18:
 	xor a
 	call itemSetAnimation
 	call itemIncState
+
 	ld a,SND_MYSTERY_SEED
-	call playSound
+;	call playSound
+	call caneHook2
++
 	jp objectSetVisible83
 
 
@@ -4358,10 +4364,15 @@ itemCode18:
 @removeBlockAndDeleteSelfWithPuff:
 	call @removeBlock
 @deleteSelfWithPuff:
+	; OOH hack: when the somaria block deletes itself, it actually creates an instance
+	; of ITEMID_1f which will attempt to replace hole tiles.
 	ld h,d
 	ld l,Item.var2f
 	bit 4,(hl)
-	call z,objectCreatePuff
+
+;	call z,objectCreatePuff		; $5d5e
+	call caneHook3
+
 @deleteSelf:
 	jp itemDelete
 
@@ -4405,8 +4416,10 @@ itemCode18:
 	; var39 = gravity
 	ld l,Item.var39
 	ld c,(hl)
-	call _itemUpdateThrowingVerticallyAndCheckHazards
-	jr c,@deleteSelf
+	jp caneHook4
+
+;	call itemUpdateThrowingVerticallyAndCheckHazards		; $5d97
+	jr c,@deleteSelf		; $5d9a
 
 	ret z
 	jr @deleteSelfWithPuff
@@ -6351,3 +6364,237 @@ itemCode1a:
 	ld a,(w1Link.xh)
 	ld (hl),a
 	ret
+
+; Cane of somaria creating a "bridge"
+itemCode1f:
+	ld e,Item.state
+	ld a,(de)
+	rst_jumpTable
+
+	.dw @state0
+	.dw @state1
+
+@state0:
+	call objectCenterOnTile
+	call itemIncState
+
+	; Delete self if too high up
+	ld e,Item.zh
+	ld a,(de)
+	or a
+	jr z,++
+	cp $fc
+	jr c,@delete
+++
+
+	ld e,Item.counter1
+	ld a,1
+	ld (de),a
+	ret
+
+@state1:
+	call itemDecCounter1
+	ret nz
+
+	ld a,15
+	ld (hl),a
+
+	; Check that this tile is a hole (and get the tile to replace it with if so)
+	call objectGetTileAtPosition
+	ld hl,_somariaHoleTiles
+	call lookupCollisionTable
+	jr nc,@delete
+
+	; Store tile to change to for later
+	ld e,Item.var03
+	ld (de),a
+
+	; Check that we're not on the screen boundary
+	call objectGetShortPosition
+	ld b,a
+	and $0f
+	jr z,@delete
+	ld c,a
+	ld a,b
+	swap a
+	and $0f
+	jr z,@delete
+	ld b,a
+
+	ld a,(wActiveGroup)
+	cp NUM_SMALL_GROUPS
+	jr c,@small
+@large:
+	ld a,b
+	cp LARGE_ROOM_HEIGHT-1
+	jr z,@delete
+	ld a,c
+	cp LARGE_ROOM_WIDTH-1
+	jr z,@delete
+	jr ++
+@small:
+	ld a,b
+	cp SMALL_ROOM_HEIGHT-1
+	jr z,@delete
+	ld a,c
+	cp SMALL_ROOM_WIDTH-1
+	jr z,@delete
+++
+	; Replace tile
+	call objectGetShortPosition
+	ld c,a
+	ld e,Item.var03
+	ld a,(de)
+	call setTile
+
+	; Set z position to 0
+	ld e,Item.zh
+	xor a
+	ld (de),a
+
+	; Create puff
+	call objectCreatePuff
+
+	; Update position
+	ld e,Item.direction
+	ld a,(de)
+	ld hl,@directionOffsets
+	rst_addDoubleIndex
+
+	ld e,Item.yh
+	ld a,(de)
+	add (hl)
+	ld (de),a
+	inc hl
+	ld e,Item.xh
+	ld a,(de)
+	add (hl)
+	ld (de),a
+
+	ld e,Item.var3f
+	ld a,1
+	ld (de),a
+	ret
+
+@delete:
+	ld e,Item.var3f
+	ld a,(de)
+	or a
+	call z,objectCreatePuff
+	jp itemDelete
+
+@directionOffsets:
+	.db -16,   0 ; DIR_UP
+	.db   0,  16 ; DIR_RIGHT
+	.db  16,   0 ; DIR_DOWN
+	.db   0, -16 ; DIR_DOWN
+
+
+; This is the list of tiles that the cane of somaria will replace with floor.
+_somariaHoleTiles:
+	.dw @collisions0
+	.dw @collisions1
+	.dw @collisions2
+	.dw @collisions3
+	.dw @collisions4
+	.dw @collisions5
+
+@collisions0: ; Overworld
+	.db $f3 $3a ; Hole
+
+	.db $e4 $3a ; Lava
+	.db $e5 $3a
+	.db $e6 $3a
+	.db $e7 $3a
+	.db $e8 $3a
+	.db $00
+
+@collisions1: ; Indoors, dungeons
+@collisions2:
+	.db $48 $a0 ; Floor-transfer holes
+	.db $49 $a0
+	.db $4a $a0
+	.db $4b $a0
+
+	.db $61 $a0 ; Lava
+	.db $62 $a0
+	.db $63 $a0
+	.db $64 $a0
+	.db $65 $a0
+
+	.db $f3 $a0 ; Normal holes
+	.db $f4 $a0
+	.db $f5 $a0
+	.db $f6 $a0
+	.db $f7 $a0
+	.db $00
+
+@collisions3: ; Sidescrolling
+@collisions4: ; Underwater
+@collisions5: ; ?
+	.db $00
+
+
+caneHook1:
+	ldd (hl),a
+	dec l
+	ld (hl),c
+
+	; Also copy direction so the cane knows which way to create blocks
+	ld l,Item.direction
+	ld e,l
+	ld a,(de)
+	ld (hl),a
+	ret
+
+caneHook2:
+	; Only play the sound if we're not creating floors.
+	call objectGetTileAtPosition
+	ld hl,_somariaHoleTiles
+	call lookupCollisionTable
+	ret c
+	ld a,SND_MYSTERY_SEED
+	call playSound
+	ret
+
+caneHook3:
+	bit 4,(hl)
+	ret nz
+
+	call getFreeItemSlot
+	ret nz
+	ld (hl),1
+	inc l
+	ld (hl),ITEMID_1f
+	ld e,Item.direction
+	ld l,e
+	ld a,(de)
+	ld (hl),a
+	call objectCopyPosition
+	ret
+
+caneHook4:
+	call itemCode.itemUpdateThrowingVerticallyAndCheckHazards
+	jr nc,++		; $5d9a
+
+	; Fell into a hazard; delete the object that the above function call created,
+	; we'll create a "puff" instead.
+	push de
+	ld d,h
+	call interactionDelete
+	pop de
+
+	; Calculate direction to copy to ITEMID_1f before deleting self
+	ld e,Item.angle
+	ld a,(de)
+	call convertAngleToDirection
+	ld e,Item.direction
+	ld (de),a
+	jr @deleteSelfWithPuff
+
+++
+	ret z			; $5d9c
+	jr @deleteSelfWithPuff		; $5d9d
+
+@deleteSelfWithPuff:
+	jp itemCode.itemCode18@deleteSelfWithPuff

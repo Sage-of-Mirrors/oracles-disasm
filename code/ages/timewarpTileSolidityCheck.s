@@ -47,9 +47,15 @@ checkLinkCanStandOnTile:
 	ld c,$00
 	ret
 ++
+	ld l,a
 	or a
 	ld a,TREASURE_MERMAID_SUIT
 	call nz,checkTreasureObtained
+	jr c,@validTile
+	ld a,$02
+	cp l
+	ld a,TREASURE_FLIPPERS
+	call z,checkTreasureObtained
 	jr c,@validTile
 
 @invalidTile:
@@ -69,4 +75,5 @@ _invalidTimewarpTileList:
 	.db $e8 $00
 	.db $e9 $00 ; Whirlpool
 	.db $fc $01 ; Deep water
+	.db $fa $02
 	.db $00
