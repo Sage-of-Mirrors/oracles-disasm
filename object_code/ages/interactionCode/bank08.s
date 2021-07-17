@@ -6,8 +6,10 @@ m_section_free Ages_Interactions_Bank8 NAMESPACE agesInteractionsBank08
 interactionCode15:
 	ld e,Interaction.subid
 	ld a,(de)
-	or a
-	jp nz,@subid01
+	rst_jumpTable
+	.dw @subid00
+	.dw @subid01
+;	.dw @subid02
 
 
 ; Subid 0: this checks Link's position and spawns new instances of subid 1 when needed.
@@ -111,7 +113,6 @@ interactionCode15:
 	call playSound
 
 	jp interactionDelete
-
 ;;
 ; @param[out]	a,l	The position of the tile Link's standing on
 getLinkTilePosition:
@@ -638,18 +639,22 @@ interactionCode20:
 	.dw mainScripts.spiritsGraveScript_stairsToBraceletRoom
 	.dw mainScripts.spiritsGraveScript_spawnMovingPlatform
 @dungeonb:
-	.dw mainScripts.dungeonScript_spawnChestOnTriggerBit0
-	.dw mainScripts.herosCaveScript_spawnChestWhen4TriggersActive
-	.dw mainScripts.herosCaveScript_spawnBridgeWhenTriggerPressed
-	.dw mainScripts.herosCaveScript_spawnNorthStairsWhenEnemiesKilled
+	.dw mainScripts.dungeonScript_minibossDeath
+	.dw mainScripts.dungeonScript_bossDeath
+	.dw mainScripts.lostLabrinthScript_openPortionOfWall
+	;.dw mainScripts.dungeonScript_spawnChestOnTriggerBit0
+	;.dw mainScripts.herosCaveScript_spawnChestWhen4TriggersActive
+	;.dw mainScripts.herosCaveScript_spawnBridgeWhenTriggerPressed
+	;.dw mainScripts.herosCaveScript_spawnNorthStairsWhenEnemiesKilled
 @dungeon2:
 	;.dw mainScripts.wingDungeonScript_spawnFeather
 	;.dw mainScripts.wingDungeonScript_spawn30Rupees
 	.dw mainScripts.dungeonScript_minibossDeath
-	.dw mainScripts.wingDungeonScript_bossDeath
+	.dw mainScripts.dungeonScript_bossDeath
 	.dw mainScripts.ancientTombScript_retractWallWhenTrigger0Active
 	.dw mainScripts.lostLabrinthScript_keyFallsFromActiveTrigger
 @dungeonc:
+	.dw mainScripts.dungeonScript_minibossDeath
 	.dw mainScripts.dungeonScript_bossDeath
 	.dw mainScripts.mermaidsCaveScript_spawnBridgeWhenOrbHit
 	.dw mainScripts.mermaidsCaveScript_updateTrigger2BasedOnTriggers0And1
@@ -1537,15 +1542,20 @@ interactionCode22:
 	ld a,(de)
 	cp (hl)
 	ret z
-
+; rets if tile at position is not a toggle floor
 	ld a,(hl)
-	sub TILEINDEX_RED_TOGGLE_FLOOR
-	cp $03
+	sub TILEINDEX_RED_TOGGLE_BLOCK
+	cp $06
 	ret nc
 
+; puts tile index into var03
 	ld a,(hl)
 	ld (de),a
+
 	sub TILEINDEX_RED_TOGGLE_FLOOR
+	jr nc,+
+	add TILEINDEX_RED_TOGGLE_FLOOR - TILEINDEX_RED_TOGGLE_BLOCK
++
 	add TILEINDEX_RED_FLOOR
 	ld b,a
 	call getFreeInteractionSlot

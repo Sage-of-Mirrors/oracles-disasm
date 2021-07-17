@@ -287,7 +287,7 @@ applyStandardTileSubstitutions:
 	.db $dc $c1
 	.db $ed $c3
 @bit7Collisions0:
-	.db $dd $c1 ; Cave door under rock? (Is this a bug?)
+	.db $dc $c1 ;$dd $c1 ; Cave door under rock? (Is this a bug?)
 	.db $d2 $c2 ; Soil under rock
 	.db $dc $c6 ; Grave pushed onto land
 	.db $d2 $c7 ; Soil under bush

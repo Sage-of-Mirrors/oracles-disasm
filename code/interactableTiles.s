@@ -181,6 +181,14 @@ _nextToSignTile:
 +
 	; Match found
 	ld c,(hl)
+; checks to display mountain or desert text
+	cp <ROOM_AGES_043
+	jr nz,+
+	ld a,(wPastRoomFlags+<ROOM_AGES_120)
+	bit 0,a
+	jr z,+
+	inc c
++
 	ld b,>TX_2e00
 	call showText
 	scf

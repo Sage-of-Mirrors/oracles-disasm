@@ -33,7 +33,7 @@ dungeonData00:
 dungeonData01:
 	m_DungeonData >wGroup4Flags, $24, dungeon01Layout, $01, $03, $03, $00, $00
 dungeonData02:
-	m_DungeonData >wGroup4Flags, $46, dungeon02Layout, $03, $03, $01, $00, $00
+	m_DungeonData >wGroup4Flags, $51, dungeon02Layout, $03, $03, $01, $00, $00
 dungeonData03:
 	m_DungeonData >wGroup5Flags, $50, dungeon03Layout, $04, $00, $00, $00, $00
 dungeonData04:

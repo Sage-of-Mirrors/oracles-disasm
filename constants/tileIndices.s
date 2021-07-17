@@ -132,6 +132,10 @@
 .define TILEINDEX_HORIZONTAL_BRIDGE_RIGHT	$6f ; dungeons/indoors only
 .define TILEINDEX_STANDARD_FLOOR	$a0 ; Keyblocks and such will turn into this tile
 .define TILEINDEX_DUNGEON_a3		$a3 ; dungeons, indoors only
+
+.define TILEINDEX_RED_TOGGLE_BLOCK	$aa
+.define TILEINDEX_YELLOW_TOGGLE_BLOCK $ab
+.define TILEINDEX_BLUE_TOGGLE_BLOCK	$ac
 .define TILEINDEX_RED_TOGGLE_FLOOR	$ad ; dungeons only
 .define TILEINDEX_YELLOW_TOGGLE_FLOOR	$ae ; dungeons only
 .define TILEINDEX_BLUE_TOGGLE_FLOOR	$af ; dungeons only

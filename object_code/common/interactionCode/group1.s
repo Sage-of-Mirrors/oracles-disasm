@@ -432,7 +432,7 @@ interactionCode12:
 ; One byte per dungeon.
 @initialSpinnerValues:
 	.db $00 $00 $00 $01 $00 $00 $02 $00
-	.db $01 $00 $00 $00 $01 $00 $00 $00
+	.db $01 $00 $00 %00000101 $01 $00 $00 $00
 .endif
 
 
@@ -923,12 +923,33 @@ interactionCode14:
 	ld e,Interaction.var30
 	ld a,(de)
 	ld c,a
+
+	call getTileIndexFromRoomLayoutBuffer_paramC
+	ld b,a
+	push bc
+	ld hl,hazardCollisionTable
+	call lookupCollisionTable
+	pop bc
+	jr c,@@overHazard
+
+	ld e,Interaction.var30
+	ld a,(de)
+	ld c,a
 	call getTileIndexFromRoomLayoutBuffer_paramC
 	jp nc,setTile
 
 	ld e,Interaction.var32
 	ld a,(de)
 	jp setTile
+@@overHazard:
+	ld a,(wDungeonIndex)
+	inc a
+	ld a,TILEINDEX_OVERWORLD_STANDARD_GROUND
+	jr z,+
+	ld a,TILEINDEX_STANDARD_FLOOR
++
+	jp setTile
+
 
 .ifdef ROM_AGES
 ;;

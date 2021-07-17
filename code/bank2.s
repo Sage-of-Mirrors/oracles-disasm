@@ -6673,6 +6673,8 @@ _mapGetRoomText:
 	.dw @specialCode2
 	.dw @specialCode3
 	.dw @specialCode4
+	.dw @specialCode5
+	.dw @specialCode6
 
 ; Maku tree: text varies based on the point in the game the player is at
 @specialCode0:
@@ -6778,6 +6780,24 @@ _mapGetRoomText:
 	ld c,<TX_032c
 	ret
 .endif
+
+; Show desert text instead of mountains
+@specialCode5:
+	ld c,a		;<TX_0305
+	ld a,(wPastRoomFlags+<ROOM_AGES_120)
+	bit 0,a
+	ret z
+	ld c,<TX_0336
+	ret
+
+; show shrine or labrinth
+@specialCode6:
+	ld a,(wPastRoomFlags+<ROOM_AGES_120)
+	bit 0,a
+	jr z,@specialCode1
+	add $08			;increases from D11 to D12
+	ld c,a
+	jr @specialCode1
 
 ;;
 ; @param	a	Index
@@ -9049,10 +9069,10 @@ _mapMenu_dungeonEntranceText:
 
 	.ifdef ROM_AGES
 		.db $d3  	 (<TX_0307)
-		.db $24  $80|(<TX_0309)
-		.db $46  $80|(<TX_0337)		;change later
-		.db $50  	 (<TX_0311)
-		.db $2a  	 (<TX_0303)
+		.db $24  	 (<TX_0309)
+		.db $5a  	 (<TX_0337)
+		.db $50  $80|(<TX_0311)
+		.db $2a  $80|(<TX_0303)
 
 		.db $bb  $80|(<TX_0305)
 		.db $26      (<TX_0306)
@@ -9060,8 +9080,10 @@ _mapMenu_dungeonEntranceText:
 		.db $aa      (<TX_0336)
 		.db $01  $80|(<TX_0332)
 		.db $f4      (<TX_0332)
-		.db $ce  $80|(<TX_0332)
-		.db $44      (<TX_0306)
+
+		.db $43  	 (<TX_0305)
+		.db $77      (<TX_0336)
+		
 		.db $0d  $80|(<TX_0332)
 		.db $01      (<TX_0332)
 		.db $01  $80|(<TX_0332)

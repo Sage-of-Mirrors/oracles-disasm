@@ -377,11 +377,11 @@ interactiond7SubidData:
 	m_InteractionData $00 $00 $00
 	m_InteractionData $00 $00 $00
 	m_InteractionData $80 $00 $53
-	m_InteractionData $80 $04 $22
+	m_InteractionData $80 $04 $22	;life potion
 	m_InteractionData $80 $06 $03	;ghastly doll
-	m_InteractionData $80 $0a $33	;life potion
-	m_InteractionData $80 $0e $33	;
-	m_InteractionData $80 $12 $13
+	m_InteractionData $80 $0a $33	;life potion(?)
+	m_InteractionData $80 $0e $33	;dog mask
+	m_InteractionData $80 $12 $53	;mushroom
 	m_InteractionData $80 $16 $12
 	m_InteractionData $80 $18 $32
 	m_InteractionData $80 $1a $23	;Sparring Book		$13

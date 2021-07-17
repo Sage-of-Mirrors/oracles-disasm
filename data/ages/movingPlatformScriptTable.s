@@ -1,3 +1,4 @@
+; relative movement
 .macro plat_wait
 	.db $00, \1
 .endm
@@ -140,14 +141,14 @@ _movingPlatform_scriptTable:
 @dungeon08:
 @dungeon09:
 @dungeon0a:
-@dungeon0b:
+
 @dungeon0c:
 @dungeon0d:
 @dungeon0e:
 @dungeon0f:
 	.dw @@platform0
 	.dw @@platform1
-
+;relative movement
 @@platform0:
 	plat_wait  $08
 	plat_right $68
@@ -160,4 +161,27 @@ _movingPlatform_scriptTable:
 	plat_left  $88
 	plat_wait  $08
 	plat_right $a0
+	plat_jump @@platform1
+
+
+@dungeon0b:
+	.dw @@platform0
+	.dw @@platform1	
+
+@@platform0:
+	plat_wait 	$08
+	plat_down	$a0
+	plat_wait 	$08
+	plat_up  	$a0
+	plat_jump @@platform0
+
+@@platform1:
+	plat_wait  	$08
+	plat_right  $40
+	plat_wait 	$08
+	plat_up 	$40
+	plat_wait 	$08
+	plat_left 	$40
+	plat_wait 	$08
+	plat_down 	$40
 	plat_jump @@platform1

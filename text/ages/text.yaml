@@ -785,9 +785,8 @@ groups:
     index: 0x5f
     text: |-
       You got a \col(0x84)\item(0x06)
-      \col(1)Dumbbell\col(0)!!!
-      But there's only
-      one!
+      \col(1)Mushroom\col(0)!!!
+      What a pungent scent!
 
   - name: TX_0060
     index: 0x60
@@ -1642,7 +1641,7 @@ groups:
   - name: TX_0302
     index: 0x02
     text: |-
-      Forest of Time
+      Spring Crag
 
   - name: TX_0303
     index: 0x03
@@ -1652,17 +1651,17 @@ groups:
   - name: TX_0304
     index: 0x04
     text: |-
-      Seasons Shrine
+      Fiorla Marsh
 
   - name: TX_0305
     index: 0x05
     text: |-
-      Manic Dunes
+      Gobbi Gorge
 
   - name: TX_0306
     index: 0x06
     text: |-
-      Moblin Cliffs
+      Revinna Cliffs
 
   - name: TX_0307
     index: 0x07
@@ -1865,7 +1864,7 @@ groups:
   - name: TX_0330
     index: 0x30
     text: |-
-      Talus Lake
+      Ruptured Mine
 
   - name: TX_0331
     index: 0x31
@@ -1896,8 +1895,7 @@ groups:
   - name: TX_0336
     index: 0x36
     text: |-
-      Sea of No
-      Return
+      Tokay Desert
 
   - name: TX_0337
     index: 0x37
@@ -3996,8 +3994,8 @@ groups:
   - name: TX_090e
     index: 0x0e
     text: |-
-      Dumbbell
-      A single weight.
+      Mushroom
+      Found in the depths
 
   - name: TX_090f
     index: 0x0f
@@ -5966,7 +5964,7 @@ groups:
       \pos(2)If \col(3)Maple\col(0) were
       here, I'd send
       her to \col(3)that labrinth\col(0)
-      for \col(1)\item(0x06) Mushrooms\col(0),
+      for \item(0x06) \col(1)Mushrooms\col(0),
       but since she
       hasn't come
       back,
@@ -5979,7 +5977,7 @@ groups:
       \pos(2)Sniff, sniff!!!
       That scent!!!\stop
       Ya've got a
-      \col(1)\item(0x06) Mushroom\col(0)!
+      \item(0x06) \col(1)Mushroom\col(0)!
       I'll make it
       worth your while!
       How about it?
@@ -5993,6 +5991,7 @@ groups:
       my \col(1)Magic Potion\col(0).
       Guess I'll open
       the shop soon.
+      How'd you get in anyway?
 
   - name: TX_0b4a
     index: 0x4a
@@ -7430,6 +7429,12 @@ groups:
     text: |-
       \pos(2)Accept our
       quest, hero!
+
+  - name: TX_1214
+    index: 0x14
+    text: |-
+      It sounds like there was a massive explosion,
+      opening a new path!
 
 - group: 0x13
   data:

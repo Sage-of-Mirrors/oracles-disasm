@@ -4410,10 +4410,12 @@ itemCode18:
 	jr nc,@deleteSelf
 
 	call _bombUpdateThrowingLaterally
-	call @checkDeletionTrigger
-	jr nz,@deleteSelfWithPuff
+
+;	call @checkDeletionTrigger
+;	jr nz,@deleteSelfWithPuff
 
 	; var39 = gravity
+	ld h,d
 	ld l,Item.var39
 	ld c,(hl)
 	jp caneHook4
@@ -4511,6 +4513,13 @@ itemCode18:
 ;;
 ; @param[out]	zflag	Set if the block can appear at this position
 @checkBlockCanAppear:
+; If Link is on the same tile
+	call objectGetShortPosition
+	ld c,a
+	ld a,(wActiveTilePos)
+	cp c
+	jr z,@@disallow
+
 	; Disallow cane of somaria usage if in patch's minigame room
 	ld a,(wActiveGroup)
 	cp $05
@@ -5419,7 +5428,30 @@ _tryBreakTileWithSword:
 
 	; Play a different sound effect on bombable walls
 @bombableWallClink:
+	sub TILEINDEX_RED_TOGGLE_BLOCK
+	cp $03
 	ld a,SND_CLINK2
+	jr nc,@@noSpecialCase
+
+	; Spawn an instance of this object with subid 1.
+	ld a,(wccb0)
+	ld c,a
+	ld b,>wRoomLayout
+	ld a,(bc)
+	inc a
+	cp TILEINDEX_RED_TOGGLE_BLOCK+3
+	jr c,+
+	ld a,TILEINDEX_RED_TOGGLE_BLOCK
++	
+	ldh (<hFF92),a
+	call setTile
+	ldh a,(<hFF92)
+	ld b,a
+	call setTileInRoomLayoutBuffer
+	ld a,SND_GETSEED
+
+@@noSpecialCase:
+
 	call playSound
 
 	; Set bit 7 of subid to prevent 'clink' interaction from also playing a sound
@@ -5486,7 +5518,15 @@ _tryBreakTileWithSword:
 
 	.db $0a $0b TILEINDEX_DUNGEON_STUMP TILEINDEX_DUNGEON_MUSHROOM
 	.db $00
+
 @collisions2:
+	.db $1f $30 $31 $32 $33 $38 $39 $3a $3b $68 $69
+	.db TILEINDEX_RED_TOGGLE_BLOCK TILEINDEX_YELLOW_TOGGLE_BLOCK TILEINDEX_BLUE_TOGGLE_BLOCK
+	.db $00
+
+	.db $0a $0b
+	.db $00
+
 @collisions5:
 	.db $1f $30 $31 $32 $33 $38 $39 $3a $3b $68 $69
 	.db $00
@@ -6590,11 +6630,46 @@ caneHook4:
 	call convertAngleToDirection
 	ld e,Item.direction
 	ld (de),a
-	jr @deleteSelfWithPuff
+	jp itemCode.itemCode18@deleteSelfWithPuff
 
 ++
 	ret z			; $5d9c
-	jr @deleteSelfWithPuff		; $5d9d
+; Landed, but not in hazard
+
+	; Jump if the item is not on the ground
+;	jr z,+
+
+	; If on the ground...
+	call _itemBounce
+	ret nc
+;	jr c,@stoppedBouncing
+
+	; No idea what this function is for
+;+
+;	jp _bombUpdateAnimation
+
+@stoppedBouncing:
+	; Bomb goes to state 1 (motionless on the ground)
+	ld h,d
+	ld l,Item.state
+	xor a
+	ld (hl),a
+
+	ld l,Item.speedZ
+	ld (hl),a
+	ld l,Item.var37
+	ldi (hl),a	;var37
+; var 38
+	ldi (hl),a	;var38
+; var 39
+	ldi (hl),a	;var39
+	inc l
+	ldi (hl),a
+	inc l
+	ldi (hl),a
+	ldi (hl),a
+
+	ret
 
 @deleteSelfWithPuff:
-	jp itemCode.itemCode18@deleteSelfWithPuff
+;	jp itemCode.itemCode18@deleteSelfWithPuff

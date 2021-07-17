@@ -253,6 +253,7 @@
 ; @postype{short}
 .define INTERACID_EXTENDABLE_BRIDGE	$23
 
+;;
 ; Controls a bit in wActiveTriggers based on various things.
 ;
 ; Subid bits 0-3:\n
@@ -1892,7 +1893,9 @@
 ; @subid_0f{Shows text upon entering a room (only used for sea of no return entrance and black tower
 ;           turret)}
 ; @subid_10{Black tower entrance handler: warps Link to different variants of black tower.}
-; @subid_11{Gives D6 Past boss key when you get D6 Present boss key}
+; @subid_11{Gives D6 Past boss key when you get D6 Present boss key,
+;           Sets wDungeonBossKeys,wDungeonCompasses, or wDungeonMaps
+;           according to Y (0-2)}
 ; @subid_12{Bridge handler for cave leading to Tingle}
 ; @subid_13{Makes lava-waterfall an d4 entrance behave like lava instead of just a wall, so that the
 ;           fireballs "sink" into it instead of exploding like on land.}
@@ -1996,6 +1999,8 @@
 ; subid_01-04{The four that could lead to pirate's bell}
 ; subid_05{Leads to SE samasa treasure chest}
 .define INTERACID_QUICKSAND		$e9
+
+.define INTERACID_SOMARIA_BLOCK $ea
 
 
 

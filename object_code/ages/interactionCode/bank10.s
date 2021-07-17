@@ -411,12 +411,25 @@ _interactiondc_subid10:
 
 
 ; Gives D6 Past boss key when you get D6 Present boss key
+; Sets wDungeonBossKeys,wDungeonCompasses, or wDungeonMaps
+; according to Y (0-2)
+;
 _interactiondc_subid11:
 	call getThisRoomFlags
 	and ROOMFLAG_ITEM
 	ret z
 	ld hl,wDungeonBossKeys
-	ld a,$0c
+	ld e,Interaction.yh
+	ld a,(de)
+	rst_addAToHl
+
+	ld b,$02
+	ld a,(wDungeonIndex)
+	cp b
+	jr nz,+
+	ld b,$0b
++
+	ld a,b
 	jp setFlag
 
 
@@ -1927,4 +1940,32 @@ _objectIsItem:
 	ld l,Item.zh
 	ld e,Item.var31
 	jr _moveObjectIfGrounded
+
+; ==============================================================================
+; INTERACID_SOMARIA_BLOCK
+;
+; Loads Cane of Somaria blocks at interaction's position
+; ==============================================================================
+interactionCodeea:
+	call checkInteractionState
+	ret nz
+
+	inc a
+	ld (de),a
+
+	call getFreeItemSlot
+	ret nz
+;	ld e,Interaction.relatedObj1
+;	ld (hl),Item.start
+;	inc l
+;	ld (hl),d
+
+
+;	ld l,Item.start
+	inc (hl)
+	inc l
+	ld (hl),ITEMID_18
+
+	; Set Y/X of the new item as calculated earlier, and copy Link's Z position
+	jp objectCopyPosition
 .ends

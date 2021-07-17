@@ -445,6 +445,7 @@ treasureObjectData16:
 	.db $0a $01 $77 $19
 	.db $38 $02 $2f $1a
 	.db $0a $01 $26 $19
+	.db $3a $01 $26 $19
 
 treasureObjectData17:
 	.db $0a $01 $27 $16

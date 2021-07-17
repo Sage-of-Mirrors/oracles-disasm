@@ -34,10 +34,28 @@ makuPathScript_spawn30Rupees:
 ;	scriptend
 lostLabrinthScript_keyFallsFromActiveTrigger:
 	stopifitemflagset
-	checkflagset $01, wActiveTriggers
+	checkflagset 1, wActiveTriggers
 	spawnitem TREASURE_SMALL_KEY, $01
 	scriptend
 	
+lostLabrinthScript_openPortionOfWall:
+	stopifroomflag80set
+	checkflagset 1, wActiveTriggers
+	disableinput
+	wait 30
+	shakescreen 100
+	playsound SND_BIG_EXPLOSION
+	wait 90
+	playsound SND_SOLVEPUZZLE
+	wait 30
+	showtext TX_1214
+	orroomflag ROOMFLAG_80
+	enableinput
+	asm15 scriptHelp.moonlitGrotto_enableControlAfterBreakingCrystal
+	scriptend
+
+
+
 makuPathScript_keyFallsFromCeilingWhen1TorchLit:
 ;	stopifitemflagset
 ;	checkmemoryeq wNumTorchesLit, $01
@@ -243,12 +261,12 @@ ancientTombScript_spawnNorthStairsWhenTrigger0Active:
 
 
 ancientTombScript_retractWallWhenTrigger0Active:
-;	stopifroomflag40set
-;	checkmemoryeq wActiveTriggers, $01
-;	disableinput
-;	wait 30
-;	asm15 scriptHelp.ancientTomb_startWallRetractionCutscene
-;	scriptend
+	stopifroomflag40set
+	checkflagset 0, wActiveTriggers
+	disableinput
+	wait 30
+	asm15 scriptHelp.ancientTomb_startWallRetractionCutscene
+	scriptend
 
 
 ancientTombScript_spawnDownStairsWhenEnemiesKilled:

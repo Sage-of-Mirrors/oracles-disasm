@@ -70,6 +70,10 @@ applyRoomSpecificTileChanges:
   .dw tileReplacement_group0Map40 ; $3e
   .dw tileReplacement_group4Map51 ; $3f
   .dw tileReplacement_group1Map30 ; $40
+  .dw tileReplacement_group4Map45 ; $41
+  .dw tileReplacement_group4Map43 ; $42
+  .dw tileReplacement_group4Map3b ; $43
+  .dw tileReplacement_group0Map33 ; $44
 
 roomTileChangerCodeGroupTable:
   .dw roomTileChangerCodeGroup0Data
@@ -89,6 +93,7 @@ roomTileChangerCodeGroup0Data:
   .db $74 $3b
   .db $01 $08
   .db $11 $17
+  .db $33 $44
   ;.db $5c $14
   ;.db $73 $16
   .db $ac $18
@@ -131,7 +136,10 @@ roomTileChangerCodeGroup3Data:
   .db $00
 roomTileChangerCodeGroup4Data:
   .db $50 $12     ;Group5Map95
+  .db $45 $41
+  .db $43 $42
   .db $51 $3f
+  .db $3b $43
   ;.db $1b $01
   ;.db $4c $03
   ;.db $4e $04
@@ -569,7 +577,7 @@ tileReplacement_group4Map51:
   ld hl,wRoomLayout + $30
   ld (hl),$b5   ;corner
   ld hl,@wallEdge
-  call fillRectInRoomLayout
+  jp fillRectInRoomLayout
 
 @wallEdge:
   .db $40 $06 $01 $b3
@@ -1418,6 +1426,10 @@ tileReplacement_group0Map76:
 ;;
 ; Present library
 tileReplacement_group0Mapa5:
+	ld a,(wPastRoomFlags+<ROOM_AGES_120)
+	bit 0,a
+	ret nz
+
   ld a,(wPresentRoomFlags+<ROOM_AGES_070)
   bit 7,a
   ret z
@@ -1623,3 +1635,50 @@ tileReplacement_group1Map30:
   ld hl,wRoomLayout + $37
   ld (hl),$ef
   ret
+
+tileReplacement_group4Map45:
+  ld a,<ROOM_AGES_446
+  call getARoomFlags
+  and ROOMFLAG_80
+  ret nz
+
+  ld hl,@wallReplacement
+  jp fillRectInRoomLayout  
+
+; - Top-left position (YX)
+; - Height
+; - Width
+; - Tile value
+@wallReplacement:
+  .db $30 $05 $01 $b3
+
+tileReplacement_group4Map43: 
+  call getThisRoomFlags
+  and ROOMFLAG_80
+  ret z
+
+  ld hl,wRoomLayout + $5a
+  ld (hl),$1d
+  inc l
+  ld (hl),$a0
+  ret
+
+tileReplacement_group4Map3b:
+  ld a,<ROOM_AGES_451
+  call getARoomFlags
+  and ROOMFLAG_KEYDOOR_RIGHT
+  ret nz
+
+  ld hl,wRoomLayout + $3e
+  ld (hl),$b1
+-
+  ret  
+
+tileReplacement_group0Map33:
+  ld a,(wPastRoomFlags+<ROOM_AGES_133)
+  and ROOMFLAG_80 ; bombable wall
+  ret nz
+
+  ld hl,wRoomLayout + $14
+  ld (hl),$64
+  jr -
